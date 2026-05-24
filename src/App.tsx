@@ -78,7 +78,7 @@ const COPY = {
       status: 'Uzaktan ve hibrit çalışma için uygun',
     },
     stats: [
-      {value: '6+', label: 'öne çıkan proje'},
+      {value: '7+', label: 'öne çıkan proje'},
       {value: '4', label: 'ana teknoloji alanı'},
       {value: 'C1', label: 'İngilizce seviye'},
     ],
@@ -131,7 +131,7 @@ const COPY = {
       status: 'Open to remote and hybrid work',
     },
     stats: [
-      {value: '6+', label: 'featured projects'},
+      {value: '7+', label: 'featured projects'},
       {value: '4', label: 'core tech areas'},
       {value: 'C1', label: 'English level'},
     ],
@@ -218,6 +218,20 @@ const EXPERIENCES: Experience[] = [
 ];
 
 const PROJECTS: Project[] = [
+  {
+    title: {tr: 'React Log Agent', en: 'React Log Agent'},
+    date: '2026',
+    tech: ['TypeScript', 'React', 'React Native', 'Node.js', 'WebSocket', 'npm Workspaces'],
+    description: {
+      tr: 'React ve React Native uygulamaları için fetch, Axios, route geçişleri ve React Navigation ekran değişimlerini tek bir yerel terminal dashboard’una aktaran geliştirme zamanı telemetri aracı.',
+      en: 'A development-time telemetry tool for React and React Native apps that streams fetch, Axios, route transitions, and React Navigation screen changes into one local terminal dashboard.',
+    },
+    impact: {
+      tr: 'Opt-in runtime, WebSocket handshake, adapter cleanup, hassas veri maskeleme ve bağlantı yokken sıfır overhead yaklaşımıyla web ve mobil ortamları aynı paket üzerinden destekler.',
+      en: 'Supports web and mobile from the same runtime package with an opt-in model, WebSocket handshake, adapter cleanup, privacy-focused redaction, and zero overhead when disconnected.',
+    },
+    links: [{label: 'Repo', url: 'https://github.com/anilkrblt/dev-logger'}],
+  },
   {
     title: {tr: 'Halısaha Otomasyon Sistemi', en: 'Football Field Automation System'},
     date: '2025',
