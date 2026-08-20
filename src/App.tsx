@@ -3,6 +3,7 @@ import {
   ArrowRight,
   ArrowUpRight,
   Database,
+  Download,
   ExternalLink,
   FileText,
   Github,
@@ -31,14 +32,28 @@ type Experience = {
   description: LocalizedString;
 };
 
+/** 'live' is reachable by anyone; 'building' is real but not yet publicly deployed. */
+type ProductStatus = 'live' | 'building';
+
+type Shot = {
+  src: string;
+  alt: LocalizedString;
+  caption: LocalizedString;
+};
+
 type Product = {
   title: string;
   kicker: LocalizedString;
   description: LocalizedString;
+  status: ProductStatus;
+  year: string;
+  /** Short, checkable facts — no usage numbers, only what the build itself proves. */
+  facts: LocalizedString[];
   tech: string[];
   highlights: LocalizedString[];
   icon: typeof FileText;
   liveUrl?: string;
+  shots?: Shot[];
 };
 
 type ArchiveProject = {
@@ -60,6 +75,12 @@ const CONTACT = {
   phone: '+90 505 818 71 62',
   github: 'https://github.com/anilkrblt',
   linkedin: 'https://linkedin.com/in/anilkarabulut',
+};
+
+/** The CV is served per language so a recruiter always gets the one they can read. */
+const CV_URL: Record<Language, string> = {
+  tr: '/ANIL_KARABULUT_CV.pdf',
+  en: '/ANIL_KARABULUT_CV_ENG.pdf',
 };
 
 const COPY = {
@@ -86,6 +107,7 @@ const COPY = {
       summary:
         'Spring Boot, Python/FastAPI, Node.js, React ve React Native ekosistemlerinde; güvenilir, ölçülebilir ve gerçek kullanıcıya ulaşan yazılımlar üretiyorum.',
       primaryCta: 'Canlı ürünü incele',
+      cvCta: 'CV indir (PDF)',
       secondaryCta: 'GitHub profili',
       location: 'Edirne, Türkiye',
       status: 'Uzaktan ve hibrit çalışmaya açık',
@@ -110,9 +132,13 @@ const COPY = {
     },
     product: {
       live: 'Yayında',
+      building: 'Geliştiriliyor',
       visit: 'Canlı siteyi aç',
       highlights: 'Öne çıkanlar',
       stack: 'Teknoloji',
+      facts: 'Künye',
+      preview: 'Ekran görüntüleri',
+      shotHint: 'Büyütmek için görsele tıklayın',
     },
     demo: {
       label: 'Düzen korumalı çeviri',
@@ -133,12 +159,34 @@ const COPY = {
         {title: 'Otomatik kalite kapıları', note: 'Derleme, test ve statik analiz zorunlu geçiş noktasıdır.'},
         {title: 'İnsan onayı', note: 'Ürün ve mimari kararlar belirlenmiş noktalarda onaylanır.'},
       ],
+      matrixTitle: 'Döngü pratikte',
+      matrixLead: 'Her üründe kapıyı tutan somut mekanizma:',
+      matrix: [
+        {
+          product: 'TranslateYourPDF',
+          gate: 'Dondurulmuş PDF fixture’ları; sayfa bazlı çıktı farkı ve font/ToUnicode korunumu kontrol edilir.',
+        },
+        {
+          product: 'EAA Monitor',
+          gate: 'Playwright + axe-core taraması dondurulmuş fixture sitesinde koşar; rapor çıktısı beklenenle karşılaştırılır.',
+        },
+        {
+          product: 'Randevai',
+          gate: 'Testcontainers ile gerçek PostgreSQL/pgvector üzerinde entegrasyon testleri; bilgi bankası dışı yanıt üretimi engellenir.',
+        },
+        {
+          product: 'Bu portföy',
+          gate: 'GitHub Actions üzerinde her push ve PR’da tsc --noEmit ve üretim derlemesi koşar.',
+        },
+      ],
     },
     contactLabels: {
       email: 'E-posta',
       phone: 'Telefon',
       linkedin: 'LinkedIn',
       github: 'GitHub',
+      cv: 'Özgeçmiş',
+      cvValue: 'PDF indir',
     },
     education: {
       school: 'Trakya Üniversitesi',
@@ -177,6 +225,7 @@ const COPY = {
       summary:
         'I create reliable, measurable software that reaches real users across Spring Boot, Python/FastAPI, Node.js, React, and React Native ecosystems.',
       primaryCta: 'Explore the live product',
+      cvCta: 'Download CV (PDF)',
       secondaryCta: 'GitHub profile',
       location: 'Edirne, Türkiye',
       status: 'Open to remote and hybrid work',
@@ -201,9 +250,13 @@ const COPY = {
     },
     product: {
       live: 'Live',
+      building: 'In development',
       visit: 'Visit live site',
       highlights: 'Highlights',
       stack: 'Stack',
+      facts: 'At a glance',
+      preview: 'Screenshots',
+      shotHint: 'Click an image to enlarge',
     },
     demo: {
       label: 'Layout-preserving translation',
@@ -224,12 +277,34 @@ const COPY = {
         {title: 'Automated quality gates', note: 'Build, test, and static analysis are mandatory checkpoints.'},
         {title: 'Human approval', note: 'Product and architecture calls are signed off at defined points.'},
       ],
+      matrixTitle: 'The loop in practice',
+      matrixLead: 'The concrete mechanism holding the gate on each product:',
+      matrix: [
+        {
+          product: 'TranslateYourPDF',
+          gate: 'Frozen PDF fixtures; page-level output diffing and font/ToUnicode preservation are checked.',
+        },
+        {
+          product: 'EAA Monitor',
+          gate: 'Playwright + axe-core scans run against a frozen fixture site; the report output is compared to the expected one.',
+        },
+        {
+          product: 'Randevai',
+          gate: 'Testcontainers integration tests on real PostgreSQL/pgvector; answers outside the knowledge base are blocked.',
+        },
+        {
+          product: 'This portfolio',
+          gate: 'tsc --noEmit and a production build run on GitHub Actions for every push and pull request.',
+        },
+      ],
     },
     contactLabels: {
       email: 'Email',
       phone: 'Phone',
       linkedin: 'LinkedIn',
       github: 'GitHub',
+      cv: 'Résumé',
+      cvValue: 'Download PDF',
     },
     education: {
       school: 'Trakya University',
@@ -258,6 +333,13 @@ const PRODUCTS: Product[] = [
       tr: 'Belgenin görünümünü koruyarak çeviri yapan ve sekiz farklı belge işleme aracını tek akışta sunan üretim platformu.',
       en: 'A production platform that translates documents while preserving their visual structure and brings eight document-processing tools into one workflow.',
     },
+    status: 'live',
+    year: '2026',
+    facts: [
+      {tr: 'Tek akışta sekiz belge işleme aracı', en: 'Eight document-processing tools in one workflow'},
+      {tr: 'TR / EN arayüz ve üç temalı tasarım sistemi', en: 'TR / EN interface and a three-theme design system'},
+      {tr: 'Hetzner üzerinde Docker + Caddy ile self-host', en: 'Self-hosted on Hetzner with Docker + Caddy'},
+    ],
     tech: [
       'Python / FastAPI',
       'PyMuPDF',
@@ -301,6 +383,34 @@ const PRODUCTS: Product[] = [
       tr: 'Dijital ürünleri düzenli olarak tarayan, bulguları standartlarla eşleyen ve uyum çıktıları üreten erişilebilirlik izleme platformu.',
       en: 'An accessibility monitoring platform that scans digital products regularly, maps findings to standards, and produces compliance outputs.',
     },
+    status: 'building',
+    year: '2026',
+    facts: [
+      {tr: 'WCAG 2.1 A/AA ve EN 301 549 kural eşlemesi', en: 'WCAG 2.1 A/AA and EN 301 549 rule mapping'},
+      {tr: 'DE / FR / EN beyan taslağı ve PDF uyum raporu', en: 'DE / FR / EN statement drafts and PDF compliance reports'},
+      {
+        tr: 'Rapor üretimi dondurulmuş fixture taramasıyla doğrulanır',
+        en: 'Report generation is verified against a frozen fixture scan',
+      },
+    ],
+    shots: [
+      {
+        src: '/eaa1.png',
+        alt: {
+          tr: 'EAA Monitor açılış sayfası ve müşteri portföyü özeti',
+          en: 'EAA Monitor landing page with the client portfolio summary',
+        },
+        caption: {tr: 'Ajans portföyü ve izleme durumu', en: 'Agency portfolio and monitoring status'},
+      },
+      {
+        src: '/eaa2.png',
+        alt: {
+          tr: 'EAA Monitor tarafından üretilen erişilebilirlik izleme raporu',
+          en: 'Accessibility monitoring report generated by EAA Monitor',
+        },
+        caption: {tr: 'Fixture taramasından üretilen PDF rapor', en: 'PDF report generated from a fixture scan'},
+      },
+    ],
     tech: ['Next.js 15', 'Node.js Worker', 'Playwright', 'axe-core', 'PostgreSQL', 'Drizzle', 'pg-boss', 'Docker'],
     highlights: [
       {tr: 'Otomatik erişilebilirlik taraması ve WCAG 2.1 / EN 301 549 eşlemesi', en: 'Automated accessibility scans with WCAG 2.1 / EN 301 549 mapping'},
@@ -319,6 +429,40 @@ const PRODUCTS: Product[] = [
       tr: 'İşletme bilgisini anlayan, müşterilerle doğal dilde görüşen ve randevu operasyonunu uçtan uca yöneten çok kiracılı asistan.',
       en: 'A multi-tenant assistant that understands business knowledge, talks to customers naturally, and handles appointment operations end to end.',
     },
+    status: 'building',
+    year: '2026',
+    facts: [
+      {
+        tr: 'Çok kiracılı: her işletme kendi bilgi bankasıyla izole',
+        en: 'Multi-tenant: each business isolated with its own knowledge base',
+      },
+      {
+        tr: 'Bilgi bankası dışında yanıt üretmez, konuşmayı insana devreder',
+        en: 'Never answers outside the knowledge base; hands the conversation to a human',
+      },
+      {
+        tr: 'Java 25 / Spring Boot 4 servis, Baileys ile WhatsApp katmanı',
+        en: 'Java 25 / Spring Boot 4 service with a Baileys WhatsApp layer',
+      },
+    ],
+    shots: [
+      {
+        src: '/randevai1.png',
+        alt: {
+          tr: 'Randevai açılış sayfası ve günün operasyon masası önizlemesi',
+          en: 'Randevai landing page with a preview of the daily operations desk',
+        },
+        caption: {tr: 'Operasyon masası ve karşılama akışı', en: 'Operations desk and intake flow'},
+      },
+      {
+        src: '/randevai2.png',
+        alt: {
+          tr: 'Randevai asistan konuşması ve insana devir uyarısı',
+          en: 'Randevai assistant conversation with the human handoff notice',
+        },
+        caption: {tr: 'Asistan konuşması ve insana devir anı', en: 'Assistant conversation and the handoff moment'},
+      },
+    ],
     tech: ['Spring Boot 4', 'Java 25', 'Next.js 16', 'Node.js / Baileys', 'PostgreSQL', 'pgvector', 'OpenAI', 'Testcontainers'],
     highlights: [
       {tr: 'İşletme bilgi bankası için RAG ve OpenAI function calling', en: 'RAG for the business knowledge base and OpenAI function calling'},
@@ -555,7 +699,7 @@ export default function App() {
           />
 
           <main id="main-content">
-            <Hero copy={copy} />
+            <Hero copy={copy} language={language} />
             <Ledger stats={copy.stats} />
 
             <section id="products" className="shell band">
@@ -662,7 +806,7 @@ export default function App() {
             </section>
           </main>
 
-          <Colophon copy={copy} />
+          <Colophon copy={copy} language={language} />
         </div>
       </div>
     </MotionConfig>
@@ -738,7 +882,7 @@ function Masthead({
   );
 }
 
-function Hero({copy}: {copy: (typeof COPY)[Language]}) {
+function Hero({copy, language}: {copy: (typeof COPY)[Language]; language: Language}) {
   return (
     <section id="top" className="shell grid gap-12 pb-16 pt-14 md:pb-24 md:pt-20 lg:grid-cols-12 lg:gap-10">
       <motion.div initial="hidden" animate="visible" variants={stagger} className="lg:col-span-7 xl:col-span-7">
@@ -764,6 +908,10 @@ function Hero({copy}: {copy: (typeof COPY)[Language]}) {
           <a href="https://translateyourpdf.com" target="_blank" rel="noreferrer" className="btn btn-primary">
             {copy.hero.primaryCta}
             <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+          </a>
+          <a href={CV_URL[language]} download className="btn btn-ghost">
+            <Download className="h-4 w-4" aria-hidden="true" />
+            {copy.hero.cvCta}
           </a>
           <a href={CONTACT.github} target="_blank" rel="noreferrer" className="btn btn-ghost">
             <Github className="h-4 w-4" aria-hidden="true" />
@@ -843,10 +991,10 @@ function PrimaryProduct({
               <span className="absolute inline-flex h-full w-full animate-ping bg-[var(--c-panel-accent)] opacity-70" />
               <span className="relative inline-flex h-1.5 w-1.5 bg-[var(--c-panel-accent)]" />
             </span>
-            {labels.live}
+            {product.status === 'live' ? labels.live : labels.building}
           </span>
           <span className="font-mono text-[0.7rem] uppercase tracking-[0.16em] text-[var(--c-on-panel-muted)]">
-            2026
+            {product.year}
           </span>
         </div>
 
@@ -857,6 +1005,14 @@ function PrimaryProduct({
         <p className="mt-6 max-w-xl text-pretty leading-7 text-[var(--c-on-panel-muted)]">
           {localize(product.description, language)}
         </p>
+
+        <ul className="mt-6 flex flex-col gap-1.5 border-l-2 border-[var(--c-panel-rule)] pl-4">
+          {product.facts.map((fact) => (
+            <li key={fact.en} className="font-mono text-[0.78rem] leading-6 text-[var(--c-on-panel-muted)]">
+              {localize(fact, language)}
+            </li>
+          ))}
+        </ul>
 
         <h4 className="mt-9 font-mono text-[0.7rem] uppercase tracking-[0.16em] text-[var(--c-on-panel-muted)]">
           {labels.highlights}
@@ -955,6 +1111,50 @@ function DemoPage({label, title, translated = false}: {label: string; title: str
   );
 }
 
+/**
+ * Status is stated rather than implied: a product with no public URL says so,
+ * instead of leaving the reader to guess why there is nothing to click.
+ */
+function StatusBadge({status, labels}: {status: ProductStatus; labels: (typeof COPY)[Language]['product']}) {
+  const live = status === 'live';
+  return (
+    <span
+      className={`inline-flex items-center gap-2 font-mono text-[0.7rem] font-semibold uppercase tracking-[0.16em] ${
+        live ? 'text-accent' : 'text-amber'
+      }`}
+    >
+      <span className="relative flex h-1.5 w-1.5">
+        {live && <span className="absolute inline-flex h-full w-full animate-ping bg-accent opacity-70" />}
+        <span className={`relative inline-flex h-1.5 w-1.5 ${live ? 'bg-accent' : 'bg-amber'}`} />
+      </span>
+      {live ? labels.live : labels.building}
+    </span>
+  );
+}
+
+function ShotPlate({shot, language, title}: {shot: Shot; language: Language; title: string}) {
+  return (
+    <figure className="m-0">
+      <a
+        href={shot.src}
+        target="_blank"
+        rel="noreferrer"
+        className="block border border-rule-strong bg-raised p-1.5 transition-colors hover:border-accent focus-visible:border-accent"
+        aria-label={`${title} — ${localize(shot.caption, language)}`}
+      >
+        <img
+          src={shot.src}
+          alt={localize(shot.alt, language)}
+          loading="lazy"
+          decoding="async"
+          className="block w-full"
+        />
+      </a>
+      <figcaption className="meta-plain mt-2 text-faint">{localize(shot.caption, language)}</figcaption>
+    </figure>
+  );
+}
+
 function ProductEntry({
   product,
   index,
@@ -974,9 +1174,22 @@ function ProductEntry({
       </div>
 
       <div>
-        <h3 className="headline">{product.title}</h3>
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+          <StatusBadge status={product.status} labels={labels} />
+          <span className="meta-plain text-faint">{product.year}</span>
+        </div>
+
+        <h3 className="headline mt-4">{product.title}</h3>
         <p className="mt-2 text-accent">{localize(product.kicker, language)}</p>
         <p className="mt-5 max-w-2xl text-pretty leading-7">{localize(product.description, language)}</p>
+
+        <ul className="mt-6 flex flex-col gap-1.5 border-l-2 border-rule-strong pl-4">
+          {product.facts.map((fact) => (
+            <li key={fact.en} className="font-mono text-[0.78rem] leading-6 text-muted">
+              {localize(fact, language)}
+            </li>
+          ))}
+        </ul>
 
         <div className="mt-7 grid gap-x-10 gap-y-6 lg:grid-cols-2">
           <div>
@@ -1004,6 +1217,27 @@ function ProductEntry({
             </p>
           </div>
         </div>
+
+        {product.shots && product.shots.length > 0 && (
+          <div className="mt-9">
+            <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-t border-rule pt-4">
+              <h4 className="meta">{labels.preview}</h4>
+              <span className="meta-plain text-faint">{labels.shotHint}</span>
+            </div>
+            <div className="mt-4 grid gap-5 sm:grid-cols-2">
+              {product.shots.map((shot) => (
+                <ShotPlate key={shot.src} shot={shot} language={language} title={product.title} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {product.liveUrl && (
+          <a href={product.liveUrl} target="_blank" rel="noreferrer" className="btn btn-ghost mt-8">
+            {labels.visit}
+            <ExternalLink className="h-4 w-4" aria-hidden="true" />
+          </a>
+        )}
       </div>
     </motion.article>
   );
@@ -1036,17 +1270,47 @@ function Process({copy}: {copy: (typeof COPY)[Language]}) {
             ))}
           </motion.ol>
         </motion.div>
+
+        {/* The claim above is abstract; this table is where it becomes checkable. */}
+        <motion.div variants={stagger} {...reveal} className="mt-14">
+          <motion.div variants={rise} className="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
+            <h3 className="subhead">{copy.process.matrixTitle}</h3>
+            <p className="text-sm leading-6 text-muted">{copy.process.matrixLead}</p>
+          </motion.div>
+
+          <motion.dl variants={stagger} className="mt-6 border-t-2 border-ink">
+            {copy.process.matrix.map((row) => (
+              <motion.div
+                key={row.product}
+                variants={rise}
+                className="grid gap-2 border-b border-rule py-4 md:grid-cols-[14rem_minmax(0,1fr)] md:gap-8"
+              >
+                <dt className="font-mono text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-ink">
+                  {row.product}
+                </dt>
+                <dd className="m-0 text-sm leading-6 text-muted">{row.gate}</dd>
+              </motion.div>
+            ))}
+          </motion.dl>
+        </motion.div>
       </div>
     </section>
   );
 }
 
-function Colophon({copy}: {copy: (typeof COPY)[Language]}) {
+function Colophon({copy, language}: {copy: (typeof COPY)[Language]; language: Language}) {
   const items = [
     {icon: Mail, label: copy.contactLabels.email, value: CONTACT.email, href: `mailto:${CONTACT.email}`},
     {icon: Phone, label: copy.contactLabels.phone, value: CONTACT.phone, href: `tel:${CONTACT.phone.replace(/\s/g, '')}`},
     {icon: Linkedin, label: copy.contactLabels.linkedin, value: 'in/anilkarabulut', href: CONTACT.linkedin},
     {icon: Github, label: copy.contactLabels.github, value: 'anilkrblt', href: CONTACT.github},
+    {
+      icon: Download,
+      label: copy.contactLabels.cv,
+      value: copy.contactLabels.cvValue,
+      href: CV_URL[language],
+      download: true,
+    },
   ];
 
   return (
@@ -1072,6 +1336,7 @@ function Colophon({copy}: {copy: (typeof COPY)[Language]}) {
                   href={item.href}
                   target={item.href.startsWith('http') ? '_blank' : undefined}
                   rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
+                  download={'download' in item ? true : undefined}
                   className="group grid grid-cols-[6.5rem_minmax(0,1fr)_auto] items-center gap-4 border-b border-[var(--c-panel-rule)] py-4 transition-colors hover:bg-[var(--c-panel-2)]"
                   aria-label={`${item.label}: ${item.value}`}
                 >
