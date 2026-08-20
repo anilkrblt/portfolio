@@ -6,3 +6,6 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Local design reference material (third-party brand design analyses)
+DESING-MDS/

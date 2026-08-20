@@ -1,0 +1,11 @@
+# Normalize to LF in the repository so Windows checkouts stop producing
+# whole-file CRLF diffs. Text files are detected automatically.
+* text=auto eol=lf
+
+# Binary assets must never be touched.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.woff binary
+*.woff2 binary
