@@ -1,4 +1,4 @@
-import {MotionConfig, motion} from 'motion/react';
+import {MotionConfig, motion, useReducedMotion} from 'motion/react';
 import {
   ArrowRight,
   ArrowUpRight,
@@ -8,6 +8,7 @@ import {
   FileText,
   Github,
   Languages,
+  Layers,
   Linkedin,
   Mail,
   MapPin,
@@ -18,7 +19,13 @@ import {
   ShieldCheck,
   Smartphone,
 } from 'lucide-react';
-import {useEffect, useState} from 'react';
+import {Component, Suspense, lazy, useEffect, useMemo, useRef, useState, type ReactNode} from 'react';
+
+/**
+ * The WebGL demo is the only heavy dependency on the page, so it ships as its
+ * own chunk and is only fetched once the product panel is actually in view.
+ */
+const PageCurl = lazy(() => import('./three/PageCurl'));
 
 type Language = 'tr' | 'en';
 type Theme = 'kagit' | 'gece';
@@ -147,8 +154,22 @@ const COPY = {
       translated: 'Çeviri · TR',
       sourceTitle: 'Quarterly performance',
       targetTitle: 'Çeyreklik performans',
+      sourceFootnote: 'Annual report · 2025',
+      targetFootnote: 'Yıllık rapor · 2025',
+      sourceLede: 'Revenue rose in all four quarters, and the strongest gain was recorded in the second quarter.',
+      targetLede: 'Gelir dört çeyreğin tamamında yükseldi; en güçlü artış ikinci çeyrekte kaydedildi.',
+      sourceCaption: 'FIG. 1 — QUARTERLY REVENUE',
+      targetCaption: 'ŞEKİL 1 — ÇEYREKLİK GELİR',
+      sourceUnits: ['Q1', 'Q2', 'Q3', 'Q4'],
+      targetUnits: ['Ç1', 'Ç2', 'Ç3', 'Ç4'],
+      folio: '03 / 12',
       preserved: 'Düzen korundu',
       report: 'Sayfa bazlı rapor',
+      hint: 'Sayfayı sürükleyin',
+      peel: 'Çeviriyi göster',
+      restore: 'Kaynağa dön',
+      description:
+        'Kaynak sayfa kıvrılarak kalkıyor ve altındaki boş sayfaya çeviri satır satır yazılıyor: başlık, paragraf düzeni, grafik ve sayfa numarası aynı yerde kalıyor, yalnızca dil değişiyor.',
     },
     process: {
       eyebrow: 'AI destekli otonom geliştirme döngüsü',
@@ -265,8 +286,22 @@ const COPY = {
       translated: 'Translation · TR',
       sourceTitle: 'Quarterly performance',
       targetTitle: 'Çeyreklik performans',
+      sourceFootnote: 'Annual report · 2025',
+      targetFootnote: 'Yıllık rapor · 2025',
+      sourceLede: 'Revenue rose in all four quarters, and the strongest gain was recorded in the second quarter.',
+      targetLede: 'Gelir dört çeyreğin tamamında yükseldi; en güçlü artış ikinci çeyrekte kaydedildi.',
+      sourceCaption: 'FIG. 1 — QUARTERLY REVENUE',
+      targetCaption: 'ŞEKİL 1 — ÇEYREKLİK GELİR',
+      sourceUnits: ['Q1', 'Q2', 'Q3', 'Q4'],
+      targetUnits: ['Ç1', 'Ç2', 'Ç3', 'Ç4'],
+      folio: '03 / 12',
       preserved: 'Layout preserved',
       report: 'Page-level report',
+      hint: 'Drag the sheet',
+      peel: 'Show the translation',
+      restore: 'Back to the source',
+      description:
+        'The source page peels away and the translation is written onto the sheet beneath it line by line: heading, paragraph measure, figure, and folio all stay in place — only the language changes.',
     },
     process: {
       eyebrow: 'AI-assisted autonomous development loop',
@@ -704,7 +739,13 @@ export default function App() {
 
             <section id="products" className="shell band">
               <SectionHead folio="01" title={copy.sections.products} lead={copy.sections.productsLead} />
-              <PrimaryProduct product={PRODUCTS[0]} language={language} labels={copy.product} demo={copy.demo} />
+              <PrimaryProduct
+                product={PRODUCTS[0]}
+                language={language}
+                labels={copy.product}
+                demo={copy.demo}
+                theme={theme}
+              />
               <motion.div variants={stagger} {...reveal} className="mt-4">
                 {PRODUCTS.slice(1).map((product, index) => (
                   <ProductEntry
@@ -970,11 +1011,13 @@ function PrimaryProduct({
   language,
   labels,
   demo,
+  theme,
 }: {
   product: Product;
   language: Language;
   labels: (typeof COPY)[Language]['product'];
   demo: (typeof COPY)[Language]['demo'];
+  theme: Theme;
 }) {
   return (
     // The hairline mount keeps the ink panel readable in the dark theme too,
@@ -1050,15 +1093,118 @@ function PrimaryProduct({
         )}
       </div>
 
-      <DocumentDemo demo={demo} />
+      <DocumentDemo demo={demo} theme={theme} />
     </motion.article>
   );
 }
 
-function DocumentDemo({demo}: {demo: (typeof COPY)[Language]['demo']}) {
+/** The before/after spread: what the demo falls back to, and what it starts as. */
+function DemoSpread({demo}: {demo: (typeof COPY)[Language]['demo']}) {
+  return (
+    <div className="grid flex-1 items-center gap-4 py-8 sm:grid-cols-[1fr_auto_1fr]">
+      <DemoPage label={demo.original} title={demo.sourceTitle} />
+      <ArrowRight className="mx-auto h-5 w-5 rotate-90 text-[var(--c-panel-accent)] sm:rotate-0" aria-hidden="true" />
+      <DemoPage label={demo.translated} title={demo.targetTitle} translated />
+    </div>
+  );
+}
+
+/**
+ * A failed chunk fetch or a WebGL context that dies on creation must cost the
+ * demo, never the page: the flat spread carries the same meaning.
+ */
+class SceneBoundary extends Component<{fallback: ReactNode; children: ReactNode}, {failed: boolean}> {
+  state = {failed: false};
+
+  static getDerivedStateFromError() {
+    return {failed: true};
+  }
+
+  render() {
+    return this.state.failed ? this.props.fallback : this.props.children;
+  }
+}
+
+/**
+ * The demo is the product's claim made touchable: the source sheet peels back
+ * and the translated sheet under it carries the same measure, the same figure,
+ * the same folio. WebGL is an enhancement — without it (or with reduced motion
+ * asked for) the flat before/after spread makes the same point.
+ */
+function DocumentDemo({demo, theme}: {demo: (typeof COPY)[Language]['demo']; theme: Theme}) {
+  const reducedMotion = useReducedMotion();
+  const hostRef = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+  const [peeled, setPeeled] = useState(false);
+
+  const hasWebGL = useMemo(() => {
+    try {
+      const probe = document.createElement('canvas');
+      return Boolean(probe.getContext('webgl2') ?? probe.getContext('webgl'));
+    } catch {
+      return false;
+    }
+  }, []);
+
+  const interactive = hasWebGL && !reducedMotion;
+
+  useEffect(() => {
+    const node = hostRef.current;
+    if (!node || !interactive) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) setInView(true);
+      },
+      {rootMargin: '160px'},
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [interactive]);
+
+  useEffect(() => {
+    if (!inView) return;
+    // Peel once on arrival: the point should land without demanding a gesture.
+    const timer = window.setTimeout(() => setPeeled(true), 900);
+    return () => window.clearTimeout(timer);
+  }, [inView]);
+
+  const pages = useMemo(
+    () => ({
+      front: {
+        label: demo.original,
+        title: demo.sourceTitle,
+        lede: demo.sourceLede,
+        caption: demo.sourceCaption,
+        units: demo.sourceUnits,
+        footnote: demo.sourceFootnote,
+        page: demo.folio,
+        variant: 'source' as const,
+      },
+      back: {
+        label: demo.translated,
+        title: demo.targetTitle,
+        lede: demo.targetLede,
+        caption: demo.targetCaption,
+        units: demo.targetUnits,
+        footnote: demo.targetFootnote,
+        page: demo.folio,
+        variant: 'target' as const,
+      },
+    }),
+    [demo],
+  );
+
+  const resting = (
+    <div className="flex h-full items-center justify-center">
+      <DemoPage label={demo.original} title={demo.sourceTitle} />
+    </div>
+  );
+
   return (
     <div
-      className="flex min-h-[420px] flex-col justify-between border-t border-[var(--c-panel-rule)] bg-[var(--c-panel-2)] p-6 sm:p-8 lg:border-l lg:border-t-0"
+      ref={hostRef}
+      className="flex min-h-[520px] flex-col justify-between border-t border-[var(--c-panel-rule)] bg-[var(--c-panel-2)] p-6 sm:p-8 lg:border-l lg:border-t-0"
       aria-label={demo.label}
     >
       <div className="flex items-center justify-between border-b border-[var(--c-panel-rule)] pb-3 font-mono text-[0.68rem] uppercase tracking-[0.14em] text-[var(--c-on-panel-muted)]">
@@ -1066,11 +1212,44 @@ function DocumentDemo({demo}: {demo: (typeof COPY)[Language]['demo']}) {
         <span>{demo.page}</span>
       </div>
 
-      <div className="grid flex-1 items-center gap-4 py-8 sm:grid-cols-[1fr_auto_1fr]">
-        <DemoPage label={demo.original} title={demo.sourceTitle} />
-        <ArrowRight className="mx-auto h-5 w-5 rotate-90 text-[var(--c-panel-accent)] sm:rotate-0" aria-hidden="true" />
-        <DemoPage label={demo.translated} title={demo.targetTitle} translated />
-      </div>
+      {interactive ? (
+        <>
+          <p className="sr-only">{demo.description}</p>
+          <div className="h-[380px] py-2 sm:h-[480px]" aria-hidden="true">
+            {inView ? (
+              <SceneBoundary fallback={<DemoSpread demo={demo} />}>
+                <Suspense fallback={resting}>
+                  <PageCurl
+                    peeled={peeled}
+                    onPeeledChange={setPeeled}
+                    front={pages.front}
+                    back={pages.back}
+                    dim={theme === 'gece' ? 0.84 : 1}
+                  />
+                </Suspense>
+              </SceneBoundary>
+            ) : (
+              resting
+            )}
+          </div>
+
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-4">
+            <span className="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-[var(--c-on-panel-muted)]">
+              {demo.hint}
+            </span>
+            <button
+              type="button"
+              onClick={() => setPeeled((value) => !value)}
+              className="inline-flex items-center gap-2 border border-[var(--c-panel-rule)] px-3 py-2 font-mono text-[0.68rem] uppercase tracking-[0.14em] text-[var(--c-on-panel)] transition-colors hover:border-[var(--c-panel-accent)] hover:text-[var(--c-panel-accent)]"
+            >
+              <Layers className="h-3.5 w-3.5" aria-hidden="true" />
+              {peeled ? demo.restore : demo.peel}
+            </button>
+          </div>
+        </>
+      ) : (
+        <DemoSpread demo={demo} />
+      )}
 
       <div className="grid gap-2 border-t border-[var(--c-panel-rule)] pt-4 font-mono text-[0.68rem] text-[var(--c-on-panel-muted)] sm:grid-cols-2">
         <span className="text-[var(--c-panel-accent)]">✓ {demo.preserved}</span>
