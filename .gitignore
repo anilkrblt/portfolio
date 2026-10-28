@@ -9,3 +9,11 @@ coverage/
 
 # Local design reference material (third-party brand design analyses)
 DESING-MDS/
+
+# Impeccable working files: review captures, decision sketches, question pages
+# and per-machine state. design.json and surfaces/ are the durable record.
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/questions/
+.impeccable/hook.cache.json
+.impeccable/config.local.json

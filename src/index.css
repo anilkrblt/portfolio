@@ -1,462 +1,839 @@
-/* Fraunces is requested with its SOFT + WONK axes — the WONK axis is what gives
-   the display type its non-generic, slightly quirky serifs. */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..600,0..100,0..1&family=Public+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 /* ============================================================
-   Anıl Karabulut — "Kağıt" design system
-   Warm-paper editorial canvas (Claude) on a Carbon/Swiss grid (IBM),
-   tuned to the live TranslateYourPDF "kağıt" theme tokens.
+   Anıl Karabulut — "Dosya" design system
+   A sixties title-sequence case file: manila-folder ground, black matte
+   stock, coarse halftone exhibits, typed records and one alarm red that
+   only ever means state (live, available, the reticle).
    ============================================================ */
 
+/* Self-hosted (OFL): Courier Prime is the typewriter every record is typed
+   on; Libre Franklin is the preprinted form the record is typed onto. */
+@font-face {
+  font-family: 'Courier Prime';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/courier-prime-400-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Courier Prime';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/courier-prime-400-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Courier Prime';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/courier-prime-700-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Courier Prime';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/courier-prime-700-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Libre Franklin';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('/fonts/libre-franklin-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Libre Franklin';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('/fonts/libre-franklin-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 @theme {
-  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
-  --font-sans: "Public Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-typed: "Courier Prime", "Courier New", ui-monospace, monospace;
+  --font-form: "Libre Franklin", ui-sans-serif, system-ui, sans-serif;
+
+  /* The two steps below body: secondary text, and small controls and stamps. */
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.6;
+  --text-micro: 0.75rem;
+  --text-micro--line-height: 1.45;
 
   --color-canvas: var(--c-canvas);
   --color-raised: var(--c-raised);
-  --color-surface: var(--c-surface);
-  --color-surface-strong: var(--c-surface-strong);
   --color-ink: var(--c-ink);
   --color-body: var(--c-body);
   --color-muted: var(--c-muted);
   --color-faint: var(--c-faint);
   --color-rule: var(--c-rule);
-  --color-rule-strong: var(--c-rule-strong);
-  --color-accent: var(--c-accent);
-  --color-accent-soft: var(--c-accent-soft);
-  --color-amber: var(--c-amber);
-  --color-panel: var(--c-panel);
+  --color-rule-soft: var(--c-rule-soft);
+  --color-alarm: var(--c-alarm);
+  --color-stock: var(--c-stock);
+  --color-stock-2: var(--c-stock-2);
+  --color-on-stock: var(--c-on-stock);
+  --color-on-stock-muted: var(--c-on-stock-muted);
+  --color-stock-rule: var(--c-stock-rule);
+  --color-stock-alarm: var(--c-stock-alarm);
 }
 
-/* ---------- Paper (default) ---------- */
+/* ---------- Gündüz: the folder on the desk (default) ---------- */
 :root,
-[data-theme='kagit'] {
+[data-theme='gunduz'] {
   color-scheme: light;
 
-  --c-canvas: #f4efe4;
-  --c-raised: #fbf8f2;
-  --c-surface: #ece4d5;
-  --c-surface-strong: #e3d9c6;
+  --c-canvas: #e4cd95;
+  --c-raised: #d5bb84;
+  --c-ink: #141311;
+  --c-body: #1f1d19;
+  --c-muted: #4f4739;
+  --c-faint: #5b574d;
+  --c-rule: #141311;
+  --c-rule-soft: rgba(20, 19, 17, 0.3);
+  --c-alarm: #9e1f18;
 
-  --c-ink: #221d16;
-  --c-body: #43392c;
-  --c-muted: #6f6553;
-  --c-faint: #a3977f;
+  /* Black matte stock: the rail, the exhibit frames, the contact sheet. */
+  --c-stock: #141311;
+  --c-stock-2: #22201b;
+  --c-on-stock: #e4cd95;
+  --c-on-stock-muted: #b3a683;
+  --c-stock-rule: #3a362e;
+  --c-stock-alarm: #ef5f55;
+  /* Pressed states: black stock pressed to pure black, manila stock to its lighter pull. */
+  --c-stock-pressed: #000000;
+  --c-manila-pressed: #f1dcab;
+  /* Archived: a cooler, lighter ink than black that still reads at AA on manila. */
+  --c-archive-gray: #58554c;
 
-  --c-rule: #d9cdb6;
-  --c-rule-strong: #bfae8c;
+  /* Halftone: ink dots printed on the photo paper. */
+  --c-dot: #141311;
+  --c-dot-paper: #e9d6a6;
 
-  --c-accent: #9a4a29;
-  --c-accent-hover: #7f3b1f;
-  --c-accent-soft: #eddcc9;
-  --c-amber: #b9762c;
-  --c-on-accent: #fdf7ef;
-
-  --c-panel: #221d16;
-  --c-panel-2: #322a20;
-  --c-panel-rule: #4a4032;
-  --c-on-panel: #f2ece0;
-  --c-on-panel-muted: #a89c86;
-  --c-panel-accent: #e0855c;
-
-  --grain: 0.05;
-  --portrait-filter: sepia(0.42) saturate(0.72) contrast(1.06) brightness(1.02);
+  --fiber: 0.09;
+  --fiber-blend: multiply;
 }
 
-/* ---------- Ink (dark) ---------- */
+/* ---------- Gece: the title sequence projected on black ---------- */
 [data-theme='gece'] {
   color-scheme: dark;
 
-  --c-canvas: #14120f;
-  --c-raised: #1c1915;
-  --c-surface: #221e19;
-  --c-surface-strong: #2b251e;
+  --c-canvas: #121110;
+  --c-raised: #1c1a17;
+  --c-ink: #e4cd95;
+  --c-body: #d9c79e;
+  --c-muted: #aca083;
+  --c-faint: #8f8670;
+  --c-rule: rgba(228, 205, 149, 0.62);
+  --c-rule-soft: rgba(228, 205, 149, 0.22);
+  --c-alarm: #f0564b;
 
-  --c-ink: #f2ece0;
-  --c-body: #d5cbba;
-  --c-muted: #a3977f;
-  --c-faint: #6f6553;
+  --c-stock: #1c1a17;
+  --c-stock-2: #26231e;
+  --c-on-stock: #e4cd95;
+  --c-on-stock-muted: #aca083;
+  --c-stock-rule: #3a362e;
+  --c-stock-alarm: #f2665b;
+  --c-stock-pressed: #000000;
+  --c-manila-pressed: #f1dcab;
+  --c-archive-gray: #8f8670;
 
-  --c-rule: #322c24;
-  --c-rule-strong: #4a4032;
+  /* Projected: light dots on black, so the halftone reads as a positive. */
+  --c-dot: #e4cd95;
+  --c-dot-paper: #121110;
 
-  --c-accent: #e0855c;
-  --c-accent-hover: #eda37f;
-  --c-accent-soft: #2e2119;
-  --c-amber: #e8a55a;
-  --c-on-accent: #1a120c;
-
-  --c-panel: #0d0b09;
-  --c-panel-2: #1c1915;
-  --c-panel-rule: #322c24;
-  --c-on-panel: #f2ece0;
-  --c-on-panel-muted: #a3977f;
-  --c-panel-accent: #e0855c;
-
-  --grain: 0.028;
-  --portrait-filter: sepia(0.3) saturate(0.68) contrast(1.1) brightness(0.88);
+  --fiber: 0.05;
+  --fiber-blend: screen;
 }
 
-* {
-  box-sizing: border-box;
+/* Element defaults sit in the base layer so utilities can always override them. */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      scroll-padding-top: 1.5rem;
+    }
+  }
+
+  html {
+    scrollbar-color: var(--c-ink) var(--c-canvas);
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    background: var(--c-canvas);
+    color: var(--c-body);
+    font-family: var(--font-typed);
+    font-size: 1rem;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    font-variant-numeric: tabular-nums;
+    caret-color: var(--c-alarm);
+    transition: background-color 220ms ease, color 220ms ease;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ::selection {
+    background: var(--c-alarm);
+    color: var(--c-canvas);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--c-alarm);
+    outline-offset: 3px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--c-canvas);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--c-ink);
+    border: 3px solid var(--c-canvas);
+  }
 }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 5.5rem;
-}
+/* The design system's primitives: components, beneath Tailwind utilities. */
+@layer components {
+  /* Paper fibre: long, thin streaks rather than the usual round grain. */
+  .fiber {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: var(--fiber);
+    mix-blend-mode: var(--fiber-blend);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5 0.62' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.33 0 0 0 0 0.26 0 0 0 0 0.15 0 0 0 1.3 -0.42'/%3E%3C/filter%3E%3Cfilter id='k'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.75' numOctaves='1' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.24 0 0 0 0 0.18 0 0 0 0 0.1 0 0 0 14 -11.6'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23p)'/%3E%3Crect width='300' height='300' filter='url(%23k)'/%3E%3C/svg%3E");
+  }
 
-body {
-  margin: 0;
-  min-width: 320px;
-  background: var(--c-canvas);
-  color: var(--c-body);
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  line-height: 1.6;
-  letter-spacing: 0.005em;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  transition: background-color 220ms ease, color 220ms ease;
-}
+  /* ============================================================
+     Layout — the file rail beside the record
+     ============================================================ */
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+  .file {
+    position: relative;
+    z-index: 1;
+  }
 
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
-}
-
-::selection {
-  background: var(--c-accent);
-  color: var(--c-on-accent);
-}
-
-:focus-visible {
-  outline: 2px solid var(--c-accent);
-  outline-offset: 3px;
-  border-radius: 1px;
-}
-
-/* Paper grain — replaces the usual radial "AI glow" */
-.grain {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: var(--grain);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* ============================================================
-   Layout primitives — a real 12-column editorial grid
-   ============================================================ */
-
-.shell {
-  width: 100%;
-  max-width: 78rem;
-  margin-inline: auto;
-  padding-inline: 1.25rem;
-}
-
-.band {
-  padding-block: 5rem;
-}
-
-.rule-top {
-  border-top: 1px solid var(--c-rule);
-}
-
-.rule-bottom {
-  border-bottom: 1px solid var(--c-rule);
-}
-
-/* Section header: folio number hangs in the left gutter on wide screens */
-.section-head {
-  display: grid;
-  gap: 1.25rem;
-  padding-top: 1.5rem;
-  border-top: 2px solid var(--c-ink);
-  margin-bottom: 3rem;
-}
-
-.folio {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--c-accent);
-}
-
-.folio-lg {
-  font-family: var(--font-display);
-  font-size: clamp(2.75rem, 7vw, 4.5rem);
-  font-weight: 300;
-  line-height: 0.85;
-  color: var(--c-faint);
-  font-variant-numeric: lining-nums tabular-nums;
-}
-
-/* ============================================================
-   Typography voices — serif display / sans body / mono metadata
-   ============================================================ */
-
-.display {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 1;
-  line-height: 1.02;
-  letter-spacing: -0.028em;
-  color: var(--c-ink);
-  font-size: clamp(2.6rem, 7.4vw, 5.75rem);
-}
-
-.headline {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-variation-settings: 'opsz' 72, 'SOFT' 0, 'WONK' 1;
-  line-height: 1.08;
-  letter-spacing: -0.02em;
-  color: var(--c-ink);
-  font-size: clamp(1.9rem, 3.9vw, 2.9rem);
-}
-
-.subhead {
-  font-family: var(--font-display);
-  font-weight: 400;
-  /* WONK off at subhead sizes — the quirk reads as noise below ~2rem. */
-  font-variation-settings: 'opsz' 40, 'SOFT' 12, 'WONK' 0;
-  line-height: 1.15;
-  letter-spacing: -0.015em;
-  color: var(--c-ink);
-  font-size: clamp(1.35rem, 2.3vw, 1.85rem);
-}
-
-.lede {
-  font-size: clamp(1.075rem, 1.55vw, 1.3rem);
-  line-height: 1.62;
-  color: var(--c-body);
-  text-wrap: pretty;
-}
-
-.meta {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--c-muted);
-}
-
-.meta-plain {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.01em;
-  color: var(--c-muted);
-  text-transform: none;
-}
-
-/* Drop-cap-ish accent rule under a heading */
-.tick::before {
-  content: '';
-  display: block;
-  width: 2.25rem;
-  height: 2px;
-  background: var(--c-accent);
-  margin-bottom: 1.25rem;
-}
-
-/* ============================================================
-   Controls — square, hairline, no shadow, no blur
-   ============================================================ */
-
-.btn {
-  display: inline-flex;
-  min-height: 46px;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  border-radius: 2px;
-  padding: 0.7rem 1.35rem;
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
-}
-
-.btn-primary {
-  background: var(--c-accent);
-  color: var(--c-on-accent);
-}
-
-.btn-primary:hover {
-  background: var(--c-accent-hover);
-}
-
-.btn-ghost {
-  border-color: var(--c-rule-strong);
-  color: var(--c-ink);
-  background: transparent;
-}
-
-.btn-ghost:hover {
-  border-color: var(--c-ink);
-  background: var(--c-surface);
-}
-
-.toggle-group {
-  display: inline-flex;
-  border: 1px solid var(--c-rule-strong);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.toggle-btn {
-  min-height: 34px;
-  min-width: 38px;
-  padding-inline: 0.6rem;
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--c-muted);
-  transition: background-color 160ms ease, color 160ms ease;
-}
-
-.toggle-btn:hover {
-  color: var(--c-ink);
-  background: var(--c-surface);
-}
-
-.toggle-btn[aria-pressed='true'] {
-  background: var(--c-ink);
-  color: var(--c-canvas);
-}
-
-/* Tags read as typeset index terms, not pill chips */
-.tag {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.02em;
-  color: var(--c-muted);
-  padding: 0.15rem 0;
-  white-space: nowrap;
-}
-
-.tag + .tag::before {
-  content: '·';
-  margin-inline: 0.5rem;
-  color: var(--c-rule-strong);
-}
-
-/* ============================================================
-   Editorial entries — ruled rows instead of floating cards
-   ============================================================ */
-
-.entry {
-  display: grid;
-  gap: 1.5rem;
-  padding-block: 2.25rem;
-  border-top: 1px solid var(--c-rule);
-}
-
-.entry:first-child {
-  border-top-color: var(--c-ink);
-  border-top-width: 2px;
-}
-
-.index-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  color: var(--c-muted);
-  border-bottom: 1px solid var(--c-rule-strong);
-  padding-bottom: 2px;
-  transition: color 160ms ease, border-color 160ms ease;
-}
-
-.index-link:hover {
-  color: var(--c-accent);
-  border-color: var(--c-accent);
-}
-
-/* Dark "product chrome" panel — the page's contrast beat */
-.panel {
-  background: var(--c-panel);
-  color: var(--c-on-panel);
-  border-radius: 2px;
-}
-
-.panel-rule {
-  border-color: var(--c-panel-rule);
-}
-
-/* Portrait: art-directed duotone, true color on hover */
-.portrait {
-  width: 100%;
-  aspect-ratio: 4 / 4.6;
-  object-fit: cover;
-  filter: var(--portrait-filter);
-  transition: filter 500ms ease;
-  display: block;
-}
-
-.portrait-frame:hover .portrait,
-.portrait-frame:focus-within .portrait {
-  filter: none;
-}
-
-/* ============================================================
-   Responsive
-   ============================================================ */
-
-@media (min-width: 768px) {
   .shell {
-    padding-inline: 2rem;
+    width: 100%;
+    max-width: 76rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
   }
 
   .band {
-    padding-block: 7rem;
+    padding-block: 4.5rem;
   }
 
+  @media (min-width: 768px) {
+    .shell {
+      padding-inline: 2rem;
+    }
+
+    .band {
+      padding-block: 6.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .file {
+      display: grid;
+      grid-template-columns: 17rem minmax(0, 1fr);
+    }
+
+    .shell {
+      padding-inline: 3rem;
+    }
+  }
+
+  .rail {
+    background: var(--c-stock);
+    color: var(--c-on-stock);
+  }
+
+  /* On a short desk screen the rail gives up its least urgent row rather than
+     scrolling the facts out of sight. */
+  @media (min-width: 1024px) and (max-height: 860px) {
+    .rail-optional {
+      display: none;
+    }
+  }
+
+  /* The hero in three blocks: stacked name / frames / rest on a phone; beside
+     the rail, the frames take the right column and the copy centres against them. */
+  .hero-grid {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-areas: 'name' 'frames' 'rest';
+  }
+
+  @media (min-width: 768px) {
+    .hero-grid {
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+      grid-template-rows: 1fr auto auto 1fr;
+      grid-template-areas: '. frames' 'name frames' 'rest frames' '. frames';
+      column-gap: 3rem;
+      row-gap: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .rail {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      height: 100dvh;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--c-stock-rule) var(--c-stock);
+      border-right: 1px solid var(--c-stock-rule);
+    }
+  }
+
+  /* ============================================================
+     Type voices — typed record / preprinted form
+     ============================================================ */
+
+  .display {
+    font-family: var(--font-typed);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: clamp(2.7rem, 15vw, 5rem);
+    line-height: 0.94;
+    letter-spacing: -0.02em;
+    color: var(--c-ink);
+  }
+
+  /* Sized so KARABULUT always fits its column: beside the frames from 768px,
+     beside the rail and the frames from 1024px. */
+  @media (min-width: 768px) {
+    .display {
+      font-size: 7.8vw;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .display {
+      font-size: clamp(2.7rem, 5.7vw, 5rem);
+    }
+  }
+
+  .headline {
+    font-family: var(--font-typed);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: clamp(1.85rem, 3.5vw, 2.75rem);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--c-ink);
+    text-wrap: balance;
+  }
+
+  .subhead {
+    font-family: var(--font-typed);
+    font-weight: 700;
+    font-size: clamp(1.25rem, 2vw, 1.6rem);
+    line-height: 1.2;
+    color: var(--c-ink);
+    text-wrap: balance;
+  }
+
+  .sentence {
+    font-family: var(--font-typed);
+    font-weight: 700;
+    font-size: clamp(1.45rem, 2.5vw, 2.05rem);
+    line-height: 1.18;
+    color: var(--c-ink);
+    text-wrap: balance;
+  }
+
+  .lede {
+    font-size: clamp(1.02rem, 1.3vw, 1.12rem);
+    line-height: 1.65;
+    color: var(--c-body);
+    text-wrap: pretty;
+  }
+
+  /* Preprinted field names: the form the record is typed onto. */
+  .label {
+    font-family: var(--font-form);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    line-height: 1.4;
+    text-transform: uppercase;
+    color: var(--c-muted);
+  }
+
+  .on-stock .label {
+    color: var(--c-on-stock-muted);
+  }
+
+  /* On black stock the dark alarm red falls under 3:1; the stock red does not. */
+  .on-stock :focus-visible {
+    outline-color: var(--c-stock-alarm);
+  }
+
+  /* A typewriter's block cursor; it stops blinking when motion is reduced. */
+  .cursor {
+    display: inline-block;
+    width: 0.55em;
+    height: 0.82em;
+    margin-left: 0.06em;
+    /* Takes no room on the line, so it can never wrap the name onto a third line. */
+    margin-right: -0.61em;
+    background: var(--c-ink);
+    vertical-align: -0.02em;
+    animation: blink 1.05s steps(1, end) infinite;
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  /* ============================================================
+     Controls — typed caps on black stock, corner brackets
+     ============================================================ */
+
+  .btn {
+    --bracket: var(--c-on-stock);
+    display: inline-flex;
+    min-height: 3.25rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-typed);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+  }
+
+  /* Four corner brackets, inset, drawn in the bracket colour. */
+  .btn-primary,
+  .btn-file,
+  .bracketed {
+    background-image:
+      linear-gradient(var(--bracket), var(--bracket)), linear-gradient(var(--bracket), var(--bracket)),
+      linear-gradient(var(--bracket), var(--bracket)), linear-gradient(var(--bracket), var(--bracket)),
+      linear-gradient(var(--bracket), var(--bracket)), linear-gradient(var(--bracket), var(--bracket)),
+      linear-gradient(var(--bracket), var(--bracket)), linear-gradient(var(--bracket), var(--bracket));
+    background-repeat: no-repeat;
+    background-size:
+      0.7rem 2px, 2px 0.7rem, 0.7rem 2px, 2px 0.7rem,
+      0.7rem 2px, 2px 0.7rem, 0.7rem 2px, 2px 0.7rem;
+    background-position:
+      left 5px top 5px, left 5px top 5px, right 5px top 5px, right 5px top 5px,
+      left 5px bottom 5px, left 5px bottom 5px, right 5px bottom 5px, right 5px bottom 5px;
+  }
+
+  .btn-primary {
+    background-color: var(--c-stock);
+    color: var(--c-on-stock);
+    border-color: var(--c-stock);
+  }
+
+  .btn-primary:hover {
+    --bracket: var(--c-stock-alarm);
+    background-color: var(--c-stock-pressed);
+  }
+
+  [data-theme='gece'] .btn-primary {
+    background-color: var(--c-ink);
+    color: var(--c-canvas);
+    border-color: var(--c-ink);
+    --bracket: var(--c-canvas);
+  }
+
+  [data-theme='gece'] .btn-primary:hover {
+    --bracket: var(--c-alarm);
+    background-color: var(--c-manila-pressed);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--c-ink);
+    border-color: var(--c-ink);
+  }
+
+  .btn-secondary:hover {
+    background: var(--c-raised);
+  }
+
+  .on-stock .btn-secondary {
+    color: var(--c-on-stock);
+    border-color: var(--c-on-stock);
+  }
+
+  .on-stock .btn-secondary:hover {
+    background: var(--c-stock-2);
+  }
+
+  /* The rail's CV button: manila stock punched out of the black. */
+  .btn-file {
+    --bracket: var(--c-stock);
+    background-color: var(--c-on-stock);
+    color: var(--c-stock);
+    border-color: var(--c-on-stock);
+  }
+
+  .btn-file:hover {
+    --bracket: var(--c-stock-alarm);
+    background-color: var(--c-manila-pressed);
+  }
+
+  /* Small typed toggles: language and theme. */
+  .switch {
+    display: inline-flex;
+    border: 2px solid var(--c-on-stock);
+  }
+
+  .switch button {
+    min-height: 2.25rem;
+    min-width: 2.5rem;
+    padding-inline: 0.5rem;
+    border: 0;
+    background: transparent;
+    color: var(--c-on-stock-muted);
+    font-family: var(--font-typed);
+    font-size: var(--text-micro);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 140ms ease, color 140ms ease;
+  }
+
+  .switch button + button {
+    border-left: 2px solid var(--c-on-stock);
+  }
+
+  .switch button:hover {
+    color: var(--c-on-stock);
+  }
+
+  .switch button[aria-pressed='true'] {
+    background: var(--c-on-stock);
+    color: var(--c-stock);
+  }
+
+  /* File tabs in the rail: a numbered box, then the tab name. */
+  .tab {
+    display: grid;
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    align-items: stretch;
+    min-height: 2.375rem;
+    border: 2px solid var(--c-stock-rule);
+    font-family: var(--font-typed);
+    font-size: var(--text-small);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--c-on-stock);
+    transition: border-color 140ms ease, background-color 140ms ease, color 140ms ease;
+  }
+
+  .tab > span:first-child {
+    display: grid;
+    place-items: center;
+    border-right: 2px solid var(--c-stock-rule);
+    color: var(--c-on-stock-muted);
+  }
+
+  .tab > span:last-child {
+    display: flex;
+    align-items: center;
+    padding-inline: 0.75rem;
+  }
+
+  .tab:hover {
+    border-color: var(--c-on-stock);
+  }
+
+  .tab[aria-current='true'] {
+    border-color: var(--c-on-stock);
+    background: var(--c-on-stock);
+    color: var(--c-stock);
+  }
+
+  .tab[aria-current='true'] > span:first-child {
+    background: var(--c-stock);
+    color: var(--c-on-stock);
+    border-right-color: var(--c-on-stock);
+  }
+
+  /* ============================================================
+     Records — ruled forms, exhibits, stamps
+     ============================================================ */
+
+  /* The heavy rule a form opens with, then its typed title. */
   .section-head {
-    grid-template-columns: 8rem minmax(0, 1fr);
-    align-items: start;
-    gap: 2rem;
+    display: grid;
+    gap: 1rem;
+    padding-top: 1.25rem;
+    border-top: 4px solid var(--c-rule);
+    margin-bottom: 2.75rem;
   }
 
-  .entry {
-    grid-template-columns: 8rem minmax(0, 1fr);
-    gap: 2rem;
-    padding-block: 3rem;
+  @media (min-width: 768px) {
+    .section-head {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 24rem);
+      align-items: end;
+      gap: 2.5rem;
+    }
   }
-}
 
-@media (min-width: 1024px) {
-  .shell {
-    padding-inline: 3rem;
+  .row {
+    border-bottom: 1px dashed var(--c-rule-soft);
+  }
+
+  .rows {
+    border-top: 2px solid var(--c-rule);
+  }
+
+  .rows > .row:last-child {
+    border-bottom: 2px solid var(--c-rule);
+  }
+
+  /* Exhibit frame: the black-bordered print a photo is mounted in. */
+  .frame {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    background: var(--c-dot-paper);
+    border: 2px solid var(--c-rule);
+  }
+
+  .frame > img,
+  .frame > canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .frame > img {
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.08);
+  }
+
+  .frame > canvas {
+    transition: opacity 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .frame[data-revealed='true'] > canvas {
+    opacity: 0;
+  }
+
+  .frame-tag {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    padding: 0.2rem 0.45rem;
+    background: var(--c-ink);
+    color: var(--c-canvas);
+    font-family: var(--font-form);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* A photostat clipped into a record: legible, monochrome until handled. */
+  .photostat {
+    display: block;
+    border: 2px solid var(--c-rule);
+    background: var(--c-dot-paper);
+    transition: border-color 160ms ease;
+  }
+
+  .photostat img {
+    display: block;
+    width: 100%;
+    filter: grayscale(1) contrast(1.06);
+    mix-blend-mode: multiply;
+    transition: filter 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  [data-theme='gece'] .photostat img {
+    mix-blend-mode: normal;
+    filter: grayscale(1) contrast(1.02) brightness(0.86);
+  }
+
+  .photostat:hover,
+  .photostat:focus-visible {
+    border-color: var(--c-alarm);
+  }
+
+  .photostat:hover img,
+  .photostat:focus-visible img {
+    filter: none;
+    mix-blend-mode: normal;
+  }
+
+  /* Rubber stamp: double rule, typed caps, ink that did not take everywhere. */
+  .stamp {
+    display: inline-grid;
+    justify-items: center;
+    gap: 0.15rem;
+    padding: 0.35rem 0.8rem 0.4rem;
+    border: 3px solid currentColor;
+    outline: 1px solid currentColor;
+    outline-offset: 2px;
+    font-family: var(--font-typed);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -8 5.9'/%3E%3C/filter%3E%3Crect width='240' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -8 5.9'/%3E%3C/filter%3E%3Crect width='240' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .stamp-live {
+    color: var(--c-alarm);
+  }
+
+  /* The hero's stamp sits on a halftone, so it gets a scrap of paper to land on. */
+  /* Sized against the frame array, not the window, so it stays a stamp on the
+     portrait's corner at every width the array takes. */
+  .surveillance {
+    container-type: inline-size;
+  }
+
+  .hero-stamp {
+    font-size: clamp(1.1rem, 6.2cqi, 2.05rem);
+    background: color-mix(in srgb, var(--c-dot-paper) 78%, transparent);
+  }
+
+  .fact-alarm {
+    color: var(--c-alarm);
+  }
+
+  .on-stock .fact-alarm {
+    color: var(--c-stock-alarm);
+  }
+
+  .stamp-ink {
+    color: var(--c-ink);
+  }
+
+  .stamp-gray {
+    color: var(--c-archive-gray);
+  }
+
+  /* Typed index terms, separated the way a typist would. */
+  /* A typed list: the comma stays at the end of its line when the list wraps. */
+  .term {
+    white-space: nowrap;
+  }
+
+  .term:not(:last-child) {
+    margin-right: 0.6em;
+  }
+
+  .term:not(:last-child)::after {
+    content: ',';
+    color: var(--c-faint);
+  }
+
+  .typed-link {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+    text-decoration-color: var(--c-rule-soft);
+    transition: color 140ms ease, text-decoration-color 140ms ease;
+  }
+
+  .typed-link:hover {
+    color: var(--c-alarm);
+    text-decoration-color: currentColor;
+  }
+
+  /* A drawn tick box for the procedure checklist. */
+  .tickbox {
+    display: inline-grid;
+    place-items: center;
+    width: 1.35rem;
+    height: 1.35rem;
+    border: 2px solid var(--c-rule);
+    color: var(--c-ink);
+  }
+
+  /* ============================================================
+     Stock sheets — black matte regions
+     ============================================================ */
+
+  .stock {
+    background: var(--c-stock);
+    color: var(--c-on-stock);
+  }
+
+  .projection {
+    background: var(--c-stock);
+    color: var(--c-on-stock);
+    border: 2px solid var(--c-rule);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .cursor {
+    animation: none;
   }
 
   *,

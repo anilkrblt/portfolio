@@ -18,7 +18,12 @@ import {
   type CanvasTexture,
 } from 'three';
 
-import {createPageTexture, paperTone, type PageContent} from './pageTexture';
+import {ACCENT, createPageTexture, paperTone, type PageContent} from './pageTexture';
+
+/** The alarm red as an rgb triple: the colour of the key while a mark is being typed. */
+function accentTone(): [number, number, number] {
+  return [1, 3, 5].map((at) => parseInt(ACCENT.slice(at, at + 2), 16) / 255) as [number, number, number];
+}
 
 /**
  * A sheet of paper peeling off the sheet below it.
@@ -196,7 +201,7 @@ function Sheets({
   const size = useThree((state) => state.size);
   const curlRef = useRef<Mesh>(null);
 
-  // Fraunces and IBM Plex Mono are webfonts: the first paint of the page
+  // Courier Prime and Libre Franklin are webfonts: the first paint of the page
   // texture can land before they resolve, so redraw once they are ready.
   const [fontTick, setFontTick] = useState(0);
   useEffect(() => {
@@ -236,7 +241,7 @@ function Sheets({
         uFold: {value: AXIS_MIN - FOLD_LEAD},
         uRadius: {value: RADIUS_MIN},
         uTime: {value: 0},
-        uPaper: {value: new Vector3(0.87, 0.83, 0.75)},
+        uPaper: {value: new Vector3(...paperTone('source'))},
         uDim: {value: dim},
       },
     });
@@ -251,7 +256,7 @@ function Sheets({
         uFold: {value: AXIS_MIN},
         uType: {value: 0},
         uPaper: {value: new Vector3(...paperTone('target'))},
-        uAccent: {value: new Vector3(0.604, 0.29, 0.161)},
+        uAccent: {value: new Vector3(...accentTone())},
         uDim: {value: dim},
       },
     });
@@ -333,11 +338,11 @@ function Sheets({
       {/* the rest of the stack, just enough edge to read as a document */}
       <mesh position={[0.012, -0.014, -0.05]} rotation={[0, 0, -0.008]}>
         <planeGeometry args={[PAGE_W, PAGE_H]} />
-        <meshBasicMaterial color="#d8cdb7" />
+        <meshBasicMaterial color="#d3ccbb" />
       </mesh>
       <mesh position={[-0.01, 0.008, -0.03]} rotation={[0, 0, 0.006]}>
         <planeGeometry args={[PAGE_W, PAGE_H]} />
-        <meshBasicMaterial color="#e6dcc8" />
+        <meshBasicMaterial color="#e2dccd" />
       </mesh>
 
       {/* the translated page, revealed by the peel */}
