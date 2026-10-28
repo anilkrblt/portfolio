@@ -1,0 +1,782 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-28T20:32:48+00:00",
+  "title": "Design System: Anıl Karabulut — Dosya",
+  "extensions": {
+    "colorMeta": {
+      "manila": {
+        "role": "neutral",
+        "displayName": "Folder Manila",
+        "purpose": "Page ground in Gündüz; type on all stock and in Gece.",
+        "canonical": "#e4cd95",
+        "oklch": "oklch(85.4% 0.077 88.2)",
+        "tonalRamp": [
+          "#180600",
+          "#342100",
+          "#533f01",
+          "#735f29",
+          "#95804a",
+          "#b9a36c",
+          "#dec78f",
+          "#ffecb3"
+        ]
+      },
+      "manila-raised": {
+        "role": "neutral",
+        "displayName": "Pressed Manila",
+        "purpose": "Recessed bands (procedure section) and secondary-button hover.",
+        "canonical": "#d5bb84",
+        "oklch": "oklch(80.1% 0.078 85.4)",
+        "tonalRamp": [
+          "#190600",
+          "#362000",
+          "#553e00",
+          "#755e28",
+          "#987f4a",
+          "#bba26c",
+          "#e0c68f",
+          "#ffebb3"
+        ]
+      },
+      "manila-photo-paper": {
+        "role": "neutral",
+        "displayName": "Photo Paper",
+        "purpose": "Paper behind halftone frames and photostats.",
+        "canonical": "#e9d6a6",
+        "oklch": "oklch(88.0% 0.066 89.0)",
+        "tonalRamp": [
+          "#160800",
+          "#322200",
+          "#504012",
+          "#705f33",
+          "#928153",
+          "#b6a375",
+          "#dac898",
+          "#ffedbc"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Typewriter Ink",
+        "purpose": "Headings, rules, frame borders, ink stamp. 11.9:1 on manila.",
+        "canonical": "#141311",
+        "oklch": "oklch(18.7% 0.004 84.6)",
+        "tonalRamp": [
+          "#0c0b09",
+          "#262523",
+          "#43423f",
+          "#62615e",
+          "#83827f",
+          "#a6a5a2",
+          "#cac9c6",
+          "#f0eeeb"
+        ]
+      },
+      "ink-body": {
+        "role": "neutral",
+        "displayName": "Body Ink",
+        "purpose": "Running text.",
+        "canonical": "#1f1d19",
+        "oklch": "oklch(23.2% 0.008 84.6)",
+        "tonalRamp": [
+          "#0d0b07",
+          "#272521",
+          "#44423d",
+          "#63615c",
+          "#84827d",
+          "#a7a59f",
+          "#cbc9c3",
+          "#f1eee8"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Faded Ink",
+        "purpose": "Secondary text and form labels. 5.9:1 on manila.",
+        "canonical": "#4f4739",
+        "oklch": "oklch(40.2% 0.025 81.6)",
+        "tonalRamp": [
+          "#100a02",
+          "#2b2417",
+          "#494133",
+          "#686051",
+          "#8a8172",
+          "#ada494",
+          "#d1c8b7",
+          "#f7eddc"
+        ]
+      },
+      "ink-faint": {
+        "role": "neutral",
+        "displayName": "Carbon Faint",
+        "purpose": "Punctuation only (the comma between index terms); 4.6:1 on manila, the lightest ink that still passes AA.",
+        "canonical": "#5b574d",
+        "oklch": "oklch(45.7% 0.017 88.8)",
+        "tonalRamp": [
+          "#0e0b04",
+          "#28251b",
+          "#454238",
+          "#656156",
+          "#868277",
+          "#a9a599",
+          "#cdc9bd",
+          "#f3eee2"
+        ]
+      },
+      "rule-soft": {
+        "role": "neutral",
+        "displayName": "Soft Rule",
+        "purpose": "Dashed row dividers and resting link underlines.",
+        "canonical": "rgba(20, 19, 17, 0.3)"
+      },
+      "alarm": {
+        "role": "primary",
+        "displayName": "Alarm Red",
+        "purpose": "State only: live, available, active, reticle, caret, selection, focus, pointer attention. Text only on the manila canvas (5.1:1), never directly on the raised band.",
+        "canonical": "#9e1f18",
+        "oklch": "oklch(45.6% 0.164 28.7)",
+        "tonalRamp": [
+          "#370000",
+          "#5d0000",
+          "#840000",
+          "#ab2d24",
+          "#d25346",
+          "#fb7768",
+          "#ff9c8a",
+          "#ffc2ae"
+        ]
+      },
+      "archive-gray": {
+        "role": "neutral",
+        "displayName": "Archive Gray",
+        "purpose": "Archived stamp only (--c-archive-gray). 4.8:1 on manila.",
+        "canonical": "#58554c",
+        "oklch": "oklch(45.0% 0.015 91.7)",
+        "tonalRamp": [
+          "#0d0b05",
+          "#28251d",
+          "#454239",
+          "#646158",
+          "#858279",
+          "#a8a59b",
+          "#ccc9bf",
+          "#f2eee4"
+        ]
+      },
+      "stock": {
+        "role": "neutral",
+        "displayName": "Matte Stock",
+        "purpose": "Black regions: rail, frames' contact sheet, primary button.",
+        "canonical": "#141311",
+        "oklch": "oklch(18.7% 0.004 84.6)",
+        "tonalRamp": [
+          "#0c0b09",
+          "#262523",
+          "#43423f",
+          "#62615e",
+          "#83827f",
+          "#a6a5a2",
+          "#cac9c6",
+          "#f0eeeb"
+        ]
+      },
+      "stock-raised": {
+        "role": "neutral",
+        "displayName": "Stock Raised",
+        "purpose": "Hover fill on black stock.",
+        "canonical": "#22201b",
+        "oklch": "oklch(24.4% 0.010 88.8)",
+        "tonalRamp": [
+          "#0d0b07",
+          "#272520",
+          "#44423c",
+          "#63615b",
+          "#85827c",
+          "#a7a59e",
+          "#ccc9c2",
+          "#f1eee7"
+        ]
+      },
+      "on-stock": {
+        "role": "neutral",
+        "displayName": "Type on Stock",
+        "purpose": "Manila type on black stock; does not flip with theme.",
+        "canonical": "#e4cd95",
+        "oklch": "oklch(85.4% 0.077 88.2)",
+        "tonalRamp": [
+          "#180600",
+          "#342100",
+          "#533f01",
+          "#735f29",
+          "#95804a",
+          "#b9a36c",
+          "#dec78f",
+          "#ffecb3"
+        ]
+      },
+      "on-stock-muted": {
+        "role": "neutral",
+        "displayName": "Muted on Stock",
+        "purpose": "Labels and secondary text on stock. 7.7:1.",
+        "canonical": "#b3a683",
+        "oklch": "oklch(72.7% 0.050 90.1)",
+        "tonalRamp": [
+          "#130900",
+          "#2f2403",
+          "#4c4121",
+          "#6c6040",
+          "#8e8160",
+          "#b1a481",
+          "#d6c8a4",
+          "#fceec9"
+        ]
+      },
+      "stock-rule": {
+        "role": "neutral",
+        "displayName": "Stock Rule",
+        "purpose": "Rules and tab borders on stock.",
+        "canonical": "#3a362e",
+        "oklch": "oklch(33.4% 0.015 84.6)",
+        "tonalRamp": [
+          "#0e0b05",
+          "#28251d",
+          "#464139",
+          "#656158",
+          "#868279",
+          "#a9a49b",
+          "#cec9bf",
+          "#f3eee4"
+        ]
+      },
+      "stock-alarm": {
+        "role": "primary",
+        "displayName": "Stock Alarm",
+        "purpose": "Red inside black stock: text, checks, hover, focus rings. 5.7:1.",
+        "canonical": "#ef5f55",
+        "oklch": "oklch(66.9% 0.180 27.0)",
+        "tonalRamp": [
+          "#3b0000",
+          "#620000",
+          "#890000",
+          "#b12020",
+          "#d94b43",
+          "#ff7065",
+          "#ff9588",
+          "#ffbbac"
+        ]
+      },
+      "stock-pressed": {
+        "role": "neutral",
+        "displayName": "Pressed Black",
+        "purpose": "Day primary button hover (--c-stock-pressed).",
+        "canonical": "#000000",
+        "oklch": "oklch(0.0% 0.000 0.0)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "manila-pressed": {
+        "role": "neutral",
+        "displayName": "Pressed Manila Highlight",
+        "purpose": "Hover fill of manila buttons: rail CV button, Gece primary (--c-manila-pressed).",
+        "canonical": "#f1dcab",
+        "oklch": "oklch(90.0% 0.068 87.5)",
+        "tonalRamp": [
+          "#170700",
+          "#332200",
+          "#513f10",
+          "#725f31",
+          "#948052",
+          "#b7a374",
+          "#dcc797",
+          "#ffedbb"
+        ]
+      },
+      "night-canvas": {
+        "role": "neutral",
+        "displayName": "Night Canvas",
+        "purpose": "Gece ground; manila on it is 12.1:1.",
+        "canonical": "#121110",
+        "oklch": "oklch(17.8% 0.003 67.7)",
+        "tonalRamp": [
+          "#0c0b0a",
+          "#262524",
+          "#434240",
+          "#626160",
+          "#838281",
+          "#a6a5a3",
+          "#cac9c7",
+          "#f0eeed"
+        ]
+      },
+      "night-raised": {
+        "role": "neutral",
+        "displayName": "Night Raised",
+        "purpose": "Gece recessed bands and stock.",
+        "canonical": "#1c1a17",
+        "oklch": "oklch(21.9% 0.007 78.2)",
+        "tonalRamp": [
+          "#0d0b08",
+          "#272522",
+          "#44423e",
+          "#63615d",
+          "#84827e",
+          "#a7a5a1",
+          "#cbc9c4",
+          "#f1eeea"
+        ]
+      },
+      "night-body": {
+        "role": "neutral",
+        "displayName": "Night Body",
+        "purpose": "Gece running text.",
+        "canonical": "#d9c79e",
+        "oklch": "oklch(83.4% 0.058 87.1)",
+        "tonalRamp": [
+          "#150800",
+          "#312300",
+          "#4f401a",
+          "#6f5f3a",
+          "#91805a",
+          "#b5a37b",
+          "#d9c79e",
+          "#ffedc3"
+        ]
+      },
+      "night-muted": {
+        "role": "neutral",
+        "displayName": "Night Muted",
+        "purpose": "Gece secondary text. 7.3:1.",
+        "canonical": "#aca083",
+        "oklch": "oklch(70.8% 0.043 88.2)",
+        "tonalRamp": [
+          "#130900",
+          "#2e240a",
+          "#4b4127",
+          "#6b6045",
+          "#8d8165",
+          "#b0a487",
+          "#d5c8aa",
+          "#faeecf"
+        ]
+      },
+      "night-faint": {
+        "role": "neutral",
+        "displayName": "Night Faint",
+        "purpose": "Gece ornament and archived stamp. 5.2:1.",
+        "canonical": "#8f8670",
+        "oklch": "oklch(62.2% 0.034 88.4)",
+        "tonalRamp": [
+          "#110a00",
+          "#2c2411",
+          "#49412d",
+          "#69604c",
+          "#8b826c",
+          "#aea48e",
+          "#d2c8b1",
+          "#f8eed6"
+        ]
+      },
+      "night-rule": {
+        "role": "neutral",
+        "displayName": "Night Rule",
+        "purpose": "Gece rules (manila at 62%).",
+        "canonical": "rgba(228, 205, 149, 0.62)"
+      },
+      "night-rule-soft": {
+        "role": "neutral",
+        "displayName": "Night Soft Rule",
+        "purpose": "Gece dashed dividers (manila at 22%).",
+        "canonical": "rgba(228, 205, 149, 0.22)"
+      },
+      "night-alarm": {
+        "role": "primary",
+        "displayName": "Night Alarm",
+        "purpose": "Gece state red. 5.5:1 on night canvas.",
+        "canonical": "#f0564b",
+        "oklch": "oklch(65.8% 0.191 27.6)",
+        "tonalRamp": [
+          "#3d0000",
+          "#650000",
+          "#8d0000",
+          "#b51416",
+          "#de443c",
+          "#ff6b5e",
+          "#ff9181",
+          "#ffb7a5"
+        ]
+      },
+      "night-stock-raised": {
+        "role": "neutral",
+        "displayName": "Night Stock Raised",
+        "purpose": "Gece hover fill on stock.",
+        "canonical": "#26231e",
+        "oklch": "oklch(25.8% 0.010 80.6)",
+        "tonalRamp": [
+          "#0d0b07",
+          "#282520",
+          "#45413c",
+          "#64615b",
+          "#85827c",
+          "#a8a49e",
+          "#cdc9c2",
+          "#f2eee7"
+        ]
+      },
+      "night-stock-alarm": {
+        "role": "primary",
+        "displayName": "Night Stock Alarm",
+        "purpose": "Gece state red inside stock.",
+        "canonical": "#f2665b",
+        "oklch": "oklch(68.3% 0.175 27.1)",
+        "tonalRamp": [
+          "#3a0000",
+          "#600000",
+          "#870000",
+          "#af2522",
+          "#d74d44",
+          "#ff7266",
+          "#ff9789",
+          "#ffbdad"
+        ]
+      },
+      "night-archive-gray": {
+        "role": "neutral",
+        "displayName": "Night Archive Gray",
+        "purpose": "Gece archived stamp (--c-archive-gray). 5.2:1 on night canvas.",
+        "canonical": "#8f8670",
+        "oklch": "oklch(62.2% 0.034 88.4)",
+        "tonalRamp": [
+          "#110a00",
+          "#2c2411",
+          "#49412d",
+          "#69604c",
+          "#8b826c",
+          "#aea48e",
+          "#d2c8b1",
+          "#f8eed6"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Typed hero name only, uppercase, with block cursor. clamp(2.7rem, 15vw, 5rem) on phones, 7.8vw from 768px, clamp(2.7rem, 5.7vw, 5rem) from 1024px."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Uppercase section titles under the 4px opening rule."
+      },
+      "sentence": {
+        "displayName": "Sentence",
+        "purpose": "The one-sentence statement under the name and in the contact sheet."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Subsection heads and the contact-sheet school name; archive titles one step down at 1.1rem."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "Opening paragraphs, 58-60ch."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text, tabular numerals, about 66ch."
+      },
+      "record-title": {
+        "displayName": "Record Title",
+        "purpose": "A product exhibit name beside its tag and stamp."
+      },
+      "small": {
+        "displayName": "Small",
+        "purpose": "Secondary text, captions, facts, rail values, file tabs, product stamps (--text-small)."
+      },
+      "micro": {
+        "displayName": "Micro",
+        "purpose": "Switches, compact buttons, procedure-table stamps (--text-micro)."
+      },
+      "control": {
+        "displayName": "Control",
+        "purpose": "Uppercase typed caps for buttons, tabs, switches."
+      },
+      "label": {
+        "displayName": "Form Label",
+        "purpose": "Libre Franklin preprinted field names; exhibit and frame tags in bold, canvas on ink."
+      }
+    },
+    "themes": [
+      {
+        "name": "gunduz",
+        "default": true,
+        "description": "The folder on the desk: manila ground, black ink and stock.",
+        "themeColor": "#e4cd95"
+      },
+      {
+        "name": "gece",
+        "default": false,
+        "description": "The title sequence projected on black: manila type, light halftone dots.",
+        "themeColor": "#121110"
+      },
+      {
+        "switch": "data-theme on <html>",
+        "storageKey": "ak_theme"
+      }
+    ],
+    "shadows": [],
+    "textures": [
+      {
+        "name": "paper-fibre",
+        "value": "fixed SVG feTurbulence overlay; opacity 0.09 multiply (gunduz), 0.05 screen (gece)",
+        "purpose": "Folder tooth across the whole page; non-interactive."
+      },
+      {
+        "name": "stamp-erosion",
+        "value": "SVG fractal-noise mask-image on .stamp",
+        "purpose": "Ink that did not take everywhere."
+      },
+      {
+        "name": "halftone-tone",
+        "value": "canvas, 45-degree screen, dot size by darkness, --c-dot on --c-dot-paper",
+        "purpose": "Photographs and figures as exhibits."
+      },
+      {
+        "name": "demo-sheet",
+        "value": "drawPage canvas (src/three/pageArt.ts) printed as <img> with bilingual alt",
+        "purpose": "Page-curl resting state and no-WebGL fallback."
+      },
+      {
+        "name": "halftone-type",
+        "value": "canvas, two-level square dot matrix",
+        "purpose": "Typed headline exhibits."
+      }
+    ],
+    "motion": [
+      {
+        "name": "rise",
+        "value": "opacity 0 to 1, 0.18s linear",
+        "purpose": "A cut, not a drift; frames and content cut in."
+      },
+      {
+        "name": "stagger",
+        "value": "staggerChildren 0.08s, delayChildren 0.1s",
+        "purpose": "Sequenced cuts in the title sequence and lists."
+      },
+      {
+        "name": "land",
+        "value": "opacity 0 to 1, scale 1.7 to 1, 0.22s, cubic-bezier(0.34, 1.56, 0.64, 1), custom delay",
+        "purpose": "A rubber stamp striking once with one hard overshoot."
+      },
+      {
+        "name": "reveal",
+        "value": "initial hidden, whileInView visible, once, margin -60px",
+        "purpose": "Shared in-view spread for sections."
+      },
+      {
+        "name": "track",
+        "value": "tween 0.34s cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Reticle moving between exhibits."
+      },
+      {
+        "name": "declassify",
+        "value": "opacity / filter 420ms cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Halftone to true image on hover or focus."
+      },
+      {
+        "name": "cursor-blink",
+        "value": "1.05s steps(1, end) infinite",
+        "purpose": "Typewriter block cursor after the typed name; stops under reduced motion."
+      },
+      {
+        "name": "control-state",
+        "value": "140-160ms ease on color, background-color, border-color",
+        "purpose": "Buttons, tabs, switches, links."
+      },
+      {
+        "name": "theme-change",
+        "value": "220ms ease on body background and color",
+        "purpose": "Theme switch."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "MotionConfig reducedMotion='user'; CSS collapses animation and transition to 0.01ms",
+        "purpose": "Everything static under prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px",
+        "note": "rail becomes sticky left column"
+      },
+      {
+        "name": "short-desk",
+        "value": "(min-width: 1024px) and (max-height: 860px)",
+        "note": "rail drops optional fact row"
+      }
+    ],
+    "focus": {
+      "default": "2px solid alarm, offset 3px",
+      "onStock": "2px solid stock-alarm, offset 3px"
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Black stock button with manila corner brackets; the CV download.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/><polyline points=\"7 10 12 15 17 10\"/><line x1=\"12\" x2=\"12\" y1=\"15\" y2=\"3\"/></svg>CV İndir (PDF)</a>",
+      "css": ".ds-btn-primary{--bracket:var(--c-on-stock,#e4cd95);display:inline-flex;min-height:3.25rem;align-items:center;justify-content:center;gap:0.6rem;padding:0.75rem 1.5rem;font-family:'Courier Prime','Courier New',ui-monospace,monospace;font-size:0.95rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;border:2px solid transparent;border-radius:0;cursor:pointer;transition:background-color 160ms ease,color 160ms ease,border-color 160ms ease;background-image:linear-gradient(var(--bracket),var(--bracket)),linear-gradient(var(--bracket),var(--bracket)),linear-gradient(var(--bracket),var(--bracket)),linear-gradient(var(--bracket),var(--bracket)),linear-gradient(var(--bracket),var(--bracket)),linear-gradient(var(--bracket),var(--bracket)),linear-gradient(var(--bracket),var(--bracket)),linear-gradient(var(--bracket),var(--bracket));background-repeat:no-repeat;background-size:0.7rem 2px,2px 0.7rem,0.7rem 2px,2px 0.7rem,0.7rem 2px,2px 0.7rem,0.7rem 2px,2px 0.7rem;background-position:left 5px top 5px,left 5px top 5px,right 5px top 5px,right 5px top 5px,left 5px bottom 5px,left 5px bottom 5px,right 5px bottom 5px,right 5px bottom 5px;background-color:var(--c-stock,#141311);color:var(--c-on-stock,#e4cd95);border-color:var(--c-stock,#141311);text-decoration:none;}.ds-btn-primary:hover{--bracket:var(--c-stock-alarm,#ef5f55);background-color:var(--c-stock-pressed,#000000);}.ds-btn-primary:focus-visible{outline:2px solid var(--c-alarm,#9e1f18);outline-offset:3px;}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Transparent with a 2px ink border; the live product link.",
+      "html": "<a class=\"ds-btn-secondary\" href=\"#\">Canlı ürünü incele<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></a>",
+      "css": ".ds-btn-secondary{display:inline-flex;min-height:3.25rem;align-items:center;justify-content:center;gap:0.6rem;padding:0.75rem 1.5rem;font-family:'Courier Prime','Courier New',ui-monospace,monospace;font-size:0.95rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;border:2px solid transparent;border-radius:0;cursor:pointer;transition:background-color 160ms ease,color 160ms ease,border-color 160ms ease;background:transparent;color:var(--c-ink,#141311);border-color:var(--c-ink,#141311);text-decoration:none;}.ds-btn-secondary:hover{background:var(--c-raised,#d5bb84);}.ds-btn-secondary:focus-visible{outline:2px solid var(--c-alarm,#9e1f18);outline-offset:3px;}"
+    },
+    {
+      "name": "File Button",
+      "kind": "button",
+      "refersTo": "button-file",
+      "description": "Manila punched out of the black rail; the rail's CV download.",
+      "html": "<div class=\"ds-rail-demo\"><a class=\"ds-btn-file\" href=\"#\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/><polyline points=\"7 10 12 15 17 10\"/><line x1=\"12\" x2=\"12\" y1=\"15\" y2=\"3\"/></svg>CV İndir (PDF)</a></div>",
+      "css": ".ds-rail-demo{background:var(--c-stock,#141311);padding:1.5rem;}.ds-btn-file{--bracket:var(--c-stock,#141311);display:inline-flex;min-height:3.25rem;align-items:center;justify-content:center;gap:0.6rem;padding:0.75rem 1.5rem;font-family:'Courier Prime','Courier New',ui-monospace,monospace;font-size:0.95rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;border:2px solid transparent;border-radius:0;cursor:pointer;transition:background-color 160ms ease,color 160ms ease,border-color 160ms ease;background-image:linear-gradient(var(--bracket),var(--bracket)),linear-gradient(var(--bracket),var(--bracket)),linear-gradient(var(--bracket),var(--bracket)),linear-gradient(var(--bracket),var(--bracket)),linear-gradient(var(--bracket),var(--bracket)),linear-gradient(var(--bracket),var(--bracket)),linear-gradient(var(--bracket),var(--bracket)),linear-gradient(var(--bracket),var(--bracket));background-repeat:no-repeat;background-size:0.7rem 2px,2px 0.7rem,0.7rem 2px,2px 0.7rem,0.7rem 2px,2px 0.7rem,0.7rem 2px,2px 0.7rem;background-position:left 5px top 5px,left 5px top 5px,right 5px top 5px,right 5px top 5px,left 5px bottom 5px,left 5px bottom 5px,right 5px bottom 5px,right 5px bottom 5px;background-color:var(--c-on-stock,#e4cd95);color:var(--c-stock,#141311);border-color:var(--c-on-stock,#e4cd95);text-decoration:none;font-size:0.88rem;letter-spacing:0.03em;}.ds-btn-file:hover{--bracket:var(--c-stock-alarm,#ef5f55);background-color:var(--c-manila-pressed,#f1dcab);}.ds-btn-file:focus-visible{outline:2px solid var(--c-stock-alarm,#ef5f55);outline-offset:3px;}"
+    },
+    {
+      "name": "File Tabs",
+      "kind": "nav",
+      "refersTo": "tab",
+      "description": "Numbered rail tabs; the current one fills manila.",
+      "html": "<nav class=\"ds-tabs\"><a class=\"ds-tab\" aria-current=\"true\" href=\"#\"><span>01</span><span>Ürünler</span></a><a class=\"ds-tab\" href=\"#\"><span>02</span><span>Yöntem</span></a><a class=\"ds-tab\" href=\"#\"><span>03</span><span>Yetkinlik</span></a></nav>",
+      "css": ".ds-tabs{display:grid;gap:0.375rem;background:var(--c-stock,#141311);padding:1.5rem;width:17rem;}.ds-tab{display:grid;grid-template-columns:2.25rem minmax(0,1fr);min-height:2.375rem;border:2px solid var(--c-stock-rule,#3a362e);font-family:'Courier Prime','Courier New',monospace;font-size:0.875rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:var(--c-on-stock,#e4cd95);text-decoration:none;transition:border-color 140ms ease,background-color 140ms ease,color 140ms ease;}.ds-tab>span:first-child{display:grid;place-items:center;border-right:2px solid var(--c-stock-rule,#3a362e);color:var(--c-on-stock-muted,#b3a683);}.ds-tab>span:last-child{display:flex;align-items:center;padding-inline:0.75rem;}.ds-tab:hover{border-color:var(--c-on-stock,#e4cd95);}.ds-tab[aria-current='true']{border-color:var(--c-on-stock,#e4cd95);background:var(--c-on-stock,#e4cd95);color:var(--c-stock,#141311);}.ds-tab[aria-current='true']>span:first-child{background:var(--c-stock,#141311);color:var(--c-on-stock,#e4cd95);border-right-color:var(--c-on-stock,#e4cd95);}.ds-tab:focus-visible{outline:2px solid var(--c-stock-alarm,#ef5f55);outline-offset:3px;}"
+    },
+    {
+      "name": "Switch",
+      "kind": "chip",
+      "refersTo": "switch-option",
+      "description": "Typed language and theme toggle on stock; pressed option fills manila.",
+      "html": "<div class=\"ds-switch-wrap\"><div class=\"ds-switch\"><button aria-pressed=\"true\">TR</button><button aria-pressed=\"false\">EN</button></div></div>",
+      "css": ".ds-switch-wrap{background:var(--c-stock,#141311);padding:1rem;display:inline-block;}.ds-switch{display:inline-flex;border:2px solid var(--c-on-stock,#e4cd95);}.ds-switch button{min-height:2.25rem;min-width:2.5rem;padding-inline:0.5rem;border:0;background:transparent;color:var(--c-on-stock-muted,#b3a683);font-family:'Courier Prime','Courier New',monospace;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:background-color 140ms ease,color 140ms ease;}.ds-switch button+button{border-left:2px solid var(--c-on-stock,#e4cd95);}.ds-switch button:hover{color:var(--c-on-stock,#e4cd95);}.ds-switch button[aria-pressed='true']{background:var(--c-on-stock,#e4cd95);color:var(--c-stock,#141311);}.ds-switch button:focus-visible{outline:2px solid var(--c-stock-alarm,#ef5f55);outline-offset:3px;}"
+    },
+    {
+      "name": "Status Stamps",
+      "kind": "custom",
+      "refersTo": "stamp-live",
+      "description": "Rubber stamps: red live/active, ink in development, gray archived; on a canvas slip where they cross a rule or the raised band.",
+      "html": "<div class=\"ds-stamps\"><span class=\"ds-stamp ds-stamp-live\" style=\"rotate:-6deg\">Yayında</span><span class=\"ds-stamp ds-stamp-ink\" style=\"rotate:-3deg\">Geliştiriliyor</span><span class=\"ds-stamp ds-stamp-gray\" style=\"rotate:-4deg\">Arşivlendi</span></div>",
+      "css": ".ds-stamps{display:flex;gap:1.5rem;padding:1.5rem;background:var(--c-raised,#d5bb84);flex-wrap:wrap;}.ds-stamp{display:inline-grid;justify-items:center;gap:0.15rem;padding:0.35rem 0.8rem 0.4rem;border:3px solid currentColor;outline:1px solid currentColor;outline-offset:2px;font-family:'Courier Prime','Courier New',ui-monospace,monospace;font-weight:700;line-height:1;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap;font-size:0.875rem;background:var(--c-canvas,#e4cd95);}.ds-stamp-live{color:var(--c-alarm,#9e1f18);}.ds-stamp-ink{color:var(--c-ink,#141311);}.ds-stamp-gray{color:var(--c-archive-gray,#58554c);}"
+    },
+    {
+      "name": "Exhibit Frame",
+      "kind": "card",
+      "refersTo": "frame-tag",
+      "description": "2px ink-ruled print on photo paper with an ink exhibit tag; contents grayscale until declassified.",
+      "html": "<a class=\"ds-frame\" href=\"#\"><span class=\"ds-frame-tag\">Ek 02·A</span><span class=\"ds-frame-body\">EAA yürürlükte.</span></a>",
+      "css": ".ds-frame{position:relative;display:block;width:12rem;aspect-ratio:1;overflow:hidden;background:var(--c-dot-paper,#e9d6a6);border:2px solid var(--c-rule,#141311);color:var(--c-ink,#141311);text-decoration:none;}.ds-frame-tag{position:absolute;left:0;top:0;padding:0.2rem 0.45rem;background:var(--c-ink,#141311);color:var(--c-canvas,#e4cd95);font-family:'Libre Franklin',ui-sans-serif,system-ui,sans-serif;font-size:0.6875rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;}.ds-frame-body{position:absolute;inset:2.25rem 0.75rem auto;font-family:'Courier Prime',monospace;font-weight:700;font-size:1.4rem;line-height:1.05;}.ds-frame:hover,.ds-frame:focus-visible{border-color:var(--c-alarm,#9e1f18);outline:none;}"
+    },
+    {
+      "name": "Section Head and Ruled Rows",
+      "kind": "custom",
+      "refersTo": "headline",
+      "description": "4px opening rule, typed uppercase headline, then ruled record rows with a form label column.",
+      "html": "<section class=\"ds-sec\"><div class=\"ds-head\"><h2>Deneyim</h2></div><dl class=\"ds-rows\"><div class=\"ds-row\"><dt>Durum</dt><dd>Uzaktan ve hibrit çalışmaya açık</dd></div><div class=\"ds-row\"><dt>Konum</dt><dd>Edirne, Türkiye</dd></div></dl></section>",
+      "css": ".ds-sec{background:var(--c-canvas,#e4cd95);color:var(--c-body,#1f1d19);padding:1.5rem;font-family:'Courier Prime',monospace;}.ds-head{padding-top:1.25rem;border-top:4px solid var(--c-rule,#141311);margin-bottom:2rem;}.ds-head h2{margin:0;font-weight:700;text-transform:uppercase;font-size:clamp(1.85rem,3.5vw,2.75rem);line-height:1.05;letter-spacing:-0.01em;color:var(--c-ink,#141311);}.ds-rows{margin:0;border-top:2px solid var(--c-rule,#141311);}.ds-row{display:grid;grid-template-columns:8rem 1fr;gap:1rem;padding-block:1rem;border-bottom:1px dashed var(--c-rule-soft,rgba(20,19,17,0.3));}.ds-row:last-child{border-bottom:2px solid var(--c-rule,#141311);}.ds-row dt{font-family:'Libre Franklin',ui-sans-serif,sans-serif;font-size:0.6875rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--c-muted,#4f4739);}.ds-row dd{margin:0;}"
+    },
+    {
+      "name": "Typed Link",
+      "kind": "custom",
+      "refersTo": "body",
+      "description": "Soft-underlined typed link that turns alarm red under the pointer.",
+      "html": "<p class=\"ds-p\"><a class=\"ds-link\" href=\"#\">GitHub profili</a></p>",
+      "css": ".ds-p{background:var(--c-canvas,#e4cd95);padding:1rem;font-family:'Courier Prime',monospace;font-weight:700;}.ds-link{color:var(--c-ink,#141311);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:0.22em;text-decoration-color:var(--c-rule-soft,rgba(20,19,17,0.3));transition:color 140ms ease,text-decoration-color 140ms ease;}.ds-link:hover{color:var(--c-alarm,#9e1f18);text-decoration-color:currentColor;}.ds-link:focus-visible{outline:2px solid var(--c-alarm,#9e1f18);outline-offset:3px;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Case File Title Sequence",
+    "overview": "**Creative North Star: \"The Case File Title Sequence\"**\n\nThe portfolio is a candidate's case file, revealed the way a sixties title sequence reveals an agent: frames cut in, a name types itself, a red stamp lands last. Everything sits on a saturated manila folder, is typed on a typewriter, and is filed under a black matte stock rail. Claims are exhibits: each carries a tag, a frame, and a status stamp. The density is a dossier's, ruled forms and typed rows rather than cards and gradients.\n\nTwo themes share one world. **Gündüz** (default) is the folder on the desk: manila ground, black ink, black stock. **Gece** is the same title sequence projected on black: near-black ground, manila type, the halftone flipped to a positive of light dots. Theme is set by `data-theme` on `<html>` (`gunduz` | `gece`), resolved before first paint from `localStorage` key `ak_theme`.\n\nThe world rejects the dark developer-portfolio card grid and the warm-paper editorial broadsheet it replaced (pale cream, Fraunces, hairline-and-2px-corners). Neither is current; do not reintroduce either.",
+    "keyCharacteristics": [
+      "Saturated manila ground, never pale cream; black matte stock for the rail, exhibit frames and contact sheet.",
+      "Two voices: Courier Prime types every record; Libre Franklin is only the preprinted form label.",
+      "Square everything: zero radius, 2px rules, 4px opening rules, dashed soft row dividers.",
+      "Alarm red reserved for state.",
+      "Exhibits are coarse canvas halftone that declassify to the true image on hover or focus.",
+      "Motion is cuts, typing and one hard stamp landing; never soft drifts."
+    ],
+    "rules": [
+      {
+        "name": "The Red Means State Rule",
+        "body": "Alarm red appears only where something is live, available, active, targeted or under the pointer. Never use it for decoration, section colour, or emphasis of ordinary copy.",
+        "section": "colors"
+      },
+      {
+        "name": "The Stock Red Rule",
+        "body": "Inside black stock, red is always stock-alarm, never alarm; focus rings switch automatically under `.on-stock`.",
+        "section": "colors"
+      },
+      {
+        "name": "The Manila Slip Rule",
+        "body": "Alarm red text sits only on the manila canvas, or as stock-alarm on black stock. Never put it directly on the raised band (manila-raised): a stamp that lands there, or straddles a rule, carries its own canvas-coloured slip behind it.",
+        "section": "colors"
+      },
+      {
+        "name": "The Semantic Token Rule",
+        "body": "Components use the semantic Tailwind colours (`bg-canvas`, `text-ink`, `border-rule`, `bg-stock`, `text-on-stock`, `text-alarm`, `text-stock-alarm`…) mapped from `--c-*` variables, never raw hex, so both themes stay in sync. Every colour, pressed states included, is defined in both theme blocks; component rules carry no hex of their own.",
+        "section": "colors"
+      },
+      {
+        "name": "The Closed Ramp Rule",
+        "body": "Sizes come from the steps above (micro, label, small, control, body, lede and the display scales). Never add a one-off rem value between them.",
+        "section": "typography"
+      },
+      {
+        "name": "The Two Voices Rule",
+        "body": "Typed (Courier Prime) for anything the candidate says; form (Libre Franklin) only for small uppercase field names and tags. No third family.",
+        "section": "typography"
+      },
+      {
+        "name": "The No Kicker Rule",
+        "body": "Nothing is stacked above a heading. An exhibit's tag and status stamp sit on the same line as its title; categories and years go below it.",
+        "section": "typography"
+      },
+      {
+        "name": "The Matte Stock Rule",
+        "body": "Hierarchy comes from stock versus folder and from rule weight (4px opens, 2px frames, 1px dashed divides), never from shadows, blur, glows or gradients.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** keep the ground saturated manila (#e4cd95) in Gündüz and near-black (#121110) in Gece, with theme-color meta values to match.",
+      "**Do** type every record in Courier Prime and reserve Libre Franklin for uppercase field labels and exhibit tags.",
+      "**Do** mark status with a rotated stamp: red for live, available or active; ink for in development; gray for archived.",
+      "**Do** put black matte stock behind the rail, exhibit frames and the contact sheet, and use stock-alarm for any red inside it.",
+      "**Do** open every section with the 4px ink rule and its typed headline, and set lists as ruled rows.",
+      "**Do** render exhibits as canvas halftone from the theme's dot colours and declassify them on both hover and focus.",
+      "**Do** write every user-visible string in both TR and EN.",
+      "**Do** keep text at WCAG AA against its actual background, including the manila-raised bands and black stock."
+    ],
+    "donts": [
+      "**Don't** use alarm red for anything that is not state: no red headings, red section fills or decorative red rules.",
+      "**Don't** set alarm red text directly on the raised manila band; give it a canvas slip.",
+      "**Don't** add font sizes outside the ramp; reach for small (0.875rem) or micro (0.75rem) instead of a one-off value.",
+      "**Don't** place eyebrow or kicker labels above headings; tags and stamps share the title's line.",
+      "**Don't** round corners, add box shadows, backdrop blur, gradient glows or card grids.",
+      "**Don't** use a pale cream ground or reintroduce the replaced Fraunces/Public Sans/IBM Plex Mono editorial world.",
+      "**Don't** animate with soft drifts or slides; use cuts, typing and one stamp landing, and keep everything static under reduced motion.",
+      "**Don't** lighten ink-faint (#5b574d) any further: it sits at 4.6:1 on manila, and even a comma is text under AA.",
+      "**Don't** use raw hex in components; use the semantic colour tokens."
+    ]
+  }
+}
