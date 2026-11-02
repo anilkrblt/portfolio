@@ -15,23 +15,27 @@ import {
   Smartphone,
   X,
 } from 'lucide-react';
-import {
-  Component,
-  Suspense,
-  lazy,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-  type ReactNode,
-} from 'react';
+import {Component, Suspense, lazy, useEffect, useMemo, useRef, useState, type ReactNode, type RefObject} from 'react';
 
+import {
+  addDrop,
+  bloom,
+  displace,
+  paint,
+  pourStrip,
+  readColors,
+  refine,
+  rng,
+  stroke,
+  type Guard,
+  type Shape,
+  type StripMotif,
+} from './ebru/marbling';
 import {drawPage, type PageContent} from './three/pageArt';
 
 /**
  * The WebGL demo is the only heavy dependency on the page, so it ships as its
- * own chunk and is only fetched once the product record is actually in view.
+ * own chunk and is only fetched once the product sheet is actually in view.
  */
 const PageCurl = lazy(() => import('./three/PageCurl'));
 
@@ -45,7 +49,7 @@ type Experience = {
   date: LocalizedString;
   location?: LocalizedString;
   description: LocalizedString;
-  /** The role held today; it is stamped active. */
+  /** The role held today; it is marked active. */
   current?: boolean;
 };
 
@@ -54,11 +58,6 @@ type ProductStatus = 'live' | 'building';
 
 type Shot = {
   src: string;
-  /**
-   * The hero's exhibit: one whole headline cut from this screenshot and mounted
-   * square on the screenshot's own ground, so the frame shows a complete phrase.
-   */
-  exhibit: string;
   alt: LocalizedString;
   caption: LocalizedString;
 };
@@ -136,17 +135,14 @@ const COPY = {
       secondaryCta: 'GitHub profili',
       location: 'Edirne, Türkiye',
       status: 'Uzaktan ve hibrit çalışmaya açık',
-      portraitCaption: 'Anıl Karabulut — Edirne, 2026',
-      stamp: 'Müsait',
-      stampNote: 'Uzaktan · Hibrit',
-      exhibits: 'Kanıt kareleri',
-      portraitTag: 'Portre',
+      portraitAlt: 'Anıl Karabulut, beyaz bir duvarın önünde',
+      combHint: 'Tekneyi sürükleyerek tarayın, dokunarak boya damlatın.'
     },
     facts: {
       status: 'Durum',
       location: 'Konum',
       languages: 'Diller',
-      file: 'Dosya içeriği',
+      file: 'Özet',
     },
     stats: [
       {value: '10', label: 'ürün ve proje'},
@@ -172,15 +168,14 @@ const COPY = {
       stack: 'Teknoloji',
       facts: 'Künye',
       preview: 'Ekran görüntüleri',
-      shotHint: 'Renkli görmek için üzerine gelin, tam boyut için tıklayın.',
-      exhibit: 'Ek',
+      shotHint: 'Tam boyut için tıklayın.',
       year: 'Yıl',
       address: 'Adres',
       status: 'Durum',
     },
     demo: {
       label: 'Düzen korumalı çeviri',
-      page: 'Sayfa 03 / 12',
+      page: 'Örnek belge · 03 / 12',
       original: 'Kaynak · EN',
       translated: 'Çeviri · TR',
       sourceTitle: 'Quarterly performance',
@@ -238,6 +233,11 @@ const COPY = {
     archive: {
       stamp: 'Arşivlendi',
     },
+    ebru: {
+      motifs: {gelgit: 'Gelgit', tarakli: 'Taraklı', battal: 'Battal'},
+      computed: 'tarayıcıda hesaplanan ebru',
+      seed: 'tohum',
+    },
     contactLabels: {
       email: 'E-posta',
       phone: 'Telefon',
@@ -260,7 +260,7 @@ const COPY = {
       {name: 'Türkçe', level: 'Anadil'},
       {name: 'İngilizce', level: 'C1 Seviye'},
     ],
-    footerNote: 'Bu dosya React, TypeScript ve Tailwind ile dizildi. Courier Prime ve Libre Franklin.',
+    footerNote: 'React, TypeScript ve Tailwind ile kuruldu. Ebru desenleri tarayıcıda hesaplanır. Yazı: Bricolage Grotesque.',
     footer: 'Tüm hakları saklıdır.',
   },
   en: {
@@ -294,17 +294,14 @@ const COPY = {
       secondaryCta: 'GitHub profile',
       location: 'Edirne, Türkiye',
       status: 'Open to remote and hybrid work',
-      portraitCaption: 'Anıl Karabulut — Edirne, 2026',
-      stamp: 'Available',
-      stampNote: 'Remote · Hybrid',
-      exhibits: 'Exhibit frames',
-      portraitTag: 'Portrait',
+      portraitAlt: 'Anıl Karabulut in front of a white wall',
+      combHint: 'Drag across the bath to comb it; tap to drop pigment.'
     },
     facts: {
       status: 'Status',
       location: 'Location',
       languages: 'Languages',
-      file: 'File contents',
+      file: 'In short',
     },
     stats: [
       {value: '10', label: 'products and projects'},
@@ -330,15 +327,14 @@ const COPY = {
       stack: 'Stack',
       facts: 'At a glance',
       preview: 'Screenshots',
-      shotHint: 'Hover to see it in colour; click for full size.',
-      exhibit: 'Exhibit',
+      shotHint: 'Click for full size.',
       year: 'Year',
       address: 'Address',
       status: 'Status',
     },
     demo: {
       label: 'Layout-preserving translation',
-      page: 'Page 03 / 12',
+      page: 'Sample document · 03 / 12',
       original: 'Source · EN',
       translated: 'Translation · TR',
       sourceTitle: 'Quarterly performance',
@@ -396,6 +392,11 @@ const COPY = {
     archive: {
       stamp: 'Archived',
     },
+    ebru: {
+      motifs: {gelgit: 'Gel-git', tarakli: 'Combed', battal: 'Battal stones'},
+      computed: 'marbling computed in the browser',
+      seed: 'seed',
+    },
     contactLabels: {
       email: 'Email',
       phone: 'Phone',
@@ -418,7 +419,7 @@ const COPY = {
       {name: 'Turkish', level: 'Native'},
       {name: 'English', level: 'C1'},
     ],
-    footerNote: 'Typed in React, TypeScript and Tailwind. Courier Prime and Libre Franklin.',
+    footerNote: 'Built with React, TypeScript and Tailwind. The marbling is computed in the browser. Set in Bricolage Grotesque.',
     footer: 'All rights reserved.',
   },
 } as const;
@@ -498,7 +499,6 @@ const PRODUCTS: Product[] = [
     shots: [
       {
         src: '/eaa1.png',
-        exhibit: '/exhibits/eaa1-headline.jpg',
         alt: {
           tr: 'EAA Monitor açılış sayfası ve müşteri portföyü özeti',
           en: 'EAA Monitor landing page with the client portfolio summary',
@@ -507,7 +507,6 @@ const PRODUCTS: Product[] = [
       },
       {
         src: '/eaa2.png',
-        exhibit: '/exhibits/eaa2-headline.jpg',
         alt: {
           tr: 'EAA Monitor tarafından üretilen erişilebilirlik izleme raporu',
           en: 'Accessibility monitoring report generated by EAA Monitor',
@@ -551,7 +550,6 @@ const PRODUCTS: Product[] = [
     shots: [
       {
         src: '/randevai1.png',
-        exhibit: '/exhibits/randevai1-headline.jpg',
         alt: {
           tr: 'Randevai açılış sayfası ve günün operasyon masası önizlemesi',
           en: 'Randevai landing page with a preview of the daily operations desk',
@@ -560,7 +558,6 @@ const PRODUCTS: Product[] = [
       },
       {
         src: '/randevai2.png',
-        exhibit: '/exhibits/randevai2-headline.jpg',
         alt: {
           tr: 'Randevai asistan konuşması ve insana devir uyarısı',
           en: 'Randevai assistant conversation with the human handoff notice',
@@ -720,55 +717,41 @@ const LANGUAGE_OPTIONS: {value: Language; label: string}[] = [
 
 const THEME_OPTIONS: Theme[] = ['gunduz', 'gece'];
 
-const THEME_COLOR: Record<Theme, string> = {gunduz: '#e4cd95', gece: '#121110'};
+const THEME_COLOR: Record<Theme, string> = {gunduz: '#eef0ed', gece: '#0b1024'};
 
-/** Rail tabs and the sections they open; the hero is tracked but has no tab. */
+/** Masthead links and the sections they open; the hero is tracked but has no link. */
 const NAV_TARGETS = {
   products: 'products',
   process: 'process',
   skills: 'skills',
   experience: 'experience',
   archive: 'archive',
-  contact: 'colophon',
+  contact: 'contact',
 } as const;
 type NavKey = keyof typeof NAV_TARGETS;
 const NAV_KEYS = Object.keys(NAV_TARGETS) as NavKey[];
 const TRACKED_SECTIONS = ['top', ...Object.values(NAV_TARGETS)];
 
-const PORTRAIT_FOCUS = [0.5, 0.42] as const;
-const CENTER = [0.5, 0.5] as const;
-/** The demo sheet's figure, where the hero frame looks. */
-const PAGE_FOCUS = [0.3, 0.62] as const;
+/** Each sheet's head is a different gesture over the same pigments. */
+const SHEET_MOTIF: StripMotif[] = ['gelgit', 'tarakli', 'battal'];
 
-/** A cut, not a drift: frames appear the way a title sequence cuts them in. */
-const rise = {
-  hidden: {opacity: 0},
-  visible: {opacity: 1, transition: {duration: 0.18, ease: 'linear' as const}},
-};
+/** The motif set is numbered, so every pattern on the page names its unit. */
+const MOTIF_NUMBER: Record<StripMotif, string> = {gelgit: '01', tarakli: '02', battal: '03'};
 
-const stagger = {
-  hidden: {},
-  visible: {transition: {staggerChildren: 0.08, delayChildren: 0.1}},
-};
+/** Fast out, then still: the way pigment spreads on the size. */
+const spreadEase = [0.16, 1, 0.3, 1] as const;
 
-/** A rubber stamp landing: one hard overshoot, then still. The custom value is its delay. */
-const land = {
-  hidden: {opacity: 0, scale: 1.7},
-  visible: (delay = 0) => ({
-    opacity: 1,
-    scale: 1,
-    transition: {delay, duration: 0.22, ease: [0.34, 1.56, 0.64, 1] as const},
-  }),
+/** A sheet pulled up out of the bath: its marbled head is revealed top to bottom, once. */
+const pull = {
+  hidden: {clipPath: 'inset(0% 0% 100% 0%)'},
+  visible: {clipPath: 'inset(0% 0% 0% 0%)', transition: {duration: 0.95, ease: spreadEase}},
 };
 
 const reveal = {
   initial: 'hidden' as const,
   whileInView: 'visible' as const,
-  viewport: {once: true, margin: '-60px'},
+  viewport: {once: true, margin: '-80px'},
 };
-
-/** How the reticle travels between exhibits. */
-const track = {type: 'tween' as const, duration: 0.34, ease: [0.22, 1, 0.36, 1] as const};
 
 function localize(value: LocalizedString, language: Language) {
   return value[language];
@@ -776,6 +759,11 @@ function localize(value: LocalizedString, language: Language) {
 
 function pad(index: number) {
   return String(index).padStart(2, '0');
+}
+
+/** Anchor ids for the product sheets, derived from their names. */
+function sheetId(product: Product) {
+  return product.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 }
 
 /** The demo document, front (source) and back (translation), in the reader's chrome. */
@@ -804,31 +792,6 @@ function demoPages(demo: Copy['demo']): {front: PageContent; back: PageContent} 
   };
 }
 
-/**
- * Types a string out one character at a time. The caller keeps the untyped
- * remainder in the layout (invisible), so nothing reflows while it types.
- */
-function useTyped(text: string, {delay = 0, speed = 40, enabled = true} = {}) {
-  const [count, setCount] = useState(enabled ? 0 : text.length);
-
-  useEffect(() => {
-    if (!enabled) {
-      setCount(text.length);
-      return;
-    }
-    setCount(0);
-    let index = 0;
-    let timer = window.setTimeout(function tick() {
-      index += 1;
-      setCount(index);
-      if (index < text.length) timer = window.setTimeout(tick, speed);
-    }, delay);
-    return () => window.clearTimeout(timer);
-  }, [text, delay, speed, enabled]);
-
-  return count;
-}
-
 function useFontsReady() {
   const [ready, setReady] = useState(false);
   useEffect(() => {
@@ -843,7 +806,7 @@ function useFontsReady() {
   return ready;
 }
 
-/** Which section is under the middle of the viewport, for the rail's current tab. */
+/** Which section is under the middle of the viewport, for the masthead's current link. */
 function useActiveSection(ids: string[]) {
   const [active, setActive] = useState(ids[0]);
 
@@ -904,156 +867,154 @@ export default function App() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className="relative min-h-screen bg-canvas">
-        <div className="fiber" aria-hidden="true" />
-
-        <a href="#main-content" className="btn btn-primary fixed left-4 top-4 z-50 -translate-y-24 focus:translate-y-0">
+      <div className="min-h-screen overflow-x-clip bg-canvas">
+        <a
+          href="#main-content"
+          className="btn fixed left-4 top-4 z-50 -translate-y-24 focus:translate-y-0"
+        >
           {copy.skip}
         </a>
 
-        <div className="file">
-          <Rail
-            copy={copy}
-            language={language}
-            theme={theme}
-            active={active}
-            onLanguageChange={setLanguage}
-            onThemeChange={setTheme}
-          />
+        <Masthead
+          copy={copy}
+          language={language}
+          theme={theme}
+          active={active}
+          onLanguageChange={setLanguage}
+          onThemeChange={setTheme}
+        />
 
-          {/* Clipped, not scrolled: a stamp waiting to land must never widen the page. */}
-          <div className="min-w-0 overflow-x-clip">
-            <main id="main-content">
-              <Hero copy={copy} language={language} theme={theme} />
+        <main id="main-content">
+          <Hero copy={copy} language={language} theme={theme} />
 
-              <section id="products" className="shell band">
-                <SectionHead title={copy.sections.products} lead={copy.sections.productsLead} />
-                <PrimaryRecord product={PRODUCTS[0]} language={language} copy={copy} theme={theme} />
-                {PRODUCTS.slice(1).map((product, index) => (
-                  <ProductRecord
-                    key={product.title}
-                    product={product}
-                    exhibit={pad(index + 2)}
-                    language={language}
-                    copy={copy}
-                  />
-                ))}
-              </section>
-
-              <Process copy={copy} />
-
-              <section id="skills" className="shell band">
-                <SectionHead title={copy.sections.skills} />
-                <div className="rows">
-                  {SKILL_GROUPS.map((group) => (
-                    <div key={group.title.en} className="row grid gap-3 py-5 md:grid-cols-[17rem_minmax(0,1fr)] md:gap-8">
-                      <h3 className="flex items-center gap-3 font-bold uppercase tracking-[0.04em] text-ink">
-                        <group.icon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                        {localize(group.title, language)}
-                      </h3>
-                      <p className="m-0 flex flex-wrap gap-y-1">
-                        {group.items.map((item) => (
-                          <span key={item} className="term">
-                            {item}
-                          </span>
-                        ))}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </section>
-
-              <section id="experience" className="shell band pt-0 md:pt-0">
-                <SectionHead title={copy.sections.experience} />
-                <div className="rows">
-                  {EXPERIENCES.map((experience) => (
-                    <article
-                      key={`${experience.company}-${experience.date.en}`}
-                      className="row grid gap-3 py-7 md:grid-cols-[11rem_minmax(0,1fr)_auto] md:gap-8"
-                    >
-                      <p className="m-0 text-[0.95rem] leading-6">
-                        <span className="block font-bold text-ink">{localize(experience.date, language)}</span>
-                        {experience.location && (
-                          <span className="block text-muted">{localize(experience.location, language)}</span>
-                        )}
-                      </p>
-                      <div>
-                        <h3 className="subhead">{localize(experience.title, language)}</h3>
-                        <p className="mt-1.5 font-bold uppercase tracking-[0.06em] text-muted">{experience.company}</p>
-                        <p className="mt-3 max-w-[66ch] text-pretty">{localize(experience.description, language)}</p>
-                      </div>
-                      <div className="md:pt-1">
-                        {experience.current && (
-                          <Stamp tone="live" rotate={-5} className="text-small">
-                            {copy.experience.current}
-                          </Stamp>
-                        )}
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              </section>
-
-              <section id="archive" className="shell band pt-0 md:pt-0">
-                <SectionHead
-                  title={copy.sections.archive}
-                  lead={copy.sections.archiveLead}
-                  stamp={
-                    <Stamp tone="gray" rotate={-4} className="text-small">
-                      {copy.archive.stamp}
-                    </Stamp>
-                  }
+          <section id="products" className="shell band">
+            <SectionHead title={copy.sections.products} lead={copy.sections.productsLead} />
+            <div className="grid gap-24 md:gap-32">
+              {PRODUCTS.map((product, index) => (
+                <ProductSheet
+                  key={product.title}
+                  product={product}
+                  motif={SHEET_MOTIF[index % SHEET_MOTIF.length]}
+                  seed={index + 3}
+                  language={language}
+                  copy={copy}
+                  theme={theme}
                 />
-                <div className="rows">
-                  {ARCHIVE_PROJECTS.map((project) => (
-                    <article
-                      key={project.title.en}
-                      className="row grid gap-3 py-6 md:grid-cols-[5rem_minmax(0,1fr)_11rem] md:items-baseline md:gap-6"
-                    >
-                      <span className="font-bold text-muted">{project.date ?? '—'}</span>
-                      <div>
-                        <h3 className="text-[1.1rem] font-bold leading-6 text-ink">{localize(project.title, language)}</h3>
-                        <p className="mt-2 max-w-[66ch] text-[0.95rem] leading-6 text-body">
-                          {localize(project.description, language)}
-                        </p>
-                        <p className="mt-3 flex flex-wrap gap-y-1 text-small text-muted">
-                          {project.tech.map((tech) => (
-                            <span key={tech} className="term">
-                              {tech}
-                            </span>
-                          ))}
-                        </p>
-                      </div>
-                      <div className="flex flex-wrap gap-x-5 gap-y-2 md:justify-end">
-                        {project.links.map((link) => (
-                          <a
-                            key={`${project.title.en}-${link.label}`}
-                            href={link.url}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="typed-link inline-flex items-center gap-1.5 text-small font-bold"
-                            aria-label={`${localize(project.title, language)} — ${link.label}`}
-                          >
-                            {link.label}
-                            <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
-                          </a>
-                        ))}
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              </section>
-            </main>
+              ))}
+            </div>
+          </section>
 
-            <Colophon copy={copy} language={language} />
-          </div>
-        </div>
+          <Process copy={copy} theme={theme} />
+
+          <section id="skills" className="shell band">
+            <SectionHead
+              title={copy.sections.skills}
+              seal={<MotifSeal motif="tarakli" seed={22} copy={copy} theme={theme} />}
+            />
+            <div className="rows">
+              {SKILL_GROUPS.map((group) => (
+                <div key={group.title.en} className="row grid gap-3 py-6 md:grid-cols-[17rem_minmax(0,1fr)] md:gap-8">
+                  <h3 className="m-0 flex items-center gap-3 text-[1.0625rem] font-bold text-ink">
+                    <group.icon className="h-[1.1rem] w-[1.1rem] shrink-0 text-muted" aria-hidden="true" />
+                    {localize(group.title, language)}
+                  </h3>
+                  <p className="m-0 flex flex-wrap gap-y-1 text-body">
+                    {group.items.map((item) => (
+                      <span key={item} className="term">
+                        {item}
+                      </span>
+                    ))}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section id="experience" className="shell band pt-0 md:pt-0">
+            <SectionHead
+              title={copy.sections.experience}
+              seal={<MotifSeal motif="battal" seed={23} copy={copy} theme={theme} />}
+            />
+            <div className="rows">
+              {EXPERIENCES.map((experience) => (
+                <article
+                  key={`${experience.company}-${experience.date.en}`}
+                  className="row grid gap-3 py-8 md:grid-cols-[11rem_minmax(0,1fr)_auto] md:gap-8"
+                >
+                  <p className="m-0 text-small">
+                    <span className="block font-semibold text-ink">{localize(experience.date, language)}</span>
+                    {experience.location && (
+                      <span className="block text-muted">{localize(experience.location, language)}</span>
+                    )}
+                  </p>
+                  <div>
+                    <h3 className="subhead m-0">{localize(experience.title, language)}</h3>
+                    <p className="m-0 mt-1 font-semibold text-muted">{experience.company}</p>
+                    <p className="m-0 mt-3 max-w-[66ch] text-pretty">{localize(experience.description, language)}</p>
+                  </div>
+                  <div className="md:pt-1.5">
+                    {experience.current && <span className="drop drop-live">{copy.experience.current}</span>}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section id="archive" className="shell band pt-0 md:pt-0">
+            <SectionHead
+              title={copy.sections.archive}
+              lead={copy.sections.archiveLead}
+              aside={<span className="drop drop-archived">{copy.archive.stamp}</span>}
+              seal={<MotifSeal motif="tarakli" seed={24} copy={copy} theme={theme} />}
+            />
+            <div className="rows">
+              {ARCHIVE_PROJECTS.map((project) => (
+                <article
+                  key={project.title.en}
+                  className="row grid gap-3 py-7 md:grid-cols-[5rem_minmax(0,1fr)_11rem] md:items-baseline md:gap-6"
+                >
+                  <span className="text-small font-semibold text-muted">{project.date ?? '—'}</span>
+                  <div>
+                    <h3 className="m-0 text-[1.15rem] font-bold leading-snug text-ink">
+                      {localize(project.title, language)}
+                    </h3>
+                    <p className="m-0 mt-2 max-w-[66ch] text-pretty">{localize(project.description, language)}</p>
+                    <p className="m-0 mt-3 flex flex-wrap gap-y-1 text-small text-muted">
+                      {project.tech.map((tech) => (
+                        <span key={tech} className="term">
+                          {tech}
+                        </span>
+                      ))}
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap gap-x-5 gap-y-2 md:justify-end">
+                    {project.links.map((link) => (
+                      <a
+                        key={`${project.title.en}-${link.label}`}
+                        href={link.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="link inline-flex items-center gap-1.5 text-small font-semibold text-ink"
+                        aria-label={`${localize(project.title, language)} — ${link.label}`}
+                      >
+                        {link.label}
+                        <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+                      </a>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        </main>
+
+        <Contact copy={copy} language={language} theme={theme} />
       </div>
     </MotionConfig>
   );
 }
 
-/** The two typed toggles: language and theme. */
+/** Language and theme. Language first: a visitor who cannot read Turkish must find EN before anything else. */
 function Switches({
   copy,
   language,
@@ -1068,7 +1029,7 @@ function Switches({
   onThemeChange: (value: Theme) => void;
 }) {
   return (
-    <div className="flex flex-wrap gap-3">
+    <div className="flex flex-wrap gap-2">
       <div className="switch" role="group" aria-label={copy.languageLabel}>
         {LANGUAGE_OPTIONS.map((option) => (
           <button
@@ -1092,23 +1053,24 @@ function Switches({
   );
 }
 
-function Monogram({className = ''}: {className?: string}) {
+/** The mark: a drop ringed by one pigment, the way every sheet starts. */
+function DropMark({className = ''}: {className?: string}) {
   return (
-    <span
-      aria-hidden="true"
-      className={`grid shrink-0 place-items-center border-2 border-on-stock font-bold leading-none ${className}`}
-    >
-      AK
-    </span>
+    <svg viewBox="0 0 32 32" className={className} aria-hidden="true">
+      <circle cx="16" cy="16" r="15" fill="var(--c-stock)" />
+      <circle cx="16" cy="16" r="10.5" fill="var(--c-ochre)" />
+      <circle cx="16" cy="16" r="8" fill="var(--c-on-stock)" />
+      <circle cx="16" cy="16" r="5.5" fill="var(--c-stock)" />
+    </svg>
   );
 }
 
 /**
- * The file rail: on a desk-sized screen it holds the tabs, the facts a
- * recruiter needs and the CV, all within reach at any scroll depth. On a phone
- * it folds into a black bar with a menu.
+ * The masthead: the name, the six sections, the switches and the CV, laid
+ * along the top edge of the page at every scroll depth. On a phone the links
+ * and switches fold into a menu; the CV stays out.
  */
-function Rail({
+function Masthead({
   copy,
   language,
   theme,
@@ -1134,19 +1096,19 @@ function Rail({
     return () => window.removeEventListener('keydown', onKey);
   }, [open]);
 
-  const tabs = NAV_KEYS.map((key, index) => (
-    <li key={key}>
-      <a
-        href={`#${NAV_TARGETS[key]}`}
-        className="tab"
-        aria-current={active === NAV_TARGETS[key] ? 'true' : undefined}
-        onClick={() => setOpen(false)}
-      >
-        <span aria-hidden="true">{pad(index + 1)}</span>
-        <span>{copy.nav[key]}</span>
-      </a>
-    </li>
-  ));
+  const links = (className: string) =>
+    NAV_KEYS.map((key) => (
+      <li key={key}>
+        <a
+          href={`#${NAV_TARGETS[key]}`}
+          className={className}
+          aria-current={active === NAV_TARGETS[key] ? 'true' : undefined}
+          onClick={() => setOpen(false)}
+        >
+          {copy.nav[key]}
+        </a>
+      </li>
+    ));
 
   const switches = (
     <Switches
@@ -1159,18 +1121,23 @@ function Rail({
   );
 
   return (
-    <header className="rail on-stock sticky top-0 z-40">
-      <div className="flex items-center justify-between gap-4 px-5 py-3 lg:hidden">
-        <a href="#top" className="flex min-w-0 items-center gap-3">
-          <Monogram className="h-9 w-9 text-small" />
-          <span className="truncate font-bold uppercase tracking-[0.06em]">Anıl Karabulut</span>
+    <header className="masthead">
+      <div className="shell flex h-16 items-center justify-between gap-6">
+        <a href="#top" className="flex min-w-0 items-center gap-2.5 text-ink">
+          <DropMark className="h-8 w-8 shrink-0" />
+          <span className="truncate text-[1.05rem] font-bold tracking-[-0.01em]">Anıl Karabulut</span>
         </a>
-        <div className="flex shrink-0 items-center gap-2">
-          {/* The CV rides in the bar on a phone, the way it rides in the rail on a desk. */}
+
+        <nav aria-label={copy.navLabel} className="hidden xl:block">
+          <ul className="m-0 flex list-none items-center gap-6 p-0">{links('navlink')}</ul>
+        </nav>
+
+        <div className="flex shrink-0 items-center gap-3">
+          <div className="hidden lg:block">{switches}</div>
           <a
             href={CV_URL[language]}
             download
-            className="inline-flex h-10 items-center gap-1.5 bg-on-stock px-3 text-small font-bold uppercase tracking-[0.08em] text-stock"
+            className="btn min-h-[2.5rem] px-4 text-small"
             aria-label={copy.hero.cvCta}
           >
             <Download className="h-4 w-4" aria-hidden="true" />
@@ -1178,9 +1145,9 @@ function Rail({
           </a>
           <button
             type="button"
-            className="inline-flex h-10 items-center gap-2 border-2 border-on-stock px-2.5 text-small font-bold uppercase tracking-[0.08em]"
+            className="btn btn-ghost min-h-[2.5rem] px-3.5 text-small xl:hidden"
             aria-expanded={open}
-            aria-controls="file-menu"
+            aria-controls="site-menu"
             onClick={() => setOpen((value) => !value)}
           >
             {open ? <X className="h-4 w-4" aria-hidden="true" /> : <Menu className="h-4 w-4" aria-hidden="true" />}
@@ -1189,73 +1156,35 @@ function Rail({
         </div>
       </div>
 
-      <div id="file-menu" hidden={!open} className="border-t border-stock-rule px-5 pb-6 pt-4 lg:hidden">
-        <nav aria-label={copy.navLabel}>
-          <ul className="m-0 grid list-none gap-2 p-0">{tabs}</ul>
-        </nav>
-        <div className="mt-5">{switches}</div>
-        <a href={CV_URL[language]} download className="btn btn-file mt-5 w-full">
-          <Download className="h-4 w-4" aria-hidden="true" />
-          {copy.hero.cvCta}
-        </a>
-      </div>
-
-      {/* Language first: a visitor who cannot read Turkish must find EN before anything else. */}
-      <div className="hidden min-h-full flex-col gap-6 p-6 lg:flex">
-        <a href="#top" className="grid gap-2.5 border-2 border-on-stock p-3.5 transition-colors hover:border-stock-alarm">
-          <span className="flex items-center gap-3">
-            <Monogram className="h-10 w-10 text-[1rem]" />
-            <span className="font-bold uppercase leading-tight tracking-[0.04em]">
-              Anıl
-              <br />
-              Karabulut
-            </span>
-          </span>
-          <span className="label">{copy.hero.role}</span>
-        </a>
-
-        <div className="grid gap-4">
-          {switches}
-          <a href={CV_URL[language]} download className="btn btn-file w-full px-4 text-small tracking-[0.03em]">
-            <Download className="h-4 w-4 shrink-0" aria-hidden="true" />
-            {copy.hero.cvCta}
-          </a>
+      <div id="site-menu" hidden={!open} className="border-t border-rule-soft xl:hidden">
+        <div className="shell grid gap-6 pb-7 pt-5">
+          <nav aria-label={copy.navLabel}>
+            <ul className="m-0 grid list-none gap-1 p-0 sm:grid-cols-2">
+              {links('navlink w-full text-[1.0625rem]')}
+            </ul>
+          </nav>
+          <div className="lg:hidden">{switches}</div>
         </div>
-
-        <nav aria-label={copy.navLabel}>
-          <ul className="m-0 grid list-none gap-1.5 p-0">{tabs}</ul>
-        </nav>
-
-        <DossierFacts copy={copy} />
       </div>
     </header>
   );
 }
 
-/** The facts a recruiter screens for, typed onto the file's status form. */
-function DossierFacts({copy, className = ''}: {copy: Copy; className?: string}) {
+/** The facts a recruiter screens for, set quietly under the hero's actions. */
+function Facts({copy}: {copy: Copy}) {
   const languages = copy.languages.map((item) => `${item.name} (${item.level})`).join(' · ');
-  const rows: {label: string; value: ReactNode; optional?: boolean}[] = [
-    {label: copy.facts.status, value: <span className="fact-alarm font-bold">{copy.hero.status}</span>},
+  const rows: {label: string; value: ReactNode; wide?: boolean}[] = [
     {label: copy.facts.location, value: copy.hero.location},
     {label: copy.facts.languages, value: languages},
-    {
-      label: copy.facts.file,
-      optional: true,
-      value: copy.stats.map((stat) => (
-        <span key={stat.label} className="block">
-          {stat.value} {stat.label}
-        </span>
-      )),
-    },
+    {label: copy.facts.file, value: copy.stats.map((stat) => `${Number(stat.value)} ${stat.label}`).join(' · '), wide: true},
   ];
 
   return (
-    <dl className={`m-0 grid gap-3 ${className}`}>
+    <dl className="m-0 grid gap-x-8 gap-y-3 sm:grid-cols-2">
       {rows.map((row) => (
-        <div key={row.label} className={`grid gap-0.5 ${row.optional ? 'rail-optional' : ''}`}>
+        <div key={row.label} className={`grid gap-0.5 ${row.wide ? 'sm:col-span-2' : ''}`}>
           <dt className="label">{row.label}</dt>
-          <dd className="m-0 text-small leading-snug">{row.value}</dd>
+          <dd className="m-0 text-small text-on-stock">{row.value}</dd>
         </div>
       ))}
     </dl>
@@ -1263,38 +1192,55 @@ function DossierFacts({copy, className = ''}: {copy: Copy; className?: string}) 
 }
 
 function Hero({copy, language, theme}: {copy: Copy; language: Language; theme: Theme}) {
-  const reduced = useReducedMotion();
-  const name = 'ANIL\nKARABULUT';
-  const typed = useTyped(name, {enabled: !reduced, delay: 300, speed: 45});
+  const reduced = Boolean(useReducedMotion());
+  const hostRef = useRef<HTMLElement>(null);
+  const portraitRef = useRef<HTMLDivElement>(null);
+  const [poured, setPoured] = useState(false);
 
   return (
-    <section id="top" className="shell pb-16 pt-10 md:pb-24 md:pt-14 lg:flex lg:min-h-[100dvh] lg:items-center lg:py-12">
-      {/* Three blocks, so a phone sees the face before the fold: name, frames, then the rest. */}
-      <div className="hero-grid w-full">
+    <section id="top" ref={hostRef} className="tray on-stock">
+      <Bath hostRef={hostRef} guardRef={portraitRef} reduced={reduced} theme={theme} onPortrait={() => setPoured(true)} />
+
+      {/* Name, then the face, then the rest: a phone meets the portrait before the fold. */}
+      <div className="hero-grid shell relative">
         <div style={{gridArea: 'name'}}>
-          <h1 className="display m-0 whitespace-pre-line">
-            <span className="sr-only">Anıl Karabulut</span>
-            <span aria-hidden="true">
-              {name.slice(0, typed)}
-              <span className="cursor" />
-              <span className="invisible">{name.slice(typed)}</span>
-            </span>
+          <h1 className="display m-0 text-on-stock" data-calm>
+            Anıl
+            <br />
+            Karabulut
           </h1>
-          <p className="sentence mt-7 lg:mt-8">{copy.hero.title}</p>
+          <p className="sentence m-0 mt-6 max-w-[22ch] text-on-stock" data-calm>
+            {copy.hero.title}
+          </p>
         </div>
 
-        <SurveillanceArray copy={copy} language={language} theme={theme} />
+        <div className="portrait-slot" style={{gridArea: 'portrait'}}>
+          <motion.div
+            ref={portraitRef}
+            className="portrait-drop"
+            initial={false}
+            animate={poured ? {scale: 1, opacity: 1} : {scale: 0.18, opacity: 0}}
+            transition={{duration: 0.75, ease: spreadEase}}
+          >
+            <img src="/profile.jpg" alt={copy.hero.portraitAlt} width={1056} height={1408} decoding="async" />
+          </motion.div>
+        </div>
 
         <div style={{gridArea: 'rest'}}>
-          <p className="lede m-0 max-w-[58ch]">{copy.hero.subtitle}</p>
-          <p className="mt-4 max-w-[58ch] text-[0.95rem] text-muted">{copy.hero.summary}</p>
+          <p className="m-0 flex flex-wrap items-center gap-x-4 gap-y-2" data-calm>
+            <span className="text-[1.05rem] font-semibold text-on-stock">{copy.hero.role}</span>
+            <span className="drop drop-live">{copy.hero.status}</span>
+          </p>
+          <p className="lede m-0 mt-4 max-w-[54ch] text-on-stock" data-calm>
+            {copy.hero.subtitle}
+          </p>
 
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a href={CV_URL[language]} download className="btn btn-primary">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap" data-calm>
+            <a href={CV_URL[language]} download className="btn btn-paper">
               <Download className="h-4 w-4" aria-hidden="true" />
               {copy.hero.cvCta}
             </a>
-            <a href="https://translateyourpdf.com" target="_blank" rel="noreferrer" className="btn btn-secondary">
+            <a href="https://translateyourpdf.com" target="_blank" rel="noreferrer" className="btn btn-ghost">
               {copy.hero.primaryCta}
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </a>
@@ -1303,176 +1249,396 @@ function Hero({copy, language, theme}: {copy: Copy; language: Language; theme: T
             href={CONTACT.github}
             target="_blank"
             rel="noreferrer"
-            className="typed-link mt-5 inline-flex items-center gap-2 font-bold"
+            className="link mt-5 inline-flex items-center gap-2 font-semibold text-on-stock"
+            data-calm
           >
             <Github className="h-4 w-4" aria-hidden="true" />
             {copy.hero.secondaryCta}
           </a>
 
-          <DossierFacts copy={copy} className="mt-10 border-t-2 border-rule pt-6 sm:grid-cols-2 lg:hidden" />
+          <div className="mt-10 border-t border-stock-rule pt-5" data-calm>
+            <Facts copy={copy} />
+          </div>
         </div>
       </div>
+
+      {!reduced && (
+        <p className="comb-hint label m-0" aria-hidden="true">
+          {copy.hero.combHint}
+        </p>
+      )}
     </section>
   );
 }
 
-type ArtSource = string | HTMLCanvasElement;
+type Rect = {x: number; y: number; w: number; h: number};
 
-function hexLuminance(color: string) {
-  const match = /^#?([0-9a-f]{6})$/i.exec(color.trim());
-  if (!match) return 0;
-  const value = parseInt(match[1], 16);
-  return (0.2126 * ((value >> 16) & 255) + 0.7152 * ((value >> 8) & 255) + 0.0722 * (value & 255)) / 255;
+type Task = {start: number; duration: number; prev: number; step: (progress: number, prev: number) => void};
+
+/** The colour list the bath paints with: four stones, six pigments, then the bath itself. */
+const STONES = 4;
+const PIGMENT = {white: STONES, ochre: STONES + 1, turquoise: STONES + 2, rose: STONES + 3, lahor: STONES + 4, deep: STONES + 5};
+const BATH = STONES + 6;
+
+/**
+ * The nightingale's nest, outer edge to inner, in portrait radii: each drop
+ * lands at the centre and pushes the ones before it out into a ring.
+ */
+const NEST = [
+  {edge: 1.7, pigment: PIGMENT.white},
+  {edge: 1.64, pigment: PIGMENT.ochre},
+  {edge: 1.53, pigment: PIGMENT.deep},
+  {edge: 1.48, pigment: PIGMENT.white},
+  {edge: 1.42, pigment: PIGMENT.turquoise},
+  {edge: 1.33, pigment: PIGMENT.lahor},
+  {edge: 1.27, pigment: PIGMENT.rose},
+  {edge: 1.17, pigment: PIGMENT.deep},
+  {edge: 1.12, pigment: PIGMENT.white},
+  {edge: 1.05, pigment: PIGMENT.ochre},
+  {edge: 1, pigment: BATH},
+];
+
+const ease = (t: number) => 1 - Math.pow(1 - t, 3.2);
+
+/**
+ * The hero's bath. On arrival it pours itself: indigo stones scatter across
+ * the tray, then the nest drops land one after another on the portrait, the
+ * last one becoming the face, and the stylus pulls the rings into petals.
+ * Afterwards the visitor can comb it. Text regions marked `data-calm` only
+ * ever get tone-on-tone stones, so nothing bright lands under the copy.
+ */
+function Bath({
+  hostRef,
+  guardRef,
+  reduced,
+  theme,
+  onPortrait,
+}: {
+  hostRef: RefObject<HTMLElement | null>;
+  guardRef: RefObject<HTMLDivElement | null>;
+  reduced: boolean;
+  theme: Theme;
+  onPortrait: () => void;
+}) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const repaintRef = useRef<() => void>(() => {});
+  const portraitRef = useRef(onPortrait);
+  portraitRef.current = onPortrait;
+
+  useEffect(() => {
+    const host = hostRef.current;
+    const canvas = canvasRef.current;
+    const slot = guardRef.current;
+    const ctx = canvas?.getContext('2d');
+    if (!host || !canvas || !slot || !ctx) {
+      portraitRef.current();
+      return;
+    }
+
+    let shapes: Shape[] = [];
+    let guard: Guard = {x: 0, y: 0, r: 1};
+    let guardOn = false;
+    let calm: Rect[] = [];
+    let colors: string[] = [];
+    let bath = '#1d2a66';
+    let tasks: Task[] = [];
+    let clock = 0;
+    let raf = 0;
+    let width = 0;
+    let height = 0;
+    let scale = 1;
+    let dirty = false;
+
+    const readPalette = () => {
+      const style = getComputedStyle(host);
+      bath = style.getPropertyValue('--c-stock').trim() || bath;
+      const stones = readColors(host, '--bath-stones', ['#22317a', '#19245b', '#273883', '#1f2d6e']);
+      const pigments = readColors(host, '--bath-pigments', ['#f1f2ec', '#d9a23a', '#4fa39b', '#d98f87', '#9fb3dc', '#101741']);
+      colors = [...stones.slice(0, STONES), ...pigments.slice(0, 6), bath];
+    };
+
+    const measure = () => {
+      const box = host.getBoundingClientRect();
+      width = box.width;
+      height = box.height;
+      scale = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(width * scale);
+      canvas.height = Math.round(height * scale);
+      // The slot's layout box, not the drop's: the drop may still be scaled down.
+      const face = slot.offsetParent ? slot : null;
+      const rect = (face ?? slot).getBoundingClientRect();
+      const size = slot.offsetWidth || rect.width;
+      guard = {
+        x: rect.left - box.left + rect.width / 2,
+        y: rect.top - box.top + rect.height / 2,
+        r: size / 2,
+      };
+      calm = Array.from(host.querySelectorAll('[data-calm]')).map((element) => {
+        const r = element.getBoundingClientRect();
+        return {x: r.left - box.left, y: r.top - box.top, w: r.width, h: r.height};
+      });
+    };
+
+    const isCalm = (x: number, y: number, margin: number) =>
+      calm.some((r) => x > r.x - margin && x < r.x + r.w + margin && y > r.y - margin && y < r.y + r.h + margin);
+
+    const draw = () => paint(ctx, shapes, colors, bath, width, height, scale);
+    repaintRef.current = () => {
+      readPalette();
+      draw();
+    };
+
+    const edge = () => Math.max(2.2, width / 520);
+
+    /** Lays a drop now and grows it to radius r over the task's life. */
+    const dropTask = (start: number, duration: number, x: number, y: number, r: number, pigment: number, nest = false): Task => ({
+      start,
+      duration,
+      prev: 0,
+      step: (progress, prev) => {
+        if (prev === 0) addDrop(shapes, x, y, 0.5, pigment, nest || !guardOn ? undefined : guard);
+        displace(shapes, x, y, (progress - prev) * (r * r - 0.25), nest || !guardOn ? undefined : guard);
+      },
+    });
+
+    const pour = (animated: boolean) => {
+      shapes = [];
+      guardOn = false;
+      tasks = [];
+      const random = rng(20261102);
+      const unit = Math.max(0.6, Math.min(1.2, width / 1440));
+
+      // Stones, away from the nest: tone-on-tone near the copy, a few pigments in the open.
+      const stones = Math.round((width * height) / (11000 * unit));
+      for (let i = 0; i < stones; i += 1) {
+        const x = random() * width;
+        const y = random() * height;
+        const roll = random();
+        if (Math.hypot(x - guard.x, y - guard.y) < guard.r * 2.1) continue;
+        const open = !isCalm(x, y, 70 * unit) && roll < 0.16;
+        const r = (open ? 9 + roll * 40 : 26 + random() * 46) * unit;
+        const pigment = open ? [PIGMENT.ochre, PIGMENT.white, PIGMENT.rose, PIGMENT.turquoise][i % 4] : i % STONES;
+        tasks.push(dropTask(random() * 520, 420, x, y, r, pigment));
+      }
+
+      // The nest: each drop is the area between its edge and the next one in.
+      const nestStart = 180;
+      NEST.forEach((ring, index) => {
+        const inner = NEST[index + 1]?.edge ?? 0;
+        const r = guard.r * Math.sqrt(ring.edge * ring.edge - inner * inner);
+        const start = nestStart + index * 80;
+        const task = dropTask(start, 380, guard.x, guard.y, r, ring.pigment, true);
+        if (ring.pigment === BATH) {
+          const step = task.step;
+          task.step = (progress, prev) => {
+            if (prev === 0) portraitRef.current();
+            step(progress, prev);
+            if (progress === 1) guardOn = true;
+          };
+        }
+        tasks.push(task);
+      });
+
+      // The stylus: five petals pulled out of the rings, then curled into the nest.
+      const bloomStart = nestStart + NEST.length * 80 + 260;
+      // Pull first, curl after: curling while pulling smears the petals back into rings.
+      tasks.push({
+        start: bloomStart,
+        duration: 650,
+        prev: 0,
+        step: (progress, prev) => {
+          guardOn = true;
+          bloom(shapes, guard, 5, (progress - prev) * guard.r * 0.5, 0, -Math.PI / 2);
+        },
+      });
+      tasks.push({
+        start: bloomStart + 650,
+        duration: 750,
+        prev: 0,
+        step: (progress, prev) => {
+          bloom(shapes, guard, 5, 0, (progress - prev) * 2.1, -Math.PI / 2);
+        },
+      });
+
+      tasks.sort((a, b) => a.start - b.start);
+
+      if (!animated) {
+        for (const task of tasks) {
+          task.step(1, 0);
+          refine(shapes, edge());
+        }
+        tasks = [];
+        draw();
+        return;
+      }
+      clock = performance.now();
+      kick();
+    };
+
+    const loop = (now: number) => {
+      raf = 0;
+      const t = now - clock;
+      for (const task of tasks) {
+        if (t < task.start) continue;
+        const linear = Math.min(1, (t - task.start) / task.duration);
+        const progress = linear === 1 ? 1 : ease(linear);
+        if (progress !== task.prev) {
+          task.step(progress, task.prev);
+          task.prev = progress;
+          dirty = true;
+        }
+      }
+      tasks = tasks.filter((task) => task.prev < 1);
+      if (dirty) {
+        refine(shapes, edge());
+        draw();
+        dirty = false;
+      }
+      if (tasks.length) kick();
+    };
+
+    const kick = () => {
+      if (!raf) raf = requestAnimationFrame(loop);
+    };
+
+    readPalette();
+    measure();
+    pour(!reduced);
+
+    // A resize re-pours the finished bath at once: same seed, new geometry.
+    let resizeTimer = 0;
+    let lastWidth = width;
+    let lastHeight = height;
+    const observer = new ResizeObserver(() => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        const box = host.getBoundingClientRect();
+        if (Math.abs(box.width - lastWidth) < 2 && Math.abs(box.height - lastHeight) < 40) return;
+        lastWidth = box.width;
+        lastHeight = box.height;
+        measure();
+        pour(false);
+        portraitRef.current();
+      }, 160);
+    });
+    observer.observe(host);
+
+    if (reduced) {
+      return () => {
+        observer.disconnect();
+        window.clearTimeout(resizeTimer);
+      };
+    }
+
+    // The stylus: drag to comb, tap to drop. Copy and controls keep their own gestures.
+    let drag: {id: number; x: number; y: number; moved: number} | null = null;
+    const local = (event: PointerEvent) => {
+      const box = host.getBoundingClientRect();
+      return {x: event.clientX - box.left, y: event.clientY - box.top};
+    };
+    const onDown = (event: PointerEvent) => {
+      if (event.button !== 0) return;
+      const target = event.target as Element;
+      if (target.closest('a, button, [data-calm], .portrait-drop')) return;
+      const point = local(event);
+      drag = {id: event.pointerId, x: point.x, y: point.y, moved: 0};
+    };
+    const onMove = (event: PointerEvent) => {
+      if (!drag || event.pointerId !== drag.id) return;
+      const point = local(event);
+      const vx = point.x - drag.x;
+      const vy = point.y - drag.y;
+      drag.moved += Math.hypot(vx, vy);
+      stroke(shapes, drag.x, drag.y, vx, vy, 34 * Math.max(0.7, width / 1440), guardOn ? guard : undefined);
+      drag.x = point.x;
+      drag.y = point.y;
+      dirty = true;
+      kick();
+    };
+    const onUp = (event: PointerEvent) => {
+      if (!drag || event.pointerId !== drag.id) return;
+      const point = local(event);
+      if (drag.moved < 6 && Math.hypot(point.x - guard.x, point.y - guard.y) > guard.r * 1.2) {
+        const random = Math.random();
+        const pigment = isCalm(point.x, point.y, 50)
+          ? Math.floor(random * STONES)
+          : [PIGMENT.ochre, PIGMENT.white, PIGMENT.rose, PIGMENT.turquoise, PIGMENT.lahor][Math.floor(random * 5)];
+        tasks.push({...dropTask(0, 520, point.x, point.y, 16 + random * 22, pigment), start: performance.now() - clock});
+        kick();
+      }
+      drag = null;
+    };
+
+    host.addEventListener('pointerdown', onDown);
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+    window.addEventListener('pointercancel', onUp);
+    return () => {
+      cancelAnimationFrame(raf);
+      observer.disconnect();
+      window.clearTimeout(resizeTimer);
+      host.removeEventListener('pointerdown', onDown);
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+      window.removeEventListener('pointercancel', onUp);
+    };
+  }, [hostRef, guardRef, reduced]);
+
+  // A theme change recolours the same pattern; the CSS variables land a frame later.
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => repaintRef.current());
+    return () => cancelAnimationFrame(frame);
+  }, [theme]);
+
+  return <canvas ref={canvasRef} aria-hidden="true" />;
 }
 
 /**
- * Coarse halftone, printed at runtime: the image is sampled once per screen
- * cell and every cell becomes one dot, on a 45° screen. Ink and paper come
- * from the theme, so at night the same exhibit is projected light-on-black.
+ * A sheet's marbled head, poured and combed once, then pulled up out of the
+ * bath when it scrolls in. The pattern is computed, so it follows the theme.
  */
-function Halftone({
-  art,
-  focus,
-  zoom = 1,
-  mode = 'tone',
+function MarbledStrip({
+  motif,
+  seed,
   theme,
-  cells,
-  minCell,
-  maxCell,
+  className = '',
 }: {
-  art: ArtSource;
-  focus: readonly [number, number];
-  zoom?: number;
-  /**
-   * 'tone' is the 45° screen with dots sized by darkness, for photographs and
-   * figures. 'type' prints a square dot matrix at two levels — a dot whole or
-   * not at all — so letterforms stay crisp instead of beating against the
-   * screen, and the type is always the inked part, whatever its polarity was.
-   */
-  mode?: 'tone' | 'type';
+  motif: StripMotif;
+  seed: number;
   theme: Theme;
-  /** Dots across the frame; the cell size follows the frame, within these bounds (css px). */
-  cells: number;
-  minCell: number;
-  maxCell: number;
+  className?: string;
 }) {
   const ref = useRef<HTMLCanvasElement>(null);
-  const [image, setImage] = useState<HTMLImageElement | HTMLCanvasElement | null>(
-    typeof art === 'string' ? null : art,
-  );
-
-  useEffect(() => {
-    if (typeof art !== 'string') {
-      setImage(art);
-      return;
-    }
-    let alive = true;
-    const img = new Image();
-    img.decoding = 'async';
-    img.src = art;
-    img.decode().then(
-      () => {
-        if (alive) setImage(img);
-      },
-      () => {
-        /* the photograph underneath still shows */
-      },
-    );
-    return () => {
-      alive = false;
-    };
-  }, [art]);
+  const shapesRef = useRef<{width: number; shapes: Shape[]} | null>(null);
 
   useEffect(() => {
     const canvas = ref.current;
-    if (!canvas || !image) return;
+    if (!canvas) return;
     let frame = 0;
 
-    const paint = () => {
-      const rect = canvas.getBoundingClientRect();
-      if (!rect.width || !rect.height) return;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const width = Math.round(rect.width * dpr);
-      const height = Math.round(rect.height * dpr);
-      canvas.width = width;
-      canvas.height = height;
+    const render = () => {
+      const box = canvas.getBoundingClientRect();
+      if (!box.width || !box.height) return;
       const ctx = canvas.getContext('2d');
       if (!ctx) return;
-
+      const scale = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(box.width * scale);
+      canvas.height = Math.round(box.height * scale);
       const style = getComputedStyle(canvas);
-      const ink = style.getPropertyValue('--c-dot').trim() || '#141311';
-      const paper = style.getPropertyValue('--c-dot-paper').trim() || '#e9d6a6';
-      // Light dots on dark paper print the light, not the shadow.
-      const positive = hexLuminance(ink) > hexLuminance(paper);
-
-      const cell = Math.min(maxCell, Math.max(minCell, rect.width / cells));
-      const step = cell * dpr;
-      const cols = Math.ceil(width / step) + 1;
-      const rows = Math.ceil(height / step) + 1;
-      const sample = document.createElement('canvas');
-      sample.width = cols;
-      sample.height = rows;
-      const sctx = sample.getContext('2d', {willReadFrequently: true});
-      if (!sctx) return;
-
-      const iw = image instanceof HTMLImageElement ? image.naturalWidth : image.width;
-      const ih = image instanceof HTMLImageElement ? image.naturalHeight : image.height;
-      const scale = Math.max(width / iw, height / ih) * zoom;
-      const dw = iw * scale;
-      const dh = ih * scale;
-      sctx.imageSmoothingQuality = 'high';
-      sctx.drawImage(image, ((width - dw) * focus[0]) / step, ((height - dh) * focus[1]) / step, dw / step, dh / step);
-      const {data} = sctx.getImageData(0, 0, cols, rows);
-
-      // Levels first: stretch the frame's own 4th–96th percentile to full range,
-      // so glasses, eyes and type survive as dots instead of a mid-grey blur.
-      const lum = new Float32Array(cols * rows);
-      for (let i = 0; i < lum.length; i += 1) {
-        lum[i] = (0.2126 * data[i * 4] + 0.7152 * data[i * 4 + 1] + 0.0722 * data[i * 4 + 2]) / 255;
+      const bath = style.getPropertyValue('--c-stock').trim() || '#1d2a66';
+      const stones = readColors(canvas, '--bath-stones', ['#22317a', '#19245b', '#273883', '#1f2d6e']);
+      const pigments = readColors(canvas, '--bath-pigments', ['#f1f2ec', '#d9a23a', '#4fa39b', '#d98f87', '#9fb3dc', '#101741']);
+      // Mostly indigo, with veins of pigment between the stones.
+      const palette = [stones[0], pigments[1], stones[2], pigments[0], stones[1], pigments[2], stones[3], pigments[3]];
+      if (!shapesRef.current || Math.abs(shapesRef.current.width - box.width) > 2) {
+        shapesRef.current = {width: box.width, shapes: pourStrip(box.width, box.height, motif, seed, palette.length)};
       }
-      const sorted = Float32Array.from(lum).sort();
-      const lo = sorted[Math.floor(sorted.length * 0.04)];
-      const hi = sorted[Math.floor(sorted.length * 0.96)];
-      const span = Math.max(0.08, hi - lo);
-      // For type, the ground is whatever most of the frame is. Ink is anything
-      // clearly off it in either direction, so light type on a dark screen and
-      // purple type on white both print — always as dots, on the theme's paper.
-      const ground = Math.min(1, Math.max(0, (sorted[Math.floor(sorted.length * 0.5)] - lo) / span));
-      const darkGround = ground < 0.5;
-
-      ctx.fillStyle = paper;
-      ctx.fillRect(0, 0, width, height);
-      ctx.fillStyle = ink;
-      ctx.beginPath();
-      const typeset = mode === 'type';
-      const max = step * 0.6;
-      for (let y = 0; y < rows; y += 1) {
-        const shift = typeset ? 0 : (y % 2) * (step / 2);
-        for (let x = 0; x < cols; x += 1) {
-          const light = Math.min(1, Math.max(0, (lum[y * cols + x] - lo) / span));
-          let radius: number;
-          if (typeset) {
-            const inked = darkGround ? light > ground + 0.22 : light < ground - 0.22;
-            if (!inked) continue;
-            radius = step * 0.46;
-          } else {
-            const pushed = Math.min(1, Math.max(0, (light - 0.5) * 1.25 + 0.5));
-            radius = max * Math.sqrt(positive ? pushed : 1 - pushed);
-            if (radius < 0.4 * dpr) continue;
-          }
-          const cx = x * step + step / 2 + shift;
-          const cy = y * step + step / 2;
-          ctx.moveTo(cx + radius, cy);
-          ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-        }
-      }
-      ctx.fill();
+      paint(ctx, shapesRef.current.shapes, palette, bath, box.width, box.height, scale);
     };
 
-    // A frame later, so a theme change has already reached the CSS variables.
     const schedule = () => {
       cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(paint);
+      frame = requestAnimationFrame(render);
     };
     schedule();
     const observer = new ResizeObserver(schedule);
@@ -1481,449 +1647,201 @@ function Halftone({
       cancelAnimationFrame(frame);
       observer.disconnect();
     };
-  }, [image, focus, zoom, mode, cells, minCell, maxCell, theme]);
+  }, [motif, seed, theme]);
 
-  return <canvas ref={ref} aria-hidden="true" />;
-}
-
-function ReticleMark() {
   return (
-    <svg viewBox="0 0 100 100" className="h-full w-full overflow-visible" fill="none" stroke="currentColor" aria-hidden="true">
-      <circle cx="50" cy="50" r="34" strokeWidth="2" vectorEffect="non-scaling-stroke" />
-      <path d="M50 -10V32M50 68v42M-10 50h42M68 50h42" strokeWidth="2" vectorEffect="non-scaling-stroke" />
-      <path d="M45 50h10M50 45v10" strokeWidth="2" vectorEffect="non-scaling-stroke" />
-    </svg>
+    // The wrapper is what scrolls into view; the clip runs on the canvas, so a
+    // fully clipped strip can still be seen arriving.
+    <motion.div className={`strip ${className}`} {...reveal} aria-hidden="true">
+      <motion.canvas ref={ref} variants={pull} />
+    </motion.div>
   );
 }
 
-/** The photograph under a halftone, cropped exactly the way the halftone is. */
-function framing(frame: {focus: readonly [number, number]; zoom: number}) {
-  const origin = `${frame.focus[0] * 100}% ${frame.focus[1] * 100}%`;
-  return {objectPosition: origin, transformOrigin: origin, transform: `scale(${frame.zoom})`};
+/** Where a pattern came from: its unit in the numbered set, and that it was computed here. */
+function Provenance({
+  motif,
+  seed,
+  copy,
+  className = '',
+}: {
+  motif: StripMotif;
+  seed: number;
+  copy: Copy;
+  className?: string;
+}) {
+  return (
+    <p className={`label m-0 ${className}`}>
+      No. {MOTIF_NUMBER[motif]} · {copy.ebru.motifs[motif]} — {copy.ebru.computed}, {copy.ebru.seed} {seed}
+    </p>
+  );
 }
 
-type FrameKey = 'p' | 'a' | 'b' | 'c' | 'd' | 'e';
-const FRAME_ORDER: FrameKey[] = ['p', 'a', 'b', 'c', 'd', 'e'];
-/** The reticle's opening sweep: across the evidence, then onto the face. */
-const SWEEP: FrameKey[] = ['b', 'c', 'a', 'p'];
-
-type Frame = {
-  tag: string;
-  art: ArtSource;
-  image: string;
-  focus: readonly [number, number];
-  zoom: number;
-  mode: 'tone' | 'type';
-  caption: string;
-  href?: string;
-};
+/** One unit of the motif set, poured small beside a section's title. */
+function MotifSeal({motif, seed, copy, theme}: {motif: StripMotif; seed: number; copy: Copy; theme: Theme}) {
+  return (
+    <span className="flex items-center gap-4 md:flex-row-reverse">
+      <MarbledStrip motif={motif} seed={seed} theme={theme} className="h-24 w-24 shrink-0 rounded-full md:h-28 md:w-28" />
+      <Provenance motif={motif} seed={seed} copy={copy} className="max-w-[13rem]" />
+    </span>
+  );
+}
 
 /**
- * The title sequence: frames cut in, the reticle sweeps the evidence and
- * settles on the portrait, and the AVAILABLE stamp lands last. Afterwards the
- * reticle follows the reader: any exhibit under the pointer or focus is
- * declassified to its photograph and its caption is typed in.
+ * A section's title, with its lead and its motif unit in the right-hand column,
+ * so every head reads the same way: title left, image and words right.
  */
-function SurveillanceArray({copy, language, theme}: {copy: Copy; language: Language; theme: Theme}) {
-  const reduced = useReducedMotion();
-  const fontsReady = useFontsReady();
-  const hostRef = useRef<HTMLDivElement>(null);
-  const frameRefs = useRef<Partial<Record<FrameKey, HTMLElement | null>>>({});
-
-  const page = useMemo(() => {
-    void fontsReady;
-    const canvas = drawPage(demoPages(copy.demo).front);
-    return {canvas, url: canvas.toDataURL('image/png')};
-  }, [copy.demo, fontsReady]);
-
-  const frames = useMemo<Record<FrameKey, Frame>>(() => {
-    const [, eaa, randevai] = PRODUCTS;
-    const exhibit = (index: number) => `${copy.product.exhibit} ${pad(index)}`;
-    // Two frames from one record are told apart the way a file tells exhibits apart.
-    const shot = (product: Product, shotIndex: number, index: number): Frame => {
-      const item = product.shots![shotIndex];
-      return {
-        tag: `${exhibit(index)}·${shotIndex === 0 ? 'A' : 'B'}`,
-        art: item.exhibit,
-        image: item.exhibit,
-        focus: CENTER,
-        zoom: 1,
-        mode: 'type',
-        caption: `${product.title} — ${localize(item.caption, language)}`,
-        href: `#ek-${pad(index)}`,
-      };
-    };
-    return {
-      p: {
-        tag: copy.hero.portraitTag,
-        art: '/profile.jpg',
-        image: '/profile.jpg',
-        focus: PORTRAIT_FOCUS,
-        zoom: 1,
-        mode: 'tone',
-        caption: copy.hero.portraitCaption,
-      },
-      a: {
-        tag: exhibit(1),
-        art: page.canvas,
-        image: page.url,
-        focus: PAGE_FOCUS,
-        zoom: 1.7,
-        mode: 'tone',
-        caption: `TranslateYourPDF — ${copy.demo.label}`,
-        href: '#ek-01',
-      },
-      b: shot(eaa, 0, 2),
-      c: shot(randevai, 1, 3),
-      d: shot(eaa, 1, 2),
-      e: shot(randevai, 0, 3),
-    };
-  }, [copy, language, page]);
-
-  const [sweep, setSweep] = useState<FrameKey | null>(reduced ? 'p' : null);
-  const [settled, setSettled] = useState(Boolean(reduced));
-  const [hovered, setHovered] = useState<FrameKey | null>(null);
-
-  useEffect(() => {
-    if (reduced) {
-      setSweep('p');
-      setSettled(true);
-      return;
-    }
-    const timers = SWEEP.map((key, index) => window.setTimeout(() => setSweep(key), 550 + index * 300));
-    timers.push(window.setTimeout(() => setSettled(true), 550 + SWEEP.length * 300));
-    return () => timers.forEach((timer) => window.clearTimeout(timer));
-  }, [reduced]);
-
-  const focused: FrameKey | null = settled ? (hovered ?? 'p') : sweep;
-  const [box, setBox] = useState<{x: number; y: number; size: number} | null>(null);
-
-  useLayoutEffect(() => {
-    const host = hostRef.current;
-    if (!host || !focused) return;
-    const measure = () => {
-      const element = frameRefs.current[focused];
-      if (!element) return;
-      const outer = host.getBoundingClientRect();
-      const inner = element.getBoundingClientRect();
-      const size = Math.min(inner.width, inner.height) * (focused === 'p' ? 0.58 : 0.84);
-      setBox({
-        x: inner.left - outer.left + inner.width / 2 - size / 2,
-        y: inner.top - outer.top + inner.height / 2 - size / 2,
-        size,
-      });
-    };
-    measure();
-    const observer = new ResizeObserver(measure);
-    observer.observe(host);
-    return () => observer.disconnect();
-  }, [focused]);
-
-  const current = frames[focused ?? 'p'];
-  const caption = useTyped(current.caption, {enabled: !reduced && settled, speed: 14});
-
-  return (
-    <figure
-      className="surveillance m-0 w-full max-w-[26rem] md:max-w-[36rem] md:self-center md:justify-self-end"
-      style={{gridArea: 'frames'}}
-    >
-      <motion.div
-        ref={hostRef}
-        role="group"
-        aria-label={copy.hero.exhibits}
-        className="relative grid aspect-square w-full gap-2 sm:gap-2.5"
-        style={{
-          gridTemplateAreas: '"p p a" "p p b" "c d e"',
-          gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
-          gridTemplateRows: 'repeat(3, minmax(0, 1fr))',
-        }}
-        variants={stagger}
-        initial="hidden"
-        animate="visible"
-        onPointerLeave={() => setHovered(null)}
-      >
-        {FRAME_ORDER.map((key) => {
-          const frame = frames[key];
-          const revealed = settled && hovered === key;
-          const inside = (
-            <>
-              <img src={frame.image} alt="" style={framing(frame)} />
-              <Halftone
-                art={frame.art}
-                focus={frame.focus}
-                zoom={frame.zoom}
-                mode={frame.mode}
-                theme={theme}
-                {...(key === 'p'
-                  ? {cells: 92, minCell: 2.6, maxCell: 4.2}
-                  : frame.mode === 'type'
-                    ? {cells: 104, minCell: 1.3, maxCell: 1.8}
-                    : {cells: 52, minCell: 2.2, maxCell: 3.2})}
-              />
-              {key !== 'p' && <span className="frame-tag">{frame.tag}</span>}
-            </>
-          );
-          const shared = {
-            className: 'frame',
-            style: {gridArea: key},
-            variants: rise,
-            'data-revealed': revealed ? 'true' : 'false',
-            onPointerEnter: () => setHovered(key),
-          };
-
-          return frame.href ? (
-            <motion.a
-              key={key}
-              {...shared}
-              ref={(node: HTMLAnchorElement | null) => {
-                frameRefs.current[key] = node;
-              }}
-              href={frame.href}
-              aria-label={`${frame.tag}: ${frame.caption}`}
-              onFocus={() => setHovered(key)}
-              onBlur={() => setHovered(null)}
-            >
-              {inside}
-            </motion.a>
-          ) : (
-            <motion.div
-              key={key}
-              {...shared}
-              ref={(node: HTMLDivElement | null) => {
-                frameRefs.current[key] = node;
-              }}
-              role="img"
-              aria-label={`${copy.hero.portraitCaption}`}
-            >
-              {inside}
-            </motion.div>
-          );
-        })}
-
-        {box && (
-          <motion.div
-            className="pointer-events-none absolute left-0 top-0 z-10 text-alarm"
-            initial={false}
-            animate={{x: box.x, y: box.y, width: box.size, height: box.size}}
-            transition={track}
-            aria-hidden="true"
-          >
-            <ReticleMark />
-          </motion.div>
-        )}
-
-        <motion.div
-          className="pointer-events-none absolute -left-[2.5%] top-[3%] z-20"
-          variants={land}
-          custom={reduced ? 0 : 1.8}
-          initial="hidden"
-          animate="visible"
-        >
-          <span className="stamp stamp-live hero-stamp" style={{rotate: '-8deg'}}>
-            <span>{copy.hero.stamp}</span>
-            <span className="text-[0.46em] tracking-[0.16em]">{copy.hero.stampNote}</span>
-          </span>
-        </motion.div>
-      </motion.div>
-
-      <figcaption className="mt-4 flex min-h-[3rem] items-baseline gap-3 border-t-2 border-rule pt-3 text-small">
-        <span className="label shrink-0">{current.tag}</span>
-        <span className="text-ink" aria-hidden="true">
-          {current.caption.slice(0, caption)}
-          <span className="invisible">{current.caption.slice(caption)}</span>
-        </span>
-        <span className="sr-only">{current.caption}</span>
-      </figcaption>
-    </figure>
-  );
-}
-
-function SectionHead({title, lead, stamp}: {title: string; lead?: string; stamp?: ReactNode}) {
+function SectionHead({
+  title,
+  lead,
+  aside,
+  seal,
+}: {
+  title: string;
+  lead?: string;
+  aside?: ReactNode;
+  seal?: ReactNode;
+}) {
   return (
     <div className="section-head">
       <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
         <h2 className="headline m-0">{title}</h2>
-        {stamp}
+        {aside}
       </div>
-      {lead && <p className="m-0 max-w-md text-pretty text-muted md:justify-self-end md:text-right">{lead}</p>}
+      {(lead || seal) && (
+        <div className="grid gap-4 md:justify-items-end md:text-right">
+          {seal}
+          {lead && <p className="m-0 max-w-md text-pretty text-muted">{lead}</p>}
+        </div>
+      )}
     </div>
   );
 }
 
-function Stamp({
-  children,
-  tone,
-  rotate = -6,
-  className = '',
-}: {
-  children: ReactNode;
-  tone: 'live' | 'ink' | 'gray';
-  rotate?: number;
-  className?: string;
-}) {
+function StatusDrop({product, copy}: {product: Product; copy: Copy}) {
+  const live = product.status === 'live';
   return (
-    <motion.span variants={land} custom={0.1} {...reveal} className="inline-block">
-      <span className={`stamp stamp-${tone} ${className}`} style={{rotate: `${rotate}deg`}}>
-        {children}
-      </span>
-    </motion.span>
+    <span className={`drop ${live ? 'drop-live' : 'drop-building'}`}>
+      {live ? copy.product.live : copy.product.building}
+    </span>
   );
-}
-
-function ExhibitTag({children}: {children: ReactNode}) {
-  return <span className="label bg-ink px-2.5 py-1 font-bold text-canvas">{children}</span>;
 }
 
 /**
- * The record's opening line: exhibit number, the product's name and its status
- * stamp, side by side, so nothing is stacked above the title.
+ * One product, as a sheet pulled from the bath: its marbled head, then its
+ * provenance on one line (status, year, what it is), then the record and the
+ * evidence beside it.
  */
-function RecordHeader({product, exhibit, copy}: {product: Product; exhibit: string; copy: Copy}) {
-  const live = product.status === 'live';
-  return (
-    <div className="relative flex flex-wrap items-center gap-x-4 gap-y-3 border-b-2 border-rule pb-5">
-      <ExhibitTag>
-        {copy.product.exhibit} {exhibit}
-      </ExhibitTag>
-      <h3 className="m-0 font-typed text-[clamp(1.7rem,3vw,2.4rem)] font-bold leading-none text-ink">{product.title}</h3>
-      {/* Struck across the rule, the way a status stamp lands on a file. */}
-      <span className="absolute bottom-0 right-0 translate-y-1/2">
-        <Stamp tone={live ? 'live' : 'ink'} rotate={live ? -6 : -3} className="bg-canvas text-small">
-          {live ? copy.product.live : copy.product.building}
-        </Stamp>
-      </span>
-    </div>
-  );
-}
-
-/** The record's typed body: what it is, the checkable facts, the stack. */
-function RecordBody({product, language, copy}: {product: Product; language: Language; copy: Copy}) {
-  return (
-    <>
-      <p className="mt-7 font-bold text-muted">
-        {localize(product.kicker, language)} · {product.year}
-      </p>
-      <p className="lede mt-5 max-w-[60ch]">{localize(product.description, language)}</p>
-
-      <h4 className="label mt-8">{copy.product.facts}</h4>
-      <ul className="m-0 mt-3 grid list-none gap-2 p-0">
-        {product.facts.map((fact) => (
-          <li key={fact.en} className="grid grid-cols-[1rem_minmax(0,1fr)] gap-2 text-[0.95rem] leading-6">
-            <span aria-hidden="true" className="mt-[0.55rem] h-2 w-2 bg-ink" />
-            {localize(fact, language)}
-          </li>
-        ))}
-      </ul>
-
-      <h4 className="label mt-8">{copy.product.highlights}</h4>
-      <ol className="rows m-0 mt-3 list-none p-0">
-        {product.highlights.map((highlight, index) => (
-          <li key={highlight.en} className="row grid grid-cols-[2.25rem_minmax(0,1fr)] gap-2 py-2.5 text-[0.95rem] leading-6">
-            <span className="font-bold text-muted">{pad(index + 1)}</span>
-            {localize(highlight, language)}
-          </li>
-        ))}
-      </ol>
-
-      <h4 className="label mt-8">{copy.product.stack}</h4>
-      <p className="m-0 mt-3 flex flex-wrap gap-y-1 text-small">
-        {product.tech.map((tech) => (
-          <span key={tech} className="term">
-            {tech}
-          </span>
-        ))}
-      </p>
-    </>
-  );
-}
-
-function PrimaryRecord({
+function ProductSheet({
   product,
+  motif,
+  seed,
   language,
   copy,
   theme,
 }: {
   product: Product;
+  motif: StripMotif;
+  seed: number;
   language: Language;
   copy: Copy;
   theme: Theme;
 }) {
+  const live = product.status === 'live';
   return (
-    <article id="ek-01" className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-12">
-      <div>
-        <RecordHeader product={product} exhibit="01" copy={copy} />
-        <RecordBody product={product} language={language} copy={copy} />
-        {product.liveUrl && (
-          <a href={product.liveUrl} target="_blank" rel="noreferrer" className="btn btn-primary mt-9">
-            {copy.product.visit}
-            <ExternalLink className="h-4 w-4" aria-hidden="true" />
-          </a>
-        )}
+    <article id={sheetId(product)} className="scroll-mt-24">
+      <MarbledStrip motif={motif} seed={seed} theme={theme} className="h-16 md:h-24" />
+      <Provenance motif={motif} seed={seed} copy={copy} className="mt-2 text-right" />
+
+      <div className="mt-6 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3 border-b border-rule pb-5">
+        <h3 className="m-0 text-[clamp(1.9rem,3.4vw,2.75rem)] font-extrabold leading-none tracking-[-0.018em] text-ink [font-stretch:92%]">
+          {product.title}
+        </h3>
+        <p className="m-0 flex flex-wrap items-center gap-x-5 gap-y-2">
+          <StatusDrop product={product} copy={copy} />
+          <span className="text-small font-semibold text-muted">{product.year}</span>
+        </p>
       </div>
 
-      <DocumentDemo demo={copy.demo} theme={theme} />
+      <div className="mt-8 grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-14">
+        <div>
+          <p className="m-0 font-semibold text-muted">{localize(product.kicker, language)}</p>
+          <p className="lede m-0 mt-4 max-w-[60ch]">{localize(product.description, language)}</p>
+
+          <h4 className="label m-0 mt-9">{copy.product.facts}</h4>
+          <ul className="m-0 mt-3 grid list-none gap-2.5 p-0">
+            {product.facts.map((fact) => (
+              <li key={fact.en} className="grid grid-cols-[1.1rem_minmax(0,1fr)] gap-2.5 text-[1rem] leading-6">
+                <span aria-hidden="true" className="mt-[0.45rem] h-2.5 w-2.5 rounded-full bg-ink" />
+                {localize(fact, language)}
+              </li>
+            ))}
+          </ul>
+
+          <h4 className="label m-0 mt-9">{copy.product.highlights}</h4>
+          <ul className="rows m-0 mt-3 list-none p-0">
+            {product.highlights.map((highlight) => (
+              <li key={highlight.en} className="row grid grid-cols-[1.1rem_minmax(0,1fr)] gap-2.5 py-3 text-[1rem] leading-6">
+                <span aria-hidden="true" className="mt-[0.45rem] h-2.5 w-2.5 rounded-full border-2 border-ink" />
+                {localize(highlight, language)}
+              </li>
+            ))}
+          </ul>
+
+          <h4 className="label m-0 mt-9">{copy.product.stack}</h4>
+          <p className="m-0 mt-3 flex flex-wrap gap-y-1 text-small text-body">
+            {product.tech.map((tech) => (
+              <span key={tech} className="term">
+                {tech}
+              </span>
+            ))}
+          </p>
+
+          {product.liveUrl && (
+            <a href={product.liveUrl} target="_blank" rel="noreferrer" className={`btn mt-10 ${live ? '' : 'btn-ghost'}`}>
+              {copy.product.visit}
+              <ExternalLink className="h-4 w-4" aria-hidden="true" />
+            </a>
+          )}
+        </div>
+
+        {live ? (
+          <DocumentDemo demo={copy.demo} theme={theme} />
+        ) : (
+          product.shots &&
+          product.shots.length > 0 && (
+            <div>
+              <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <h4 className="label m-0">{copy.product.preview}</h4>
+                <span className="text-small text-muted">{copy.product.shotHint}</span>
+              </div>
+              <div className="mt-4 grid gap-7">
+                {product.shots.map((shot) => (
+                  <Plate key={shot.src} shot={shot} language={language} title={product.title} />
+                ))}
+              </div>
+            </div>
+          )
+        )}
+      </div>
     </article>
   );
 }
 
-function Photostat({shot, language, title}: {shot: Shot; language: Language; title: string}) {
+function Plate({shot, language, title}: {shot: Shot; language: Language; title: string}) {
   return (
     <figure className="m-0">
       <a
         href={shot.src}
         target="_blank"
         rel="noreferrer"
-        className="photostat"
+        className="plate"
         aria-label={`${title} — ${localize(shot.caption, language)}`}
       >
         <img src={shot.src} alt={localize(shot.alt, language)} loading="lazy" decoding="async" />
       </a>
-      <figcaption className="mt-2 text-small text-muted">{localize(shot.caption, language)}</figcaption>
+      <figcaption className="mt-2.5 text-small text-muted">{localize(shot.caption, language)}</figcaption>
     </figure>
-  );
-}
-
-function ProductRecord({
-  product,
-  exhibit,
-  language,
-  copy,
-}: {
-  product: Product;
-  exhibit: string;
-  language: Language;
-  copy: Copy;
-}) {
-  return (
-    <article
-      id={`ek-${exhibit}`}
-      className="mt-20 grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-12"
-    >
-      <div>
-        <RecordHeader product={product} exhibit={exhibit} copy={copy} />
-        <RecordBody product={product} language={language} copy={copy} />
-        {product.liveUrl && (
-          <a href={product.liveUrl} target="_blank" rel="noreferrer" className="btn btn-secondary mt-9">
-            {copy.product.visit}
-            <ExternalLink className="h-4 w-4" aria-hidden="true" />
-          </a>
-        )}
-      </div>
-
-      {product.shots && product.shots.length > 0 && (
-        <div className="lg:pt-[3.75rem]">
-          <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b-2 border-rule pb-3">
-            <h4 className="label m-0">{copy.product.preview}</h4>
-            <span className="text-small text-muted">{copy.product.shotHint}</span>
-          </div>
-          <div className="mt-5 grid gap-6">
-            {product.shots.map((shot) => (
-              <Photostat key={shot.src} shot={shot} language={language} title={product.title} />
-            ))}
-          </div>
-        </div>
-      )}
-    </article>
   );
 }
 
@@ -2010,7 +1928,7 @@ function DocumentDemo({demo, theme}: {demo: Copy['demo']; theme: Theme}) {
   return (
     <div
       ref={hostRef}
-      className="projection on-stock flex min-h-[520px] flex-col justify-between p-5 sm:p-7 lg:sticky lg:top-6 lg:self-start"
+      className="projection on-stock flex min-h-[520px] flex-col justify-between p-5 sm:p-7 lg:sticky lg:top-24 lg:self-start"
       aria-label={demo.label}
     >
       <div className="flex items-center justify-between gap-4 border-b border-stock-rule pb-3">
@@ -2044,7 +1962,7 @@ function DocumentDemo({demo, theme}: {demo: Copy['demo']; theme: Theme}) {
             <button
               type="button"
               onClick={() => setPeeled((value) => !value)}
-              className="btn btn-secondary min-h-[2.5rem] px-4 text-small"
+              className="btn btn-ghost min-h-[2.5rem] px-4 text-small"
             >
               <Layers className="h-4 w-4" aria-hidden="true" />
               {peeled ? demo.restore : demo.peel}
@@ -2056,12 +1974,12 @@ function DocumentDemo({demo, theme}: {demo: Copy['demo']; theme: Theme}) {
       )}
 
       <div className="grid gap-2 border-t border-stock-rule pt-4 text-small sm:grid-cols-2">
-        <span className="inline-flex items-center gap-2 font-bold text-on-stock">
-          <Check className="h-4 w-4 text-stock-alarm" strokeWidth={3} aria-hidden="true" />
+        <span className="inline-flex items-center gap-2 font-semibold text-on-stock">
+          <Check className="h-4 w-4" strokeWidth={2.75} aria-hidden="true" />
           {demo.preserved}
         </span>
         <span className="inline-flex items-center gap-2 text-on-stock-muted sm:justify-end">
-          <Check className="h-4 w-4" strokeWidth={3} aria-hidden="true" />
+          <Check className="h-4 w-4" strokeWidth={2.75} aria-hidden="true" />
           {demo.report}
         </span>
       </div>
@@ -2079,65 +1997,94 @@ function DemoSheet({content, alt}: {content: PageContent; alt: string}) {
   return <img src={src} alt={alt} className="mx-auto block aspect-[3/4] w-full max-w-[200px]" />;
 }
 
-function Process({copy}: {copy: Copy}) {
-  return (
-    <section id="process" className="border-y-2 border-rule bg-raised">
-      <div className="shell band">
-        <SectionHead title={copy.sections.process} />
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
-          <div>
-            <h3 className="subhead">{copy.process.eyebrow}</h3>
-            <p className="mt-5 max-w-[62ch] text-pretty">{copy.process.body}</p>
-          </div>
+/**
+ * The method as one unbroken row. When it scrolls in, a drop walks it once,
+ * step by step, and rests on human approval: the point where it ships.
+ */
+function Process({copy, theme}: {copy: Copy; theme: Theme}) {
+  const reduced = useReducedMotion();
+  const rowRef = useRef<HTMLOListElement>(null);
+  const last = copy.process.steps.length - 1;
+  const [now, setNow] = useState(reduced ? last : -1);
 
-          <ol className="rows m-0 list-none p-0">
-            {copy.process.steps.map((step) => (
-              <li key={step.title} className="row grid grid-cols-[2.25rem_minmax(0,1fr)] gap-4 py-4">
-                <span className="tickbox mt-0.5" aria-hidden="true">
-                  <Check className="h-3.5 w-3.5" strokeWidth={3} />
-                </span>
-                <div>
-                  <p className="m-0 font-bold text-ink">{step.title}</p>
-                  <p className="m-0 mt-1 text-[0.95rem] text-muted">{step.note}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
+  useEffect(() => {
+    const row = rowRef.current;
+    if (!row) return;
+    if (reduced) {
+      setNow(last);
+      return;
+    }
+    let timers: number[] = [];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        observer.disconnect();
+        timers = copy.process.steps.map((_, index) => window.setTimeout(() => setNow(index), 250 + index * 520));
+      },
+      {rootMargin: '0px 0px -25% 0px'},
+    );
+    observer.observe(row);
+    return () => {
+      observer.disconnect();
+      timers.forEach((timer) => window.clearTimeout(timer));
+    };
+  }, [reduced, last, copy.process.steps]);
+
+  return (
+    <section id="process" className="bg-raised">
+      <div className="shell band">
+        <SectionHead
+          title={copy.sections.process}
+          seal={<MotifSeal motif="gelgit" seed={21} copy={copy} theme={theme} />}
+        />
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
+          <h3 className="subhead m-0">{copy.process.eyebrow}</h3>
+          <p className="m-0 max-w-[64ch] text-pretty">{copy.process.body}</p>
         </div>
 
-        {/* The claim above is abstract; this table is where it becomes checkable. */}
-        <div className="mt-16">
+        <ol ref={rowRef} className="steps mt-14">
+          {copy.process.steps.map((step, index) => (
+            <li key={step.title} className="step" data-now={index <= now ? 'true' : 'false'}>
+              <span className="step-mark" aria-hidden="true" data-here={index === now ? 'true' : 'false'} />
+              <div>
+                <p className="m-0 font-bold text-ink">{step.title}</p>
+                <p className="m-0 mt-1 text-small text-muted">{step.note}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+
+        {/* The claim above is abstract; these rows are where it becomes checkable. */}
+        <div className="mt-20">
           <div className="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
-            <h3 className="subhead">{copy.process.matrixTitle}</h3>
+            <h3 className="subhead m-0">{copy.process.matrixTitle}</h3>
             <p className="m-0 text-muted">{copy.process.matrixLead}</p>
           </div>
 
           <dl className="rows m-0 mt-6">
             {copy.process.matrix.map((row) => {
-              const index = PRODUCTS.findIndex((product) => product.title === row.product);
+              const product = PRODUCTS.find((item) => item.title === row.product);
               // The portfolio itself is the page being read, so it is live by definition.
-              const live = index < 0 || PRODUCTS[index].status === 'live';
+              const live = !product || product.status === 'live';
               return (
                 <div
                   key={row.product}
-                  className="row grid gap-2 py-4 md:grid-cols-[18rem_minmax(0,1fr)_9.5rem] md:items-center md:gap-8"
+                  className="row grid gap-2 py-5 md:grid-cols-[16rem_minmax(0,1fr)_10rem] md:items-baseline md:gap-8"
                 >
-                  <dt className="flex flex-wrap items-center gap-3">
-                    {index >= 0 && (
-                      <a href={`#ek-${pad(index + 1)}`} className="transition-opacity hover:opacity-80">
-                        <ExhibitTag>
-                          {copy.product.exhibit} {pad(index + 1)}
-                        </ExhibitTag>
+                  <dt className="font-bold text-ink">
+                    {product ? (
+                      <a href={`#${sheetId(product)}`} className="link">
+                        {row.product}
                       </a>
+                    ) : (
+                      row.product
                     )}
-                    <span className="font-bold uppercase tracking-[0.04em] text-ink">{row.product}</span>
                   </dt>
                   <dd className="m-0 text-body">{row.gate}</dd>
                   <dd className="m-0 md:justify-self-end">
-                    {/* On a manila slip: alarm red on the raised band alone falls under AA. */}
-                    <Stamp tone={live ? 'live' : 'ink'} rotate={-3} className="bg-canvas text-micro">
+                    <span className={`drop ${live ? 'drop-live' : 'drop-building'}`}>
                       {live ? copy.product.live : copy.product.building}
-                    </Stamp>
+                    </span>
                   </dd>
                 </div>
               );
@@ -2149,7 +2096,7 @@ function Process({copy}: {copy: Copy}) {
   );
 }
 
-function Colophon({copy, language}: {copy: Copy; language: Language}) {
+function Contact({copy, language, theme}: {copy: Copy; language: Language; theme: Theme}) {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -2175,24 +2122,26 @@ function Colophon({copy, language}: {copy: Copy; language: Language}) {
   ];
 
   return (
-    <footer id="colophon" className="stock on-stock">
+    <footer id="contact" className="stock on-stock">
+      {/* The edge of the sheet, where the bath shows through. */}
+      <MarbledStrip motif="gelgit" seed={11} theme={theme} className="h-20 rounded-none md:h-28" />
+
       <div className="shell band">
         <div className="grid gap-14 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-20">
           <div>
             <h2 className="headline m-0 text-on-stock">{copy.nav.contact}</h2>
-            <p className="sentence mt-5 text-stock-alarm">{copy.hero.status}</p>
-            <p className="mt-4 flex items-center gap-2 text-on-stock-muted">
+            <p className="sentence m-0 mt-5">
+              <span className="drop drop-live text-[length:inherit]">{copy.hero.status}</span>
+            </p>
+            <p className="m-0 mt-4 flex items-center gap-2 text-on-stock-muted">
               <MapPin className="h-4 w-4" aria-hidden="true" />
               {copy.hero.location}
             </p>
 
-            <div className="mt-10 border-t-2 border-on-stock">
+            <div className="mt-10 border-t border-on-stock">
               <div className="grid grid-cols-[6.5rem_minmax(0,1fr)] items-center gap-x-4 gap-y-3 border-b border-stock-rule py-4 sm:grid-cols-[6.5rem_minmax(0,1fr)_auto]">
                 <span className="label">{copy.contactLabels.email}</span>
-                <a
-                  href={`mailto:${CONTACT.email}`}
-                  className="break-words font-bold text-on-stock transition-colors hover:text-stock-alarm"
-                >
+                <a href={`mailto:${CONTACT.email}`} className="link break-words font-semibold text-on-stock">
                   {CONTACT.email.split('@')[0]}@<wbr />
                   {CONTACT.email.split('@')[1]}
                 </a>
@@ -2200,10 +2149,10 @@ function Colophon({copy, language}: {copy: Copy; language: Language}) {
                   type="button"
                   onClick={copyEmail}
                   aria-label={copy.contactLabels.copyAria}
-                  className="col-start-2 inline-flex min-h-[2.25rem] items-center gap-2 justify-self-start border-2 border-on-stock px-2.5 text-micro font-bold uppercase tracking-[0.08em] text-on-stock transition-colors hover:border-stock-alarm hover:text-stock-alarm sm:col-start-auto"
+                  className="btn btn-ghost col-start-2 min-h-[2.25rem] justify-self-start px-3.5 text-micro sm:col-start-auto"
                 >
                   {copied ? (
-                    <Check className="h-3.5 w-3.5" strokeWidth={3} aria-hidden="true" />
+                    <Check className="h-3.5 w-3.5" strokeWidth={2.75} aria-hidden="true" />
                   ) : (
                     <Copy className="h-3.5 w-3.5" aria-hidden="true" />
                   )}
@@ -2222,9 +2171,7 @@ function Colophon({copy, language}: {copy: Copy; language: Language}) {
                   aria-label={`${item.label}: ${item.value}`}
                 >
                   <span className="label">{item.label}</span>
-                  <span className="truncate font-bold text-on-stock transition-colors group-hover:text-stock-alarm">
-                    {item.value}
-                  </span>
+                  <span className="truncate font-semibold text-on-stock">{item.value}</span>
                   {item.download ? (
                     <Download className="h-4 w-4 text-on-stock-muted" aria-hidden="true" />
                   ) : (
@@ -2241,7 +2188,7 @@ function Colophon({copy, language}: {copy: Copy; language: Language}) {
           <div className="grid content-start gap-12">
             <div>
               <h3 className="label m-0">{copy.sections.education}</h3>
-              <div className="mt-4 border-t-2 border-on-stock pt-4">
+              <div className="mt-4 border-t border-on-stock pt-4">
                 <p className="subhead m-0 text-on-stock">{copy.education.school}</p>
                 <p className="m-0 mt-1.5 text-on-stock">{copy.education.degree}</p>
                 <p className="m-0 mt-3 text-small text-on-stock-muted">
@@ -2252,11 +2199,11 @@ function Colophon({copy, language}: {copy: Copy; language: Language}) {
 
             <div>
               <h3 className="label m-0">{copy.sections.languages}</h3>
-              <dl className="m-0 mt-4 border-t-2 border-on-stock">
+              <dl className="m-0 mt-4 border-t border-on-stock">
                 {copy.languages.map((item) => (
                   <div key={item.name} className="flex items-baseline justify-between border-b border-stock-rule py-3">
-                    <dt className="font-bold text-on-stock">{item.name}</dt>
-                    <dd className="m-0 text-small uppercase tracking-[0.08em] text-on-stock-muted">{item.level}</dd>
+                    <dt className="font-semibold text-on-stock">{item.name}</dt>
+                    <dd className="m-0 text-small text-on-stock-muted">{item.level}</dd>
                   </div>
                 ))}
               </dl>
@@ -2270,6 +2217,7 @@ function Colophon({copy, language}: {copy: Copy; language: Language}) {
           </p>
           <p className="m-0">{copy.footerNote}</p>
         </div>
+        <Provenance motif="gelgit" seed={11} copy={copy} className="mt-4" />
       </div>
     </footer>
   );

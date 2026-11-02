@@ -201,8 +201,8 @@ function Sheets({
   const size = useThree((state) => state.size);
   const curlRef = useRef<Mesh>(null);
 
-  // Courier Prime and Libre Franklin are webfonts: the first paint of the page
-  // texture can land before they resolve, so redraw once they are ready.
+  // Bricolage Grotesque is a webfont: the first paint of the page
+  // texture can land before it resolves, so redraw once it is ready.
   const [fontTick, setFontTick] = useState(0);
   useEffect(() => {
     let alive = true;
@@ -338,11 +338,11 @@ function Sheets({
       {/* the rest of the stack, just enough edge to read as a document */}
       <mesh position={[0.012, -0.014, -0.05]} rotation={[0, 0, -0.008]}>
         <planeGeometry args={[PAGE_W, PAGE_H]} />
-        <meshBasicMaterial color="#d3ccbb" />
+        <meshBasicMaterial color="#c9ced6" />
       </mesh>
       <mesh position={[-0.01, 0.008, -0.03]} rotation={[0, 0, 0.006]}>
         <planeGeometry args={[PAGE_W, PAGE_H]} />
-        <meshBasicMaterial color="#e2dccd" />
+        <meshBasicMaterial color="#dce0e4" />
       </mesh>
 
       {/* the translated page, revealed by the peel */}

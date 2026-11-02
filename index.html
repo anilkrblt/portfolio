@@ -3,22 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#e4cd95" />
+    <meta name="theme-color" content="#eef0ed" />
 
-    <!-- The two faces the first viewport is typed in; the rest load on demand. -->
-    <link rel="preload" href="/fonts/courier-prime-700-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/libre-franklin-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- The one face the page is set in; latin-ext loads when Turkish letters need it. -->
+    <link rel="preload" href="/fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin />
 
     <script>
-      // Resolve the theme before first paint so the manila never flashes over a
-      // night visitor. Anything other than 'gece' (including the retired
-      // 'kagit') opens on the day theme.
+      // Resolve the theme before first paint so daylight paper never flashes
+      // over a night visitor. Anything other than 'gece' opens on the day theme.
       (function () {
         try {
           var theme = localStorage.getItem('ak_theme') === 'gece' ? 'gece' : 'gunduz';
           document.documentElement.dataset.theme = theme;
           var meta = document.querySelector('meta[name="theme-color"]');
-          if (meta) meta.content = theme === 'gece' ? '#121110' : '#e4cd95';
+          if (meta) meta.content = theme === 'gece' ? '#0b1024' : '#eef0ed';
         } catch (e) {
           document.documentElement.dataset.theme = 'gunduz';
         }
