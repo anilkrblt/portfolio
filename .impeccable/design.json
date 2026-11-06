@@ -1,763 +1,650 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-02T11:25:08+00:00",
-  "title": "Design System: Anıl Karabulut — Ebru",
+  "generatedAt": "2026-11-06T08:10:30+00:00",
+  "title": "Design System: Anıl Karabulut — Antet",
   "extensions": {
     "colorMeta": {
-      "sized-paper": {
-        "role": "neutral",
-        "displayName": "Sized Paper",
-        "purpose": "Gündüz page ground; cool grey-green, not cream.",
-        "canonical": "#eef0ed",
-        "oklch": "oklch(95.3% 0.005 134.9)",
-        "tonalRamp": [
-          "#0a0c0a",
-          "#242623",
-          "#414240",
-          "#60625f",
-          "#818380",
-          "#a4a6a3",
-          "#c8cac7",
-          "#edefec"
-        ]
-      },
-      "paper-raised": {
-        "role": "neutral",
-        "displayName": "Raised Paper",
-        "purpose": "Process band, plate ground, step marks, ghost hover spread.",
-        "canonical": "#e2e6e3",
-        "oklch": "oklch(92.1% 0.006 153.8)",
-        "tonalRamp": [
-          "#090c0a",
-          "#232624",
-          "#404340",
-          "#5f6260",
-          "#808381",
-          "#a2a6a3",
-          "#c6cac7",
-          "#ecf0ed"
-        ]
-      },
-      "indigo-ink": {
+      "visne-desk": {
         "role": "primary",
-        "displayName": "Indigo Ink",
-        "purpose": "Headings, ink pill, active switch, nav drop, rules, focus outline.",
-        "canonical": "#141c45",
-        "oklch": "oklch(24.6% 0.077 271.3)",
+        "displayName": "Vişne Çürüğü Desk",
+        "purpose": "The cotton stock: page ground, masthead, section heads, contact close, demo panel, solid button on paper.",
+        "cssVariable": "--c-stock (gunduz)",
+        "canonical": "#4a1f28",
+        "oklch": "oklch(30.4% 0.066 8.7)",
         "tonalRamp": [
-          "#04042b",
-          "#18214a",
-          "#333f6b",
-          "#515e8d",
-          "#7180b1",
-          "#93a3d6",
-          "#b6c7fd",
-          "#e8eeff"
+          "#1f0006",
+          "#3f151e",
+          "#60323b",
+          "#825159",
+          "#a5727a",
+          "#ca949d",
+          "#f0b8c0",
+          "#ffe8eb"
+        ]
+      },
+      "visne-raised": {
+        "role": "primary",
+        "displayName": "Raised Vişne",
+        "purpose": "Solid button press, contact row hover.",
+        "cssVariable": "--c-stock-2 (gunduz)",
+        "canonical": "#5a2732",
+        "oklch": "oklch(34.7% 0.076 8.3)",
+        "tonalRamp": [
+          "#200006",
+          "#42111e",
+          "#632f3a",
+          "#864e59",
+          "#aa6f79",
+          "#cf919c",
+          "#f6b5bf",
+          "#fee8eb"
+        ]
+      },
+      "dove-sheet": {
+        "role": "neutral",
+        "displayName": "Dove Sheet",
+        "purpose": "The paper. Never cream.",
+        "cssVariable": "--c-canvas (gunduz)",
+        "canonical": "#e9e8e4",
+        "oklch": "oklch(93.1% 0.005 95.1)",
+        "tonalRamp": [
+          "#0c0b09",
+          "#262522",
+          "#43423f",
+          "#62615e",
+          "#83827f",
+          "#a6a5a1",
+          "#cac9c5",
+          "#efeeea"
+        ]
+      },
+      "dove-raised": {
+        "role": "neutral",
+        "displayName": "Dove Raised",
+        "purpose": "Enclosure line hover, ghost button press, plate ground.",
+        "cssVariable": "--c-raised (gunduz)",
+        "canonical": "#dfddd7",
+        "oklch": "oklch(89.7% 0.008 91.5)",
+        "tonalRamp": [
+          "#0c0b07",
+          "#262520",
+          "#44423d",
+          "#63615c",
+          "#84827d",
+          "#a7a59f",
+          "#cbc9c3",
+          "#f0eee8"
+        ]
+      },
+      "letter-ink": {
+        "role": "neutral",
+        "displayName": "Letter Ink",
+        "purpose": "Names, headings, strong rules, focus ring on paper.",
+        "cssVariable": "--c-ink, --c-rule (gunduz)",
+        "canonical": "#241c1e",
+        "oklch": "oklch(23.7% 0.013 1.4)",
+        "tonalRamp": [
+          "#10090b",
+          "#2b2225",
+          "#483f41",
+          "#685e61",
+          "#8a7f82",
+          "#ada2a4",
+          "#d1c6c8",
+          "#f7ebee"
         ]
       },
       "ink-body": {
         "role": "neutral",
         "displayName": "Ink Body",
-        "purpose": "Running text on paper (12.1:1).",
-        "canonical": "#232a4d",
-        "oklch": "oklch(29.7% 0.064 273.4)",
+        "purpose": "Running text on the sheet.",
+        "cssVariable": "--c-body (gunduz)",
+        "canonical": "#2f2829",
+        "oklch": "oklch(28.5% 0.011 8.0)",
         "tonalRamp": [
-          "#050625",
-          "#1b2244",
-          "#373f64",
-          "#555f86",
-          "#7680a9",
-          "#98a3ce",
-          "#bbc7f4",
-          "#e9eefe"
+          "#0f090a",
+          "#2a2324",
+          "#474041",
+          "#675f60",
+          "#888081",
+          "#aba2a4",
+          "#d0c6c8",
+          "#f5eced"
         ]
       },
       "ink-muted": {
         "role": "neutral",
         "displayName": "Ink Muted",
-        "purpose": "Secondary text and field labels (6.5:1).",
-        "canonical": "#4c5374",
-        "oklch": "oklch(45.0% 0.055 274.8)",
+        "purpose": "Secondary paragraphs, dates, Ek numbers, field labels, captions.",
+        "cssVariable": "--c-muted (gunduz)",
+        "canonical": "#5c5352",
+        "oklch": "oklch(45.1% 0.012 25.2)",
         "tonalRamp": [
-          "#060722",
-          "#1d223f",
-          "#39405f",
-          "#585f81",
-          "#7880a4",
-          "#9aa3c8",
-          "#bec7ee",
-          "#eaeefe"
+          "#100909",
+          "#2b2322",
+          "#48403f",
+          "#685f5e",
+          "#89807f",
+          "#aca2a1",
+          "#d1c6c5",
+          "#f7ecea"
         ]
       },
       "ink-faint": {
         "role": "neutral",
         "displayName": "Ink Faint",
-        "purpose": "Faintest metadata and separators (4.97:1 paper, 4.52:1 raised).",
-        "canonical": "#5f6585",
-        "oklch": "oklch(51.4% 0.051 276.2)",
+        "purpose": "The comma between terms, on the sheet only.",
+        "cssVariable": "--c-faint (gunduz)",
+        "canonical": "#6a6160",
+        "oklch": "oklch(50.1% 0.012 25.2)",
         "tonalRamp": [
-          "#070820",
-          "#1e223e",
-          "#3b405d",
-          "#595f7f",
-          "#7a80a1",
-          "#9ca3c6",
-          "#c0c7eb",
-          "#eaeeff"
+          "#100909",
+          "#2b2322",
+          "#48403f",
+          "#685f5e",
+          "#89807f",
+          "#aca2a1",
+          "#d1c6c5",
+          "#f6ecea"
         ]
       },
       "rule-soft": {
         "role": "neutral",
         "displayName": "Soft Rule",
-        "purpose": "Hairline dividers, masthead edge, plate edges, process stem.",
-        "canonical": "rgba(20, 28, 69, 0.2)",
-        "oklch": "oklch(24.6% 0.077 271.3)",
+        "purpose": "Row hairlines, link underlines at rest, plate edges.",
+        "cssVariable": "--c-rule-soft (gunduz)",
+        "canonical": "rgba(36, 28, 30, 0.18)",
+        "oklch": "oklch(23.7% 0.013 1.4)",
         "tonalRamp": [
-          "#04042b",
-          "#18214a",
-          "#333f6b",
-          "#515e8d",
-          "#7180b1",
-          "#93a3d6",
-          "#b6c7fd",
-          "#e8eeff"
+          "#10090b",
+          "#2b2225",
+          "#483f41",
+          "#685e61",
+          "#8a7f82",
+          "#ada2a4",
+          "#d1c6c8",
+          "#f7ebee"
         ]
       },
-      "asi-red": {
-        "role": "tertiary",
-        "displayName": "Aşı Red",
-        "purpose": "State only on paper: live, available, active; caret.",
-        "canonical": "#a8361d",
-        "oklch": "oklch(49.7% 0.154 33.9)",
-        "tonalRamp": [
-          "#1d0100",
-          "#490900",
-          "#7a1800",
-          "#a7351b",
-          "#ce593f",
-          "#f67d62",
-          "#feb4a3",
-          "#fee9e4"
-        ]
-      },
-      "civit-bath": {
-        "role": "primary",
-        "displayName": "Çivit Bath",
-        "purpose": "Hero tray, demo projection, contact, strip ground.",
-        "canonical": "#1d2a66",
-        "oklch": "oklch(31.3% 0.107 269.9)",
-        "tonalRamp": [
-          "#030033",
-          "#131d58",
-          "#2c3c7a",
-          "#4a5d9e",
-          "#697ec2",
-          "#8ba2e8",
-          "#b4c7ff",
-          "#e8eefe"
-        ]
-      },
-      "bath-raised": {
-        "role": "primary",
-        "displayName": "Bath Raised",
-        "purpose": "Ink pill hover spread; ghost hover on the bath.",
-        "canonical": "#24337a",
-        "oklch": "oklch(35.4% 0.122 270.0)",
-        "tonalRamp": [
-          "#030033",
-          "#11195f",
-          "#2a3a82",
-          "#475ba6",
-          "#667dcb",
-          "#87a1f2",
-          "#b5c7fe",
-          "#e9eefe"
-        ]
-      },
-      "on-bath": {
-        "role": "neutral",
-        "displayName": "On-Bath Paper",
-        "purpose": "Text and paper button on the bath (11.8:1); white pigment.",
-        "canonical": "#f1f2ec",
-        "oklch": "oklch(95.9% 0.008 114.2)",
-        "tonalRamp": [
-          "#0b0c08",
-          "#252621",
-          "#42423e",
-          "#61625d",
-          "#82837e",
-          "#a5a6a0",
-          "#c9cac4",
-          "#eeefe9"
-        ]
-      },
-      "on-bath-muted": {
-        "role": "neutral",
-        "displayName": "On-Bath Muted",
-        "purpose": "Secondary text and labels on the bath (7.4:1).",
-        "canonical": "#b9c0dc",
-        "oklch": "oklch(81.1% 0.040 274.4)",
-        "tonalRamp": [
-          "#07091c",
-          "#1f2339",
-          "#3b4158",
-          "#5a6079",
-          "#7b819b",
-          "#9da4bf",
-          "#c1c8e4",
-          "#eaeefe"
-        ]
-      },
-      "bath-rule": {
-        "role": "neutral",
-        "displayName": "Bath Rule",
-        "purpose": "Hairlines inside indigo regions.",
-        "canonical": "rgba(241, 242, 236, 0.24)",
-        "oklch": "oklch(95.9% 0.008 114.2)",
-        "tonalRamp": [
-          "#0b0c08",
-          "#252621",
-          "#42423e",
-          "#61625d",
-          "#82837e",
-          "#a5a6a0",
-          "#c9cac4",
-          "#eeefe9"
-        ]
-      },
-      "bath-alarm": {
-        "role": "tertiary",
-        "displayName": "Bath Aşı Red",
-        "purpose": "State on the bath (5.85:1; 4.66:1 on lightest stone).",
-        "canonical": "#ff8c6b",
-        "oklch": "oklch(75.9% 0.147 36.9)",
-        "tonalRamp": [
-          "#1c0300",
-          "#470e00",
-          "#771e00",
-          "#a33918",
-          "#ca5d3d",
-          "#f28060",
-          "#feb59f",
-          "#ffe9e3"
-        ]
-      },
-      "ochre": {
+      "state-visne": {
         "role": "secondary",
-        "displayName": "Ochre",
-        "purpose": "The one pigment leaving the bath: selection, paper press, resting step.",
-        "canonical": "#d9a23a",
-        "oklch": "oklch(74.6% 0.133 79.6)",
+        "displayName": "State Vişne",
+        "purpose": "The stock deepened for state on paper: live, available, active.",
+        "cssVariable": "--c-alarm (gunduz)",
+        "canonical": "#7a1f2e",
+        "oklch": "oklch(39.2% 0.125 15.9)",
         "tonalRamp": [
-          "#120900",
-          "#332101",
-          "#573c02",
-          "#7f5902",
-          "#aa7802",
-          "#d19a30",
-          "#f7bf5a",
-          "#feeccf"
+          "#200003",
+          "#4c0012",
+          "#761b2b",
+          "#9b3e49",
+          "#c16069",
+          "#e8838a",
+          "#ffb1b5",
+          "#ffe8e9"
         ]
       },
-      "stone-1": {
-        "role": "marbling",
-        "displayName": "Stone I",
-        "purpose": "Tone-on-tone bath stone (--bath-stones).",
-        "canonical": "#22317a",
-        "oklch": "oklch(34.8% 0.125 269.9)",
-        "tonalRamp": [
-          "#030034",
-          "#111860",
-          "#293a83",
-          "#465ba8",
-          "#657dcd",
-          "#86a0f4",
-          "#b5c7fe",
-          "#e8eeff"
-        ]
-      },
-      "stone-2": {
-        "role": "marbling",
-        "displayName": "Stone II",
-        "purpose": "Tone-on-tone bath stone (--bath-stones).",
-        "canonical": "#19245b",
-        "oklch": "oklch(28.7% 0.099 270.4)",
-        "tonalRamp": [
-          "#030033",
-          "#141e54",
-          "#2e3d76",
-          "#4c5d9a",
-          "#6c7fbe",
-          "#8da2e4",
-          "#b5c7fe",
-          "#e8eeff"
-        ]
-      },
-      "stone-3": {
-        "role": "marbling",
-        "displayName": "Stone III",
-        "purpose": "Tone-on-tone bath stone (--bath-stones).",
-        "canonical": "#273883",
-        "oklch": "oklch(37.3% 0.128 269.6)",
-        "tonalRamp": [
-          "#030034",
-          "#101861",
-          "#283985",
-          "#455ba9",
-          "#647dcf",
-          "#85a0f5",
-          "#b4c7fe",
-          "#e8eeff"
-        ]
-      },
-      "stone-4": {
-        "role": "marbling",
-        "displayName": "Stone IV",
-        "purpose": "Tone-on-tone bath stone (--bath-stones).",
-        "canonical": "#1f2d6e",
-        "oklch": "oklch(32.7% 0.114 269.8)",
-        "tonalRamp": [
-          "#030033",
-          "#121b5b",
-          "#2b3b7e",
-          "#485ca2",
-          "#687ec7",
-          "#89a1ed",
-          "#b5c7fe",
-          "#e9eefe"
-        ]
-      },
-      "pigment-turquoise": {
-        "role": "marbling",
-        "displayName": "Turquoise Pigment",
-        "purpose": "Marbling only (--bath-pigments).",
-        "canonical": "#4fa39b",
-        "oklch": "oklch(66.1% 0.083 187.1)",
-        "tonalRamp": [
-          "#000f0d",
-          "#022c29",
-          "#044d48",
-          "#0e7069",
-          "#3d928b",
-          "#63b6ae",
-          "#87dbd2",
-          "#b8fff6"
-        ]
-      },
-      "pigment-rose": {
-        "role": "marbling",
-        "displayName": "Rose Pigment",
-        "purpose": "Marbling only; never a stand-in for red.",
-        "canonical": "#d98f87",
-        "oklch": "oklch(72.3% 0.092 26.3)",
-        "tonalRamp": [
-          "#1f0001",
-          "#480a0a",
-          "#6a2b27",
-          "#8e4b45",
-          "#b36c65",
-          "#d98f87",
-          "#feb3aa",
-          "#fee9e6"
-        ]
-      },
-      "pigment-lahor": {
-        "role": "marbling",
-        "displayName": "Lahor Blue Pigment",
-        "purpose": "Marbling only.",
-        "canonical": "#9fb3dc",
-        "oklch": "oklch(76.6% 0.063 264.5)",
-        "tonalRamp": [
-          "#020825",
-          "#152343",
-          "#314164",
-          "#4f6186",
-          "#7082a9",
-          "#91a5cd",
-          "#b5c9f3",
-          "#e7efff"
-        ]
-      },
-      "pigment-deep": {
-        "role": "marbling",
-        "displayName": "Deep Indigo Pigment",
-        "purpose": "Marbling only; dark nest rings.",
-        "canonical": "#101741",
-        "oklch": "oklch(22.8% 0.080 271.4)",
-        "tonalRamp": [
-          "#04042c",
-          "#18204b",
-          "#333e6c",
-          "#515e8f",
-          "#7180b3",
-          "#93a3d8",
-          "#b6c7fe",
-          "#e9eefe"
-        ]
-      },
-      "night-paper": {
+      "on-desk": {
         "role": "neutral",
-        "displayName": "Night Paper",
-        "purpose": "Gece ground.",
-        "canonical": "#0b1024",
-        "oklch": "oklch(18.0% 0.042 271.1)",
+        "displayName": "On Desk",
+        "purpose": "Text on the desk and the paper button.",
+        "cssVariable": "--c-on-stock (gunduz)",
+        "canonical": "#efe9e3",
+        "oklch": "oklch(93.7% 0.010 67.7)",
         "tonalRamp": [
-          "#06091d",
-          "#1e2439",
-          "#3a4159",
-          "#58607a",
-          "#79819c",
-          "#9ba4c0",
-          "#bfc8e5",
-          "#e9eefe"
+          "#0e0a07",
+          "#292420",
+          "#46413c",
+          "#65605b",
+          "#87817c",
+          "#aaa49e",
+          "#cec8c2",
+          "#f3ede7"
         ]
       },
-      "night-raised": {
+      "on-desk-muted": {
         "role": "neutral",
-        "displayName": "Night Raised",
-        "purpose": "Gece raised band and plates.",
-        "canonical": "#111836",
-        "oklch": "oklch(22.1% 0.059 271.0)",
+        "displayName": "On Desk Muted",
+        "purpose": "Secondary text on the desk, inactive nav, ghost borders on the desk, scrollbar thumb. Same value in Gece.",
+        "cssVariable": "--c-on-stock-muted (both)",
+        "canonical": "#cdbfb9",
+        "oklch": "oklch(81.5% 0.018 44.8)",
         "tonalRamp": [
-          "#040723",
-          "#1b2342",
-          "#364062",
-          "#556083",
-          "#7581a6",
-          "#97a4cb",
-          "#bbc8f1",
-          "#e8eeff"
+          "#120906",
+          "#2d221e",
+          "#4b3f3a",
+          "#6a5e59",
+          "#8c7f7a",
+          "#afa29c",
+          "#d4c6c0",
+          "#faebe5"
+        ]
+      },
+      "desk-rule": {
+        "role": "neutral",
+        "displayName": "Desk Rule",
+        "purpose": "Hairlines on the desk.",
+        "cssVariable": "--c-stock-rule (gunduz)",
+        "canonical": "rgba(239, 233, 227, 0.22)",
+        "oklch": "oklch(93.7% 0.010 67.7)",
+        "tonalRamp": [
+          "#0e0a07",
+          "#292420",
+          "#46413c",
+          "#65605b",
+          "#87817c",
+          "#aaa49e",
+          "#cec8c2",
+          "#f3ede7"
+        ]
+      },
+      "desk-state": {
+        "role": "secondary",
+        "displayName": "Desk State",
+        "purpose": "State on the desk, Gündüz.",
+        "cssVariable": "--c-stock-alarm (gunduz)",
+        "canonical": "#f2c6b6",
+        "oklch": "oklch(86.1% 0.055 41.0)",
+        "tonalRamp": [
+          "#1d0200",
+          "#3b1b0f",
+          "#5b382b",
+          "#7d5749",
+          "#a07869",
+          "#c49a8b",
+          "#eabeae",
+          "#ffe9e1"
+        ]
+      },
+      "watermark": {
+        "role": "neutral",
+        "displayName": "Watermark",
+        "purpose": "The mark in the paper, under the pointer only.",
+        "cssVariable": "--mark (gunduz)",
+        "canonical": "rgba(36, 28, 30, 0.13)",
+        "oklch": "oklch(23.7% 0.013 1.4)",
+        "tonalRamp": [
+          "#10090b",
+          "#2b2225",
+          "#483f41",
+          "#685e61",
+          "#8a7f82",
+          "#ada2a4",
+          "#d1c6c8",
+          "#f7ebee"
+        ]
+      },
+      "print-border": {
+        "role": "neutral",
+        "displayName": "Print Border",
+        "purpose": "The white border of the photographic print.",
+        "cssVariable": "--print (gunduz)",
+        "canonical": "#f6f5f1",
+        "oklch": "oklch(97.0% 0.005 95.1)",
+        "tonalRamp": [
+          "#0c0b09",
+          "#262522",
+          "#43423f",
+          "#62615e",
+          "#83827f",
+          "#a6a5a1",
+          "#cac9c5",
+          "#efeeea"
+        ]
+      },
+      "aubergine-desk": {
+        "role": "primary",
+        "displayName": "Aubergine Desk",
+        "purpose": "Gece stock; solid button text.",
+        "cssVariable": "--c-stock (gece)",
+        "canonical": "#1e1226",
+        "oklch": "oklch(20.8% 0.042 310.8)",
+        "tonalRamp": [
+          "#110618",
+          "#2b1f34",
+          "#493c53",
+          "#695b73",
+          "#8a7c95",
+          "#ad9eb9",
+          "#d2c2de",
+          "#f5e9ff"
+        ]
+      },
+      "aubergine-raised": {
+        "role": "primary",
+        "displayName": "Raised Aubergine",
+        "purpose": "Gece desk one step up.",
+        "cssVariable": "--c-stock-2 (gece)",
+        "canonical": "#2a1a33",
+        "oklch": "oklch(25.1% 0.051 312.6)",
+        "tonalRamp": [
+          "#12041a",
+          "#2d1d37",
+          "#4b3a55",
+          "#6b5976",
+          "#8d7a98",
+          "#b09cbc",
+          "#d5c0e1",
+          "#f6e9ff"
+        ]
+      },
+      "aubergine-sheet": {
+        "role": "neutral",
+        "displayName": "Aubergine Sheet",
+        "purpose": "Gece paper.",
+        "cssVariable": "--c-canvas (gece)",
+        "canonical": "#2c1c35",
+        "oklch": "oklch(25.9% 0.050 312.6)",
+        "tonalRamp": [
+          "#12041a",
+          "#2d1d36",
+          "#4b3a55",
+          "#6b5976",
+          "#8d7a98",
+          "#b09cbc",
+          "#d5c0e1",
+          "#f6e8ff"
+        ]
+      },
+      "aubergine-sheet-raised": {
+        "role": "neutral",
+        "displayName": "Aubergine Sheet Raised",
+        "purpose": "Gece paper one step up.",
+        "cssVariable": "--c-raised (gece)",
+        "canonical": "#362343",
+        "oklch": "oklch(29.5% 0.061 310.4)",
+        "tonalRamp": [
+          "#13031e",
+          "#2e1c3b",
+          "#4c385a",
+          "#6c577b",
+          "#8e789e",
+          "#b19bc2",
+          "#d6bfe7",
+          "#f5e9ff"
         ]
       },
       "night-ink": {
         "role": "neutral",
         "displayName": "Night Ink",
-        "purpose": "Gece headings and ink pill fill.",
-        "canonical": "#eef0ea",
-        "oklch": "oklch(95.2% 0.008 121.6)",
+        "purpose": "Gece names and headings, text on the desk, print border, solid button fill.",
+        "cssVariable": "--c-ink, --c-on-stock, --print (gece)",
+        "canonical": "#efe8e2",
+        "oklch": "oklch(93.5% 0.011 63.4)",
         "tonalRamp": [
-          "#0b0c08",
-          "#242621",
-          "#41433e",
-          "#60625d",
-          "#81837e",
-          "#a4a6a0",
-          "#c8cac4",
-          "#edefe9"
+          "#0f0a07",
+          "#292420",
+          "#46413c",
+          "#66605b",
+          "#87817c",
+          "#aaa49e",
+          "#cfc8c2",
+          "#f4ede7"
         ]
       },
       "night-body": {
         "role": "neutral",
         "displayName": "Night Body",
-        "purpose": "Gece running text (13.3:1).",
-        "canonical": "#d4d8e6",
-        "oklch": "oklch(88.3% 0.020 273.2)",
+        "purpose": "Gece running text.",
+        "cssVariable": "--c-body (gece)",
+        "canonical": "#dcd3cd",
+        "oklch": "oklch(87.2% 0.013 56.2)",
         "tonalRamp": [
-          "#080b13",
-          "#22252f",
-          "#3e414d",
-          "#5d616d",
-          "#7e828f",
-          "#a1a4b2",
-          "#c5c9d6",
-          "#eaeefc"
+          "#0f0a06",
+          "#2a241f",
+          "#48403b",
+          "#675f5a",
+          "#89807b",
+          "#aca39d",
+          "#d0c7c1",
+          "#f6ece6"
         ]
       },
       "night-muted": {
         "role": "neutral",
         "displayName": "Night Muted",
-        "purpose": "Gece secondary text (8.1:1).",
-        "canonical": "#a2a9c4",
-        "oklch": "oklch(73.8% 0.040 273.9)",
+        "purpose": "Gece secondary text.",
+        "cssVariable": "--c-muted (gece)",
+        "canonical": "#b3a6a1",
+        "oklch": "oklch(73.5% 0.017 42.3)",
         "tonalRamp": [
-          "#07091c",
-          "#1f2438",
-          "#3b4157",
-          "#5a6078",
-          "#7b819b",
-          "#9da4bf",
-          "#c1c8e4",
-          "#eaeefe"
+          "#110906",
+          "#2c231f",
+          "#4a3f3b",
+          "#6a5e5a",
+          "#8c7f7b",
+          "#afa29d",
+          "#d3c6c1",
+          "#f9ebe6"
         ]
       },
       "night-faint": {
         "role": "neutral",
         "displayName": "Night Faint",
-        "purpose": "Gece faint metadata (6.1:1).",
-        "canonical": "#8b92ae",
-        "oklch": "oklch(66.4% 0.042 274.2)",
+        "purpose": "Gece term comma, on the sheet.",
+        "cssVariable": "--c-faint (gece)",
+        "canonical": "#a09490",
+        "oklch": "oklch(67.6% 0.015 39.4)",
         "tonalRamp": [
-          "#06091d",
-          "#1f233a",
-          "#3b4059",
-          "#5a607a",
-          "#7a819c",
-          "#9ca4c0",
-          "#c0c8e5",
-          "#eaeefe"
+          "#110907",
+          "#2c231f",
+          "#4a3f3c",
+          "#695e5b",
+          "#8b7f7c",
+          "#aea29e",
+          "#d3c6c2",
+          "#f8ebe7"
         ]
       },
       "night-rule": {
         "role": "neutral",
         "displayName": "Night Rule",
-        "purpose": "Gece heavy rules.",
-        "canonical": "rgba(238, 240, 234, 0.7)",
-        "oklch": "oklch(95.2% 0.008 121.6)",
+        "purpose": "Gece strong rules.",
+        "cssVariable": "--c-rule (gece)",
+        "canonical": "rgba(239, 232, 226, 0.6)",
+        "oklch": "oklch(93.5% 0.011 63.4)",
         "tonalRamp": [
-          "#0b0c08",
-          "#242621",
-          "#41433e",
-          "#60625d",
-          "#81837e",
-          "#a4a6a0",
-          "#c8cac4",
-          "#edefe9"
+          "#0f0a07",
+          "#292420",
+          "#46413c",
+          "#66605b",
+          "#87817c",
+          "#aaa49e",
+          "#cfc8c2",
+          "#f4ede7"
         ]
       },
       "night-rule-soft": {
         "role": "neutral",
-        "displayName": "Night Soft Rule",
-        "purpose": "Gece hairlines.",
-        "canonical": "rgba(238, 240, 234, 0.16)",
-        "oklch": "oklch(95.2% 0.008 121.6)",
+        "displayName": "Night Rule Soft",
+        "purpose": "Gece row hairlines and desk hairlines.",
+        "cssVariable": "--c-rule-soft, --c-stock-rule (gece)",
+        "canonical": "rgba(239, 232, 226, 0.16)",
+        "oklch": "oklch(93.5% 0.011 63.4)",
         "tonalRamp": [
-          "#0b0c08",
-          "#242621",
-          "#41433e",
-          "#60625d",
-          "#81837e",
-          "#a4a6a0",
-          "#c8cac4",
-          "#edefe9"
+          "#0f0a07",
+          "#292420",
+          "#46413c",
+          "#66605b",
+          "#87817c",
+          "#aaa49e",
+          "#cfc8c2",
+          "#f4ede7"
         ]
       },
-      "night-alarm": {
-        "role": "tertiary",
-        "displayName": "Night Aşı Red",
-        "purpose": "Gece state on paper (8.2:1).",
-        "canonical": "#ff8a6a",
-        "oklch": "oklch(75.5% 0.149 36.2)",
-        "tonalRamp": [
-          "#1c0200",
-          "#470e00",
-          "#771e01",
-          "#a43818",
-          "#cb5c3d",
-          "#f37f60",
-          "#feb4a0",
-          "#ffe9e3"
-        ]
-      },
-      "night-bath": {
-        "role": "primary",
-        "displayName": "Night Bath",
-        "purpose": "Gece indigo bath.",
-        "canonical": "#141d4a",
-        "oklch": "oklch(25.3% 0.084 270.7)",
-        "tonalRamp": [
-          "#03032e",
-          "#16204d",
-          "#313e6e",
-          "#4f5e91",
-          "#6f80b5",
-          "#91a3db",
-          "#b5c7fe",
-          "#e9eefe"
-        ]
-      },
-      "night-bath-raised": {
-        "role": "primary",
-        "displayName": "Night Bath Raised",
-        "purpose": "Gece ghost hover on the bath.",
-        "canonical": "#1b265a",
-        "oklch": "oklch(29.2% 0.094 270.5)",
-        "tonalRamp": [
-          "#030132",
-          "#151f52",
-          "#2f3d74",
-          "#4d5d97",
-          "#6d7fbb",
-          "#8fa2e1",
-          "#b5c7fe",
-          "#e9eefe"
-        ]
-      },
-      "night-on-bath-muted": {
-        "role": "neutral",
-        "displayName": "Night On-Bath Muted",
-        "purpose": "Gece secondary text on the bath (8.45:1).",
-        "canonical": "#b3bbd8",
-        "oklch": "oklch(79.5% 0.042 273.2)",
-        "tonalRamp": [
-          "#06091d",
-          "#1e233a",
-          "#3a4159",
-          "#59607a",
-          "#7a819c",
-          "#9ca4c0",
-          "#c0c8e5",
-          "#e9eefe"
-        ]
-      },
-      "night-bath-alarm": {
-        "role": "tertiary",
-        "displayName": "Night Bath Aşı Red",
-        "purpose": "Gece state on the bath (7.6:1).",
-        "canonical": "#ff9677",
-        "oklch": "oklch(77.7% 0.134 37.3)",
-        "tonalRamp": [
-          "#1c0200",
-          "#460f00",
-          "#761f00",
-          "#9e3f22",
-          "#c56144",
-          "#ec8566",
-          "#feb49e",
-          "#fee9e3"
-        ]
-      },
-      "night-ochre": {
+      "night-state": {
         "role": "secondary",
-        "displayName": "Night Ochre",
-        "purpose": "Gece selection, paper press, resting step.",
-        "canonical": "#c99032",
-        "oklch": "oklch(69.3% 0.127 75.8)",
+        "displayName": "Night State",
+        "purpose": "Gece state, on sheet and desk.",
+        "cssVariable": "--c-alarm, --c-stock-alarm (gece)",
+        "canonical": "#eba99b",
+        "oklch": "oklch(79.4% 0.081 32.3)",
         "tonalRamp": [
-          "#130900",
-          "#342101",
-          "#5a3b01",
-          "#825802",
-          "#ad7604",
-          "#d2993d",
-          "#f9bd64",
-          "#ffebd1"
+          "#210000",
+          "#441108",
+          "#663025",
+          "#894f43",
+          "#ad7063",
+          "#d39385",
+          "#f9b6a8",
+          "#ffe9e4"
         ]
       },
-      "night-ink-press": {
-        "role": "primary",
-        "displayName": "Night Ink Press",
-        "purpose": "Gece ink pill hover spread (the pill is pale at night).",
-        "canonical": "#c8cde0",
-        "oklch": "oklch(85.0% 0.027 274.1)",
+      "night-watermark": {
+        "role": "neutral",
+        "displayName": "Night Watermark",
+        "purpose": "Gece mark in the paper.",
+        "cssVariable": "--mark (gece)",
+        "canonical": "rgba(239, 232, 226, 0.09)",
+        "oklch": "oklch(93.5% 0.011 63.4)",
         "tonalRamp": [
-          "#080a16",
-          "#212432",
-          "#3d4151",
-          "#5c6071",
-          "#7d8293",
-          "#9fa4b6",
-          "#c3c8db",
-          "#e9eefe"
+          "#0f0a07",
+          "#292420",
+          "#46413c",
+          "#66605b",
+          "#87817c",
+          "#aaa49e",
+          "#cfc8c2",
+          "#f4ede7"
         ]
       }
     },
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "The name in the hero only."
+        "purpose": "The name on the first sheet, once."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Section titles."
+        "purpose": "Section titles on the desk and the contact close."
       },
       "sheet-title": {
         "displayName": "Sheet Title",
-        "purpose": "Product names heading each sheet."
+        "purpose": "Product names heading their sheets."
+      },
+      "subhead": {
+        "displayName": "Subhead",
+        "purpose": "Job titles, archive titles, headings inside the method sheet."
       },
       "sentence": {
         "displayName": "Sentence",
-        "purpose": "Positioning sentence and contact availability."
-      },
-      "title": {
-        "displayName": "Title",
-        "purpose": "Sub-section titles inside a band."
+        "fontStyle": "italic",
+        "purpose": "The one-line statement under the name, the product line, the closing sentence on the desk."
       },
       "lede": {
         "displayName": "Lede",
-        "purpose": "Hero summary and product descriptions, 54–60ch."
+        "purpose": "The opening paragraph on a sheet."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Running text."
+        "purpose": "Running text, up to 66ch, lining numerals."
       },
-      "small": {
-        "displayName": "Small",
-        "purpose": "Secondary notes and status drops."
+      "signature-name": {
+        "displayName": "Signature Name",
+        "purpose": "The typed name, upright, under the italic regards."
       },
-      "label": {
-        "displayName": "Label",
-        "purpose": "Condensed uppercase field names and provenance; never a kicker."
+      "step-numeral": {
+        "displayName": "Step Numeral",
+        "purpose": "The numbers of the method row."
       },
       "button": {
         "displayName": "Button",
-        "purpose": "Pill button text."
+        "purpose": "Controls."
+      },
+      "form-small": {
+        "displayName": "Form Small",
+        "purpose": "Enclosure lines, nav, status, dates, stack lists, captions; weight 400 to 600."
+      },
+      "micro": {
+        "displayName": "Micro",
+        "purpose": "Switch options and status inside the enclosure index."
+      },
+      "label": {
+        "displayName": "Label",
+        "textTransform": "uppercase",
+        "purpose": "Field names on the form and the name of a list; never a lead-in above a larger heading."
       }
     },
-    "shadows": [],
+    "shadows": [
+      {
+        "name": "sheet-gunduz",
+        "value": "0 1px 1px rgba(30, 8, 14, 0.3), 0 18px 36px -14px rgba(30, 8, 14, 0.55)",
+        "purpose": "Every sheet on the vişne desk (--sheet-shadow)."
+      },
+      {
+        "name": "sheet-gece",
+        "value": "0 1px 1px rgba(0, 0, 0, 0.5), 0 18px 36px -14px rgba(0, 0, 0, 0.8)",
+        "purpose": "Every sheet on the aubergine desk (--sheet-shadow)."
+      },
+      {
+        "name": "print",
+        "value": "0 1px 2px rgba(30, 8, 14, 0.3), 0 8px 18px -8px rgba(30, 8, 14, 0.45)",
+        "purpose": "The photographic print on the sheet."
+      },
+      {
+        "name": "clip",
+        "value": "drop-shadow(0.5px 1.2px 0.7px rgba(30, 8, 14, 0.5))",
+        "purpose": "The paperclip wire on the print; a filter, not a box-shadow."
+      }
+    ],
     "motion": [
       {
-        "name": "ease-spread",
-        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
-        "purpose": "The shared ease (spreadEase / --ease-spread): fast out, then still."
+        "name": "ease-lay",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "The shared ease (layEase / --ease-lay): unhurried, then still."
       },
       {
-        "name": "pill-spread",
-        "value": "clip-path circle(0%→75% at 50% 50%) 520ms ease-spread",
-        "purpose": "Pill hover/focus: a drop spreading from the centre."
+        "name": "sheet-lay",
+        "value": "y 24px to 0, rotate -0.3deg to 0, 0.9s ease-lay, once in view, margin -40px",
+        "purpose": "A sheet settling on the desk. No opacity change; never hidden."
       },
       {
-        "name": "nav-drop",
-        "value": "transform scale(0→1) 420ms ease-spread",
-        "purpose": "Current-section drop under the nav link."
+        "name": "monogram-press",
+        "value": "scale 1.08 to 1, 0.7s ease-lay, 0.25s delay",
+        "purpose": "The blind monogram pressing in on load."
       },
       {
-        "name": "strip-pull",
-        "value": "clip-path inset(0 0 100% 0)→inset(0) 950ms ease-spread, once, viewport margin -80px",
-        "purpose": "Marbled strips and seals pulled from the bath."
+        "name": "print-straighten",
+        "value": "rotate 1.6deg to 0, 520ms ease-lay",
+        "purpose": "The clipped portrait straightening on hover."
       },
       {
-        "name": "hero-pour",
-        "value": "stones 420ms each within 0–520ms; 11 nest drops from 180ms, 80ms apart, 380ms each; bloom pull 650ms then curl 750ms",
-        "purpose": "The one authored opening; reduced motion pours statically in one frame."
+        "name": "watermark-light",
+        "value": "opacity 500ms ease; 17rem radial mask following the mouse pointer",
+        "purpose": "Holding the sheet to the light. Mouse pointers only."
       },
       {
-        "name": "portrait-arrive",
-        "value": "scale 0.18→1, opacity 0→1, 750ms ease-spread",
-        "purpose": "Face appears when the last nest drop lands."
+        "name": "button-press",
+        "value": "scaleX 0 to 1 from the left, 460ms ease-lay",
+        "purpose": "Button hover and keyboard focus."
       },
       {
-        "name": "process-walk",
-        "value": "step n at 250ms + n×520ms, once",
-        "purpose": "The now-drop walks the process row; resting ring 520ms ease-spread."
-      },
-      {
-        "name": "demo-peel",
-        "value": "peel once 900ms after in view",
-        "purpose": "Page-curl demo lands without a gesture."
-      },
-      {
-        "name": "plate-hover",
-        "value": "image scale 1.015, 700ms ease-spread",
-        "purpose": "Screenshot plate hover."
+        "name": "nav-rule",
+        "value": "scaleX 0 to 1 from the left, 380ms ease-lay",
+        "purpose": "The current section rule in the masthead."
       },
       {
         "name": "theme-change",
-        "value": "background-color, color 260ms ease",
-        "purpose": "Gündüz/Gece swap."
+        "value": "background-color and color 260ms ease",
+        "purpose": "The body crossing between Gündüz and Gece."
       },
       {
         "name": "reduced-motion",
-        "value": "transitions/animations 0.01ms; static pour; comb off; all steps reached",
-        "purpose": "prefers-reduced-motion."
+        "value": "MotionConfig reducedMotion=\"user\"; CSS durations to 0.01ms",
+        "purpose": "Every settle and transition resolves instantly; the page curl falls back to the flat spread."
       }
     ],
     "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
       {
         "name": "md",
         "value": "768px"
       },
       {
-        "name": "steps",
+        "name": "letter",
         "value": "900px"
       },
       {
@@ -765,212 +652,250 @@
         "value": "1024px"
       },
       {
+        "name": "sheet",
+        "value": "1100px"
+      },
+      {
         "name": "xl",
         "value": "1280px"
       }
     ],
-    "marbling": {
-      "note": "Read by the canvas per theme from CSS custom properties; motif set numbered 01 Gelgit, 02 Taraklı, 03 Battal; every pattern prints its provenance.",
-      "gunduz": {
-        "--bath-stones": [
-          "#22317a",
-          "#19245b",
-          "#273883",
-          "#1f2d6e"
+    "fonts": {
+      "letter": {
+        "family": "Spectral",
+        "hosting": "self-hosted static woff2 (latin, latin-ext), OFL",
+        "weights": [
+          "300",
+          "400",
+          "500",
+          "400 italic"
         ],
-        "--bath-pigments": [
-          "#f1f2ec",
-          "#d9a23a",
-          "#4fa39b",
-          "#d98f87",
-          "#9fb3dc",
-          "#101741"
+        "preload": [
+          "/fonts/spectral-300-latin.woff2",
+          "/fonts/spectral-400-latin.woff2"
         ]
       },
-      "gece": {
-        "--bath-stones": [
-          "#182253",
-          "#10183f",
-          "#1c285e",
-          "#131b47"
-        ],
-        "--bath-pigments": [
-          "#dfe2da",
-          "#c99032",
-          "#418f88",
-          "#c47c75",
-          "#8599c4",
-          "#080c22"
+      "form": {
+        "family": "Hanken Grotesk",
+        "hosting": "self-hosted variable woff2 (latin, latin-ext), OFL",
+        "weights": "400 700",
+        "preload": [
+          "/fonts/hanken-400-700-latin.woff2"
         ]
-      },
-      "nest": [
-        "white",
-        "ochre",
-        "deep",
-        "white",
-        "turquoise",
-        "lahor",
-        "rose",
-        "deep",
-        "white",
-        "ochre",
-        "bath"
-      ],
-      "demoSheet": {
-        "source": {
-          "paper": "#e6e9e4",
-          "ink": "#161b33",
-          "muted": "#535a72"
-        },
-        "target": {
-          "paper": "#f6f7f3",
-          "ink": "#141c45",
-          "muted": "#4c5374"
-        },
-        "accent": "#b5832a"
       }
     },
-    "fonts": {
-      "family": "Bricolage Grotesque",
-      "hosting": "self-hosted woff2 (latin, latin-ext), OFL",
-      "axes": {
-        "wght": "200 800",
-        "wdth": "75% 100%",
-        "opsz": "font-optical-sizing: auto"
+    "assets": {
+      "monogram": {
+        "path": "/monogram.png",
+        "size": "256x256 RGBA",
+        "note": "Computed relief; light and shade held in alpha, no ink of its own. 0.5 opacity in Gece. Provenance in the PNG tEXt chunk."
       },
-      "preload": "/fonts/bricolage-latin.woff2"
+      "clip-back": {
+        "path": "/clip-back.png",
+        "size": "132x396 RGBA",
+        "note": "The half of the paperclip under the print. Provenance in the PNG tEXt chunk."
+      },
+      "clip-front": {
+        "path": "/clip-front.png",
+        "size": "132x396 RGBA",
+        "note": "The half of the paperclip over the print. Provenance in the PNG tEXt chunk."
+      }
+    },
+    "contrast": {
+      "note": "WCAG ratios computed from the tokens; sheet ground unless stated.",
+      "shipped": [
+        {
+          "pair": "ink-faint on dove-sheet",
+          "ratio": 4.91,
+          "use": "term comma, lowest shipped pair"
+        },
+        {
+          "pair": "night-faint on aubergine-sheet",
+          "ratio": 5.39,
+          "use": "term comma, Gece"
+        },
+        {
+          "pair": "ink-muted on dove-raised",
+          "ratio": 5.49,
+          "use": "Ek number under enclosure hover"
+        },
+        {
+          "pair": "night-muted on aubergine-sheet-raised",
+          "ratio": 6.01,
+          "use": "Ek number under enclosure hover, Gece"
+        }
+      ],
+      "notShipped": [
+        {
+          "pair": "night-faint on aubergine-sheet-raised",
+          "ratio": 4.83
+        },
+        {
+          "pair": "ink-faint on dove-raised",
+          "ratio": 4.43,
+          "note": "Below AA; forbidden by The Faint Stays On The Sheet Rule."
+        }
+      ]
     }
   },
   "components": [
     {
-      "name": "Ink Pill",
+      "name": "Solid Button",
       "kind": "button",
-      "refersTo": "button-ink",
-      "description": "Primary action on paper; centre-out Bath Raised spread on hover.",
-      "html": "<button class=\"ds-btn\">Visit the product</button>",
-      "css": ".ds-btn{--fill:var(--c-ink,#141c45);--text:var(--c-canvas,#eef0ed);--spread:var(--c-ink-press,#24337a);position:relative;isolation:isolate;display:inline-flex;min-height:3.25rem;align-items:center;justify-content:center;gap:.6rem;padding:.8rem 1.6rem;overflow:hidden;border:1.5px solid var(--fill);border-radius:999px;background:var(--fill);color:var(--text);font-family:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;font-size:1rem;font-weight:650;letter-spacing:-.005em;cursor:pointer;transition:color 200ms ease,border-color 200ms ease}.ds-btn::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--spread);clip-path:circle(0% at 50% 50%);transition:clip-path 520ms cubic-bezier(.16,1,.3,1)}.ds-btn:hover::before,.ds-btn:focus-visible::before{clip-path:circle(75% at 50% 50%)}.ds-btn:focus-visible{outline:2px solid var(--c-ink,#141c45);outline-offset:3px}"
+      "refersTo": "button-solid",
+      "description": "The primary action on paper; a deeper fill spreads in from the left.",
+      "html": "<button class=\"ds-btn\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/><polyline points=\"7 10 12 15 17 10\"/><line x1=\"12\" x2=\"12\" y1=\"15\" y2=\"3\"/></svg>CV indir (PDF)</button>",
+      "css": ".ds-btn{--fill:var(--c-stock,#4a1f28);--text:var(--c-on-stock,#efe9e3);--press:var(--c-stock-2,#5a2732);position:relative;isolation:isolate;display:inline-flex;min-height:3.25rem;align-items:center;justify-content:center;gap:.6rem;padding:.8rem 1.6rem;overflow:hidden;border:1px solid var(--fill);border-radius:0;background:var(--fill);color:var(--text);font-family:var(--font-form,'Hanken Grotesk',ui-sans-serif,system-ui,sans-serif);font-size:1rem;font-weight:600;cursor:pointer}.ds-btn::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--press);transform:scaleX(0);transform-origin:left;transition:transform 460ms var(--ease-lay,cubic-bezier(.22,1,.36,1))}.ds-btn:hover::before,.ds-btn:focus-visible::before{transform:scaleX(1)}.ds-btn:focus-visible{outline:2px solid var(--c-ink,#241c1e);outline-offset:3px}"
     },
     {
-      "name": "Ghost Pill",
+      "name": "Ghost Button",
       "kind": "button",
       "refersTo": "button-ghost",
-      "description": "Secondary action; ink border, Raised Paper spread.",
-      "html": "<button class=\"ds-btn ds-btn-ghost\">GitHub</button>",
-      "css": ".ds-btn{--fill:var(--c-ink,#141c45);--text:var(--c-canvas,#eef0ed);--spread:var(--c-ink-press,#24337a);position:relative;isolation:isolate;display:inline-flex;min-height:3.25rem;align-items:center;justify-content:center;gap:.6rem;padding:.8rem 1.6rem;overflow:hidden;border:1.5px solid var(--fill);border-radius:999px;background:var(--fill);color:var(--text);font-family:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;font-size:1rem;font-weight:650;letter-spacing:-.005em;cursor:pointer;transition:color 200ms ease,border-color 200ms ease}.ds-btn::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--spread);clip-path:circle(0% at 50% 50%);transition:clip-path 520ms cubic-bezier(.16,1,.3,1)}.ds-btn:hover::before,.ds-btn:focus-visible::before{clip-path:circle(75% at 50% 50%)}.ds-btn:focus-visible{outline:2px solid var(--c-ink,#141c45);outline-offset:3px}.ds-btn-ghost{--fill:transparent;--text:var(--c-ink,#141c45);--spread:var(--c-raised,#e2e6e3);border-color:var(--c-ink,#141c45)}"
+      "description": "The secondary action on paper; strong rule border, Dove Raised press.",
+      "html": "<button class=\"ds-btn ds-btn-ghost\">Canlı ürünü incele</button>",
+      "css": ".ds-btn{--fill:var(--c-stock,#4a1f28);--text:var(--c-on-stock,#efe9e3);--press:var(--c-stock-2,#5a2732);position:relative;isolation:isolate;display:inline-flex;min-height:3.25rem;align-items:center;justify-content:center;gap:.6rem;padding:.8rem 1.6rem;overflow:hidden;border:1px solid var(--fill);border-radius:0;background:var(--fill);color:var(--text);font-family:var(--font-form,'Hanken Grotesk',ui-sans-serif,system-ui,sans-serif);font-size:1rem;font-weight:600;cursor:pointer}.ds-btn::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--press);transform:scaleX(0);transform-origin:left;transition:transform 460ms var(--ease-lay,cubic-bezier(.22,1,.36,1))}.ds-btn:hover::before,.ds-btn:focus-visible::before{transform:scaleX(1)}.ds-btn:focus-visible{outline:2px solid var(--c-ink,#241c1e);outline-offset:3px}.ds-btn-ghost{--fill:transparent;--text:var(--c-ink,#241c1e);--press:var(--c-raised,#dfddd7);border-color:var(--c-rule,#241c1e)}"
     },
     {
-      "name": "Paper Pill on the Bath",
+      "name": "Paper Button",
       "kind": "button",
       "refersTo": "button-paper",
-      "description": "Primary action on indigo: paper punched out of the bath, ochre spread.",
-      "html": "<div class=\"ds-bath\"><button class=\"ds-btn ds-btn-paper\">Download CV (PDF)</button></div>",
-      "css": ".ds-btn{--fill:var(--c-ink,#141c45);--text:var(--c-canvas,#eef0ed);--spread:var(--c-ink-press,#24337a);position:relative;isolation:isolate;display:inline-flex;min-height:3.25rem;align-items:center;justify-content:center;gap:.6rem;padding:.8rem 1.6rem;overflow:hidden;border:1.5px solid var(--fill);border-radius:999px;background:var(--fill);color:var(--text);font-family:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;font-size:1rem;font-weight:650;letter-spacing:-.005em;cursor:pointer;transition:color 200ms ease,border-color 200ms ease}.ds-btn::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--spread);clip-path:circle(0% at 50% 50%);transition:clip-path 520ms cubic-bezier(.16,1,.3,1)}.ds-btn:hover::before,.ds-btn:focus-visible::before{clip-path:circle(75% at 50% 50%)}.ds-btn:focus-visible{outline:2px solid var(--c-ink,#141c45);outline-offset:3px}.ds-bath{background:var(--c-stock,#1d2a66);padding:2rem}.ds-btn-paper{--fill:var(--c-on-stock,#f1f2ec);--text:var(--c-stock,#1d2a66);--spread:var(--c-ochre,#d9a23a)}.ds-bath .ds-btn:focus-visible{outline-color:var(--c-on-stock,#f1f2ec)}"
+      "description": "The masthead CV: the lit action on the stock.",
+      "html": "<div class=\"ds-desk\"><button class=\"ds-btn ds-btn-paper\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/><polyline points=\"7 10 12 15 17 10\"/><line x1=\"12\" x2=\"12\" y1=\"15\" y2=\"3\"/></svg>CV</button></div>",
+      "css": ".ds-btn{--fill:var(--c-stock,#4a1f28);--text:var(--c-on-stock,#efe9e3);--press:var(--c-stock-2,#5a2732);position:relative;isolation:isolate;display:inline-flex;min-height:3.25rem;align-items:center;justify-content:center;gap:.6rem;padding:.8rem 1.6rem;overflow:hidden;border:1px solid var(--fill);border-radius:0;background:var(--fill);color:var(--text);font-family:var(--font-form,'Hanken Grotesk',ui-sans-serif,system-ui,sans-serif);font-size:1rem;font-weight:600;cursor:pointer}.ds-btn::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--press);transform:scaleX(0);transform-origin:left;transition:transform 460ms var(--ease-lay,cubic-bezier(.22,1,.36,1))}.ds-btn:hover::before,.ds-btn:focus-visible::before{transform:scaleX(1)}.ds-btn:focus-visible{outline:2px solid var(--c-ink,#241c1e);outline-offset:3px}.ds-desk{display:inline-block;padding:1rem;background:var(--c-stock,#4a1f28)}.ds-btn-paper{--fill:var(--c-on-stock,#efe9e3);--text:var(--c-stock,#4a1f28);--press:var(--c-on-stock-muted,#cdbfb9);min-height:2.5rem;padding-inline:1rem;font-size:.94rem}.ds-btn-paper:focus-visible{outline-color:var(--c-on-stock,#efe9e3)}"
     },
     {
       "name": "Switch",
       "kind": "chip",
       "refersTo": "switch-option-active",
-      "description": "Two drops on a stem: TR/EN and Gündüz/Gece.",
-      "html": "<div class=\"ds-switch\"><button aria-pressed=\"true\">TR</button><button aria-pressed=\"false\">EN</button></div>",
-      "css": ".ds-switch{display:inline-flex;gap:.15rem;padding:.2rem;border:1px solid var(--c-rule-soft,rgba(20,28,69,.2));border-radius:999px}.ds-switch button{min-height:2.1rem;min-width:2.5rem;padding-inline:.7rem;border:0;border-radius:999px;background:transparent;color:var(--c-muted,#4c5374);font-family:'Bricolage Grotesque',ui-sans-serif,sans-serif;font-size:.78rem;font-weight:650;letter-spacing:.02em;cursor:pointer;transition:background-color 180ms ease,color 180ms ease}.ds-switch button:hover{color:var(--c-ink,#141c45)}.ds-switch button[aria-pressed=true]{background:var(--c-ink,#141c45);color:var(--c-canvas,#eef0ed)}.ds-switch button:focus-visible{outline:2px solid var(--c-ink,#141c45);outline-offset:3px}"
+      "description": "Language and theme in the masthead; the pressed option fills On Desk.",
+      "html": "<div class=\"ds-desk\"><div class=\"ds-switch\" role=\"group\" aria-label=\"Theme\"><button aria-pressed=\"true\">Gündüz</button><button aria-pressed=\"false\">Gece</button></div></div>",
+      "css": ".ds-desk{display:inline-block;padding:1rem;background:var(--c-stock,#4a1f28)}.ds-switch{display:inline-flex;border:1px solid var(--c-stock-rule,rgba(239,233,227,.22))}.ds-switch button{min-height:2.1rem;min-width:2.5rem;padding-inline:.7rem;border:0;background:transparent;color:var(--c-on-stock-muted,#cdbfb9);font-family:var(--font-form,'Hanken Grotesk',ui-sans-serif,system-ui,sans-serif);font-size:.8rem;font-weight:600;cursor:pointer;transition:background-color 180ms ease,color 180ms ease}.ds-switch button:hover{color:var(--c-on-stock,#efe9e3)}.ds-switch button[aria-pressed='true']{background:var(--c-on-stock,#efe9e3);color:var(--c-stock,#4a1f28)}.ds-switch button:focus-visible{outline:2px solid var(--c-on-stock,#efe9e3);outline-offset:3px}"
     },
     {
       "name": "Nav Links",
       "kind": "nav",
-      "description": "Muted links; the current section turns ink with a drop beneath.",
-      "html": "<nav class=\"ds-nav\"><a href=\"#\">Ürünler</a><a href=\"#\" aria-current=\"true\">Yöntem</a><a href=\"#\">İletişim</a></nav>",
-      "css": ".ds-nav{display:flex;gap:1.5rem;background:var(--c-canvas,#eef0ed);padding:.75rem 1rem;border-bottom:1px solid var(--c-rule-soft,rgba(20,28,69,.2));font-family:'Bricolage Grotesque',ui-sans-serif,sans-serif}.ds-nav a{position:relative;display:inline-flex;align-items:center;min-height:2.5rem;font-size:.94rem;font-weight:560;color:var(--c-muted,#4c5374);text-decoration:none;transition:color 160ms ease}.ds-nav a::after{content:'';position:absolute;left:50%;bottom:.1rem;width:.4rem;height:.4rem;margin-left:-.2rem;border-radius:999px;background:var(--c-ink,#141c45);transform:scale(0);transition:transform 420ms cubic-bezier(.16,1,.3,1)}.ds-nav a:hover,.ds-nav a[aria-current=true]{color:var(--c-ink,#141c45)}.ds-nav a[aria-current=true]::after{transform:scale(1)}.ds-nav a:focus-visible{outline:2px solid var(--c-ink,#141c45);outline-offset:3px}"
+      "refersTo": "masthead",
+      "description": "Masthead links; the current section draws a rule from the left.",
+      "html": "<nav class=\"ds-masthead\" aria-label=\"Sections\"><a class=\"ds-name\" href=\"#\">Anıl Karabulut</a><a class=\"ds-navlink\" href=\"#\">Ürünler</a><a class=\"ds-navlink\" href=\"#\" aria-current=\"true\">Yöntem</a><a class=\"ds-navlink\" href=\"#\">Deneyim</a></nav>",
+      "css": ".ds-masthead{display:flex;align-items:center;gap:1.5rem;height:4rem;padding-inline:2rem;background:var(--c-stock,#4a1f28);border-bottom:1px solid var(--c-stock-rule,rgba(239,233,227,.22))}.ds-name{margin-right:auto;color:var(--c-on-stock,#efe9e3);font-family:var(--font-letter,Spectral,Georgia,serif);font-size:1.25rem;text-decoration:none}.ds-navlink{position:relative;display:inline-flex;align-items:center;min-height:2.5rem;font-family:var(--font-form,'Hanken Grotesk',ui-sans-serif,system-ui,sans-serif);font-size:.94rem;font-weight:500;color:var(--c-on-stock-muted,#cdbfb9);text-decoration:none;transition:color 160ms ease}.ds-navlink::after{content:'';position:absolute;left:0;right:0;bottom:.3rem;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform 380ms var(--ease-lay,cubic-bezier(.22,1,.36,1))}.ds-navlink:hover,.ds-navlink[aria-current='true']{color:var(--c-on-stock,#efe9e3)}.ds-navlink[aria-current='true']::after{transform:scaleX(1)}.ds-navlink:focus-visible{outline:2px solid var(--c-on-stock,#efe9e3);outline-offset:3px}"
     },
     {
-      "name": "Status Drops",
+      "name": "Status Marks",
       "kind": "chip",
-      "description": "Status as a drop: filled aşı red live, ink ring in development, dotted muted archived.",
-      "html": "<p class=\"ds-drops\"><span class=\"ds-drop ds-live\">Live</span><span class=\"ds-drop ds-building\">In development</span><span class=\"ds-drop ds-archived\">Archived</span></p>",
-      "css": ".ds-drops{display:flex;gap:1.5rem;flex-wrap:wrap;font-family:'Bricolage Grotesque',ui-sans-serif,sans-serif}.ds-drop{display:inline-flex;align-items:center;gap:.5rem;font-size:.9rem;font-weight:650;line-height:1.2;white-space:nowrap}.ds-drop::before{content:'';width:.72em;height:.72em;flex:none;border-radius:999px;border:2px solid currentColor}.ds-live{color:var(--c-alarm,#a8361d)}.ds-live::before{background:currentColor}.ds-building{color:var(--c-ink,#141c45)}.ds-archived{color:var(--c-muted,#4c5374)}.ds-archived::before{border-style:dotted}"
+      "refersTo": "status-live",
+      "description": "A square filled when it holds now, outlined while it is coming; always with its word.",
+      "html": "<span class=\"ds-status ds-status-live\">Yayında</span> <span class=\"ds-status ds-status-building\">Geliştiriliyor</span>",
+      "css": ".ds-status{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-form,'Hanken Grotesk',ui-sans-serif,system-ui,sans-serif);font-size:.94rem;font-weight:600;line-height:1.2;white-space:nowrap}.ds-status::before{content:'';width:.6em;height:.6em;flex:none;border:1.5px solid currentColor}.ds-status-live{color:var(--c-alarm,#7a1f2e)}.ds-status-live::before{background:currentColor}.ds-status-building{color:var(--c-ink,#241c1e)}"
     },
     {
-      "name": "Screenshot Plate",
+      "name": "Enclosure Index",
+      "kind": "custom",
+      "refersTo": "enclosure-line",
+      "description": "The list that closes the first sheet: Ek number, name, and the line's action or state.",
+      "html": "<div class=\"ds-index\"><h2 class=\"ds-label\">Ekler</h2><div class=\"ds-rows\"><a class=\"ds-enclosure\" href=\"#\"><span class=\"ds-ek\">Ek 1</span><span>Özgeçmiş</span><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/><polyline points=\"7 10 12 15 17 10\"/><line x1=\"12\" x2=\"12\" y1=\"15\" y2=\"3\"/></svg></a><a class=\"ds-enclosure\" href=\"#\"><span class=\"ds-ek\">Ek 2</span><span>TranslateYourPDF</span><span class=\"ds-status ds-status-live\">Yayında</span></a><a class=\"ds-enclosure\" href=\"#\"><span class=\"ds-ek\">Ek 3</span><span>EAA Monitor</span><span class=\"ds-status ds-status-building\">Geliştiriliyor</span></a><a class=\"ds-enclosure\" href=\"#\"><span class=\"ds-ek\">Ek 5</span><span>Çalışma yöntemi</span><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 5v14\"/><path d=\"m19 12-7 7-7-7\"/></svg></a></div></div>",
+      "css": ".ds-index{max-width:20rem;padding:1.5rem;background:var(--c-canvas,#e9e8e4)}.ds-label{margin:0;padding-bottom:.5rem;font-family:var(--font-form,'Hanken Grotesk',ui-sans-serif,system-ui,sans-serif);font-size:.75rem;font-weight:600;letter-spacing:.1em;line-height:1.4;text-transform:uppercase;color:var(--c-muted,#5c5352)}.ds-rows{border-top:1px solid var(--c-rule,#241c1e)}.ds-enclosure{display:grid;grid-template-columns:2.75rem minmax(0,1fr) auto;align-items:baseline;gap:.6rem;padding-block:.5rem;border-bottom:1px solid var(--c-rule-soft,rgba(36,28,30,.18));font-family:var(--font-form,'Hanken Grotesk',ui-sans-serif,system-ui,sans-serif);font-size:.94rem;color:var(--c-ink,#241c1e);text-decoration:none;transition:background-color 200ms ease}.ds-enclosure:hover{background:var(--c-raised,#dfddd7)}.ds-enclosure:focus-visible{outline:2px solid var(--c-ink,#241c1e);outline-offset:3px}.ds-enclosure svg{align-self:center}.ds-ek{color:var(--c-muted,#5c5352)}.ds-status{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-form,'Hanken Grotesk',ui-sans-serif,system-ui,sans-serif);font-size:.94rem;font-weight:600;line-height:1.2;white-space:nowrap}.ds-status::before{content:'';width:.6em;height:.6em;flex:none;border:1.5px solid currentColor}.ds-status-live{color:var(--c-alarm,#7a1f2e)}.ds-status-live::before{background:currentColor}.ds-status-building{color:var(--c-ink,#241c1e)}.ds-enclosure .ds-status{font-size:.8rem}"
+    },
+    {
+      "name": "Section Head",
+      "kind": "custom",
+      "description": "A title on the desk, its Ek mark at the right edge on the same baseline, the lead below.",
+      "html": "<div class=\"ds-head\"><h2 class=\"ds-headline\">Ürünler</h2><span class=\"ds-ek-mark\">Ek 2–4</span><p class=\"ds-lead\">Canlı ve geliştirilen ürünler.</p></div>",
+      "css": ".ds-head{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:.5rem 2rem;padding:3rem 2rem 2rem;background:var(--c-stock,#4a1f28);color:var(--c-on-stock,#efe9e3)}.ds-headline{margin:0;font-family:var(--font-letter,Spectral,Georgia,serif);font-weight:300;font-size:clamp(2.1rem,4.2vw,3.25rem);line-height:1.08;letter-spacing:-.012em}.ds-ek-mark{font-family:var(--font-form,'Hanken Grotesk',ui-sans-serif,system-ui,sans-serif);font-size:.94rem;font-weight:600;color:var(--c-on-stock-muted,#cdbfb9);white-space:nowrap}.ds-lead{grid-column:1/-1;max-width:34rem;margin:0;color:var(--c-on-stock-muted,#cdbfb9);font-family:var(--font-letter,Spectral,Georgia,serif);font-size:1.125rem}"
+    },
+    {
+      "name": "Sheet with Watermark",
       "kind": "card",
-      "refersTo": "plate",
-      "description": "A screenshot laid on the page: paper edge only, ink edge on hover.",
-      "html": "<a class=\"ds-plate\" href=\"#\"><div class=\"ds-plate-img\"></div></a>",
-      "css": ".ds-plate{display:block;width:16rem;overflow:hidden;border:1px solid var(--c-rule-soft,rgba(20,28,69,.2));border-radius:.5rem;background:var(--c-raised,#e2e6e3);transition:border-color 180ms ease}.ds-plate-img{aspect-ratio:16/10;background:var(--c-raised,#e2e6e3);transition:transform 700ms cubic-bezier(.16,1,.3,1)}.ds-plate:hover,.ds-plate:focus-visible{border-color:var(--c-ink,#141c45)}.ds-plate:hover .ds-plate-img{transform:scale(1.015)}"
+      "refersTo": "sheet",
+      "description": "Heavy paper on the desk: square, one soft shadow. The watermark shows where the pointer holds it to the light; here it lights on hover at the centre.",
+      "html": "<div class=\"ds-desk-ground\"><div class=\"ds-sheet\"><div class=\"ds-watermark\" aria-hidden=\"true\"><svg viewBox=\"0 0 400 400\" fill=\"none\" stroke=\"currentColor\"><circle cx=\"200\" cy=\"200\" r=\"192\" stroke-width=\"3\"/><circle cx=\"200\" cy=\"200\" r=\"178\" stroke-width=\"1\"/><text x=\"200\" y=\"262\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-family=\"Spectral, Georgia, serif\" font-size=\"176\" font-weight=\"300\">AK</text></svg></div><p class=\"ds-sentence\">Fikirden canlı ürüne, uçtan uca.</p><p class=\"ds-signature\">Saygılarımla,<span>Anıl Karabulut</span></p></div></div>",
+      "css": ".ds-desk-ground{padding:2rem;background:var(--c-stock,#4a1f28)}.ds-sheet{position:relative;isolation:isolate;overflow:hidden;padding:3.5rem;background:var(--c-canvas,#e9e8e4);box-shadow:var(--sheet-shadow,0 1px 1px rgba(30,8,14,.3),0 18px 36px -14px rgba(30,8,14,.55))}.ds-watermark{position:absolute;inset:0;z-index:-1;display:grid;place-items:center;color:var(--mark,rgba(36,28,30,.13));opacity:0;transition:opacity 500ms ease;-webkit-mask-image:radial-gradient(circle 17rem at 50% 50%,#000 25%,transparent 100%);mask-image:radial-gradient(circle 17rem at 50% 50%,#000 25%,transparent 100%)}.ds-watermark svg{width:min(82%,46rem);height:auto}.ds-sheet:hover .ds-watermark{opacity:1}.ds-sentence{margin:0;font-family:var(--font-letter,Spectral,Georgia,serif);font-style:italic;font-size:clamp(1.4rem,2.3vw,1.85rem);line-height:1.3;color:var(--c-ink,#241c1e)}.ds-signature{margin:1.5rem 0 0;font-family:var(--font-letter,Spectral,Georgia,serif);font-style:italic;line-height:1.35;color:var(--c-body,#2f2829)}.ds-signature span{display:block;margin-top:.15rem;font-size:1.5rem;font-style:normal}"
     },
     {
-      "name": "Process Walk",
+      "name": "Clipped Print",
       "kind": "custom",
-      "refersTo": "step-mark",
-      "description": "Round step marks on a stem; reached steps fill ink, the resting step keeps an ochre ring.",
-      "html": "<ol class=\"ds-steps\"><li data-now=\"true\"><span class=\"ds-mark\"></span>Idea</li><li data-now=\"true\"><span class=\"ds-mark\" data-here=\"true\"></span>Build</li><li><span class=\"ds-mark\"></span>Ship</li></ol>",
-      "css": ".ds-steps{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin:0;padding:0;list-style:none;font-family:'Bricolage Grotesque',ui-sans-serif,sans-serif;font-weight:700;color:var(--c-ink,#141c45)}.ds-steps::before{content:'';position:absolute;left:1.125rem;right:1.125rem;top:1.125rem;height:1.5px;background:var(--c-rule-soft,rgba(20,28,69,.2))}.ds-steps li{display:grid;gap:1rem}.ds-mark{position:relative;z-index:1;width:2.25rem;height:2.25rem;border-radius:999px;border:1.5px solid var(--c-ink,#141c45);background:var(--c-raised,#e2e6e3);transition:background-color 260ms ease}.ds-steps li[data-now=true] .ds-mark{background:var(--c-ink,#141c45)}.ds-mark::after{content:'';position:absolute;inset:-5px;border-radius:999px;border:2px solid var(--c-ochre,#d9a23a);transform:scale(.6);opacity:0;transition:transform 520ms cubic-bezier(.16,1,.3,1),opacity 200ms ease}.ds-mark[data-here=true]::after{transform:scale(1);opacity:1}"
-    },
-    {
-      "name": "Motif Seal with Provenance",
-      "kind": "custom",
-      "description": "One numbered unit of the motif set, poured round (computed in canvas in the build; a static stand-in here) beside its provenance label.",
-      "html": "<span class=\"ds-seal\"><span class=\"ds-seal-disc\"><i style=\"border-color:#d9a23a\"><i style=\"border-color:#f1f2ec\"><i style=\"border-color:#4fa39b\"><i style=\"border-color:#d98f87\"></i></i></i></i></span><span class=\"ds-prov\">No. 02 · Taraklı — computed, seed 22</span></span>",
-      "css": ".ds-seal{display:inline-flex;align-items:center;gap:1rem;font-family:'Bricolage Grotesque',ui-sans-serif,sans-serif}.ds-seal-disc{display:grid;place-items:center;width:6rem;height:6rem;flex:none;border-radius:999px;background:var(--c-stock,#1d2a66)}.ds-seal-disc i{display:grid;place-items:center;width:calc(100% - 10px);height:calc(100% - 10px);border:4px solid;border-radius:999px}.ds-seal-disc>i{width:78%;height:78%}.ds-prov{max-width:13rem;font-size:.78rem;font-weight:650;font-stretch:78%;letter-spacing:.09em;line-height:1.4;text-transform:uppercase;color:var(--c-muted,#4c5374)}"
+      "refersTo": "print",
+      "description": "The print on the sheet, held by the split paperclip: back half under, front half over; straightens on hover. The clip halves are the project's baked rasters at /clip-back.png and /clip-front.png, served from the site root.",
+      "html": "<div class=\"ds-clipped\"><img class=\"ds-clip ds-clip-back\" src=\"/clip-back.png\" alt=\"\" width=\"66\" height=\"198\"><div class=\"ds-print\"><div class=\"ds-photo\"></div></div><img class=\"ds-clip ds-clip-front\" src=\"/clip-front.png\" alt=\"\" width=\"66\" height=\"198\"></div>",
+      "css": ".ds-clipped{position:relative;width:12rem;margin:2rem;rotate:1.6deg;transition:rotate 520ms var(--ease-lay,cubic-bezier(.22,1,.36,1))}.ds-clipped:hover{rotate:0deg}.ds-print{position:relative;z-index:1;padding:.5rem;background:var(--print,#f6f5f1);box-shadow:0 1px 2px rgba(30,8,14,.3),0 8px 18px -8px rgba(30,8,14,.45)}.ds-photo{aspect-ratio:4/5;background:var(--c-raised,#dfddd7)}.ds-clip{position:absolute;top:-1.25rem;left:1.5rem;width:1.4rem;height:4.2rem;filter:drop-shadow(.5px 1.2px .7px rgba(30,8,14,.5))}.ds-clip-back{z-index:0}.ds-clip-front{z-index:2}"
     }
   ],
   "narrative": {
-    "northStar": "The Ebru Tray",
-    "overview": "The page is Turkish paper marbling: an idea dropped into a çivit indigo bath as pigment, combed into pattern, and pulled onto sized paper once, the same one-way trip a product makes from idea to live. Indigo carries the bath regions (the hero, the demo, the contact); cool sized paper with indigo ink carries the reading; earth pigments live only inside the marbling; and aşı red means state. Every marbled surface is computed in a canvas from a seeded polygon simulation, never an image, so the same bath is poured on every visit and every pattern can name where it came from.\n\nDensity is calm and editorial: wide bands of paper between the indigo regions, one family set large for names and small and condensed for field names, records ruled with hairlines. The drop is the one recurring shape. Status is a drop, the current nav item is a drop, the portrait sits in the innermost drop of a bülbül yuvası nest, and buttons are pulled pills whose hover is a drop spreading from the centre.\n\nThe world explicitly replaces the dark developer card grid, the warm cream editorial page, and the earlier manila case file. Nothing of the case file (Courier, manila, black stock, stamps, heavy form rules) carries over.",
+    "northStar": "The Letter on the Desk",
+    "overview": "The page is a good letter arriving on a manager's desk: heavy stock, a short signed introduction, and its enclosures attached. Everything readable sits on a sheet of paper, and everything between the sheets is the desk. Trust comes from restraint and finish, so the system spends its effort on what a careful stationer would: the weight of the paper, a mark pressed into it without ink, a clip that really holds the photograph, a numbered list of what is enclosed.\n\nDensity is that of correspondence. The first sheet carries the name, the face, the role, the availability, the closing and the index of enclosures. The sheets behind it are records: rows, hairlines, dates, status. Two voices share the work: a serif that writes the letter and a grotesque that fills in the form around it.\n\nThe world has two lights. Gündüz lays dove-grey sheets on vişne çürüğü cotton; Gece turns the whole desk to aubergine with pale ink. The signature belongs to the mouse: moving the pointer over a sheet holds it to the light and the watermark shows.",
     "keyCharacteristics": [
-      "A committed çivit indigo bath for hero, demo and contact; cool paper (not cream) everywhere else.",
-      "Marbling is computed live from CSS-declared stones and pigments, and the stones under copy stay tone-on-tone.",
-      "One family, Bricolage Grotesque, carrying every role through weight, width and optical size.",
-      "Drops and pills: round marks, softly rounded sheets, no hard boxes and no shadows.",
-      "Aşı red is reserved for state. Ochre is the one pigment allowed out of the bath.",
-      "Motion spreads fast and settles: the pour, the pull, the walk, each played once."
+      "A desk and sheets: the page ground is coloured stock, and readable content lies on paper above it.",
+      "Spectral for the letter's voice, Hanken Grotesk for the office form around it.",
+      "Square corners and hairline rules on every surface and control.",
+      "One soft shadow per paper object, faint fibre in the sheet, nothing glossy.",
+      "Finish carried by physical marks: the blind monogram, the split paperclip, the hidden watermark, the typed signature.",
+      "One numbering across the page: the enclosure index and the section marks count the same Ek 1 to Ek 8.",
+      "Motion is a sheet settling once. The page is readable at every frame."
     ],
     "rules": [
       {
-        "name": "The State-Only Red Rule",
-        "body": "Aşı red marks live, available and active, and nothing else. If removing the red would leave the meaning intact, the red should not be there.",
+        "name": "The State Only Rule",
+        "body": "The state colours mark live, available and active, and nothing else. State Vişne on paper, Desk State on the desk, Night State in Gece. If removing the colour leaves the meaning intact, it should not be there.",
         "section": "colors"
       },
       {
-        "name": "The Ochre Leaves Once Rule",
-        "body": "Ochre is the only pigment allowed outside the marbling, and only for selection, the paper button's press, and the resting process step. Turquoise, rose and lahor never appear in UI chrome.",
+        "name": "The Dove Not Cream Rule",
+        "body": "The sheet ground is dove grey in every Gündüz surface. Cream is refused; the warm pale of On Desk belongs to text and controls on the stock, not to the paper.",
         "section": "colors"
       },
       {
-        "name": "The Calm Stones Rule",
-        "body": "The marbling canvas reads stones and pigments from CSS. Any region marked `data-calm` (headline, copy, actions, facts) gets tone-on-tone stones only, and bright pigment never lands under text.",
+        "name": "The Faint Stays On The Sheet Rule",
+        "body": "Ink Faint is for the sheet ground only. On Dove Raised it falls below AA.",
         "section": "colors"
       },
       {
-        "name": "The One Family Rule",
-        "body": "Every role is Bricolage Grotesque. Hierarchy comes from weight, width and size, never from a second face.",
+        "name": "The Two Voices Rule",
+        "body": "The letter speaks in Spectral; the form is filled in with Hanken Grotesk. If a string is a sentence, it is Spectral. If it is a field, a value, a date or a control, it is Hanken Grotesk.",
+        "section": "typography"
+      },
+      {
+        "name": "The No Spectral Bold Rule",
+        "body": "Spectral stops at 500. Anything that needs to be heavier is set in Hanken Grotesk, so the browser never synthesises a weight.",
         "section": "typography"
       },
       {
         "name": "The Field Name Rule",
-        "body": "Condensed uppercase labels name a field (Location, Facts, Stack) or a pattern's provenance. They never sit above a headline as a kicker.",
+        "body": "A label names the list or field directly beneath it. It is never a lead-in above a larger heading.",
         "section": "typography"
       },
       {
-        "name": "The Pigment-Not-Shadow Rule",
-        "body": "Separation comes from a change of material (bath, paper, raised paper) or a rule, never from a cast shadow or a gradient.",
+        "name": "The Paper Only Rule",
+        "body": "Shadows belong to objects that are physically paper or wire: the sheet, the print, the clip. Buttons, rows, panels and plates cast none.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Marks In The Paper Rule",
+        "body": "Fibre, watermark and monogram are in the sheet, not on it. They stay beneath the text and never compete with it.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "**Do** put the name, the demo and the contact on the Çivit Bath, and everything read at length on Sized Paper.",
-      "**Do** declare marbling colours in `--bath-stones` and `--bath-pigments` per theme, and mark every text region over the bath `data-calm`.",
-      "**Do** compute every marbled surface from a seed with a numbered motif (01 Gelgit, 02 Taraklı, 03 Battal) and print its provenance beside it.",
-      "**Do** mark status with a drop: filled aşı red for live or available, an ink ring for in development, a dotted muted ring for archived.",
-      "**Do** use the centre-out spread (520ms, spread ease) for pill hovers, and the spread ease for every authored transition.",
-      "**Do** keep text pairs at WCAG AA or better in both themes, including bath-alarm over the lightest stone."
+      "Do put readable content on a sheet, and keep section titles and the close on the desk.",
+      "Do use the semantic tokens, so both themes stay in step.",
+      "Do keep one numbering: a new enclosure takes its number in the index and on its section head together.",
+      "Do set sentences in Spectral and fields, values, dates and controls in Hanken Grotesk.",
+      "Do close a status with its word as well as its mark, so state never rests on colour alone.",
+      "Do keep every sheet visible from its first frame; the settle moves it, never reveals it.",
+      "Do keep the CV the solid action, reachable from the masthead at every width.",
+      "Do keep text at WCAG AA in both themes, and check any new pair in Gündüz and Gece."
     ],
     "donts": [
-      "**Don't** use aşı red as a pigment, an accent or decoration, and don't use rose where red is meant.",
-      "**Don't** let turquoise, rose or lahor into UI chrome. Ochre is the only pigment that leaves the bath, and only for selection, the paper button's press and the resting step.",
-      "**Don't** use a raster image for marbling. Patterns are computed.",
-      "**Don't** introduce a second typeface, a cream or warm paper ground, or a dark card grid.",
-      "**Don't** add box shadows, CSS gradients or hard rectangular cards to UI. Depth is material and rules. The page curl's simulated fold shading is the only exception.",
-      "**Don't** put a condensed label above a headline as a kicker or eyebrow.",
-      "**Don't** add looping or drifting motion, or per-section entrance animations beyond the strip pull and the process walk."
+      "Don't let the sheet ground drift to cream or ivory.",
+      "Don't use a state colour for decoration, emphasis, links or hover.",
+      "Don't put a label above a heading as a lead-in; a label names a list or a field.",
+      "Don't set Spectral heavier than 500.",
+      "Don't add corner radius to a surface or control.",
+      "Don't paint with gradients, glass or blur; depth is paper, shadow and tone.",
+      "Don't give a shadow to anything that is not paper or wire.",
+      "Don't imitate a signature with a script font; the name is typed.",
+      "Don't give the monogram an ink colour, or redraw it as a flat logo.",
+      "Don't tilt a sheet at rest; only the print rests at an angle.",
+      "Don't add entrance animations to sections or fade content in.",
+      "Don't place Ink Faint on Dove Raised."
     ]
   }
 }

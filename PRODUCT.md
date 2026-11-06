@@ -14,8 +14,9 @@ GitHub, usually with many candidate tabs open, and decide in roughly thirty seco
 whether to shortlist. Their job on this page: confirm who the candidate is and what
 role he fits, see proof he can do the work, then get the CV or a contact channel.
 
-Technical managers and potential clients also visit, but were not confirmed as the
-primary audience; depth for them sits below the fold.
+Company employees and executives also read the page and should leave thinking he is
+reliable and mature (confirmed by the owner 2026-11-05). Technical managers and potential
+clients also visit; depth for them sits below the fold.
 
 ## Product Purpose
 

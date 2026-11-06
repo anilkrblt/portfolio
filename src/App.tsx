@@ -1,36 +1,19 @@
 import {MotionConfig, motion, useReducedMotion} from 'motion/react';
 import {
+  ArrowDown,
   ArrowUpRight,
   Check,
   Copy,
-  Database,
   Download,
   ExternalLink,
   Github,
   Layers,
   MapPin,
   Menu,
-  Server,
-  ShieldCheck,
-  Smartphone,
   X,
 } from 'lucide-react';
-import {Component, Suspense, lazy, useEffect, useMemo, useRef, useState, type ReactNode, type RefObject} from 'react';
+import {Component, Suspense, lazy, useEffect, useMemo, useRef, useState, type PointerEvent, type ReactNode} from 'react';
 
-import {
-  addDrop,
-  bloom,
-  displace,
-  paint,
-  pourStrip,
-  readColors,
-  refine,
-  rng,
-  stroke,
-  type Guard,
-  type Shape,
-  type StripMotif,
-} from './ebru/marbling';
 import {drawPage, type PageContent} from './three/pageArt';
 
 /**
@@ -86,7 +69,6 @@ type ArchiveProject = {
 
 type SkillGroup = {
   title: LocalizedString;
-  icon: typeof Server;
   items: string[];
 };
 
@@ -105,7 +87,7 @@ const CV_URL: Record<Language, string> = {
 
 const COPY = {
   tr: {
-    metaTitle: 'Anıl Karabulut | Full-stack Ürün Geliştirici',
+    metaTitle: 'Anıl Karabulut | Full-stack Yazılım Mühendisi',
     metaDescription:
       'Fikirden üretim dağıtımına kadar uçtan uca full-stack ürünler geliştiren yazılım mühendisi Anıl Karabulut.',
     skip: 'Ana içeriğe geç',
@@ -136,7 +118,10 @@ const COPY = {
       location: 'Edirne, Türkiye',
       status: 'Uzaktan ve hibrit çalışmaya açık',
       portraitAlt: 'Anıl Karabulut, beyaz bir duvarın önünde',
-      combHint: 'Tekneyi sürükleyerek tarayın, dokunarak boya damlatın.'
+      closing: 'Tanışmaktan memnuniyet duyarım.',
+      regards: 'Saygılarımla,',
+      enclosures: 'Ekler',
+      enclosure: 'Ek',
     },
     facts: {
       status: 'Durum',
@@ -230,14 +215,6 @@ const COPY = {
     experience: {
       current: 'Aktif',
     },
-    archive: {
-      stamp: 'Arşivlendi',
-    },
-    ebru: {
-      motifs: {gelgit: 'Gelgit', tarakli: 'Taraklı', battal: 'Battal'},
-      computed: 'tarayıcıda hesaplanan ebru',
-      seed: 'tohum',
-    },
     contactLabels: {
       email: 'E-posta',
       phone: 'Telefon',
@@ -260,11 +237,11 @@ const COPY = {
       {name: 'Türkçe', level: 'Anadil'},
       {name: 'İngilizce', level: 'C1 Seviye'},
     ],
-    footerNote: 'React, TypeScript ve Tailwind ile kuruldu. Ebru desenleri tarayıcıda hesaplanır. Yazı: Bricolage Grotesque.',
+    footerNote: 'React, TypeScript ve Tailwind ile kuruldu. Yazı: Spectral ve Hanken Grotesk.',
     footer: 'Tüm hakları saklıdır.',
   },
   en: {
-    metaTitle: 'Anıl Karabulut | Full-stack Product Engineer',
+    metaTitle: 'Anıl Karabulut | Full-stack Software Engineer',
     metaDescription:
       'Software engineer Anıl Karabulut builds and ships end-to-end full-stack products from idea to production.',
     skip: 'Skip to main content',
@@ -295,7 +272,10 @@ const COPY = {
       location: 'Edirne, Türkiye',
       status: 'Open to remote and hybrid work',
       portraitAlt: 'Anıl Karabulut in front of a white wall',
-      combHint: 'Drag across the bath to comb it; tap to drop pigment.'
+      closing: 'I would be glad to hear from you.',
+      regards: 'Sincerely,',
+      enclosures: 'Enclosures',
+      enclosure: 'Encl.',
     },
     facts: {
       status: 'Status',
@@ -389,14 +369,6 @@ const COPY = {
     experience: {
       current: 'Active',
     },
-    archive: {
-      stamp: 'Archived',
-    },
-    ebru: {
-      motifs: {gelgit: 'Gel-git', tarakli: 'Combed', battal: 'Battal stones'},
-      computed: 'marbling computed in the browser',
-      seed: 'seed',
-    },
     contactLabels: {
       email: 'Email',
       phone: 'Phone',
@@ -419,7 +391,7 @@ const COPY = {
       {name: 'Turkish', level: 'Native'},
       {name: 'English', level: 'C1'},
     ],
-    footerNote: 'Built with React, TypeScript and Tailwind. The marbling is computed in the browser. Set in Bricolage Grotesque.',
+    footerNote: 'Built with React, TypeScript and Tailwind. Set in Spectral and Hanken Grotesk.',
     footer: 'All rights reserved.',
   },
 } as const;
@@ -577,22 +549,18 @@ const PRODUCTS: Product[] = [
 const SKILL_GROUPS: SkillGroup[] = [
   {
     title: {tr: 'Backend', en: 'Backend'},
-    icon: Server,
     items: ['Spring Boot', 'Python / FastAPI', '.NET Core', 'Node.js', 'Go', 'REST API', 'JWT'],
   },
   {
     title: {tr: 'Frontend & Otomasyon', en: 'Frontend & Automation'},
-    icon: Smartphone,
     items: ['React', 'Next.js', 'React Native', 'TypeScript', 'Playwright', 'axe-core'],
   },
   {
     title: {tr: 'Veri & Belge', en: 'Data & Documents'},
-    icon: Database,
     items: ['PostgreSQL', 'pgvector', 'Drizzle', 'SQLite', 'PyMuPDF', 'Tesseract OCR'],
   },
   {
     title: {tr: 'Dağıtım & Mimari', en: 'Delivery & Architecture'},
-    icon: ShieldCheck,
     items: ['Docker', 'Caddy', 'Kubernetes', 'Testcontainers', 'Clean Architecture', 'RAG'],
   },
 ];
@@ -717,7 +685,7 @@ const LANGUAGE_OPTIONS: {value: Language; label: string}[] = [
 
 const THEME_OPTIONS: Theme[] = ['gunduz', 'gece'];
 
-const THEME_COLOR: Record<Theme, string> = {gunduz: '#eef0ed', gece: '#0b1024'};
+const THEME_COLOR: Record<Theme, string> = {gunduz: '#4a1f28', gece: '#1e1226'};
 
 /** Masthead links and the sections they open; the hero is tracked but has no link. */
 const NAV_TARGETS = {
@@ -732,33 +700,28 @@ type NavKey = keyof typeof NAV_TARGETS;
 const NAV_KEYS = Object.keys(NAV_TARGETS) as NavKey[];
 const TRACKED_SECTIONS = ['top', ...Object.values(NAV_TARGETS)];
 
-/** Each sheet's head is a different gesture over the same pigments. */
-const SHEET_MOTIF: StripMotif[] = ['gelgit', 'tarakli', 'battal'];
+/** Unhurried, then still: the way a sheet settles on a desk. */
+const layEase = [0.22, 1, 0.36, 1] as const;
 
-/** The motif set is numbered, so every pattern on the page names its unit. */
-const MOTIF_NUMBER: Record<StripMotif, string> = {gelgit: '01', tarakli: '02', battal: '03'};
+/** Newest first; the undated project closes the list. */
+const ARCHIVE_BY_DATE = [...ARCHIVE_PROJECTS].sort((a, b) => Number(b.date ?? 0) - Number(a.date ?? 0));
 
-/** Fast out, then still: the way pigment spreads on the size. */
-const spreadEase = [0.16, 1, 0.3, 1] as const;
+/** After the products, the enclosed sections in the order they follow. */
+const SECTION_ENCLOSURES = ['process', 'skills', 'experience', 'archive'] as const;
 
-/** A sheet pulled up out of the bath: its marbled head is revealed top to bottom, once. */
-const pull = {
-  hidden: {clipPath: 'inset(0% 0% 100% 0%)'},
-  visible: {clipPath: 'inset(0% 0% 0% 0%)', transition: {duration: 0.95, ease: spreadEase}},
+/** A sheet laid on the desk: a small settle, never a fade, so the page is always readable. */
+const lay = {
+  hidden: {y: 24, rotate: -0.3},
+  visible: {y: 0, rotate: 0, transition: {duration: 0.9, ease: layEase}},
 };
 
-const reveal = {
-  initial: 'hidden' as const,
-  whileInView: 'visible' as const,
-  viewport: {once: true, margin: '-80px'},
-};
+/** A section's number in the enclosure index, which the product sheets open. */
+function enclosureOf(key: (typeof SECTION_ENCLOSURES)[number], copy: Copy) {
+  return `${copy.hero.enclosure} ${PRODUCTS.length + SECTION_ENCLOSURES.indexOf(key) + 2}`;
+}
 
 function localize(value: LocalizedString, language: Language) {
   return value[language];
-}
-
-function pad(index: number) {
-  return String(index).padStart(2, '0');
 }
 
 /** Anchor ids for the product sheets, derived from their names. */
@@ -867,7 +830,7 @@ export default function App() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className="min-h-screen overflow-x-clip bg-canvas">
+      <div className="min-h-screen overflow-x-clip bg-stock">
         <a
           href="#main-content"
           className="btn fixed left-4 top-4 z-50 -translate-y-24 focus:translate-y-0"
@@ -885,130 +848,118 @@ export default function App() {
         />
 
         <main id="main-content">
-          <Hero copy={copy} language={language} theme={theme} />
+          <Letter copy={copy} language={language} />
 
-          <section id="products" className="shell band">
-            <SectionHead title={copy.sections.products} lead={copy.sections.productsLead} />
-            <div className="grid gap-24 md:gap-32">
-              {PRODUCTS.map((product, index) => (
-                <ProductSheet
-                  key={product.title}
-                  product={product}
-                  motif={SHEET_MOTIF[index % SHEET_MOTIF.length]}
-                  seed={index + 3}
-                  language={language}
-                  copy={copy}
-                  theme={theme}
-                />
+          <section id="products" className="desk">
+            <SectionHead title={copy.sections.products} lead={copy.sections.productsLead} enclosure={`${copy.hero.enclosure} 2–${PRODUCTS.length + 1}`} />
+            <div className="grid grid-cols-[minmax(0,1fr)] gap-5 md:gap-8">
+              {PRODUCTS.map((product) => (
+                <ProductSheet key={product.title} product={product} language={language} copy={copy} theme={theme} />
               ))}
             </div>
           </section>
 
-          <Process copy={copy} theme={theme} />
+          <Process copy={copy} />
 
-          <section id="skills" className="shell band">
-            <SectionHead
-              title={copy.sections.skills}
-              seal={<MotifSeal motif="tarakli" seed={22} copy={copy} theme={theme} />}
-            />
-            <div className="rows">
-              {SKILL_GROUPS.map((group) => (
-                <div key={group.title.en} className="row grid gap-3 py-6 md:grid-cols-[17rem_minmax(0,1fr)] md:gap-8">
-                  <h3 className="m-0 flex items-center gap-3 text-[1.0625rem] font-bold text-ink">
-                    <group.icon className="h-[1.1rem] w-[1.1rem] shrink-0 text-muted" aria-hidden="true" />
-                    {localize(group.title, language)}
-                  </h3>
-                  <p className="m-0 flex flex-wrap gap-y-1 text-body">
-                    {group.items.map((item) => (
-                      <span key={item} className="term">
-                        {item}
-                      </span>
-                    ))}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section id="experience" className="shell band pt-0 md:pt-0">
-            <SectionHead
-              title={copy.sections.experience}
-              seal={<MotifSeal motif="battal" seed={23} copy={copy} theme={theme} />}
-            />
-            <div className="rows">
-              {EXPERIENCES.map((experience) => (
-                <article
-                  key={`${experience.company}-${experience.date.en}`}
-                  className="row grid gap-3 py-8 md:grid-cols-[11rem_minmax(0,1fr)_auto] md:gap-8"
-                >
-                  <p className="m-0 text-small">
-                    <span className="block font-semibold text-ink">{localize(experience.date, language)}</span>
-                    {experience.location && (
-                      <span className="block text-muted">{localize(experience.location, language)}</span>
-                    )}
-                  </p>
-                  <div>
-                    <h3 className="subhead m-0">{localize(experience.title, language)}</h3>
-                    <p className="m-0 mt-1 font-semibold text-muted">{experience.company}</p>
-                    <p className="m-0 mt-3 max-w-[66ch] text-pretty">{localize(experience.description, language)}</p>
-                  </div>
-                  <div className="md:pt-1.5">
-                    {experience.current && <span className="drop drop-live">{copy.experience.current}</span>}
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          <section id="archive" className="shell band pt-0 md:pt-0">
-            <SectionHead
-              title={copy.sections.archive}
-              lead={copy.sections.archiveLead}
-              aside={<span className="drop drop-archived">{copy.archive.stamp}</span>}
-              seal={<MotifSeal motif="tarakli" seed={24} copy={copy} theme={theme} />}
-            />
-            <div className="rows">
-              {ARCHIVE_PROJECTS.map((project) => (
-                <article
-                  key={project.title.en}
-                  className="row grid gap-3 py-7 md:grid-cols-[5rem_minmax(0,1fr)_11rem] md:items-baseline md:gap-6"
-                >
-                  <span className="text-small font-semibold text-muted">{project.date ?? '—'}</span>
-                  <div>
-                    <h3 className="m-0 text-[1.15rem] font-bold leading-snug text-ink">
-                      {localize(project.title, language)}
+          <section id="skills" className="desk">
+            <SectionHead title={copy.sections.skills} enclosure={enclosureOf('skills', copy)} />
+            <Sheet>
+              <div className="rows">
+                {SKILL_GROUPS.map((group) => (
+                  <div key={group.title.en} className="row grid gap-2 py-5 md:grid-cols-[16rem_minmax(0,1fr)] md:gap-8">
+                    <h3 className="form m-0 text-[1rem] font-semibold text-ink">
+                      {localize(group.title, language)}
                     </h3>
-                    <p className="m-0 mt-2 max-w-[66ch] text-pretty">{localize(project.description, language)}</p>
-                    <p className="m-0 mt-3 flex flex-wrap gap-y-1 text-small text-muted">
-                      {project.tech.map((tech) => (
-                        <span key={tech} className="term">
-                          {tech}
+                    <p className="form m-0 flex flex-wrap gap-y-1 text-small text-body">
+                      {group.items.map((item) => (
+                        <span key={item} className="term">
+                          {item}
                         </span>
                       ))}
                     </p>
                   </div>
-                  <div className="flex flex-wrap gap-x-5 gap-y-2 md:justify-end">
-                    {project.links.map((link) => (
-                      <a
-                        key={`${project.title.en}-${link.label}`}
-                        href={link.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="link inline-flex items-center gap-1.5 text-small font-semibold text-ink"
-                        aria-label={`${localize(project.title, language)} — ${link.label}`}
-                      >
-                        {link.label}
-                        <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
-                      </a>
-                    ))}
-                  </div>
-                </article>
-              ))}
-            </div>
+                ))}
+              </div>
+            </Sheet>
+          </section>
+
+          <section id="experience" className="desk">
+            <SectionHead title={copy.sections.experience} enclosure={enclosureOf('experience', copy)} />
+            <Sheet>
+              <div className="rows">
+                {EXPERIENCES.map((experience) => (
+                  <article
+                    key={`${experience.company}-${experience.date.en}`}
+                    className="row grid gap-3 py-7 md:grid-cols-[11rem_minmax(0,1fr)_auto] md:gap-8"
+                  >
+                    <p className="form m-0 text-small">
+                      <span className="block font-semibold text-ink">{localize(experience.date, language)}</span>
+                      {experience.location && (
+                        <span className="block text-muted">{localize(experience.location, language)}</span>
+                      )}
+                    </p>
+                    <div>
+                      <h3 className="subhead m-0">{localize(experience.title, language)}</h3>
+                      <p className="form m-0 mt-1 text-small font-semibold text-muted">{experience.company}</p>
+                      <p className="m-0 mt-3 max-w-[66ch] text-pretty">{localize(experience.description, language)}</p>
+                    </div>
+                    <div className="md:pt-1.5">
+                      {experience.current && <span className="status status-live">{copy.experience.current}</span>}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </Sheet>
+          </section>
+
+          <section id="archive" className="desk">
+            <SectionHead
+              title={copy.sections.archive}
+              lead={copy.sections.archiveLead}
+              enclosure={enclosureOf('archive', copy)}
+            />
+            <Sheet>
+              <div className="rows">
+                {ARCHIVE_BY_DATE.map((project) => (
+                  <article
+                    key={project.title.en}
+                    className="row grid gap-3 py-6 md:grid-cols-[5rem_minmax(0,1fr)_10rem] md:items-baseline md:gap-6"
+                  >
+                    <span className="form text-small font-semibold text-muted">{project.date ?? '—'}</span>
+                    <div>
+                      <h3 className="subhead m-0">{localize(project.title, language)}</h3>
+                      <p className="m-0 mt-2 max-w-[66ch] text-pretty">{localize(project.description, language)}</p>
+                      <p className="form m-0 mt-3 flex flex-wrap gap-y-1 text-small text-muted">
+                        {project.tech.map((tech) => (
+                          <span key={tech} className="term">
+                            {tech}
+                          </span>
+                        ))}
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-x-5 gap-y-2 md:justify-end">
+                      {project.links.map((link) => (
+                        <a
+                          key={`${project.title.en}-${link.label}`}
+                          href={link.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="form link inline-flex items-center gap-1.5 text-small font-semibold text-ink"
+                          aria-label={`${localize(project.title, language)} — ${link.label}`}
+                        >
+                          {link.label}
+                          <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+                        </a>
+                      ))}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </Sheet>
           </section>
         </main>
 
-        <Contact copy={copy} language={language} theme={theme} />
+        <Contact copy={copy} language={language} />
       </div>
     </MotionConfig>
   );
@@ -1050,18 +1001,6 @@ function Switches({
         ))}
       </div>
     </div>
-  );
-}
-
-/** The mark: a drop ringed by one pigment, the way every sheet starts. */
-function DropMark({className = ''}: {className?: string}) {
-  return (
-    <svg viewBox="0 0 32 32" className={className} aria-hidden="true">
-      <circle cx="16" cy="16" r="15" fill="var(--c-stock)" />
-      <circle cx="16" cy="16" r="10.5" fill="var(--c-ochre)" />
-      <circle cx="16" cy="16" r="8" fill="var(--c-on-stock)" />
-      <circle cx="16" cy="16" r="5.5" fill="var(--c-stock)" />
-    </svg>
   );
 }
 
@@ -1121,11 +1060,10 @@ function Masthead({
   );
 
   return (
-    <header className="masthead">
-      <div className="shell flex h-16 items-center justify-between gap-6">
-        <a href="#top" className="flex min-w-0 items-center gap-2.5 text-ink">
-          <DropMark className="h-8 w-8 shrink-0" />
-          <span className="truncate text-[1.05rem] font-bold tracking-[-0.01em]">Anıl Karabulut</span>
+    <header className="masthead on-stock">
+      <div className="desk flex h-16 items-center justify-between gap-6">
+        <a href="#top" className="min-w-0 truncate text-[1.25rem] font-normal text-on-stock">
+          Anıl Karabulut
         </a>
 
         <nav aria-label={copy.navLabel} className="hidden xl:block">
@@ -1137,7 +1075,7 @@ function Masthead({
           <a
             href={CV_URL[language]}
             download
-            className="btn min-h-[2.5rem] px-4 text-small"
+            className="btn btn-paper min-h-[2.5rem] px-4 text-small"
             aria-label={copy.hero.cvCta}
           >
             <Download className="h-4 w-4" aria-hidden="true" />
@@ -1156,11 +1094,11 @@ function Masthead({
         </div>
       </div>
 
-      <div id="site-menu" hidden={!open} className="border-t border-rule-soft xl:hidden">
-        <div className="shell grid gap-6 pb-7 pt-5">
+      <div id="site-menu" hidden={!open} className="border-t border-stock-rule xl:hidden">
+        <div className="desk grid gap-6 pb-7 pt-5">
           <nav aria-label={copy.navLabel}>
             <ul className="m-0 grid list-none gap-1 p-0 sm:grid-cols-2">
-              {links('navlink w-full text-[1.0625rem]')}
+              {links('navlink w-full')}
             </ul>
           </nav>
           <div className="lg:hidden">{switches}</div>
@@ -1170,579 +1108,219 @@ function Masthead({
   );
 }
 
-/** The facts a recruiter screens for, set quietly under the hero's actions. */
-function Facts({copy}: {copy: Copy}) {
-  const languages = copy.languages.map((item) => `${item.name} (${item.level})`).join(' · ');
-  const rows: {label: string; value: ReactNode; wide?: boolean}[] = [
-    {label: copy.facts.location, value: copy.hero.location},
-    {label: copy.facts.languages, value: languages},
-    {label: copy.facts.file, value: copy.stats.map((stat) => `${Number(stat.value)} ${stat.label}`).join(' · '), wide: true},
-  ];
+/**
+ * A sheet of the letter. It is laid on the desk once as it scrolls in, always
+ * visible, and it holds the watermark: where the pointer is, the sheet is held
+ * up to the light.
+ */
+function Sheet({children, className = ''}: {children: ReactNode; className?: string}) {
+  const markRef = useRef<HTMLDivElement>(null);
+  const [lit, setLit] = useState(false);
+
+  const follow = (event: PointerEvent<HTMLDivElement>) => {
+    const mark = markRef.current;
+    if (!mark || event.pointerType !== 'mouse') return;
+    const box = event.currentTarget.getBoundingClientRect();
+    mark.style.setProperty('--mx', `${event.clientX - box.left}px`);
+    mark.style.setProperty('--my', `${event.clientY - box.top}px`);
+    setLit(true);
+  };
 
   return (
-    <dl className="m-0 grid gap-x-8 gap-y-3 sm:grid-cols-2">
-      {rows.map((row) => (
-        <div key={row.label} className={`grid gap-0.5 ${row.wide ? 'sm:col-span-2' : ''}`}>
-          <dt className="label">{row.label}</dt>
-          <dd className="m-0 text-small text-on-stock">{row.value}</dd>
-        </div>
-      ))}
-    </dl>
-  );
-}
-
-function Hero({copy, language, theme}: {copy: Copy; language: Language; theme: Theme}) {
-  const reduced = Boolean(useReducedMotion());
-  const hostRef = useRef<HTMLElement>(null);
-  const portraitRef = useRef<HTMLDivElement>(null);
-  const [poured, setPoured] = useState(false);
-
-  return (
-    <section id="top" ref={hostRef} className="tray on-stock">
-      <Bath hostRef={hostRef} guardRef={portraitRef} reduced={reduced} theme={theme} onPortrait={() => setPoured(true)} />
-
-      {/* Name, then the face, then the rest: a phone meets the portrait before the fold. */}
-      <div className="hero-grid shell relative">
-        <div style={{gridArea: 'name'}}>
-          <h1 className="display m-0 text-on-stock" data-calm>
-            Anıl
-            <br />
-            Karabulut
-          </h1>
-          <p className="sentence m-0 mt-6 max-w-[22ch] text-on-stock" data-calm>
-            {copy.hero.title}
-          </p>
-        </div>
-
-        <div className="portrait-slot" style={{gridArea: 'portrait'}}>
-          <motion.div
-            ref={portraitRef}
-            className="portrait-drop"
-            initial={false}
-            animate={poured ? {scale: 1, opacity: 1} : {scale: 0.18, opacity: 0}}
-            transition={{duration: 0.75, ease: spreadEase}}
+    <motion.div
+      className={`sheet ${className}`}
+      variants={lay}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{once: true, margin: '-40px'}}
+      onPointerMove={follow}
+      onPointerLeave={() => setLit(false)}
+    >
+      <div ref={markRef} className="watermark" data-lit={lit ? 'true' : 'false'} aria-hidden="true">
+        <svg viewBox="0 0 400 400" fill="none" stroke="currentColor">
+          <circle cx="200" cy="200" r="192" strokeWidth="3" />
+          <circle cx="200" cy="200" r="178" strokeWidth="1" />
+          <text
+            x="200"
+            y="262"
+            textAnchor="middle"
+            fill="currentColor"
+            stroke="none"
+            fontFamily="Spectral, Georgia, serif"
+            fontSize="176"
+            fontWeight="300"
           >
-            <img src="/profile.jpg" alt={copy.hero.portraitAlt} width={1056} height={1408} decoding="async" />
-          </motion.div>
-        </div>
-
-        <div style={{gridArea: 'rest'}}>
-          <p className="m-0 flex flex-wrap items-center gap-x-4 gap-y-2" data-calm>
-            <span className="text-[1.05rem] font-semibold text-on-stock">{copy.hero.role}</span>
-            <span className="drop drop-live">{copy.hero.status}</span>
-          </p>
-          <p className="lede m-0 mt-4 max-w-[54ch] text-on-stock" data-calm>
-            {copy.hero.subtitle}
-          </p>
-
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap" data-calm>
-            <a href={CV_URL[language]} download className="btn btn-paper">
-              <Download className="h-4 w-4" aria-hidden="true" />
-              {copy.hero.cvCta}
-            </a>
-            <a href="https://translateyourpdf.com" target="_blank" rel="noreferrer" className="btn btn-ghost">
-              {copy.hero.primaryCta}
-              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-            </a>
-          </div>
-          <a
-            href={CONTACT.github}
-            target="_blank"
-            rel="noreferrer"
-            className="link mt-5 inline-flex items-center gap-2 font-semibold text-on-stock"
-            data-calm
-          >
-            <Github className="h-4 w-4" aria-hidden="true" />
-            {copy.hero.secondaryCta}
-          </a>
-
-          <div className="mt-10 border-t border-stock-rule pt-5" data-calm>
-            <Facts copy={copy} />
-          </div>
-        </div>
+            AK
+          </text>
+        </svg>
       </div>
-
-      {!reduced && (
-        <p className="comb-hint label m-0" aria-hidden="true">
-          {copy.hero.combHint}
-        </p>
-      )}
-    </section>
-  );
-}
-
-type Rect = {x: number; y: number; w: number; h: number};
-
-type Task = {start: number; duration: number; prev: number; step: (progress: number, prev: number) => void};
-
-/** The colour list the bath paints with: four stones, six pigments, then the bath itself. */
-const STONES = 4;
-const PIGMENT = {white: STONES, ochre: STONES + 1, turquoise: STONES + 2, rose: STONES + 3, lahor: STONES + 4, deep: STONES + 5};
-const BATH = STONES + 6;
-
-/**
- * The nightingale's nest, outer edge to inner, in portrait radii: each drop
- * lands at the centre and pushes the ones before it out into a ring.
- */
-const NEST = [
-  {edge: 1.7, pigment: PIGMENT.white},
-  {edge: 1.64, pigment: PIGMENT.ochre},
-  {edge: 1.53, pigment: PIGMENT.deep},
-  {edge: 1.48, pigment: PIGMENT.white},
-  {edge: 1.42, pigment: PIGMENT.turquoise},
-  {edge: 1.33, pigment: PIGMENT.lahor},
-  {edge: 1.27, pigment: PIGMENT.rose},
-  {edge: 1.17, pigment: PIGMENT.deep},
-  {edge: 1.12, pigment: PIGMENT.white},
-  {edge: 1.05, pigment: PIGMENT.ochre},
-  {edge: 1, pigment: BATH},
-];
-
-const ease = (t: number) => 1 - Math.pow(1 - t, 3.2);
-
-/**
- * The hero's bath. On arrival it pours itself: indigo stones scatter across
- * the tray, then the nest drops land one after another on the portrait, the
- * last one becoming the face, and the stylus pulls the rings into petals.
- * Afterwards the visitor can comb it. Text regions marked `data-calm` only
- * ever get tone-on-tone stones, so nothing bright lands under the copy.
- */
-function Bath({
-  hostRef,
-  guardRef,
-  reduced,
-  theme,
-  onPortrait,
-}: {
-  hostRef: RefObject<HTMLElement | null>;
-  guardRef: RefObject<HTMLDivElement | null>;
-  reduced: boolean;
-  theme: Theme;
-  onPortrait: () => void;
-}) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const repaintRef = useRef<() => void>(() => {});
-  const portraitRef = useRef(onPortrait);
-  portraitRef.current = onPortrait;
-
-  useEffect(() => {
-    const host = hostRef.current;
-    const canvas = canvasRef.current;
-    const slot = guardRef.current;
-    const ctx = canvas?.getContext('2d');
-    if (!host || !canvas || !slot || !ctx) {
-      portraitRef.current();
-      return;
-    }
-
-    let shapes: Shape[] = [];
-    let guard: Guard = {x: 0, y: 0, r: 1};
-    let guardOn = false;
-    let calm: Rect[] = [];
-    let colors: string[] = [];
-    let bath = '#1d2a66';
-    let tasks: Task[] = [];
-    let clock = 0;
-    let raf = 0;
-    let width = 0;
-    let height = 0;
-    let scale = 1;
-    let dirty = false;
-
-    const readPalette = () => {
-      const style = getComputedStyle(host);
-      bath = style.getPropertyValue('--c-stock').trim() || bath;
-      const stones = readColors(host, '--bath-stones', ['#22317a', '#19245b', '#273883', '#1f2d6e']);
-      const pigments = readColors(host, '--bath-pigments', ['#f1f2ec', '#d9a23a', '#4fa39b', '#d98f87', '#9fb3dc', '#101741']);
-      colors = [...stones.slice(0, STONES), ...pigments.slice(0, 6), bath];
-    };
-
-    const measure = () => {
-      const box = host.getBoundingClientRect();
-      width = box.width;
-      height = box.height;
-      scale = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = Math.round(width * scale);
-      canvas.height = Math.round(height * scale);
-      // The slot's layout box, not the drop's: the drop may still be scaled down.
-      const face = slot.offsetParent ? slot : null;
-      const rect = (face ?? slot).getBoundingClientRect();
-      const size = slot.offsetWidth || rect.width;
-      guard = {
-        x: rect.left - box.left + rect.width / 2,
-        y: rect.top - box.top + rect.height / 2,
-        r: size / 2,
-      };
-      calm = Array.from(host.querySelectorAll('[data-calm]')).map((element) => {
-        const r = element.getBoundingClientRect();
-        return {x: r.left - box.left, y: r.top - box.top, w: r.width, h: r.height};
-      });
-    };
-
-    const isCalm = (x: number, y: number, margin: number) =>
-      calm.some((r) => x > r.x - margin && x < r.x + r.w + margin && y > r.y - margin && y < r.y + r.h + margin);
-
-    const draw = () => paint(ctx, shapes, colors, bath, width, height, scale);
-    repaintRef.current = () => {
-      readPalette();
-      draw();
-    };
-
-    const edge = () => Math.max(2.2, width / 520);
-
-    /** Lays a drop now and grows it to radius r over the task's life. */
-    const dropTask = (start: number, duration: number, x: number, y: number, r: number, pigment: number, nest = false): Task => ({
-      start,
-      duration,
-      prev: 0,
-      step: (progress, prev) => {
-        if (prev === 0) addDrop(shapes, x, y, 0.5, pigment, nest || !guardOn ? undefined : guard);
-        displace(shapes, x, y, (progress - prev) * (r * r - 0.25), nest || !guardOn ? undefined : guard);
-      },
-    });
-
-    const pour = (animated: boolean) => {
-      shapes = [];
-      guardOn = false;
-      tasks = [];
-      const random = rng(20261102);
-      const unit = Math.max(0.6, Math.min(1.2, width / 1440));
-
-      // Stones, away from the nest: tone-on-tone near the copy, a few pigments in the open.
-      const stones = Math.round((width * height) / (11000 * unit));
-      for (let i = 0; i < stones; i += 1) {
-        const x = random() * width;
-        const y = random() * height;
-        const roll = random();
-        if (Math.hypot(x - guard.x, y - guard.y) < guard.r * 2.1) continue;
-        const open = !isCalm(x, y, 70 * unit) && roll < 0.16;
-        const r = (open ? 9 + roll * 40 : 26 + random() * 46) * unit;
-        const pigment = open ? [PIGMENT.ochre, PIGMENT.white, PIGMENT.rose, PIGMENT.turquoise][i % 4] : i % STONES;
-        tasks.push(dropTask(random() * 520, 420, x, y, r, pigment));
-      }
-
-      // The nest: each drop is the area between its edge and the next one in.
-      const nestStart = 180;
-      NEST.forEach((ring, index) => {
-        const inner = NEST[index + 1]?.edge ?? 0;
-        const r = guard.r * Math.sqrt(ring.edge * ring.edge - inner * inner);
-        const start = nestStart + index * 80;
-        const task = dropTask(start, 380, guard.x, guard.y, r, ring.pigment, true);
-        if (ring.pigment === BATH) {
-          const step = task.step;
-          task.step = (progress, prev) => {
-            if (prev === 0) portraitRef.current();
-            step(progress, prev);
-            if (progress === 1) guardOn = true;
-          };
-        }
-        tasks.push(task);
-      });
-
-      // The stylus: five petals pulled out of the rings, then curled into the nest.
-      const bloomStart = nestStart + NEST.length * 80 + 260;
-      // Pull first, curl after: curling while pulling smears the petals back into rings.
-      tasks.push({
-        start: bloomStart,
-        duration: 650,
-        prev: 0,
-        step: (progress, prev) => {
-          guardOn = true;
-          bloom(shapes, guard, 5, (progress - prev) * guard.r * 0.5, 0, -Math.PI / 2);
-        },
-      });
-      tasks.push({
-        start: bloomStart + 650,
-        duration: 750,
-        prev: 0,
-        step: (progress, prev) => {
-          bloom(shapes, guard, 5, 0, (progress - prev) * 2.1, -Math.PI / 2);
-        },
-      });
-
-      tasks.sort((a, b) => a.start - b.start);
-
-      if (!animated) {
-        for (const task of tasks) {
-          task.step(1, 0);
-          refine(shapes, edge());
-        }
-        tasks = [];
-        draw();
-        return;
-      }
-      clock = performance.now();
-      kick();
-    };
-
-    const loop = (now: number) => {
-      raf = 0;
-      const t = now - clock;
-      for (const task of tasks) {
-        if (t < task.start) continue;
-        const linear = Math.min(1, (t - task.start) / task.duration);
-        const progress = linear === 1 ? 1 : ease(linear);
-        if (progress !== task.prev) {
-          task.step(progress, task.prev);
-          task.prev = progress;
-          dirty = true;
-        }
-      }
-      tasks = tasks.filter((task) => task.prev < 1);
-      if (dirty) {
-        refine(shapes, edge());
-        draw();
-        dirty = false;
-      }
-      if (tasks.length) kick();
-    };
-
-    const kick = () => {
-      if (!raf) raf = requestAnimationFrame(loop);
-    };
-
-    readPalette();
-    measure();
-    pour(!reduced);
-
-    // A resize re-pours the finished bath at once: same seed, new geometry.
-    let resizeTimer = 0;
-    let lastWidth = width;
-    let lastHeight = height;
-    const observer = new ResizeObserver(() => {
-      window.clearTimeout(resizeTimer);
-      resizeTimer = window.setTimeout(() => {
-        const box = host.getBoundingClientRect();
-        if (Math.abs(box.width - lastWidth) < 2 && Math.abs(box.height - lastHeight) < 40) return;
-        lastWidth = box.width;
-        lastHeight = box.height;
-        measure();
-        pour(false);
-        portraitRef.current();
-      }, 160);
-    });
-    observer.observe(host);
-
-    if (reduced) {
-      return () => {
-        observer.disconnect();
-        window.clearTimeout(resizeTimer);
-      };
-    }
-
-    // The stylus: drag to comb, tap to drop. Copy and controls keep their own gestures.
-    let drag: {id: number; x: number; y: number; moved: number} | null = null;
-    const local = (event: PointerEvent) => {
-      const box = host.getBoundingClientRect();
-      return {x: event.clientX - box.left, y: event.clientY - box.top};
-    };
-    const onDown = (event: PointerEvent) => {
-      if (event.button !== 0) return;
-      const target = event.target as Element;
-      if (target.closest('a, button, [data-calm], .portrait-drop')) return;
-      const point = local(event);
-      drag = {id: event.pointerId, x: point.x, y: point.y, moved: 0};
-    };
-    const onMove = (event: PointerEvent) => {
-      if (!drag || event.pointerId !== drag.id) return;
-      const point = local(event);
-      const vx = point.x - drag.x;
-      const vy = point.y - drag.y;
-      drag.moved += Math.hypot(vx, vy);
-      stroke(shapes, drag.x, drag.y, vx, vy, 34 * Math.max(0.7, width / 1440), guardOn ? guard : undefined);
-      drag.x = point.x;
-      drag.y = point.y;
-      dirty = true;
-      kick();
-    };
-    const onUp = (event: PointerEvent) => {
-      if (!drag || event.pointerId !== drag.id) return;
-      const point = local(event);
-      if (drag.moved < 6 && Math.hypot(point.x - guard.x, point.y - guard.y) > guard.r * 1.2) {
-        const random = Math.random();
-        const pigment = isCalm(point.x, point.y, 50)
-          ? Math.floor(random * STONES)
-          : [PIGMENT.ochre, PIGMENT.white, PIGMENT.rose, PIGMENT.turquoise, PIGMENT.lahor][Math.floor(random * 5)];
-        tasks.push({...dropTask(0, 520, point.x, point.y, 16 + random * 22, pigment), start: performance.now() - clock});
-        kick();
-      }
-      drag = null;
-    };
-
-    host.addEventListener('pointerdown', onDown);
-    window.addEventListener('pointermove', onMove);
-    window.addEventListener('pointerup', onUp);
-    window.addEventListener('pointercancel', onUp);
-    return () => {
-      cancelAnimationFrame(raf);
-      observer.disconnect();
-      window.clearTimeout(resizeTimer);
-      host.removeEventListener('pointerdown', onDown);
-      window.removeEventListener('pointermove', onMove);
-      window.removeEventListener('pointerup', onUp);
-      window.removeEventListener('pointercancel', onUp);
-    };
-  }, [hostRef, guardRef, reduced]);
-
-  // A theme change recolours the same pattern; the CSS variables land a frame later.
-  useEffect(() => {
-    const frame = requestAnimationFrame(() => repaintRef.current());
-    return () => cancelAnimationFrame(frame);
-  }, [theme]);
-
-  return <canvas ref={canvasRef} aria-hidden="true" />;
-}
-
-/**
- * A sheet's marbled head, poured and combed once, then pulled up out of the
- * bath when it scrolls in. The pattern is computed, so it follows the theme.
- */
-function MarbledStrip({
-  motif,
-  seed,
-  theme,
-  className = '',
-}: {
-  motif: StripMotif;
-  seed: number;
-  theme: Theme;
-  className?: string;
-}) {
-  const ref = useRef<HTMLCanvasElement>(null);
-  const shapesRef = useRef<{width: number; shapes: Shape[]} | null>(null);
-
-  useEffect(() => {
-    const canvas = ref.current;
-    if (!canvas) return;
-    let frame = 0;
-
-    const render = () => {
-      const box = canvas.getBoundingClientRect();
-      if (!box.width || !box.height) return;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
-      const scale = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = Math.round(box.width * scale);
-      canvas.height = Math.round(box.height * scale);
-      const style = getComputedStyle(canvas);
-      const bath = style.getPropertyValue('--c-stock').trim() || '#1d2a66';
-      const stones = readColors(canvas, '--bath-stones', ['#22317a', '#19245b', '#273883', '#1f2d6e']);
-      const pigments = readColors(canvas, '--bath-pigments', ['#f1f2ec', '#d9a23a', '#4fa39b', '#d98f87', '#9fb3dc', '#101741']);
-      // Mostly indigo, with veins of pigment between the stones.
-      const palette = [stones[0], pigments[1], stones[2], pigments[0], stones[1], pigments[2], stones[3], pigments[3]];
-      if (!shapesRef.current || Math.abs(shapesRef.current.width - box.width) > 2) {
-        shapesRef.current = {width: box.width, shapes: pourStrip(box.width, box.height, motif, seed, palette.length)};
-      }
-      paint(ctx, shapesRef.current.shapes, palette, bath, box.width, box.height, scale);
-    };
-
-    const schedule = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(render);
-    };
-    schedule();
-    const observer = new ResizeObserver(schedule);
-    observer.observe(canvas);
-    return () => {
-      cancelAnimationFrame(frame);
-      observer.disconnect();
-    };
-  }, [motif, seed, theme]);
-
-  return (
-    // The wrapper is what scrolls into view; the clip runs on the canvas, so a
-    // fully clipped strip can still be seen arriving.
-    <motion.div className={`strip ${className}`} {...reveal} aria-hidden="true">
-      <motion.canvas ref={ref} variants={pull} />
+      {children}
     </motion.div>
   );
 }
 
-/** Where a pattern came from: its unit in the numbered set, and that it was computed here. */
-function Provenance({
-  motif,
-  seed,
-  copy,
-  className = '',
-}: {
-  motif: StripMotif;
-  seed: number;
-  copy: Copy;
-  className?: string;
-}) {
+/** The close of the letter: the typed name under the regards. */
+function Signature({copy, className = ''}: {copy: Copy; className?: string}) {
   return (
-    <p className={`label m-0 ${className}`}>
-      No. {MOTIF_NUMBER[motif]} · {copy.ebru.motifs[motif]} — {copy.ebru.computed}, {copy.ebru.seed} {seed}
+    <p className={`signature m-0 ${className}`}>
+      <span className="block">{copy.hero.regards}</span>
+      <span className="signature-name block">Anıl Karabulut</span>
     </p>
   );
 }
 
-/** One unit of the motif set, poured small beside a section's title. */
-function MotifSeal({motif, seed, copy, theme}: {motif: StripMotif; seed: number; copy: Copy; theme: Theme}) {
-  return (
-    <span className="flex items-center gap-4 md:flex-row-reverse">
-      <MarbledStrip motif={motif} seed={seed} theme={theme} className="h-24 w-24 shrink-0 rounded-full md:h-28 md:w-28" />
-      <Provenance motif={motif} seed={seed} copy={copy} className="max-w-[13rem]" />
-    </span>
-  );
+/**
+ * The paperclip, in its two halves: the outer loop runs behind the print and
+ * the inner loop lies on top of it, so the photograph is really held.
+ */
+function Paperclip({half}: {half: 'back' | 'front'}) {
+  return <img className={`clip clip-${half}`} src={`/clip-${half}.png`} alt="" width={66} height={198} aria-hidden="true" />;
 }
 
 /**
- * A section's title, with its lead and its motif unit in the right-hand column,
- * so every head reads the same way: title left, image and words right.
+ * The first sheet is the letter itself: place and date, the name, the
+ * introduction and the closing, the photograph clipped on, and the index of
+ * what is enclosed. The CV is Enclosure 1 and stays the solid action.
  */
-function SectionHead({
-  title,
-  lead,
-  aside,
-  seal,
-}: {
-  title: string;
-  lead?: string;
-  aside?: ReactNode;
-  seal?: ReactNode;
-}) {
+function Letter({copy, language}: {copy: Copy; language: Language}) {
+  const today = useMemo(
+    () =>
+      new Intl.DateTimeFormat(language === 'tr' ? 'tr-TR' : 'en-GB', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      }).format(new Date()),
+    [language],
+  );
+
   return (
-    <div className="section-head">
-      <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-        <h2 className="headline m-0">{title}</h2>
-        {aside}
-      </div>
-      {(lead || seal) && (
-        <div className="grid gap-4 md:justify-items-end md:text-right">
-          {seal}
-          {lead && <p className="m-0 max-w-md text-pretty text-muted">{lead}</p>}
+    <section id="top" className="desk pt-3 md:pt-8">
+      <Sheet>
+        <div className="letter">
+          <div className="flex items-center gap-5" style={{gridArea: 'head'}}>
+            <motion.img
+              src="/monogram.png"
+              alt=""
+              width={64}
+              height={64}
+              className="monogram"
+              initial={{scale: 1.08}}
+              animate={{scale: 1}}
+              transition={{duration: 0.7, delay: 0.25, ease: layEase}}
+            />
+            <p className="form m-0 text-small text-muted">
+              {copy.hero.location}
+              <br />
+              {today}
+            </p>
+          </div>
+
+          <div style={{gridArea: 'name'}}>
+            <h1 className="display m-0">Anıl Karabulut</h1>
+            <p className="sentence m-0 mt-3">{copy.hero.title}</p>
+          </div>
+
+          <div className="clipped" style={{gridArea: 'photo'}}>
+            <Paperclip half="back" />
+            <div className="print">
+              <img src="/profile.jpg" alt={copy.hero.portraitAlt} width={1056} height={1408} decoding="async" />
+            </div>
+            <Paperclip half="front" />
+          </div>
+
+          <div style={{gridArea: 'body'}}>
+            <p className="m-0 flex flex-wrap items-center gap-x-5 gap-y-1.5">
+              <span className="form font-semibold text-ink">{copy.hero.role}</span>
+              <span className="status status-live">{copy.hero.status}</span>
+            </p>
+            <p className="lede m-0 mt-4 max-w-[58ch]">{copy.hero.subtitle}</p>
+            <p className="m-0 mt-3 max-w-[58ch] text-pretty text-muted">{copy.hero.summary}</p>
+            <p className="m-0 mt-4 max-w-[58ch]">{copy.hero.closing}</p>
+            <Signature copy={copy} className="mt-4" />
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <a href={CV_URL[language]} download className="btn">
+                <Download className="h-4 w-4" aria-hidden="true" />
+                {copy.hero.cvCta}
+              </a>
+              <a href="https://translateyourpdf.com" target="_blank" rel="noreferrer" className="btn btn-ghost">
+                {copy.hero.primaryCta}
+                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+            </div>
+            <a
+              href={CONTACT.github}
+              target="_blank"
+              rel="noreferrer"
+              className="form link mt-4 inline-flex items-center gap-2 text-small font-semibold text-ink"
+            >
+              <Github className="h-4 w-4" aria-hidden="true" />
+              {copy.hero.secondaryCta}
+            </a>
+          </div>
+
+          <div style={{gridArea: 'list'}}>
+            <h2 className="label m-0 pb-2">{copy.hero.enclosures}</h2>
+            <div className="rows">
+              <a href={CV_URL[language]} download className="enclosure">
+                <span className="text-muted">{copy.hero.enclosure} 1</span>
+                <span>{copy.contactLabels.cv}</span>
+                <Download className="h-3.5 w-3.5 self-center" aria-hidden="true" />
+              </a>
+              {PRODUCTS.map((product, index) => (
+                <a key={product.title} href={`#${sheetId(product)}`} className="enclosure">
+                  <span className="text-muted">
+                    {copy.hero.enclosure} {index + 2}
+                  </span>
+                  <span>{product.title}</span>
+                  <StatusMark product={product} copy={copy} />
+                </a>
+              ))}
+              {SECTION_ENCLOSURES.map((key, index) => (
+                <a key={key} href={`#${key}`} className="enclosure">
+                  <span className="text-muted">
+                    {copy.hero.enclosure} {PRODUCTS.length + index + 2}
+                  </span>
+                  <span>{copy.sections[key]}</span>
+                  <ArrowDown className="h-3.5 w-3.5 self-center" aria-hidden="true" />
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
-      )}
+      </Sheet>
+    </section>
+  );
+}
+
+/** A section's title on the desk, its enclosure number to the right. */
+function SectionHead({title, lead, enclosure}: {title: string; lead?: string; enclosure: string}) {
+  return (
+    <div className="section-head on-stock">
+      <h2 className="headline m-0">{title}</h2>
+      <span className="enclosure-mark">{enclosure}</span>
+      {lead && <p className="section-lead m-0">{lead}</p>}
     </div>
   );
 }
 
-function StatusDrop({product, copy}: {product: Product; copy: Copy}) {
+function StatusMark({product, copy}: {product: Product; copy: Copy}) {
   const live = product.status === 'live';
   return (
-    <span className={`drop ${live ? 'drop-live' : 'drop-building'}`}>
+    <span className={`status ${live ? 'status-live' : 'status-building'}`}>
       {live ? copy.product.live : copy.product.building}
     </span>
   );
 }
 
-/**
- * One product, as a sheet pulled from the bath: its marbled head, then its
- * provenance on one line (status, year, what it is), then the record and the
- * evidence beside it.
- */
+/** One product, one enclosed sheet: name and status, the record, the evidence beside it. */
 function ProductSheet({
   product,
-  motif,
-  seed,
   language,
   copy,
   theme,
 }: {
   product: Product;
-  motif: StripMotif;
-  seed: number;
   language: Language;
   copy: Copy;
   theme: Theme;
@@ -1750,29 +1328,27 @@ function ProductSheet({
   const live = product.status === 'live';
   return (
     <article id={sheetId(product)} className="scroll-mt-24">
-      <MarbledStrip motif={motif} seed={seed} theme={theme} className="h-16 md:h-24" />
-      <Provenance motif={motif} seed={seed} copy={copy} className="mt-2 text-right" />
-
-      <div className="mt-6 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3 border-b border-rule pb-5">
-        <h3 className="m-0 text-[clamp(1.9rem,3.4vw,2.75rem)] font-extrabold leading-none tracking-[-0.018em] text-ink [font-stretch:92%]">
+      <Sheet>
+      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3 border-b border-rule pb-5">
+        <h3 className="sheet-title m-0">
           {product.title}
         </h3>
         <p className="m-0 flex flex-wrap items-center gap-x-5 gap-y-2">
-          <StatusDrop product={product} copy={copy} />
-          <span className="text-small font-semibold text-muted">{product.year}</span>
+          <StatusMark product={product} copy={copy} />
+          <span className="form text-small font-semibold text-muted">{product.year}</span>
         </p>
       </div>
 
-      <div className="mt-8 grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-14">
+      <div className="mt-8 grid grid-cols-[minmax(0,1fr)] gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-14">
         <div>
-          <p className="m-0 font-semibold text-muted">{localize(product.kicker, language)}</p>
+          <p className="sentence m-0 text-[1.25rem]">{localize(product.kicker, language)}</p>
           <p className="lede m-0 mt-4 max-w-[60ch]">{localize(product.description, language)}</p>
 
           <h4 className="label m-0 mt-9">{copy.product.facts}</h4>
           <ul className="m-0 mt-3 grid list-none gap-2.5 p-0">
             {product.facts.map((fact) => (
-              <li key={fact.en} className="grid grid-cols-[1.1rem_minmax(0,1fr)] gap-2.5 text-[1rem] leading-6">
-                <span aria-hidden="true" className="mt-[0.45rem] h-2.5 w-2.5 rounded-full bg-ink" />
+              <li key={fact.en} className="grid grid-cols-[1.1rem_minmax(0,1fr)] gap-2.5 leading-7">
+                <span aria-hidden="true" className="mt-[0.6rem] h-px w-3 bg-ink" />
                 {localize(fact, language)}
               </li>
             ))}
@@ -1781,15 +1357,14 @@ function ProductSheet({
           <h4 className="label m-0 mt-9">{copy.product.highlights}</h4>
           <ul className="rows m-0 mt-3 list-none p-0">
             {product.highlights.map((highlight) => (
-              <li key={highlight.en} className="row grid grid-cols-[1.1rem_minmax(0,1fr)] gap-2.5 py-3 text-[1rem] leading-6">
-                <span aria-hidden="true" className="mt-[0.45rem] h-2.5 w-2.5 rounded-full border-2 border-ink" />
+              <li key={highlight.en} className="row py-3 leading-7">
                 {localize(highlight, language)}
               </li>
             ))}
           </ul>
 
           <h4 className="label m-0 mt-9">{copy.product.stack}</h4>
-          <p className="m-0 mt-3 flex flex-wrap gap-y-1 text-small text-body">
+          <p className="form m-0 mt-3 flex flex-wrap gap-y-1 text-small text-body">
             {product.tech.map((tech) => (
               <span key={tech} className="term">
                 {tech}
@@ -1813,7 +1388,7 @@ function ProductSheet({
             <div>
               <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                 <h4 className="label m-0">{copy.product.preview}</h4>
-                <span className="text-small text-muted">{copy.product.shotHint}</span>
+                <span className="form text-small text-muted">{copy.product.shotHint}</span>
               </div>
               <div className="mt-4 grid gap-7">
                 {product.shots.map((shot) => (
@@ -1824,6 +1399,7 @@ function ProductSheet({
           )
         )}
       </div>
+      </Sheet>
     </article>
   );
 }
@@ -1840,7 +1416,7 @@ function Plate({shot, language, title}: {shot: Shot; language: Language; title: 
       >
         <img src={shot.src} alt={localize(shot.alt, language)} loading="lazy" decoding="async" />
       </a>
-      <figcaption className="mt-2.5 text-small text-muted">{localize(shot.caption, language)}</figcaption>
+      <figcaption className="form mt-2.5 text-small text-muted">{localize(shot.caption, language)}</figcaption>
     </figure>
   );
 }
@@ -1928,18 +1504,18 @@ function DocumentDemo({demo, theme}: {demo: Copy['demo']; theme: Theme}) {
   return (
     <div
       ref={hostRef}
-      className="projection on-stock flex min-h-[520px] flex-col justify-between p-5 sm:p-7 lg:sticky lg:top-24 lg:self-start"
+      className="projection on-stock flex min-h-[520px] flex-col justify-between p-5 sm:p-7 lg:self-start"
       aria-label={demo.label}
     >
-      <div className="flex items-center justify-between gap-4 border-b border-stock-rule pb-3">
-        <span className="label">{demo.label}</span>
-        <span className="label">{demo.page}</span>
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-b border-stock-rule pb-3">
+        <span className="label whitespace-nowrap">{demo.label}</span>
+        <span className="label whitespace-nowrap">{demo.page}</span>
       </div>
 
       {interactive ? (
         <>
           <p className="sr-only">{demo.description}</p>
-          <div className="h-[380px] py-2 sm:h-[480px]" aria-hidden="true">
+          <div className="-mx-5 h-[460px] py-2 sm:-mx-7 sm:h-[600px]" aria-hidden="true">
             {inView ? (
               <SceneBoundary fallback={<DemoSpread demo={demo} />}>
                 <Suspense fallback={resting}>
@@ -1974,11 +1550,11 @@ function DocumentDemo({demo, theme}: {demo: Copy['demo']; theme: Theme}) {
       )}
 
       <div className="grid gap-2 border-t border-stock-rule pt-4 text-small sm:grid-cols-2">
-        <span className="inline-flex items-center gap-2 font-semibold text-on-stock">
+        <span className="form inline-flex items-center gap-2 font-semibold text-on-stock">
           <Check className="h-4 w-4" strokeWidth={2.75} aria-hidden="true" />
           {demo.preserved}
         </span>
-        <span className="inline-flex items-center gap-2 text-on-stock-muted sm:justify-end">
+        <span className="form inline-flex items-center gap-2 text-on-stock-muted sm:justify-end">
           <Check className="h-4 w-4" strokeWidth={2.75} aria-hidden="true" />
           {demo.report}
         </span>
@@ -1997,71 +1573,34 @@ function DemoSheet({content, alt}: {content: PageContent; alt: string}) {
   return <img src={src} alt={alt} className="mx-auto block aspect-[3/4] w-full max-w-[200px]" />;
 }
 
-/**
- * The method as one unbroken row. When it scrolls in, a drop walks it once,
- * step by step, and rests on human approval: the point where it ships.
- */
-function Process({copy, theme}: {copy: Copy; theme: Theme}) {
-  const reduced = useReducedMotion();
-  const rowRef = useRef<HTMLOListElement>(null);
-  const last = copy.process.steps.length - 1;
-  const [now, setNow] = useState(reduced ? last : -1);
-
-  useEffect(() => {
-    const row = rowRef.current;
-    if (!row) return;
-    if (reduced) {
-      setNow(last);
-      return;
-    }
-    let timers: number[] = [];
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (!entries.some((entry) => entry.isIntersecting)) return;
-        observer.disconnect();
-        timers = copy.process.steps.map((_, index) => window.setTimeout(() => setNow(index), 250 + index * 520));
-      },
-      {rootMargin: '0px 0px -25% 0px'},
-    );
-    observer.observe(row);
-    return () => {
-      observer.disconnect();
-      timers.forEach((timer) => window.clearTimeout(timer));
-    };
-  }, [reduced, last, copy.process.steps]);
-
+/** The method as one numbered row, then the mechanism that holds it on each product. */
+function Process({copy}: {copy: Copy}) {
   return (
-    <section id="process" className="bg-raised">
-      <div className="shell band">
-        <SectionHead
-          title={copy.sections.process}
-          seal={<MotifSeal motif="gelgit" seed={21} copy={copy} theme={theme} />}
-        />
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
+    <section id="process" className="desk">
+      <SectionHead title={copy.sections.process} enclosure={enclosureOf('process', copy)} />
+      <Sheet>
+        <div className="grid gap-5 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-14">
           <h3 className="subhead m-0">{copy.process.eyebrow}</h3>
-          <p className="m-0 max-w-[64ch] text-pretty">{copy.process.body}</p>
+          <p className="m-0 max-w-[66ch] text-pretty">{copy.process.body}</p>
         </div>
 
-        <ol ref={rowRef} className="steps mt-14">
-          {copy.process.steps.map((step, index) => (
-            <li key={step.title} className="step" data-now={index <= now ? 'true' : 'false'}>
-              <span className="step-mark" aria-hidden="true" data-here={index === now ? 'true' : 'false'} />
-              <div>
-                <p className="m-0 font-bold text-ink">{step.title}</p>
-                <p className="m-0 mt-1 text-small text-muted">{step.note}</p>
-              </div>
+        <ol className="steps mt-12">
+          {copy.process.steps.map((step) => (
+            <li key={step.title} className="step">
+              <p className="form m-0 font-semibold text-ink">{step.title}</p>
+              <p className="m-0 mt-1 text-small text-muted">{step.note}</p>
             </li>
           ))}
         </ol>
 
         {/* The claim above is abstract; these rows are where it becomes checkable. */}
-        <div className="mt-20">
-          <div className="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
+        <div className="mt-16">
+          <div className="flex flex-col gap-1 md:flex-row md:items-baseline md:justify-between">
             <h3 className="subhead m-0">{copy.process.matrixTitle}</h3>
             <p className="m-0 text-muted">{copy.process.matrixLead}</p>
           </div>
 
-          <dl className="rows m-0 mt-6">
+          <dl className="rows m-0 mt-5">
             {copy.process.matrix.map((row) => {
               const product = PRODUCTS.find((item) => item.title === row.product);
               // The portfolio itself is the page being read, so it is live by definition.
@@ -2069,9 +1608,9 @@ function Process({copy, theme}: {copy: Copy; theme: Theme}) {
               return (
                 <div
                   key={row.product}
-                  className="row grid gap-2 py-5 md:grid-cols-[16rem_minmax(0,1fr)_10rem] md:items-baseline md:gap-8"
+                  className="row grid gap-2 py-4 md:grid-cols-[14rem_minmax(0,1fr)_9.5rem] md:items-baseline md:gap-8"
                 >
-                  <dt className="font-bold text-ink">
+                  <dt className="form font-semibold text-ink">
                     {product ? (
                       <a href={`#${sheetId(product)}`} className="link">
                         {row.product}
@@ -2082,7 +1621,7 @@ function Process({copy, theme}: {copy: Copy; theme: Theme}) {
                   </dt>
                   <dd className="m-0 text-body">{row.gate}</dd>
                   <dd className="m-0 md:justify-self-end">
-                    <span className={`drop ${live ? 'drop-live' : 'drop-building'}`}>
+                    <span className={`status ${live ? 'status-live' : 'status-building'}`}>
                       {live ? copy.product.live : copy.product.building}
                     </span>
                   </dd>
@@ -2091,12 +1630,12 @@ function Process({copy, theme}: {copy: Copy; theme: Theme}) {
             })}
           </dl>
         </div>
-      </div>
+      </Sheet>
     </section>
   );
 }
 
-function Contact({copy, language, theme}: {copy: Copy; language: Language; theme: Theme}) {
+function Contact({copy, language}: {copy: Copy; language: Language}) {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -2123,15 +1662,13 @@ function Contact({copy, language, theme}: {copy: Copy; language: Language; theme
 
   return (
     <footer id="contact" className="stock on-stock">
-      {/* The edge of the sheet, where the bath shows through. */}
-      <MarbledStrip motif="gelgit" seed={11} theme={theme} className="h-20 rounded-none md:h-28" />
-
-      <div className="shell band">
+      <div className="desk pb-12 pt-24 md:pt-32">
         <div className="grid gap-14 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-20">
           <div>
             <h2 className="headline m-0 text-on-stock">{copy.nav.contact}</h2>
-            <p className="sentence m-0 mt-5">
-              <span className="drop drop-live text-[length:inherit]">{copy.hero.status}</span>
+            <p className="sentence m-0 mt-5 text-on-stock">{copy.hero.closing}</p>
+            <p className="m-0 mt-3">
+              <span className="status status-live">{copy.hero.status}</span>
             </p>
             <p className="m-0 mt-4 flex items-center gap-2 text-on-stock-muted">
               <MapPin className="h-4 w-4" aria-hidden="true" />
@@ -2141,7 +1678,7 @@ function Contact({copy, language, theme}: {copy: Copy; language: Language; theme
             <div className="mt-10 border-t border-on-stock">
               <div className="grid grid-cols-[6.5rem_minmax(0,1fr)] items-center gap-x-4 gap-y-3 border-b border-stock-rule py-4 sm:grid-cols-[6.5rem_minmax(0,1fr)_auto]">
                 <span className="label">{copy.contactLabels.email}</span>
-                <a href={`mailto:${CONTACT.email}`} className="link break-words font-semibold text-on-stock">
+                <a href={`mailto:${CONTACT.email}`} className="form link break-words font-semibold text-on-stock">
                   {CONTACT.email.split('@')[0]}@<wbr />
                   {CONTACT.email.split('@')[1]}
                 </a>
@@ -2171,7 +1708,7 @@ function Contact({copy, language, theme}: {copy: Copy; language: Language; theme
                   aria-label={`${item.label}: ${item.value}`}
                 >
                   <span className="label">{item.label}</span>
-                  <span className="truncate font-semibold text-on-stock">{item.value}</span>
+                  <span className="form truncate font-semibold text-on-stock">{item.value}</span>
                   {item.download ? (
                     <Download className="h-4 w-4 text-on-stock-muted" aria-hidden="true" />
                   ) : (
@@ -2191,7 +1728,7 @@ function Contact({copy, language, theme}: {copy: Copy; language: Language; theme
               <div className="mt-4 border-t border-on-stock pt-4">
                 <p className="subhead m-0 text-on-stock">{copy.education.school}</p>
                 <p className="m-0 mt-1.5 text-on-stock">{copy.education.degree}</p>
-                <p className="m-0 mt-3 text-small text-on-stock-muted">
+                <p className="form m-0 mt-3 text-small text-on-stock-muted">
                   {copy.education.date} · {copy.education.location} · {copy.education.gpa}
                 </p>
               </div>
@@ -2202,7 +1739,7 @@ function Contact({copy, language, theme}: {copy: Copy; language: Language; theme
               <dl className="m-0 mt-4 border-t border-on-stock">
                 {copy.languages.map((item) => (
                   <div key={item.name} className="flex items-baseline justify-between border-b border-stock-rule py-3">
-                    <dt className="font-semibold text-on-stock">{item.name}</dt>
+                    <dt className="form font-semibold text-on-stock">{item.name}</dt>
                     <dd className="m-0 text-small text-on-stock-muted">{item.level}</dd>
                   </div>
                 ))}
@@ -2211,13 +1748,14 @@ function Contact({copy, language, theme}: {copy: Copy; language: Language; theme
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-3 border-t border-stock-rule pt-6 text-small text-on-stock-muted sm:flex-row sm:items-center sm:justify-between">
+        <Signature copy={copy} className="mt-16 text-on-stock" />
+
+        <div className="form mt-10 flex flex-col gap-3 border-t border-stock-rule pt-6 text-small text-on-stock-muted sm:flex-row sm:items-center sm:justify-between">
           <p className="m-0">
             © {new Date().getFullYear()} Anıl Karabulut. {copy.footer}
           </p>
           <p className="m-0">{copy.footerNote}</p>
         </div>
-        <Provenance motif="gelgit" seed={11} copy={copy} className="mt-4" />
       </div>
     </footer>
   );

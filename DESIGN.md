@@ -1,319 +1,403 @@
 ---
-name: Anıl Karabulut — Ebru
-description: The portfolio as an ebru pulled from a çivit indigo bath, printed onto cool sized paper once.
+name: Anıl Karabulut — Antet
+description: A formal letter of introduction on heavy stock, laid on a vişne çürüğü desk with its enclosures attached.
 colors:
-  sized-paper: "#eef0ed"
-  paper-raised: "#e2e6e3"
-  indigo-ink: "#141c45"
-  ink-body: "#232a4d"
-  ink-muted: "#4c5374"
-  ink-faint: "#5f6585"
-  rule-soft: "rgba(20, 28, 69, 0.2)"
-  asi-red: "#a8361d"
-  civit-bath: "#1d2a66"
-  bath-raised: "#24337a"
-  on-bath: "#f1f2ec"
-  on-bath-muted: "#b9c0dc"
-  bath-rule: "rgba(241, 242, 236, 0.24)"
-  bath-alarm: "#ff8c6b"
-  ochre: "#d9a23a"
-  stone-1: "#22317a"
-  stone-2: "#19245b"
-  stone-3: "#273883"
-  stone-4: "#1f2d6e"
-  pigment-turquoise: "#4fa39b"
-  pigment-rose: "#d98f87"
-  pigment-lahor: "#9fb3dc"
-  pigment-deep: "#101741"
-  night-paper: "#0b1024"
-  night-raised: "#111836"
-  night-ink: "#eef0ea"
-  night-body: "#d4d8e6"
-  night-muted: "#a2a9c4"
-  night-faint: "#8b92ae"
-  night-rule: "rgba(238, 240, 234, 0.7)"
-  night-rule-soft: "rgba(238, 240, 234, 0.16)"
-  night-alarm: "#ff8a6a"
-  night-bath: "#141d4a"
-  night-bath-raised: "#1b265a"
-  night-on-bath-muted: "#b3bbd8"
-  night-bath-alarm: "#ff9677"
-  night-ochre: "#c99032"
-  night-ink-press: "#c8cde0"
+  visne-desk: "#4a1f28"
+  visne-raised: "#5a2732"
+  dove-sheet: "#e9e8e4"
+  dove-raised: "#dfddd7"
+  letter-ink: "#241c1e"
+  ink-body: "#2f2829"
+  ink-muted: "#5c5352"
+  ink-faint: "#6a6160"
+  rule-soft: "rgba(36, 28, 30, 0.18)"
+  state-visne: "#7a1f2e"
+  on-desk: "#efe9e3"
+  on-desk-muted: "#cdbfb9"
+  desk-rule: "rgba(239, 233, 227, 0.22)"
+  desk-state: "#f2c6b6"
+  watermark: "rgba(36, 28, 30, 0.13)"
+  print-border: "#f6f5f1"
+  aubergine-desk: "#1e1226"
+  aubergine-raised: "#2a1a33"
+  aubergine-sheet: "#2c1c35"
+  aubergine-sheet-raised: "#362343"
+  night-ink: "#efe8e2"
+  night-body: "#dcd3cd"
+  night-muted: "#b3a6a1"
+  night-faint: "#a09490"
+  night-rule: "rgba(239, 232, 226, 0.6)"
+  night-rule-soft: "rgba(239, 232, 226, 0.16)"
+  night-state: "#eba99b"
+  night-watermark: "rgba(239, 232, 226, 0.09)"
 typography:
   display:
-    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(3rem, 7.2vw, 6rem)"
-    fontWeight: 780
-    lineHeight: 0.92
-    letterSpacing: "-0.018em"
-    fontVariation: "'wdth' 90"
-  headline:
-    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(2.1rem, 4.4vw, 3.5rem)"
-    fontWeight: 740
-    lineHeight: 1.02
-    letterSpacing: "-0.016em"
-    fontVariation: "'wdth' 92"
-  sheet-title:
-    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(1.9rem, 3.4vw, 2.75rem)"
-    fontWeight: 800
+    fontFamily: 'Spectral, Georgia, "Times New Roman", serif'
+    fontSize: "clamp(3rem, 7.4vw, 6rem)"
+    fontWeight: 300
     lineHeight: 1
-    letterSpacing: "-0.018em"
-    fontVariation: "'wdth' 92"
-  sentence:
-    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(1.35rem, 2.2vw, 1.85rem)"
-    fontWeight: 600
-    lineHeight: 1.2
-    letterSpacing: "-0.015em"
-  title:
-    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(1.3rem, 2vw, 1.65rem)"
-    fontWeight: 700
-    lineHeight: 1.18
+    letterSpacing: "-0.02em"
+  headline:
+    fontFamily: 'Spectral, Georgia, "Times New Roman", serif'
+    fontSize: "clamp(2.1rem, 4.2vw, 3.25rem)"
+    fontWeight: 300
+    lineHeight: 1.08
     letterSpacing: "-0.012em"
-  lede:
-    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(1.06rem, 1.25vw, 1.16rem)"
+  sheet-title:
+    fontFamily: 'Spectral, Georgia, "Times New Roman", serif'
+    fontSize: "clamp(1.9rem, 3.3vw, 2.6rem)"
     fontWeight: 400
-    lineHeight: 1.62
-  body:
-    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "1.0625rem"
+    lineHeight: 1.1
+    letterSpacing: "-0.01em"
+  subhead:
+    fontFamily: 'Spectral, Georgia, "Times New Roman", serif'
+    fontSize: "clamp(1.3rem, 2vw, 1.55rem)"
+    fontWeight: 500
+    lineHeight: 1.25
+  sentence:
+    fontFamily: 'Spectral, Georgia, "Times New Roman", serif'
+    fontSize: "clamp(1.4rem, 2.3vw, 1.85rem)"
+    fontWeight: 400
+    lineHeight: 1.3
+  lede:
+    fontFamily: 'Spectral, Georgia, "Times New Roman", serif'
+    fontSize: "clamp(1.15rem, 1.4vw, 1.25rem)"
     fontWeight: 400
     lineHeight: 1.6
-  small:
-    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "0.9rem"
-    lineHeight: 1.55
-  label:
-    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "0.78rem"
-    fontWeight: 650
-    lineHeight: 1.4
-    letterSpacing: "0.09em"
-    fontVariation: "'wdth' 78"
+  body:
+    fontFamily: 'Spectral, Georgia, "Times New Roman", serif'
+    fontSize: "1.125rem"
+    fontWeight: 400
+    lineHeight: 1.62
+  signature-name:
+    fontFamily: 'Spectral, Georgia, "Times New Roman", serif'
+    fontSize: "1.5rem"
+    fontWeight: 400
+    lineHeight: 1.35
+  step-numeral:
+    fontFamily: 'Spectral, Georgia, "Times New Roman", serif'
+    fontSize: "2rem"
+    fontWeight: 300
+    lineHeight: 1
   button:
-    fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: '"Hanken Grotesk", ui-sans-serif, system-ui, sans-serif'
     fontSize: "1rem"
-    fontWeight: 650
-    letterSpacing: "-0.005em"
+    fontWeight: 600
+  form-small:
+    fontFamily: '"Hanken Grotesk", ui-sans-serif, system-ui, sans-serif'
+    fontSize: "0.94rem"
+    fontWeight: 500
+    lineHeight: 1.55
+  micro:
+    fontFamily: '"Hanken Grotesk", ui-sans-serif, system-ui, sans-serif'
+    fontSize: "0.8rem"
+    fontWeight: 600
+    lineHeight: 1.45
+  label:
+    fontFamily: '"Hanken Grotesk", ui-sans-serif, system-ui, sans-serif'
+    fontSize: "0.75rem"
+    fontWeight: 600
+    lineHeight: 1.4
+    letterSpacing: "0.1em"
 rounded:
-  plate: "0.5rem"
-  projection: "0.75rem"
-  drop: "999px"
+  square: "0px"
 spacing:
-  shell-phone: "1.25rem"
-  shell-tablet: "2.25rem"
-  shell-desk: "3rem"
-  band-phone: "5rem"
-  band-desk: "7rem"
-  section-head: "3rem"
-  container: "78rem"
+  gutter-phone: "0.75rem"
+  gutter-desk: "2rem"
+  sheet-phone: "1.35rem"
+  sheet-tablet: "3.5rem"
+  sheet-desk: "5rem"
+  sheet-stack-phone: "1.25rem"
+  sheet-stack-desk: "2rem"
+  section-phone: "4.5rem"
+  section-desk: "6.5rem"
+  desk-width: "76rem"
 components:
-  button-ink:
-    backgroundColor: "{colors.indigo-ink}"
-    textColor: "{colors.sized-paper}"
+  button-solid:
+    backgroundColor: "{colors.visne-desk}"
+    textColor: "{colors.on-desk}"
     typography: "{typography.button}"
-    rounded: "{rounded.drop}"
+    rounded: "{rounded.square}"
     padding: "0.8rem 1.6rem"
     height: "3.25rem"
-  button-ink-hover:
-    backgroundColor: "{colors.bath-raised}"
+  button-solid-hover:
+    backgroundColor: "{colors.visne-raised}"
+  button-solid-gece:
+    backgroundColor: "{colors.night-ink}"
+    textColor: "{colors.aubergine-desk}"
+    rounded: "{rounded.square}"
+  button-solid-gece-hover:
+    backgroundColor: "{colors.on-desk-muted}"
   button-ghost:
     backgroundColor: "transparent"
-    textColor: "{colors.indigo-ink}"
-    rounded: "{rounded.drop}"
+    textColor: "{colors.letter-ink}"
+    typography: "{typography.button}"
+    rounded: "{rounded.square}"
     padding: "0.8rem 1.6rem"
+    height: "3.25rem"
   button-ghost-hover:
-    backgroundColor: "{colors.paper-raised}"
+    backgroundColor: "{colors.dove-raised}"
   button-paper:
-    backgroundColor: "{colors.on-bath}"
-    textColor: "{colors.civit-bath}"
-    rounded: "{rounded.drop}"
-    padding: "0.8rem 1.6rem"
+    backgroundColor: "{colors.on-desk}"
+    textColor: "{colors.visne-desk}"
+    typography: "{typography.button}"
+    rounded: "{rounded.square}"
+    height: "2.5rem"
   button-paper-hover:
-    backgroundColor: "{colors.ochre}"
+    backgroundColor: "{colors.on-desk-muted}"
   switch-option-active:
-    backgroundColor: "{colors.indigo-ink}"
-    textColor: "{colors.sized-paper}"
-    rounded: "{rounded.drop}"
+    backgroundColor: "{colors.on-desk}"
+    textColor: "{colors.visne-desk}"
+    typography: "{typography.micro}"
+    rounded: "{rounded.square}"
     height: "2.1rem"
+  masthead:
+    backgroundColor: "{colors.visne-desk}"
+    textColor: "{colors.on-desk}"
+    height: "4rem"
+  sheet:
+    backgroundColor: "{colors.dove-sheet}"
+    textColor: "{colors.ink-body}"
+    typography: "{typography.body}"
+    rounded: "{rounded.square}"
+    padding: "4rem 5rem 4.5rem"
+  sheet-gece:
+    backgroundColor: "{colors.aubergine-sheet}"
+    textColor: "{colors.night-body}"
+    rounded: "{rounded.square}"
+  print:
+    backgroundColor: "{colors.print-border}"
+    rounded: "{rounded.square}"
+    padding: "0.5rem"
+    width: "15.5rem"
+  enclosure-line:
+    textColor: "{colors.letter-ink}"
+    typography: "{typography.form-small}"
+    padding: "0.5rem 0"
+  enclosure-line-hover:
+    backgroundColor: "{colors.dove-raised}"
+  status-live:
+    textColor: "{colors.state-visne}"
+    typography: "{typography.form-small}"
+    rounded: "{rounded.square}"
+  status-live-on-desk:
+    textColor: "{colors.desk-state}"
+    typography: "{typography.form-small}"
+    rounded: "{rounded.square}"
+  status-building:
+    textColor: "{colors.letter-ink}"
+    typography: "{typography.form-small}"
+    rounded: "{rounded.square}"
   plate:
-    backgroundColor: "{colors.paper-raised}"
-    rounded: "{rounded.plate}"
-  projection:
-    backgroundColor: "{colors.civit-bath}"
-    textColor: "{colors.on-bath}"
-    rounded: "{rounded.projection}"
+    backgroundColor: "{colors.dove-raised}"
+    rounded: "{rounded.square}"
+  demo-panel:
+    backgroundColor: "{colors.visne-desk}"
+    textColor: "{colors.on-desk}"
+    rounded: "{rounded.square}"
     padding: "1.75rem"
-  step-mark:
-    backgroundColor: "{colors.paper-raised}"
-    textColor: "{colors.indigo-ink}"
-    rounded: "{rounded.drop}"
-    size: "2.25rem"
 ---
 
-# Design System: Anıl Karabulut — Ebru
+# Design System: Anıl Karabulut — Antet
 
 ## Overview
 
-**Creative North Star: "The Ebru Tray"**
+**Creative North Star: "The Letter on the Desk"**
 
-The page is Turkish paper marbling: an idea dropped into a çivit indigo bath as pigment, combed into pattern, and pulled onto sized paper once, the same one-way trip a product makes from idea to live. Indigo carries the bath regions (the hero, the demo, the contact); cool sized paper with indigo ink carries the reading; earth pigments live only inside the marbling; and aşı red means state. Every marbled surface is computed in a canvas from a seeded polygon simulation, never an image, so the same bath is poured on every visit and every pattern can name where it came from.
+The page is a good letter arriving on a manager's desk: heavy stock, a short signed introduction, and its enclosures attached. Everything readable sits on a sheet of paper, and everything between the sheets is the desk. Trust comes from restraint and finish, so the system spends its effort on what a careful stationer would: the weight of the paper, a mark pressed into it without ink, a clip that really holds the photograph, a numbered list of what is enclosed.
 
-Density is calm and editorial: wide bands of paper between the indigo regions, one family set large for names and small and condensed for field names, records ruled with hairlines. The drop is the one recurring shape. Status is a drop, the current nav item is a drop, the portrait sits in the innermost drop of a bülbül yuvası nest, and buttons are pulled pills whose hover is a drop spreading from the centre.
+Density is that of correspondence. The first sheet carries the name, the face, the role, the availability, the closing and the index of enclosures. The sheets behind it are records: rows, hairlines, dates, status. Two voices share the work: a serif that writes the letter and a grotesque that fills in the form around it.
 
-The world explicitly replaces the dark developer card grid, the warm cream editorial page, and the earlier manila case file. Nothing of the case file (Courier, manila, black stock, stamps, heavy form rules) carries over.
+The world has two lights. Gündüz lays dove-grey sheets on vişne çürüğü cotton; Gece turns the whole desk to aubergine with pale ink. The signature belongs to the mouse: moving the pointer over a sheet holds it to the light and the watermark shows.
 
 **Key Characteristics:**
-- A committed çivit indigo bath for hero, demo and contact; cool paper (not cream) everywhere else.
-- Marbling is computed live from CSS-declared stones and pigments, and the stones under copy stay tone-on-tone.
-- One family, Bricolage Grotesque, carrying every role through weight, width and optical size.
-- Drops and pills: round marks, softly rounded sheets, no hard boxes and no shadows.
-- Aşı red is reserved for state. Ochre is the one pigment allowed out of the bath.
-- Motion spreads fast and settles: the pour, the pull, the walk, each played once.
+- A desk and sheets: the page ground is coloured stock, and readable content lies on paper above it.
+- Spectral for the letter's voice, Hanken Grotesk for the office form around it.
+- Square corners and hairline rules on every surface and control.
+- One soft shadow per paper object, faint fibre in the sheet, nothing glossy.
+- Finish carried by physical marks: the blind monogram, the split paperclip, the hidden watermark, the typed signature.
+- One numbering across the page: the enclosure index and the section marks count the same Ek 1 to Ek 8.
+- Motion is a sheet settling once. The page is readable at every frame.
 
 ## Colors
 
-The palette is a cool indigo-and-paper pair, with a small set of earth pigments that stay inside the bath and one red that only reports state.
+A deep red-brown stock under cool dove-grey paper, with one deepened vişne held back for state; Gece recasts the same roles in aubergine and pale ink.
 
 ### Primary
-- **Çivit Bath** (civit-bath): the committed indigo surface of the hero tray, the demo projection, the contact footer and every marbled strip's ground. Text on it is On-Bath paper (11.8:1) or On-Bath Muted (7.4:1).
-- **Indigo Ink** (indigo-ink): headings, the filled pill button, the active switch option, the nav drop, heavy rules on paper and the focus outline. Body copy uses the slightly lighter Ink Body (12.1:1 on paper).
+- **Vişne Çürüğü Desk** (#4a1f28): The cotton stock. Page ground, masthead, section heads, the contact close, the demo panel, the solid button on paper. It is also the browser theme colour and the favicon ground.
+- **Raised Vişne** (#5a2732): The desk one step up. The solid button's hover press and the contact rows' hover.
 
 ### Secondary
-- **Ochre** (ochre): the one pigment that leaves the bath. Outside the marbling it appears in exactly three places: text selection (Indigo Ink on ochre), the paper button's hover spread, and the ring around the process step the walk rests on. Never a fill for content, never a status.
-
-### Tertiary
-- **Aşı Red** (asi-red on paper, bath-alarm on indigo): live, available, active. It colours the live and available status drops, the current-role drop and the text caret. Never a pigment, never decoration. 5.7:1 on paper, 5.85:1 on the bath and 4.66:1 even on the lightest stone.
+- **State Vişne** (#7a1f2e): The stock's own colour deepened for use on paper. Marks what holds now: live, available, active.
+- **Desk State** (#f2c6b6): The same meaning where the ground is the desk, as in the contact close.
 
 ### Neutral
-- **Sized Paper** (sized-paper): the reading ground. Cool grey-green, deliberately not cream.
-- **Raised Paper** (paper-raised): the recessed process band, plate backgrounds, step marks, and the ghost button's hover spread.
-- **Ink Muted / Ink Faint** (ink-muted, ink-faint): secondary text and field labels (6.5:1), then dates, separators and the faintest metadata (4.97:1 on paper, 4.5:1 on raised paper).
-- **Soft Rule** (rule-soft): hairline row dividers, the masthead edge, plate edges, the process stem.
-- **Bath Raised / Bath Rule** (bath-raised, bath-rule): the ink button's hover spread and the ghost hover on the bath; hairlines inside indigo regions.
-
-### Marbling (canvas only)
-- **Stones** (stone-1 to stone-4): four tone-on-tone indigos declared in `--bath-stones`. These are the only marks allowed under copy.
-- **Pigments**: paper white (on-bath), ochre, turquoise, rose, lahor blue and deep indigo (pigment-deep), declared in `--bath-pigments`. They make up the nest rings, the open-bath drops and the sheet strips. Rose is a pigment and must never stand in for red.
+- **Dove Sheet** (#e9e8e4): The paper. A near-neutral dove grey, never cream.
+- **Dove Raised** (#dfddd7): Paper one step down. Enclosure line hover, ghost button press, plate ground.
+- **Letter Ink** (#241c1e): Names, headings, strong rules, the focus ring on paper. A warm near-black taken towards the stock, never pure black.
+- **Ink Body** (#2f2829): Running text on the sheet.
+- **Ink Muted** (#5c5352): Secondary paragraphs, dates, Ek numbers, field labels, captions.
+- **Ink Faint** (#6a6160): Only the separating comma between terms in a list, on the sheet.
+- **Soft Rule** (rgba(36, 28, 30, 0.18)): Row hairlines, link underlines at rest, plate edges.
+- **On Desk** (#efe9e3): Text on the desk and the paper button. A warm pale that reads as paper against the stock.
+- **On Desk Muted** (#cdbfb9): Secondary text on the desk, inactive nav, ghost borders on the desk, the scrollbar thumb.
+- **Desk Rule** (rgba(239, 233, 227, 0.22)): Hairlines on the desk.
+- **Watermark** (rgba(36, 28, 30, 0.13)): The mark in the paper, seen only under the pointer.
+- **Print Border** (#f6f5f1): The white border of the photographic print, a step brighter than the sheet so the print reads as a separate object.
 
 ### Gece (night)
-Gece is the bath at night: Night Paper becomes the ground, Night Ink and Night Body sit on it (13.3:1 body), muted 8.1:1, faint 6.1:1, alarm 8.2:1. The bath darkens to Night Bath with its own stones and pigments, and Night Ink Press (a pale indigo) replaces bath-raised as the ink button's spread, because the ink button turns pale in this theme. All night pairs measure 6:1 or better.
+The same roles recast, switched by `data-theme` on the root element. **Aubergine Desk** (#1e1226) and **Raised Aubergine** (#2a1a33) are the stock; **Aubergine Sheet** (#2c1c35) and **Aubergine Sheet Raised** (#362343) are the paper. **Night Ink** (#efe8e2), **Night Body** (#dcd3cd), **Night Muted** (#b3a6a1) and **Night Faint** (#a09490) carry the text, and Night Ink also serves as the text on the desk and the print border. On Desk Muted holds its value on the desk. **Night Rule** (rgba(239, 232, 226, 0.6)) and **Night Rule Soft** (rgba(239, 232, 226, 0.16)) draw the hairlines, and Night Rule Soft also draws the desk's. **Night State** (#eba99b) marks state on both sheet and desk, and **Night Watermark** (rgba(239, 232, 226, 0.09)) is the mark in the paper. The solid button inverts to Night Ink with Aubergine Desk text. The demo panel takes the desk, so it is vişne by day and aubergine by night.
+
+### Contrast
+All text pairs in use clear WCAG AA in both themes. The lowest pair the build ships is Ink Faint on Dove Sheet (4.91:1), carried by the term comma; Gece's equivalent is 5.39:1. The lowest full-text pair is Ink Muted on Dove Raised (5.49:1), the Ek number under an enclosure line's hover; Gece's is 6.01:1. Faint on raised computes to 4.83:1 in Gece and 4.43:1 in Gündüz, which is below AA, and the build places faint on raised in neither theme.
 
 ### Named Rules
-**The State-Only Red Rule.** Aşı red marks live, available and active, and nothing else. If removing the red would leave the meaning intact, the red should not be there.
+**The State Only Rule.** The state colours mark live, available and active, and nothing else. State Vişne on paper, Desk State on the desk, Night State in Gece. If removing the colour leaves the meaning intact, it should not be there.
 
-**The Ochre Leaves Once Rule.** Ochre is the only pigment allowed outside the marbling, and only for selection, the paper button's press, and the resting process step. Turquoise, rose and lahor never appear in UI chrome.
+**The Dove Not Cream Rule.** The sheet ground is dove grey in every Gündüz surface. Cream is refused; the warm pale of On Desk belongs to text and controls on the stock, not to the paper.
 
-**The Calm Stones Rule.** The marbling canvas reads stones and pigments from CSS. Any region marked `data-calm` (headline, copy, actions, facts) gets tone-on-tone stones only, and bright pigment never lands under text.
+**The Faint Stays On The Sheet Rule.** Ink Faint is for the sheet ground only. On Dove Raised it falls below AA.
 
 ## Typography
 
-**Display Font:** Bricolage Grotesque (self-hosted variable, weight 200–800, width 75–100%, optical sizing auto), falling back to ui-sans-serif, system-ui
-**Body Font:** the same family
-**Label Font:** the same family, condensed
+**Display Font:** Spectral (with Georgia, Times New Roman, serif)
+**Body Font:** Spectral (with Georgia, Times New Roman, serif)
+**Label/Mono Font:** Hanken Grotesk (with ui-sans-serif, system-ui, sans-serif)
 
-**Character:** One grotesque with a bit of ink trap and wobble. It sets heavy and slightly narrow for the name, turns plain at reading sizes, and condenses into small uppercase for field names, so one voice carries every role.
+**Character:** Spectral is the letter's voice: a screen-drawn book serif whose light weight holds the name at scale with composure. Hanken Grotesk is the office form around it, plain and exact, used wherever the page fills in a field rather than speaks. Both are self-hosted under the OFL; Spectral ships as static 300, 400, 500 and italic 400, and Hanken Grotesk as a variable 400 to 700.
 
 ### Hierarchy
-- **Display** (780, 90% width, clamp 3–6rem, 0.92 leading): the name in the hero only, in paper ink on the bath.
-- **Headline** (740, 92% width, clamp 2.1–3.5rem, 1.02): section titles, set left in the section head.
-- **Sheet Title** (800, 92% width, clamp 1.9–2.75rem, 1.0): product names at the head of each product sheet.
-- **Sentence** (600, clamp 1.35–1.85rem, 1.2): the one-line positioning sentence (max 22ch) and the contact availability line.
-- **Title** (700, clamp 1.3–1.65rem, 1.18): sub-section titles inside a band.
-- **Lede** (400, clamp 1.06–1.16rem, 1.62): hero summary and product descriptions, 54–60ch.
-- **Body** (400, 1.0625rem, 1.6): running text, at most around 64ch.
-- **Small / Micro** (0.9rem / 0.78rem): secondary notes, status drops, switch options.
-- **Label** (650, 78% width, 0.78rem, 0.09em tracking, uppercase): field names in definition lists, list headings inside sheets, provenance lines, the comb hint. Always a field name or a provenance, never a decorative line above a heading.
+- **Display** (Spectral 300, clamp(3rem, 7.4vw, 6rem), 1, -0.02em): The name on the first sheet, once.
+- **Headline** (Spectral 300, clamp(2.1rem, 4.2vw, 3.25rem), 1.08, -0.012em): Section titles on the desk, and the contact close. Balanced wrapping.
+- **Sheet Title** (Spectral 400, clamp(1.9rem, 3.3vw, 2.6rem), 1.1, -0.01em): Product names heading their sheets.
+- **Subhead** (Spectral 500, clamp(1.3rem, 2vw, 1.55rem), 1.25): Job titles, archive titles, the headings inside the method sheet.
+- **Sentence** (Spectral 400 italic, clamp(1.4rem, 2.3vw, 1.85rem), 1.3): The one-line statement under the name, the product's line at 1.25rem, the closing sentence on the desk.
+- **Lede** (Spectral 400, clamp(1.15rem, 1.4vw, 1.25rem), 1.6): The opening paragraph on a sheet, 58 to 60ch.
+- **Body** (Spectral 400, 1.125rem, 1.62): Running text, up to 66ch, lining numerals throughout.
+- **Signature** (Spectral 400 italic at body size for the regards, then the name upright at 1.5rem, 1.35): The typed close.
+- **Step Numeral** (Spectral 300, 2rem, 1): The numbers of the method row.
+- **Button** (Hanken Grotesk 600, 1rem): Controls.
+- **Form Small** (Hanken Grotesk 400 to 600, 0.94rem, 1.55): Enclosure lines, nav, status, dates, stack lists, captions. Weight 600 when the value is the point.
+- **Micro** (Hanken Grotesk 600, 0.8rem, 1.45): Switch options and status inside the enclosure index.
+- **Label** (Hanken Grotesk 600, 0.75rem, 0.1em, uppercase): Field names on the form, and the name of a list.
 
 ### Named Rules
-**The One Family Rule.** Every role is Bricolage Grotesque. Hierarchy comes from weight, width and size, never from a second face.
+**The Two Voices Rule.** The letter speaks in Spectral; the form is filled in with Hanken Grotesk. If a string is a sentence, it is Spectral. If it is a field, a value, a date or a control, it is Hanken Grotesk.
 
-**The Field Name Rule.** Condensed uppercase labels name a field (Location, Facts, Stack) or a pattern's provenance. They never sit above a headline as a kicker.
+**The No Spectral Bold Rule.** Spectral stops at 500. Anything that needs to be heavier is set in Hanken Grotesk, so the browser never synthesises a weight.
+
+**The Field Name Rule.** A label names the list or field directly beneath it. It is never a lead-in above a larger heading.
 
 ## Layout
 
-There is one centred shell (max 78rem) with side padding of 1.25rem, 2.25rem from 768px and 3rem from 1280px. Sections are bands with 5rem vertical padding, 7rem from 768px, alternating paper and raised paper, with indigo bath regions at the top (hero) and bottom (contact).
+One centred desk of 76rem carries everything, with a gutter of 0.75rem on phones that opens to 2rem from 768px. Sheets fill the desk's width; the product sheets stack with 1.25rem between them, 2rem from 768px. Sheet padding grows in three steps: 2rem 1.35rem 2.5rem on phones, 3.5rem 3.5rem 4rem from 768px, 4rem 5rem 4.5rem from 1100px.
 
-- **Section head:** stacked on a phone. From 768px it splits into title left and a 25rem right column holding the motif seal and the lead, aligned to the bottom, with 3rem below.
-- **Hero:** stacked as name, portrait, rest on a phone, so the face arrives before the fold. From 1024px it becomes a two-column grid (1.08fr / 0.92fr) at viewport height minus the 4rem masthead, with the portrait spanning all rows on the right. The portrait slot reserves 0.56 × the drop's diameter above and below on small screens, so nest rings never land under copy.
-- **Product sheet:** a full-width marbled strip and its provenance, then a ruled title row, then a two-column record (copy left, evidence right) from 1024px.
-- **Process row:** a vertical stem on a phone, four columns on a horizontal stem from 900px.
-- **Breakpoints:** 768px, 900px (steps), 1024px (hero, sheets), 1280px (nav and shell). The full nav shows from the xl breakpoint, with a ghost menu pill below it.
+The first sheet is one named grid. From 900px it runs a free column against a 17.5rem column with a 4rem gap: letterhead, name and body on the left, the portrait and then the enclosure index on the right. Below that it collapses to a single column in the order letterhead, name, portrait, body, index, so a phone reader meets the name and the face first.
+
+Sections open on the desk with a section head, 4.5rem above the title on phones and 6.5rem from 768px, the title at the left and the Ek mark on the same baseline at the right edge. Records inside sheets are row grids with a fixed first column for the date or name; they stack below 768px. Product sheets split into record and evidence at 1024px. The method runs as one row of four from 900px.
+
+The masthead is a sticky 4rem strip of the desk. The switches join it at 1024px and the full nav at 1280px; below those they live in a menu that opens under the strip.
 
 ## Elevation & Depth
 
-The system is flat. There are no box shadows anywhere. Depth comes from material instead: indigo bath regions against paper, raised paper bands, hairline rules, and the marbling itself, which lies on the bath like pigment on size. The sticky masthead is near-opaque paper (94%) with a soft bottom hairline. The one rendered shade is inside the demo: the page curl's shader darkens the fold as part of the simulation. That shading belongs to the simulated paper, and it is not a shadow for UI.
+Depth is physical and shallow: paper lying on a desk and a print lying on paper. There are exactly three levels, desk, sheet and print, and each paper object casts one soft shadow, drawn as a tight contact edge with a wider fall below it. Nothing lifts on hover. Within a sheet, depth is tonal: Dove Raised under an enclosure line or a plate, never a shadow. The fibre is a faint SVG noise over each sheet (0.05 in Gündüz, 0.07 in Gece) that keeps the paper from reading as a flat fill.
+
+### Shadow Vocabulary
+- **Sheet, Gündüz** (`box-shadow: 0 1px 1px rgba(30, 8, 14, 0.3), 0 18px 36px -14px rgba(30, 8, 14, 0.55)`): Every sheet on the vişne desk.
+- **Sheet, Gece** (`box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5), 0 18px 36px -14px rgba(0, 0, 0, 0.8)`): Every sheet on the aubergine desk.
+- **Print** (`box-shadow: 0 1px 2px rgba(30, 8, 14, 0.3), 0 8px 18px -8px rgba(30, 8, 14, 0.45)`): The photographic print on the sheet.
+- **Clip** (`filter: drop-shadow(0.5px 1.2px 0.7px rgba(30, 8, 14, 0.5))`): The paperclip's wire on the print.
 
 ### Named Rules
-**The Pigment-Not-Shadow Rule.** Separation comes from a change of material (bath, paper, raised paper) or a rule, never from a cast shadow or a gradient.
+**The Paper Only Rule.** Shadows belong to objects that are physically paper or wire: the sheet, the print, the clip. Buttons, rows, panels and plates cast none.
+
+**The Marks In The Paper Rule.** Fibre, watermark and monogram are in the sheet, not on it. They stay beneath the text and never compete with it.
 
 ## Shapes
 
-The form language is drops and pulled sheets. Fully round (999px) for every mark and control: buttons, switches, status drops, step marks, the nav drop, the portrait and the motif seals. Gently rounded (0.5rem) for things laid on the page, like screenshot plates and marbled strips. Slightly softer (0.75rem) for the demo projection, a small tray of its own. The contact strip runs edge to edge with square ends because it is the sheet's edge, not an object on it. Lines are hairlines (1px soft rule) or a 1.5px ink rule on top of a ruled list; dotted only for the archived status ring.
+Every surface and control is square: sheets, buttons, switches, plates, the demo panel, the status marks. Hairlines of 1px do the structural work, a strong rule opening a list and soft rules between its rows. The only circles in the system are the pressed seal itself, the ring of the monogram, the watermark and the favicon, and the only curves are the wire of the clip. Rotation is reserved for the print, which rests at 1.6deg because it was clipped on by hand.
 
 ## Components
 
 ### Buttons
-Pulled pills: confident, filled, and alive under the pointer.
-- **Shape:** fully round (999px), at least 3.25rem tall (2.5rem in the masthead and demo), 1.5px border in the fill colour.
-- **Ink (primary on paper):** Indigo Ink fill, paper text, 650 weight.
-- **Hover / Focus:** a circle of the spread colour grows from the centre (clip-path circle 0% to 75%, 520ms, spread ease). Ink spreads Bath Raised, ghost spreads Raised Paper, paper spreads Ochre. Focus also shows the 2px ink outline at 3px offset.
-- **Ghost:** transparent with an ink border. On the bath the border and text turn On-Bath and the spread is Bath Raised.
-- **Paper (primary on the bath):** paper punched out of the indigo, with Çivit Bath text. It is the hero's CV action.
+Square, solid and quiet; a press spreads in from the left edge rather than a colour flipping.
+- **Shape:** Square corners (0px), 1px border in the fill colour, 3.25rem tall, 0.8rem 1.6rem padding; 2.25rem to 2.5rem tall in the masthead, the demo panel and the contact row.
+- **Solid:** Vişne desk with On Desk text on paper. The primary action, led by the CV. In Gece it inverts to pale ink.
+- **Ghost:** Transparent with a strong rule border; on the desk the border takes On Desk Muted and the press takes Raised Vişne.
+- **Paper:** The masthead CV. On Desk fill with desk-coloured text, so the action stays lit on the stock.
+- **Hover / Focus:** A deeper fill scales in from the left over 460ms on the lay ease, for hover and keyboard focus alike. Focus also takes a 2px outline at 3px offset, Letter Ink on paper and On Desk on the desk.
 
 ### Switches
-- **Style:** two drops on a short stem. A round 1px soft-rule capsule holding round options (2.1rem tall, micro size, 650 weight).
-- **State:** the pressed option fills Indigo Ink with paper text. Unpressed options are muted and darken to ink on hover. Used for TR/EN and Gündüz/Gece.
+- **Style:** Two options in a 1px Desk Rule frame, 2.1rem tall, Micro type. They hold language (TR, EN) and theme (Gündüz, Gece) in the masthead.
+- **State:** The pressed option fills On Desk with desk-coloured text. Others sit in On Desk Muted and brighten on hover.
 
 ### Navigation
-- **Style:** a sticky paper masthead (4rem) with the drop wordmark, six links at 0.94rem/560 in muted ink, the switches, and an ink CV pill.
-- **Active:** the current section turns ink, and a 0.4rem ink drop scales in beneath it (420ms spread ease). No underline.
+- **Masthead:** The name in Spectral at 1.25rem, six links in Form Small at weight 500, the switches, the paper CV button.
+- **States:** On Desk Muted at rest, On Desk on hover. The current section draws a 1px rule from the left over 380ms.
+- **Mobile:** A ghost menu button opens the links and switches under the strip; Escape closes it. The CV stays in the strip at every width.
 
-### Status Drops
-Status is a drop: a 0.72em circle with a 2px ring, followed by the word in small 650.
-- **Live / available / current:** aşı red, filled (bath-alarm on indigo).
-- **In development:** an ink ring, unfilled.
-- **Archived:** a muted dotted ring.
+### Sheet
+- **Corner Style:** Square (0px).
+- **Background:** Dove Sheet with fibre, Aubergine Sheet in Gece.
+- **Shadow Strategy:** The Sheet shadow, see Elevation & Depth.
+- **Internal Padding:** The three-step scale in Layout.
+- **Behaviour:** Each sheet holds its own watermark and settles once as it enters.
 
-### Plates and Rows
-- **Plate:** screenshots laid on the page. Raised paper behind, a 1px soft-rule edge, 0.5rem corners. On hover the edge turns ink and the image scales 1.015 (700ms).
-- **Rows:** ruled lists with a 1.5px ink top rule and 1px soft-rule dividers. Bullets are drops: filled ink for facts, an ink ring for highlights. Tech terms run inline, separated by faint middots.
+### Watermark (signature)
+A double ring around AK in Spectral light, sized to 82% of the sheet up to 46rem, inked in the Watermark colour. It is invisible until a mouse moves over the sheet, then a 17rem circle of it follows the pointer and fades in over 500ms; it fades out when the pointer leaves. It answers to mouse pointers only, because a touch has no way to hold a sheet up. The circular mask is the system's only gradient, and it paints no colour of its own.
 
-### Marbled Strip and Motif Seal (signature)
-Every product sheet, section seal and the contact edge carries a marbled pattern computed in a canvas. Each one is poured from a seed with one of three numbered motifs over the same pigments: **01 Gelgit** (back-and-forth combing plus a wave), **02 Taraklı** (fine comb), **03 Battal** (large uncombed stones). Each pattern has a **provenance** label beside it ("No. 02 · Taraklı — computed, seed 22"). The **motif seal** is a round 6–7rem pour of one unit set beside its provenance in the section head's right column. Strips arrive by the pull: a clip reveal from top to bottom over 0.95s, once.
+### Blind Monogram
+The AK seal at 4rem, opening the letterhead beside place and date. It is a baked raster of light and shade held in alpha, with no ink of its own, so it takes the colour of whichever paper it is pressed into. Gece stock takes a pressed mark more quietly: 0.5 opacity. It presses in on load, scale 1.08 to 1 over 0.7s after 0.25s.
 
-### Hero Bath (signature)
-The hero is a full-viewport tray of Çivit Bath with the marbling canvas behind the grid. On arrival it pours itself: stones scatter over about 0.5s (tone-on-tone near copy, about 16% bright pigment in the open), then 11 nest drops land 80ms apart on the portrait, each pushing the last outward into a ring (white, ochre, deep, white, turquoise, lahor, rose, deep, white, ochre, bath). The last drop becomes the portrait's frame, and the face scales in from 0.18 (0.75s). A five-petal pull (650ms) then a curl (750ms) bloom the rings. Afterwards the visitor can comb the bath with a drag and drop new pigment with a tap. Copy, controls and the portrait keep their own gestures. A condensed label in the corner hints at the comb.
+### Clipped Print
+The portrait on a print border with 0.5rem of white, 4:5, up to 15.5rem wide, resting at 1.6deg. The paperclip is split into two baked rasters: the back half runs under the print and the front half lies over it, so the photograph is really held. On hover the print straightens over 520ms.
 
-### Process Walk
-Four round step marks hang on a 1.5px stem. When the row enters view, a "now" drop walks it once (250ms, then 520ms per step). Reached marks fill with ink, and the resting step keeps an ochre ring that scales in.
+### Signature Block
+The regards in italic with the name typed upright below it, Spectral throughout. It closes the letter's body on the first sheet, above the actions, and closes the page on the desk above the footer line. The name is typed, never set in a script font.
 
-### Demo Projection
-A small tray of Çivit Bath (0.75rem corners) holding the page-curl demo sheet, with labels and a ghost pill in its chrome. The sheet is drawn in canvas in a paper and indigo-ink palette with a deeper ochre accent. It peels once, 900ms after it comes into view.
+### Enclosure Index
+The list that closes the first sheet, named by a label and opened by a strong rule. Each line is a three-column row: the Ek number in Ink Muted, the name, and the line's closing action or state. Ek 1 is the CV, with a download icon. Ek 2 to 4 are the products, closing on their status. Ek 5 to 8 are the sections, closing on a down arrow. Every line is a link; hover lays Dove Raised under it.
+
+### Section Head
+A two-column grid on the desk: the headline at the left, the Ek mark at the right edge on the same baseline in Form Small at weight 600 and On Desk Muted, an optional lead spanning below at 34rem. The Ek mark always repeats the index's number, so the two can be read against each other.
+
+### Status Marks
+A square of 0.6em beside the word, in Form Small at weight 600. **Live** fills the square in the state colour, and the text takes it too. **Building** is a 1.5px outline square in Letter Ink. Availability and the current job use the live mark. Inside the enclosure index the mark drops to Micro.
+
+### Rows and Plates
+Records are lists of rows: a strong rule above, soft rules between, generous block padding. Plates hold product screenshots in a 1px Soft Rule frame on Dove Raised; the frame turns to Letter Ink on hover and focus. Terms in a stack list are separated by a real comma in Ink Faint. Links carry a 1px underline at 0.22em offset in Soft Rule, which takes full colour on hover.
+
+### Method Row
+Four numbered steps under a strong rule, each a light Spectral numeral, a Hanken Grotesk title and a Spectral note. The numbers are CSS counters, so the order lives in the list.
+
+### Demo Panel
+The WebGL page curl of the sample report, on a desk-coloured panel set into the product sheet: vişne by day, aubergine by night. Labels sit top and bottom on Desk Rule hairlines, with a ghost button that peels and restores the page. Its sheets are drawn from the dove palette; Gece dims them to 0.86. Without WebGL, or under reduced motion, the same sheets print as a flat before and after spread.
 
 ### Motion
-The shared ease is the spread ease, cubic-bezier(0.16, 1, 0.3, 1): fast out, then still, like pigment spreading on the size. Motion is the pour, the pull and the walk, each played once. Nothing drifts or loops. Under reduced motion, the bath is poured statically in one frame with the portrait in place, the comb is disabled and its hint hidden, the process row shows all steps reached, and CSS transitions collapse to 0.01ms.
+`MotionConfig reducedMotion="user"` governs everything, with the lay ease (cubic-bezier(0.22, 1, 0.36, 1)) throughout. Sheets settle once as they enter: from 24px low and -0.3deg over 0.9s, with no opacity change, so a sheet is never hidden. The monogram presses in, the print straightens, the watermark follows. Sections have no other entrances. Under reduced motion every settle and transition resolves instantly; the watermark still answers the pointer, since it follows rather than plays.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** put the name, the demo and the contact on the Çivit Bath, and everything read at length on Sized Paper.
-- **Do** declare marbling colours in `--bath-stones` and `--bath-pigments` per theme, and mark every text region over the bath `data-calm`.
-- **Do** compute every marbled surface from a seed with a numbered motif (01 Gelgit, 02 Taraklı, 03 Battal) and print its provenance beside it.
-- **Do** mark status with a drop: filled aşı red for live or available, an ink ring for in development, a dotted muted ring for archived.
-- **Do** use the centre-out spread (520ms, spread ease) for pill hovers, and the spread ease for every authored transition.
-- **Do** keep text pairs at WCAG AA or better in both themes, including bath-alarm over the lightest stone.
+- **Do** put readable content on a sheet, and keep section titles and the close on the desk.
+- **Do** use the semantic tokens, so both themes stay in step.
+- **Do** keep one numbering: a new enclosure takes its number in the index and on its section head together.
+- **Do** set sentences in Spectral and fields, values, dates and controls in Hanken Grotesk.
+- **Do** close a status with its word as well as its mark, so state never rests on colour alone.
+- **Do** keep every sheet visible from its first frame; the settle moves it, never reveals it.
+- **Do** keep the CV the solid action, reachable from the masthead at every width.
+- **Do** keep text at WCAG AA in both themes, and check any new pair in Gündüz and Gece.
 
 ### Don't:
-- **Don't** use aşı red as a pigment, an accent or decoration, and don't use rose where red is meant.
-- **Don't** let turquoise, rose or lahor into UI chrome. Ochre is the only pigment that leaves the bath, and only for selection, the paper button's press and the resting step.
-- **Don't** use a raster image for marbling. Patterns are computed.
-- **Don't** introduce a second typeface, a cream or warm paper ground, or a dark card grid.
-- **Don't** add box shadows, CSS gradients or hard rectangular cards to UI. Depth is material and rules. The page curl's simulated fold shading is the only exception.
-- **Don't** put a condensed label above a headline as a kicker or eyebrow.
-- **Don't** add looping or drifting motion, or per-section entrance animations beyond the strip pull and the process walk.
+- **Don't** let the sheet ground drift to cream or ivory.
+- **Don't** use a state colour for decoration, emphasis, links or hover.
+- **Don't** put a label above a heading as a lead-in; a label names a list or a field.
+- **Don't** set Spectral heavier than 500.
+- **Don't** add corner radius to a surface or control.
+- **Don't** paint with gradients, glass or blur; depth is paper, shadow and tone.
+- **Don't** give a shadow to anything that is not paper or wire.
+- **Don't** imitate a signature with a script font; the name is typed.
+- **Don't** give the monogram an ink colour, or redraw it as a flat logo.
+- **Don't** tilt a sheet at rest; only the print rests at an angle.
+- **Don't** add entrance animations to sections or fade content in.
+- **Don't** place Ink Faint on Dove Raised.

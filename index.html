@@ -3,20 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#eef0ed" />
+    <meta name="theme-color" content="#4a1f28" />
 
-    <!-- The one face the page is set in; latin-ext loads when Turkish letters need it. -->
-    <link rel="preload" href="/fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- The faces the first sheet is set in; latin-ext loads when Turkish letters need it. -->
+    <link rel="preload" href="/fonts/spectral-300-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/spectral-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/hanken-400-700-latin.woff2" as="font" type="font/woff2" crossorigin />
 
     <script>
-      // Resolve the theme before first paint so daylight paper never flashes
+      // Resolve the theme before first paint so a pale sheet never flashes
       // over a night visitor. Anything other than 'gece' opens on the day theme.
       (function () {
         try {
           var theme = localStorage.getItem('ak_theme') === 'gece' ? 'gece' : 'gunduz';
           document.documentElement.dataset.theme = theme;
           var meta = document.querySelector('meta[name="theme-color"]');
-          if (meta) meta.content = theme === 'gece' ? '#0b1024' : '#eef0ed';
+          if (meta) meta.content = theme === 'gece' ? '#1e1226' : '#4a1f28';
         } catch (e) {
           document.documentElement.dataset.theme = 'gunduz';
         }
@@ -36,7 +38,7 @@
     <meta property="og:url" content="https://portfolio-9ein.onrender.com/" />
     <meta property="og:site_name" content="Anıl Karabulut" />
     <meta property="og:locale" content="tr_TR" />
-    <meta property="og:title" content="Anıl Karabulut | Full-stack Ürün Geliştirici" />
+    <meta property="og:title" content="Anıl Karabulut | Full-stack Yazılım Mühendisi" />
     <meta
       property="og:description"
       content="Fikirden canlı ürüne; kullanıcı deneyimi, backend mimarisi, otomasyon ve üretim dağıtımı."
@@ -47,7 +49,7 @@
     <meta property="og:image:alt" content="Anıl Karabulut — Fikirden canlı ürüne" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Anıl Karabulut | Full-stack Ürün Geliştirici" />
+    <meta name="twitter:title" content="Anıl Karabulut | Full-stack Yazılım Mühendisi" />
     <meta
       name="twitter:description"
       content="Fikirden canlı ürüne; kullanıcı deneyimi, backend mimarisi, otomasyon ve üretim dağıtımı."
@@ -55,7 +57,7 @@
     <meta name="twitter:image" content="https://portfolio-9ein.onrender.com/og.png" />
     <meta name="twitter:image:alt" content="Anıl Karabulut — Fikirden canlı ürüne" />
 
-    <title>Anıl Karabulut | Full-stack Ürün Geliştirici</title>
+    <title>Anıl Karabulut | Full-stack Yazılım Mühendisi</title>
   </head>
   <body>
     <div id="root"></div>

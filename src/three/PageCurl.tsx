@@ -201,8 +201,8 @@ function Sheets({
   const size = useThree((state) => state.size);
   const curlRef = useRef<Mesh>(null);
 
-  // Bricolage Grotesque is a webfont: the first paint of the page
-  // texture can land before it resolves, so redraw once it is ready.
+  // The sheet's faces are webfonts: the first paint of the page
+  // texture can land before they resolve, so redraw once they are ready.
   const [fontTick, setFontTick] = useState(0);
   useEffect(() => {
     let alive = true;
@@ -292,7 +292,7 @@ function Sheets({
     // chasing its tail with the camera is what made the page look small.
     framing.current = {
       rest: fit(PAGE_W / 2 + 0.08, PAGE_H / 2 + 0.07),
-      peeled: fit(PAGE_W / 2 + 0.25, PAGE_H / 2 + 0.2),
+      peeled: fit(PAGE_W / 2 + 0.6, PAGE_H / 2 + 0.56),
     };
     camera.lookAt(0, 0, 0);
     camera.updateProjectionMatrix();
@@ -326,6 +326,9 @@ function Sheets({
     const {rest, peeled} = framing.current;
     const ease = progress * progress * (3 - 2 * progress);
     camera.position.z = rest + (peeled - rest) * ease;
+    // The flap swings out to the lower left, so the view pans after it.
+    camera.position.x = -0.5 * ease;
+    camera.position.y = -0.46 * ease;
 
     if (curlRef.current) {
       // The sheet drifts a hair as it peels — a page never lifts dead straight.
@@ -338,11 +341,11 @@ function Sheets({
       {/* the rest of the stack, just enough edge to read as a document */}
       <mesh position={[0.012, -0.014, -0.05]} rotation={[0, 0, -0.008]}>
         <planeGeometry args={[PAGE_W, PAGE_H]} />
-        <meshBasicMaterial color="#c9ced6" />
+        <meshBasicMaterial color="#cfcbc3" />
       </mesh>
       <mesh position={[-0.01, 0.008, -0.03]} rotation={[0, 0, 0.006]}>
         <planeGeometry args={[PAGE_W, PAGE_H]} />
-        <meshBasicMaterial color="#dce0e4" />
+        <meshBasicMaterial color="#dedbd4" />
       </mesh>
 
       {/* the translated page, revealed by the peel */}
