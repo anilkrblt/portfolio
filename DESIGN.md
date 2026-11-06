@@ -1,330 +1,403 @@
 ---
-name: Anıl Karabulut — Dosya
-description: The candidate's case file, revealed like a sixties title sequence on a manila folder.
+name: Anıl Karabulut — Antet
+description: A formal letter of introduction on heavy stock, laid on a vişne çürüğü desk with its enclosures attached.
 colors:
-  manila: "#e4cd95"
-  manila-raised: "#d5bb84"
-  manila-photo-paper: "#e9d6a6"
-  ink: "#141311"
-  ink-body: "#1f1d19"
-  ink-muted: "#4f4739"
-  ink-faint: "#5b574d"
-  rule-soft: "rgba(20, 19, 17, 0.3)"
-  alarm: "#9e1f18"
-  archive-gray: "#58554c"
-  stock: "#141311"
-  stock-raised: "#22201b"
-  on-stock: "#e4cd95"
-  on-stock-muted: "#b3a683"
-  stock-rule: "#3a362e"
-  stock-alarm: "#ef5f55"
-  stock-pressed: "#000000"
-  manila-pressed: "#f1dcab"
-  night-canvas: "#121110"
-  night-raised: "#1c1a17"
-  night-body: "#d9c79e"
-  night-muted: "#aca083"
-  night-faint: "#8f8670"
-  night-rule: "rgba(228, 205, 149, 0.62)"
-  night-rule-soft: "rgba(228, 205, 149, 0.22)"
-  night-alarm: "#f0564b"
-  night-stock-raised: "#26231e"
-  night-stock-alarm: "#f2665b"
-  night-archive-gray: "#8f8670"
+  visne-desk: "#4a1f28"
+  visne-raised: "#5a2732"
+  dove-sheet: "#e9e8e4"
+  dove-raised: "#dfddd7"
+  letter-ink: "#241c1e"
+  ink-body: "#2f2829"
+  ink-muted: "#5c5352"
+  ink-faint: "#6a6160"
+  rule-soft: "rgba(36, 28, 30, 0.18)"
+  state-visne: "#7a1f2e"
+  on-desk: "#efe9e3"
+  on-desk-muted: "#cdbfb9"
+  desk-rule: "rgba(239, 233, 227, 0.22)"
+  desk-state: "#f2c6b6"
+  watermark: "rgba(36, 28, 30, 0.13)"
+  print-border: "#f6f5f1"
+  aubergine-desk: "#1e1226"
+  aubergine-raised: "#2a1a33"
+  aubergine-sheet: "#2c1c35"
+  aubergine-sheet-raised: "#362343"
+  night-ink: "#efe8e2"
+  night-body: "#dcd3cd"
+  night-muted: "#b3a6a1"
+  night-faint: "#a09490"
+  night-rule: "rgba(239, 232, 226, 0.6)"
+  night-rule-soft: "rgba(239, 232, 226, 0.16)"
+  night-state: "#eba99b"
+  night-watermark: "rgba(239, 232, 226, 0.09)"
 typography:
   display:
-    fontFamily: "Courier Prime, Courier New, ui-monospace, monospace"
-    fontSize: "clamp(2.7rem, 15vw, 5rem)"
-    fontWeight: 700
-    lineHeight: 0.94
+    fontFamily: 'Spectral, Georgia, "Times New Roman", serif'
+    fontSize: "clamp(3rem, 7.4vw, 6rem)"
+    fontWeight: 300
+    lineHeight: 1
     letterSpacing: "-0.02em"
   headline:
-    fontFamily: "Courier Prime, Courier New, ui-monospace, monospace"
-    fontSize: "clamp(1.85rem, 3.5vw, 2.75rem)"
-    fontWeight: 700
-    lineHeight: 1.05
+    fontFamily: 'Spectral, Georgia, "Times New Roman", serif'
+    fontSize: "clamp(2.1rem, 4.2vw, 3.25rem)"
+    fontWeight: 300
+    lineHeight: 1.08
+    letterSpacing: "-0.012em"
+  sheet-title:
+    fontFamily: 'Spectral, Georgia, "Times New Roman", serif'
+    fontSize: "clamp(1.9rem, 3.3vw, 2.6rem)"
+    fontWeight: 400
+    lineHeight: 1.1
     letterSpacing: "-0.01em"
+  subhead:
+    fontFamily: 'Spectral, Georgia, "Times New Roman", serif'
+    fontSize: "clamp(1.3rem, 2vw, 1.55rem)"
+    fontWeight: 500
+    lineHeight: 1.25
   sentence:
-    fontFamily: "Courier Prime, Courier New, ui-monospace, monospace"
-    fontSize: "clamp(1.45rem, 2.5vw, 2.05rem)"
-    fontWeight: 700
-    lineHeight: 1.18
-  title:
-    fontFamily: "Courier Prime, Courier New, ui-monospace, monospace"
-    fontSize: "clamp(1.25rem, 2vw, 1.6rem)"
-    fontWeight: 700
-    lineHeight: 1.2
+    fontFamily: 'Spectral, Georgia, "Times New Roman", serif'
+    fontSize: "clamp(1.4rem, 2.3vw, 1.85rem)"
+    fontWeight: 400
+    lineHeight: 1.3
   lede:
-    fontFamily: "Courier Prime, Courier New, ui-monospace, monospace"
-    fontSize: "clamp(1.02rem, 1.3vw, 1.12rem)"
+    fontFamily: 'Spectral, Georgia, "Times New Roman", serif'
+    fontSize: "clamp(1.15rem, 1.4vw, 1.25rem)"
     fontWeight: 400
-    lineHeight: 1.65
-  body:
-    fontFamily: "Courier Prime, Courier New, ui-monospace, monospace"
-    fontSize: "1rem"
-    fontWeight: 400
-    lineHeight: 1.65
-    fontFeature: "tnum"
-  record-title:
-    fontFamily: "Courier Prime, Courier New, ui-monospace, monospace"
-    fontSize: "clamp(1.7rem, 3vw, 2.4rem)"
-    fontWeight: 700
-    lineHeight: 1
-  control:
-    fontFamily: "Courier Prime, Courier New, ui-monospace, monospace"
-    fontSize: "0.95rem"
-    fontWeight: 700
-    letterSpacing: "0.06em"
-  small:
-    fontFamily: "Courier Prime, Courier New, ui-monospace, monospace"
-    fontSize: "0.875rem"
     lineHeight: 1.6
+  body:
+    fontFamily: 'Spectral, Georgia, "Times New Roman", serif'
+    fontSize: "1.125rem"
+    fontWeight: 400
+    lineHeight: 1.62
+  signature-name:
+    fontFamily: 'Spectral, Georgia, "Times New Roman", serif'
+    fontSize: "1.5rem"
+    fontWeight: 400
+    lineHeight: 1.35
+  step-numeral:
+    fontFamily: 'Spectral, Georgia, "Times New Roman", serif'
+    fontSize: "2rem"
+    fontWeight: 300
+    lineHeight: 1
+  button:
+    fontFamily: '"Hanken Grotesk", ui-sans-serif, system-ui, sans-serif'
+    fontSize: "1rem"
+    fontWeight: 600
+  form-small:
+    fontFamily: '"Hanken Grotesk", ui-sans-serif, system-ui, sans-serif'
+    fontSize: "0.94rem"
+    fontWeight: 500
+    lineHeight: 1.55
   micro:
-    fontFamily: "Courier Prime, Courier New, ui-monospace, monospace"
-    fontSize: "0.75rem"
+    fontFamily: '"Hanken Grotesk", ui-sans-serif, system-ui, sans-serif'
+    fontSize: "0.8rem"
+    fontWeight: 600
     lineHeight: 1.45
   label:
-    fontFamily: "Libre Franklin, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "0.6875rem"
+    fontFamily: '"Hanken Grotesk", ui-sans-serif, system-ui, sans-serif'
+    fontSize: "0.75rem"
     fontWeight: 600
     lineHeight: 1.4
-    letterSpacing: "0.12em"
+    letterSpacing: "0.1em"
 rounded:
-  none: "0px"
+  square: "0px"
 spacing:
-  gutter-sm: "1.25rem"
-  gutter-md: "2rem"
-  gutter-lg: "3rem"
-  band-sm: "4.5rem"
-  band-md: "6.5rem"
-  section-head: "2.75rem"
-  rail: "17rem"
-  shell-max: "76rem"
+  gutter-phone: "0.75rem"
+  gutter-desk: "2rem"
+  sheet-phone: "1.35rem"
+  sheet-tablet: "3.5rem"
+  sheet-desk: "5rem"
+  sheet-stack-phone: "1.25rem"
+  sheet-stack-desk: "2rem"
+  section-phone: "4.5rem"
+  section-desk: "6.5rem"
+  desk-width: "76rem"
 components:
-  button-primary:
-    backgroundColor: "{colors.stock}"
-    textColor: "{colors.on-stock}"
-    typography: "{typography.control}"
-    rounded: "{rounded.none}"
-    padding: "0.75rem 1.5rem"
+  button-solid:
+    backgroundColor: "{colors.visne-desk}"
+    textColor: "{colors.on-desk}"
+    typography: "{typography.button}"
+    rounded: "{rounded.square}"
+    padding: "0.8rem 1.6rem"
     height: "3.25rem"
-  button-primary-hover:
-    backgroundColor: "{colors.stock-pressed}"
-    textColor: "{colors.on-stock}"
-  button-secondary:
+  button-solid-hover:
+    backgroundColor: "{colors.visne-raised}"
+  button-solid-gece:
+    backgroundColor: "{colors.night-ink}"
+    textColor: "{colors.aubergine-desk}"
+    rounded: "{rounded.square}"
+  button-solid-gece-hover:
+    backgroundColor: "{colors.on-desk-muted}"
+  button-ghost:
     backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    typography: "{typography.control}"
-    rounded: "{rounded.none}"
-    padding: "0.75rem 1.5rem"
+    textColor: "{colors.letter-ink}"
+    typography: "{typography.button}"
+    rounded: "{rounded.square}"
+    padding: "0.8rem 1.6rem"
     height: "3.25rem"
-  button-secondary-hover:
-    backgroundColor: "{colors.manila-raised}"
-    textColor: "{colors.ink}"
-  button-file:
-    backgroundColor: "{colors.on-stock}"
-    textColor: "{colors.stock}"
-    typography: "{typography.control}"
-    rounded: "{rounded.none}"
-    height: "3.25rem"
-  button-file-hover:
-    backgroundColor: "{colors.manila-pressed}"
-    textColor: "{colors.stock}"
-  tab:
-    backgroundColor: "{colors.stock}"
-    textColor: "{colors.on-stock}"
-    rounded: "{rounded.none}"
-    height: "2.375rem"
-  tab-active:
-    backgroundColor: "{colors.on-stock}"
-    textColor: "{colors.stock}"
-  switch-option:
-    backgroundColor: "transparent"
-    textColor: "{colors.on-stock-muted}"
-    height: "2.25rem"
-    width: "2.5rem"
-  switch-option-pressed:
-    backgroundColor: "{colors.on-stock}"
-    textColor: "{colors.stock}"
-  stamp-live:
-    textColor: "{colors.alarm}"
-    rounded: "{rounded.none}"
-    padding: "0.35rem 0.8rem 0.4rem"
-  stamp-ink:
-    textColor: "{colors.ink}"
-    rounded: "{rounded.none}"
-    padding: "0.35rem 0.8rem 0.4rem"
-  stamp-gray:
-    textColor: "{colors.archive-gray}"
-    rounded: "{rounded.none}"
-    padding: "0.35rem 0.8rem 0.4rem"
-  frame-tag:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.manila}"
-    typography: "{typography.label}"
-    padding: "0.2rem 0.45rem"
+  button-ghost-hover:
+    backgroundColor: "{colors.dove-raised}"
+  button-paper:
+    backgroundColor: "{colors.on-desk}"
+    textColor: "{colors.visne-desk}"
+    typography: "{typography.button}"
+    rounded: "{rounded.square}"
+    height: "2.5rem"
+  button-paper-hover:
+    backgroundColor: "{colors.on-desk-muted}"
+  switch-option-active:
+    backgroundColor: "{colors.on-desk}"
+    textColor: "{colors.visne-desk}"
+    typography: "{typography.micro}"
+    rounded: "{rounded.square}"
+    height: "2.1rem"
+  masthead:
+    backgroundColor: "{colors.visne-desk}"
+    textColor: "{colors.on-desk}"
+    height: "4rem"
+  sheet:
+    backgroundColor: "{colors.dove-sheet}"
+    textColor: "{colors.ink-body}"
+    typography: "{typography.body}"
+    rounded: "{rounded.square}"
+    padding: "4rem 5rem 4.5rem"
+  sheet-gece:
+    backgroundColor: "{colors.aubergine-sheet}"
+    textColor: "{colors.night-body}"
+    rounded: "{rounded.square}"
+  print:
+    backgroundColor: "{colors.print-border}"
+    rounded: "{rounded.square}"
+    padding: "0.5rem"
+    width: "15.5rem"
+  enclosure-line:
+    textColor: "{colors.letter-ink}"
+    typography: "{typography.form-small}"
+    padding: "0.5rem 0"
+  enclosure-line-hover:
+    backgroundColor: "{colors.dove-raised}"
+  status-live:
+    textColor: "{colors.state-visne}"
+    typography: "{typography.form-small}"
+    rounded: "{rounded.square}"
+  status-live-on-desk:
+    textColor: "{colors.desk-state}"
+    typography: "{typography.form-small}"
+    rounded: "{rounded.square}"
+  status-building:
+    textColor: "{colors.letter-ink}"
+    typography: "{typography.form-small}"
+    rounded: "{rounded.square}"
+  plate:
+    backgroundColor: "{colors.dove-raised}"
+    rounded: "{rounded.square}"
+  demo-panel:
+    backgroundColor: "{colors.visne-desk}"
+    textColor: "{colors.on-desk}"
+    rounded: "{rounded.square}"
+    padding: "1.75rem"
 ---
 
-# Design System: Anıl Karabulut — Dosya
+# Design System: Anıl Karabulut — Antet
 
 ## Overview
 
-**Creative North Star: "The Case File Title Sequence"**
+**Creative North Star: "The Letter on the Desk"**
 
-The portfolio is a candidate's case file, revealed the way a sixties title sequence reveals an agent: frames cut in, a name types itself, a red stamp lands last. Everything sits on a saturated manila folder, is typed on a typewriter, and is filed under a black matte stock rail. Claims are exhibits: each carries a tag, a frame, and a status stamp. The density is a dossier's, ruled forms and typed rows rather than cards and gradients.
+The page is a good letter arriving on a manager's desk: heavy stock, a short signed introduction, and its enclosures attached. Everything readable sits on a sheet of paper, and everything between the sheets is the desk. Trust comes from restraint and finish, so the system spends its effort on what a careful stationer would: the weight of the paper, a mark pressed into it without ink, a clip that really holds the photograph, a numbered list of what is enclosed.
 
-Two themes share one world. **Gündüz** (default) is the folder on the desk: manila ground, black ink, black stock. **Gece** is the same title sequence projected on black: near-black ground, manila type, the halftone flipped to a positive of light dots. Theme is set by `data-theme` on `<html>` (`gunduz` | `gece`), resolved before first paint from `localStorage` key `ak_theme`.
+Density is that of correspondence. The first sheet carries the name, the face, the role, the availability, the closing and the index of enclosures. The sheets behind it are records: rows, hairlines, dates, status. Two voices share the work: a serif that writes the letter and a grotesque that fills in the form around it.
 
-The world rejects the dark developer-portfolio card grid and the warm-paper editorial broadsheet it replaced (pale cream, Fraunces, hairline-and-2px-corners). Neither is current; do not reintroduce either.
+The world has two lights. Gündüz lays dove-grey sheets on vişne çürüğü cotton; Gece turns the whole desk to aubergine with pale ink. The signature belongs to the mouse: moving the pointer over a sheet holds it to the light and the watermark shows.
 
 **Key Characteristics:**
-- Saturated manila ground, never pale cream; black matte stock for the rail, exhibit frames and contact sheet.
-- Two voices: Courier Prime types every record; Libre Franklin is only the preprinted form label.
-- Square everything: zero radius, 2px rules, 4px opening rules, dashed soft row dividers.
-- Alarm red reserved for state.
-- Exhibits are coarse canvas halftone that declassify to the true image on hover or focus.
-- Motion is cuts, typing and one hard stamp landing; never soft drifts.
+- A desk and sheets: the page ground is coloured stock, and readable content lies on paper above it.
+- Spectral for the letter's voice, Hanken Grotesk for the office form around it.
+- Square corners and hairline rules on every surface and control.
+- One soft shadow per paper object, faint fibre in the sheet, nothing glossy.
+- Finish carried by physical marks: the blind monogram, the split paperclip, the hidden watermark, the typed signature.
+- One numbering across the page: the enclosure index and the section marks count the same Ek 1 to Ek 8.
+- Motion is a sheet settling once. The page is readable at every frame.
 
 ## Colors
 
-A two-ink print job on manila stock: black, one alarm red, and the folder itself.
+A deep red-brown stock under cool dove-grey paper, with one deepened vişne held back for state; Gece recasts the same roles in aubergine and pale ink.
 
 ### Primary
-- **Alarm Red** (alarm): the only accent. It marks state and nothing else: the live product, availability, the active role, the reticle, the caret, text selection, focus rings, and the pointer's attention on links and photostats. 5.1:1 on manila.
-- **Stock Alarm** (stock-alarm): the same red lifted for black stock, where the dark red falls under 3:1. Used for text, check marks, hover and focus rings inside the rail and contact sheet (5.7:1 on stock). Night uses night-alarm on the canvas (5.5:1) and night-stock-alarm on night stock.
+- **Vişne Çürüğü Desk** (#4a1f28): The cotton stock. Page ground, masthead, section heads, the contact close, the demo panel, the solid button on paper. It is also the browser theme colour and the favicon ground.
+- **Raised Vişne** (#5a2732): The desk one step up. The solid button's hover press and the contact rows' hover.
+
+### Secondary
+- **State Vişne** (#7a1f2e): The stock's own colour deepened for use on paper. Marks what holds now: live, available, active.
+- **Desk State** (#f2c6b6): The same meaning where the ground is the desk, as in the contact close.
 
 ### Neutral
-- **Folder Manila** (manila): the page ground in Gündüz and the type colour on all stock and in Gece.
-- **Pressed Manila** (manila-raised): recessed bands such as the procedure section and the secondary button's hover.
-- **Photo Paper** (manila-photo-paper): the paper a halftone exhibit is printed on, behind every frame and photostat.
-- **Typewriter Ink** (ink): headings, rules, frame borders, the ink stamp; 11.9:1 on manila.
-- **Body Ink** (ink-body): running text.
-- **Faded Ink** (ink-muted): secondary text and form labels; 5.9:1 on manila.
-- **Carbon Faint** (ink-faint): punctuation only (the comma between index terms); 4.6:1 on manila, the lightest ink that still passes AA, one step below Faded Ink.
-- **Soft Rule** (rule-soft): dashed row dividers and link underlines at rest.
-- **Archive Gray** (archive-gray): the archived stamp only; 4.8:1 on manila. It is a theme variable (`--c-archive-gray`); Gece uses night-archive-gray (5.2:1 on night canvas).
-- **Pressed Black** (stock-pressed): the day primary button's hover, stock pressed to pure black. Theme variable `--c-stock-pressed`.
-- **Pressed Manila Highlight** (manila-pressed): the hover fill of manila buttons, the rail CV button in both themes and the Gece primary. Theme variable `--c-manila-pressed`.
-- **Matte Stock** (stock, stock-raised, stock-rule, on-stock, on-stock-muted): the black regions. These do not flip with the theme in meaning: on-stock is always manila type on black.
-- **Night Canvas** (night-canvas, night-raised, night-body, night-muted 7.3:1, night-faint, night-rule, night-rule-soft): the Gece ground and its inks; manila on night-canvas is 12.1:1.
+- **Dove Sheet** (#e9e8e4): The paper. A near-neutral dove grey, never cream.
+- **Dove Raised** (#dfddd7): Paper one step down. Enclosure line hover, ghost button press, plate ground.
+- **Letter Ink** (#241c1e): Names, headings, strong rules, the focus ring on paper. A warm near-black taken towards the stock, never pure black.
+- **Ink Body** (#2f2829): Running text on the sheet.
+- **Ink Muted** (#5c5352): Secondary paragraphs, dates, Ek numbers, field labels, captions.
+- **Ink Faint** (#6a6160): Only the separating comma between terms in a list, on the sheet.
+- **Soft Rule** (rgba(36, 28, 30, 0.18)): Row hairlines, link underlines at rest, plate edges.
+- **On Desk** (#efe9e3): Text on the desk and the paper button. A warm pale that reads as paper against the stock.
+- **On Desk Muted** (#cdbfb9): Secondary text on the desk, inactive nav, ghost borders on the desk, the scrollbar thumb.
+- **Desk Rule** (rgba(239, 233, 227, 0.22)): Hairlines on the desk.
+- **Watermark** (rgba(36, 28, 30, 0.13)): The mark in the paper, seen only under the pointer.
+- **Print Border** (#f6f5f1): The white border of the photographic print, a step brighter than the sheet so the print reads as a separate object.
+
+### Gece (night)
+The same roles recast, switched by `data-theme` on the root element. **Aubergine Desk** (#1e1226) and **Raised Aubergine** (#2a1a33) are the stock; **Aubergine Sheet** (#2c1c35) and **Aubergine Sheet Raised** (#362343) are the paper. **Night Ink** (#efe8e2), **Night Body** (#dcd3cd), **Night Muted** (#b3a6a1) and **Night Faint** (#a09490) carry the text, and Night Ink also serves as the text on the desk and the print border. On Desk Muted holds its value on the desk. **Night Rule** (rgba(239, 232, 226, 0.6)) and **Night Rule Soft** (rgba(239, 232, 226, 0.16)) draw the hairlines, and Night Rule Soft also draws the desk's. **Night State** (#eba99b) marks state on both sheet and desk, and **Night Watermark** (rgba(239, 232, 226, 0.09)) is the mark in the paper. The solid button inverts to Night Ink with Aubergine Desk text. The demo panel takes the desk, so it is vişne by day and aubergine by night.
+
+### Contrast
+All text pairs in use clear WCAG AA in both themes. The lowest pair the build ships is Ink Faint on Dove Sheet (4.91:1), carried by the term comma; Gece's equivalent is 5.39:1. The lowest full-text pair is Ink Muted on Dove Raised (5.49:1), the Ek number under an enclosure line's hover; Gece's is 6.01:1. Faint on raised computes to 4.83:1 in Gece and 4.43:1 in Gündüz, which is below AA, and the build places faint on raised in neither theme.
 
 ### Named Rules
-**The Red Means State Rule.** Alarm red appears only where something is live, available, active, targeted or under the pointer. Never use it for decoration, section colour, or emphasis of ordinary copy.
+**The State Only Rule.** The state colours mark live, available and active, and nothing else. State Vişne on paper, Desk State on the desk, Night State in Gece. If removing the colour leaves the meaning intact, it should not be there.
 
-**The Stock Red Rule.** Inside black stock, red is always stock-alarm, never alarm; focus rings switch automatically under `.on-stock`.
+**The Dove Not Cream Rule.** The sheet ground is dove grey in every Gündüz surface. Cream is refused; the warm pale of On Desk belongs to text and controls on the stock, not to the paper.
 
-**The Manila Slip Rule.** Alarm red text sits only on the manila canvas, or as stock-alarm on black stock. Never put it directly on the raised band (manila-raised): a stamp that lands there, or straddles a rule, carries its own canvas-coloured slip behind it.
-
-**The Semantic Token Rule.** Components use the semantic Tailwind colours (`bg-canvas`, `text-ink`, `border-rule`, `bg-stock`, `text-on-stock`, `text-alarm`, `text-stock-alarm`…) mapped from `--c-*` variables, never raw hex, so both themes stay in sync. Every colour, pressed states included, is defined in both theme blocks; component rules carry no hex of their own.
+**The Faint Stays On The Sheet Rule.** Ink Faint is for the sheet ground only. On Dove Raised it falls below AA.
 
 ## Typography
 
-**Display Font:** Courier Prime (with Courier New, ui-monospace)
-**Body Font:** Courier Prime (with Courier New, ui-monospace)
-**Label Font:** Libre Franklin (with ui-sans-serif, system-ui)
+**Display Font:** Spectral (with Georgia, Times New Roman, serif)
+**Body Font:** Spectral (with Georgia, Times New Roman, serif)
+**Label/Mono Font:** Hanken Grotesk (with ui-sans-serif, system-ui, sans-serif)
 
-**Character:** The record is typed onto a preprinted form. Courier Prime carries every voice from the hero name to body copy, with tabular numerals throughout; Libre Franklin appears only as small spaced capitals naming fields, as if printed on the form before the typist arrived. Both are self-hosted from `public/fonts/` with Latin and Latin Extended subsets so Turkish renders in the true face.
+**Character:** Spectral is the letter's voice: a screen-drawn book serif whose light weight holds the name at scale with composure. Hanken Grotesk is the office form around it, plain and exact, used wherever the page fills in a field rather than speaks. Both are self-hosted under the OFL; Spectral ships as static 300, 400, 500 and italic 400, and Hanken Grotesk as a variable 400 to 700.
 
 ### Hierarchy
-- **Display** (700, uppercase, 0.94): clamp(2.7rem, 15vw, 5rem) on phones, 7.8vw from 768px, clamp(2.7rem, 5.7vw, 5rem) from 1024px; it never exceeds 5rem: the typed name in the hero only, followed by a block cursor. Sized so the longest word always fits its column.
-- **Headline** (700, uppercase, clamp(1.85rem, 3.5vw, 2.75rem), 1.05, balanced): section titles beneath the 4px opening rule.
-- **Sentence** (700, mixed case, clamp(1.45rem, 2.5vw, 2.05rem), 1.18): the one-sentence statement under the name and in the contact sheet.
-- **Record Title** (700, clamp(1.7rem, 3vw, 2.4rem), 1): a product exhibit's name, on the line with its tag and stamp.
-- **Title** (700, clamp(1.25rem, 2vw, 1.6rem), 1.2): subsection heads and the school name in the contact sheet. Archive entry titles sit one step down at 1.1rem.
-- **Lede** (400, clamp(1.02rem, 1.3vw, 1.12rem), 1.65): opening paragraphs, held to 58–60ch.
-- **Body** (400, 1rem, 1.65, tabular numerals): running text; long descriptions held to about 66ch.
-- **Control** (700, uppercase, 0.95rem, 0.06em): button caps. The same 0.95rem step also sets some secondary body text in records.
-- **Small** (0.875rem, 1.6): secondary text, captions, facts, rail values, file tabs and product stamps.
-- **Micro** (0.75rem, 1.45): the smallest typed step, used for language and theme switches, compact buttons and stamps in the procedure table.
-- **Label** (Libre Franklin 600, uppercase, 0.6875rem, 0.12em): preprinted field names (status, location, facts, stack). Exhibit tags and frame tags use the same voice in bold, canvas on ink.
+- **Display** (Spectral 300, clamp(3rem, 7.4vw, 6rem), 1, -0.02em): The name on the first sheet, once.
+- **Headline** (Spectral 300, clamp(2.1rem, 4.2vw, 3.25rem), 1.08, -0.012em): Section titles on the desk, and the contact close. Balanced wrapping.
+- **Sheet Title** (Spectral 400, clamp(1.9rem, 3.3vw, 2.6rem), 1.1, -0.01em): Product names heading their sheets.
+- **Subhead** (Spectral 500, clamp(1.3rem, 2vw, 1.55rem), 1.25): Job titles, archive titles, the headings inside the method sheet.
+- **Sentence** (Spectral 400 italic, clamp(1.4rem, 2.3vw, 1.85rem), 1.3): The one-line statement under the name, the product's line at 1.25rem, the closing sentence on the desk.
+- **Lede** (Spectral 400, clamp(1.15rem, 1.4vw, 1.25rem), 1.6): The opening paragraph on a sheet, 58 to 60ch.
+- **Body** (Spectral 400, 1.125rem, 1.62): Running text, up to 66ch, lining numerals throughout.
+- **Signature** (Spectral 400 italic at body size for the regards, then the name upright at 1.5rem, 1.35): The typed close.
+- **Step Numeral** (Spectral 300, 2rem, 1): The numbers of the method row.
+- **Button** (Hanken Grotesk 600, 1rem): Controls.
+- **Form Small** (Hanken Grotesk 400 to 600, 0.94rem, 1.55): Enclosure lines, nav, status, dates, stack lists, captions. Weight 600 when the value is the point.
+- **Micro** (Hanken Grotesk 600, 0.8rem, 1.45): Switch options and status inside the enclosure index.
+- **Label** (Hanken Grotesk 600, 0.75rem, 0.1em, uppercase): Field names on the form, and the name of a list.
 
 ### Named Rules
-**The Closed Ramp Rule.** Sizes come from the steps above (micro, label, small, control, body, lede and the display scales). Never add a one-off rem value between them.
+**The Two Voices Rule.** The letter speaks in Spectral; the form is filled in with Hanken Grotesk. If a string is a sentence, it is Spectral. If it is a field, a value, a date or a control, it is Hanken Grotesk.
 
-**The Two Voices Rule.** Typed (Courier Prime) for anything the candidate says; form (Libre Franklin) only for small uppercase field names and tags. No third family.
+**The No Spectral Bold Rule.** Spectral stops at 500. Anything that needs to be heavier is set in Hanken Grotesk, so the browser never synthesises a weight.
 
-**The No Kicker Rule.** Nothing is stacked above a heading. An exhibit's tag and status stamp sit on the same line as its title; categories and years go below it.
+**The Field Name Rule.** A label names the list or field directly beneath it. It is never a lead-in above a larger heading.
 
 ## Layout
 
-A file rail beside the record. From 1024px the page is a two-column grid: a sticky 17rem black stock rail (full viewport height, its own thin scroll, 1px stock-rule right edge) and the record column. Below 1024px the rail becomes a black top bar with the monogram, CV and menu. On desk screens under 860px tall the rail drops its least urgent fact row rather than scroll.
+One centred desk of 76rem carries everything, with a gutter of 0.75rem on phones that opens to 2rem from 768px. Sheets fill the desk's width; the product sheets stack with 1.25rem between them, 2rem from 768px. Sheet padding grows in three steps: 2rem 1.35rem 2.5rem on phones, 3.5rem 3.5rem 4rem from 768px, 4rem 5rem 4.5rem from 1100px.
 
-The record column is a shell capped at 76rem, with inline padding of 1.25rem, 2rem from 768px and 3rem from 1024px. Sections are bands with 4.5rem block padding, 6.5rem from 768px. Each opens with a section head: a 4px ink rule, 1.25rem gap, the headline, and an optional lead set right-aligned in a 24rem column from 768px, then 2.75rem before content.
+The first sheet is one named grid. From 900px it runs a free column against a 17.5rem column with a 4rem gap: letterhead, name and body on the left, the portrait and then the enclosure index on the right. Below that it collapses to a single column in the order letterhead, name, portrait, body, index, so a phone reader meets the name and the face first.
 
-The hero is three blocks. On a phone they stack name, frames, rest, so the face lands above the fold. From 768px the frames take the right column (1.08fr / 1fr, 3rem column gap) and the name and copy centre vertically against them. The surveillance array is a 3×3 square grid of halftone frames with the portrait spanning 2×2.
+Sections open on the desk with a section head, 4.5rem above the title on phones and 6.5rem from 768px, the title at the left and the Ek mark on the same baseline at the right edge. Records inside sheets are row grids with a fixed first column for the date or name; they stack below 768px. Product sheets split into record and evidence at 1024px. The method runs as one row of four from 900px.
 
-Record lists are ruled tables: a 2px rule above, 1px dashed soft rules between rows, a 2px rule closing, with fixed-width label columns (e.g. 11rem, 17rem, 18rem) on desktop.
+The masthead is a sticky 4rem strip of the desk. The switches join it at 1024px and the full nav at 1280px; below those they live in a menu that opens under the strip.
 
 ## Elevation & Depth
 
-Flat. There are no box shadows anywhere in the system. Depth is material, not light: black matte stock sits beside or within the manila folder, exhibits are mounted in 2px bordered frames, and stamps are struck across rules with their own scrap of canvas behind them. A fixed, non-interactive paper-fibre overlay (long thin turbulence streaks, opacity 0.09 multiplied in Gündüz, 0.05 screened in Gece) gives the folder its tooth.
+Depth is physical and shallow: paper lying on a desk and a print lying on paper. There are exactly three levels, desk, sheet and print, and each paper object casts one soft shadow, drawn as a tight contact edge with a wider fall below it. Nothing lifts on hover. Within a sheet, depth is tonal: Dove Raised under an enclosure line or a plate, never a shadow. The fibre is a faint SVG noise over each sheet (0.05 in Gündüz, 0.07 in Gece) that keeps the paper from reading as a flat fill.
+
+### Shadow Vocabulary
+- **Sheet, Gündüz** (`box-shadow: 0 1px 1px rgba(30, 8, 14, 0.3), 0 18px 36px -14px rgba(30, 8, 14, 0.55)`): Every sheet on the vişne desk.
+- **Sheet, Gece** (`box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5), 0 18px 36px -14px rgba(0, 0, 0, 0.8)`): Every sheet on the aubergine desk.
+- **Print** (`box-shadow: 0 1px 2px rgba(30, 8, 14, 0.3), 0 8px 18px -8px rgba(30, 8, 14, 0.45)`): The photographic print on the sheet.
+- **Clip** (`filter: drop-shadow(0.5px 1.2px 0.7px rgba(30, 8, 14, 0.5))`): The paperclip's wire on the print.
 
 ### Named Rules
-**The Matte Stock Rule.** Hierarchy comes from stock versus folder and from rule weight (4px opens, 2px frames, 1px dashed divides), never from shadows, blur, glows or gradients.
+**The Paper Only Rule.** Shadows belong to objects that are physically paper or wire: the sheet, the print, the clip. Buttons, rows, panels and plates cast none.
+
+**The Marks In The Paper Rule.** Fibre, watermark and monogram are in the sheet, not on it. They stay beneath the text and never compete with it.
 
 ## Shapes
 
-Square-cut. Radius is zero on every element. Corners are marked, not rounded: primary and file buttons carry four inset corner brackets (0.7rem by 2px, 5px from each corner) drawn as background gradients in the bracket colour. Stamps are a 3px border with a 1px outline 2px outside it, rotated between -3° and -8°, their ink eroded by a fractal-noise mask so it does not take everywhere. Tabs and the theme and language switches are boxes split by 2px rules.
+Every surface and control is square: sheets, buttons, switches, plates, the demo panel, the status marks. Hairlines of 1px do the structural work, a strong rule opening a list and soft rules between its rows. The only circles in the system are the pressed seal itself, the ring of the monogram, the watermark and the favicon, and the only curves are the wire of the clip. Rotation is reserved for the print, which rests at 1.6deg because it was clipped on by hand.
 
 ## Components
 
 ### Buttons
-Typed caps on black stock, bracketed at the corners.
-- **Shape:** square (0px), 2px border, minimum height 3.25rem, padding 0.75rem 1.5rem, 0.6rem gap to an inline 16px icon.
-- **Primary:** stock background, manila type, manila corner brackets. Hover fills stock-pressed (pure black) and the brackets turn stock-alarm. In Gece the primary inverts: manila background, near-black type and brackets; hover fills manila-pressed and the brackets turn alarm.
-- **Secondary:** transparent with a 2px ink border and ink type; hover fills with manila-raised. On stock it takes manila border and type, hovering to stock-raised.
-- **File (rail CV button):** manila punched out of the black rail, with stock-coloured brackets. Hover fills manila-pressed and the brackets turn stock-alarm.
-- **Focus:** 2px alarm outline, 3px offset (stock-alarm inside stock).
+Square, solid and quiet; a press spreads in from the left edge rather than a colour flipping.
+- **Shape:** Square corners (0px), 1px border in the fill colour, 3.25rem tall, 0.8rem 1.6rem padding; 2.25rem to 2.5rem tall in the masthead, the demo panel and the contact row.
+- **Solid:** Vişne desk with On Desk text on paper. The primary action, led by the CV. In Gece it inverts to pale ink.
+- **Ghost:** Transparent with a strong rule border; on the desk the border takes On Desk Muted and the press takes Raised Vişne.
+- **Paper:** The masthead CV. On Desk fill with desk-coloured text, so the action stays lit on the stock.
+- **Hover / Focus:** A deeper fill scales in from the left over 460ms on the lay ease, for hover and keyboard focus alike. Focus also takes a 2px outline at 3px offset, Letter Ink on paper and On Desk on the desk.
+
+### Switches
+- **Style:** Two options in a 1px Desk Rule frame, 2.1rem tall, Micro type. They hold language (TR, EN) and theme (Gündüz, Gece) in the masthead.
+- **State:** The pressed option fills On Desk with desk-coloured text. Others sit in On Desk Muted and brighten on hover.
 
 ### Navigation
-- **File tabs:** six numbered tabs in the rail. Each is a 2px stock-rule box split into a 2.25rem number cell and the uppercase tab name. Hover lifts the border to manila. The current tab (scrollspy, `aria-current`) fills manila with stock type, and its number cell inverts to black.
-- **Switches:** language (TR/EN) and theme (Gündüz/Gece) are 2px manila-bordered boxes of typed micro caps; the pressed option fills manila.
+- **Masthead:** The name in Spectral at 1.25rem, six links in Form Small at weight 500, the switches, the paper CV button.
+- **States:** On Desk Muted at rest, On Desk on hover. The current section draws a 1px rule from the left over 380ms.
+- **Mobile:** A ghost menu button opens the links and switches under the strip; Escape closes it. The CV stays in the strip at every width.
 
-### Stamps
-The status of every claim is a rubber stamp, never a pill or badge. **Red** (stamp-live) is live, available or active (Yayında/Live, Müsait/Available, the current role). **Ink** (stamp-ink) is in development (Geliştiriliyor/In development). **Gray** (stamp-gray) is archived (Arşivlendi/Archived). Stamps land once with a hard overshoot (scale 1.7 to 1, 0.22s) and then stay still. A stamp struck across a rule or into the raised procedure band prints on a canvas-coloured slip (the Manila Slip Rule), so its ink always reads against manila.
+### Sheet
+- **Corner Style:** Square (0px).
+- **Background:** Dove Sheet with fibre, Aubergine Sheet in Gece.
+- **Shadow Strategy:** The Sheet shadow, see Elevation & Depth.
+- **Internal Padding:** The three-step scale in Layout.
+- **Behaviour:** Each sheet holds its own watermark and settles once as it enters.
 
-### Exhibit Frames
-- **Frame:** a 2px ink-ruled print on photo paper, clipped square. Photographs inside are grayscale. A halftone canvas sits over the image and fades out (420ms, cubic-bezier(0.22, 1, 0.36, 1)) when the exhibit is declassified.
-- **Frame tag:** a solid ink block at the top left with the label voice in bold, canvas on ink ("EK 02·A"), naming the exhibit.
-- **Photostat:** a screenshot clipped into a record, grayscale and multiplied into the paper until hovered or focused, when the border turns alarm and the true image returns.
+### Watermark (signature)
+A double ring around AK in Spectral light, sized to 82% of the sheet up to 46rem, inked in the Watermark colour. It is invisible until a mouse moves over the sheet, then a 17rem circle of it follows the pointer and fades in over 500ms; it fades out when the pointer leaves. It answers to mouse pointers only, because a touch has no way to hold a sheet up. The circular mask is the system's only gradient, and it paints no colour of its own.
 
-### Halftone
-Exhibits are rendered in canvas from theme colours (`--c-dot` on `--c-dot-paper`). **Tone** mode is a 45° screen with dots sized by darkness, for photographs and figures. **Type** mode is a two-level square dot matrix, for typed headlines. In Gece the dots are manila on black, so the image reads as a positive.
+### Blind Monogram
+The AK seal at 4rem, opening the letterhead beside place and date. It is a baked raster of light and shade held in alpha, with no ink of its own, so it takes the colour of whichever paper it is pressed into. Gece stock takes a pressed mark more quietly: 0.5 opacity. It presses in on load, scale 1.08 to 1 over 0.7s after 0.25s.
 
-### Surveillance Array (signature)
-The hero's title sequence. Frames cut in on a stagger, a red reticle sweeps the array and locks onto the portrait, the name types itself behind a blinking block cursor, and the AVAILABLE stamp lands last on the portrait's corner, sized to the array, clamp(1.1rem, 6.2cqi, 2.05rem), on a scrap of photo paper. Afterwards, hovering or focusing an exhibit moves the reticle there (0.34s tween), declassifies it, and types its caption into the ruled caption line below.
+### Clipped Print
+The portrait on a print border with 0.5rem of white, 4:5, up to 15.5rem wide, resting at 1.6deg. The paperclip is split into two baked rasters: the back half runs under the print and the front half lies over it, so the photograph is really held. On hover the print straightens over 520ms.
 
-### Demo Sheet
-The page-curl demo's resting state and its flat fallback (no WebGL) print the same canvas page the WebGL sheet uses, drawn by `drawPage`, as an image with bilingual alt text. Do not rebuild it as an HTML miniature with microscopic type.
+### Signature Block
+The regards in italic with the name typed upright below it, Spectral throughout. It closes the letter's body on the first sheet, above the actions, and closes the page on the desk above the footer line. The name is typed, never set in a script font.
 
-### Lists and Records
-- **Ruled rows:** typed rows between a 2px rule and dashed soft dividers; label columns on the left at fixed widths.
-- **Index terms:** inline typed lists separated by faint commas that stay at the end of their line when wrapping.
-- **Typed links:** 1px soft underline at 0.22em offset; hover turns the text and underline alarm.
-- **Tick box:** a drawn 1.35rem square with a 2px rule for checklist steps.
+### Enclosure Index
+The list that closes the first sheet, named by a label and opened by a strong rule. Each line is a three-column row: the Ek number in Ink Muted, the name, and the line's closing action or state. Ek 1 is the CV, with a download icon. Ek 2 to 4 are the products, closing on their status. Ek 5 to 8 are the sections, closing on a down arrow. Every line is a link; hover lays Dove Raised under it.
+
+### Section Head
+A two-column grid on the desk: the headline at the left, the Ek mark at the right edge on the same baseline in Form Small at weight 600 and On Desk Muted, an optional lead spanning below at 34rem. The Ek mark always repeats the index's number, so the two can be read against each other.
+
+### Status Marks
+A square of 0.6em beside the word, in Form Small at weight 600. **Live** fills the square in the state colour, and the text takes it too. **Building** is a 1.5px outline square in Letter Ink. Availability and the current job use the live mark. Inside the enclosure index the mark drops to Micro.
+
+### Rows and Plates
+Records are lists of rows: a strong rule above, soft rules between, generous block padding. Plates hold product screenshots in a 1px Soft Rule frame on Dove Raised; the frame turns to Letter Ink on hover and focus. Terms in a stack list are separated by a real comma in Ink Faint. Links carry a 1px underline at 0.22em offset in Soft Rule, which takes full colour on hover.
+
+### Method Row
+Four numbered steps under a strong rule, each a light Spectral numeral, a Hanken Grotesk title and a Spectral note. The numbers are CSS counters, so the order lives in the list.
+
+### Demo Panel
+The WebGL page curl of the sample report, on a desk-coloured panel set into the product sheet: vişne by day, aubergine by night. Labels sit top and bottom on Desk Rule hairlines, with a ghost button that peels and restores the page. Its sheets are drawn from the dove palette; Gece dims them to 0.86. Without WebGL, or under reduced motion, the same sheets print as a flat before and after spread.
 
 ### Motion
-Motion uses `motion/react` under `MotionConfig reducedMotion="user"` and four shared variants: **rise** is a 0.18s linear opacity cut, never a slide; **stagger** spaces children 0.08s after 0.1s; **land** is the stamp strike; **track** moves the reticle. Section content enters through the shared `reveal` spread (once, -60px margin). Under `prefers-reduced-motion` the cursor stops blinking and every animation and transition collapses to an instant end state.
+`MotionConfig reducedMotion="user"` governs everything, with the lay ease (cubic-bezier(0.22, 1, 0.36, 1)) throughout. Sheets settle once as they enter: from 24px low and -0.3deg over 0.9s, with no opacity change, so a sheet is never hidden. The monogram presses in, the print straightens, the watermark follows. Sections have no other entrances. Under reduced motion every settle and transition resolves instantly; the watermark still answers the pointer, since it follows rather than plays.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** keep the ground saturated manila (#e4cd95) in Gündüz and near-black (#121110) in Gece, with theme-color meta values to match.
-- **Do** type every record in Courier Prime and reserve Libre Franklin for uppercase field labels and exhibit tags.
-- **Do** mark status with a rotated stamp: red for live, available or active; ink for in development; gray for archived.
-- **Do** put black matte stock behind the rail, exhibit frames and the contact sheet, and use stock-alarm for any red inside it.
-- **Do** open every section with the 4px ink rule and its typed headline, and set lists as ruled rows.
-- **Do** render exhibits as canvas halftone from the theme's dot colours and declassify them on both hover and focus.
-- **Do** write every user-visible string in both TR and EN.
-- **Do** keep text at WCAG AA against its actual background, including the manila-raised bands and black stock.
+- **Do** put readable content on a sheet, and keep section titles and the close on the desk.
+- **Do** use the semantic tokens, so both themes stay in step.
+- **Do** keep one numbering: a new enclosure takes its number in the index and on its section head together.
+- **Do** set sentences in Spectral and fields, values, dates and controls in Hanken Grotesk.
+- **Do** close a status with its word as well as its mark, so state never rests on colour alone.
+- **Do** keep every sheet visible from its first frame; the settle moves it, never reveals it.
+- **Do** keep the CV the solid action, reachable from the masthead at every width.
+- **Do** keep text at WCAG AA in both themes, and check any new pair in Gündüz and Gece.
 
 ### Don't:
-- **Don't** use alarm red for anything that is not state: no red headings, red section fills or decorative red rules.
-- **Don't** set alarm red text directly on the raised manila band; give it a canvas slip.
-- **Don't** add font sizes outside the ramp; reach for small (0.875rem) or micro (0.75rem) instead of a one-off value.
-- **Don't** place eyebrow or kicker labels above headings; tags and stamps share the title's line.
-- **Don't** round corners, add box shadows, backdrop blur, gradient glows or card grids.
-- **Don't** use a pale cream ground or reintroduce the replaced Fraunces/Public Sans/IBM Plex Mono editorial world.
-- **Don't** animate with soft drifts or slides; use cuts, typing and one stamp landing, and keep everything static under reduced motion.
-- **Don't** lighten ink-faint (#5b574d) any further: it sits at 4.6:1 on manila, and even a comma is text under AA.
-- **Don't** use raw hex in components; use the semantic colour tokens.
+- **Don't** let the sheet ground drift to cream or ivory.
+- **Don't** use a state colour for decoration, emphasis, links or hover.
+- **Don't** put a label above a heading as a lead-in; a label names a list or a field.
+- **Don't** set Spectral heavier than 500.
+- **Don't** add corner radius to a surface or control.
+- **Don't** paint with gradients, glass or blur; depth is paper, shadow and tone.
+- **Don't** give a shadow to anything that is not paper or wire.
+- **Don't** imitate a signature with a script font; the name is typed.
+- **Don't** give the monogram an ink colour, or redraw it as a flat logo.
+- **Don't** tilt a sheet at rest; only the print rests at an angle.
+- **Don't** add entrance animations to sections or fade content in.
+- **Don't** place Ink Faint on Dove Raised.

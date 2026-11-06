@@ -19,17 +19,19 @@ and must pass before a change reaches `main`.
 - `src/App.tsx` — all content data and all components. Content lives in the
   top-of-file constants (`COPY`, `PRODUCTS`, `SKILL_GROUPS`, `EXPERIENCES`,
   `ARCHIVE_PROJECTS`); components follow below.
-- `src/index.css` — the whole design system: theme tokens, the two type voices
-  and the case-file primitives (`.rail`, `.tab`, `.btn`, `.frame`, `.photostat`,
-  `.stamp`, `.rows`/`.row`, `.term`…). Primitives live in `@layer components`
-  and element defaults in `@layer base`, so Tailwind utilities always win.
+- `src/index.css` — the whole design system: theme tokens, the type scale and
+  the primitives (`.desk`, `.sheet`, `.watermark`, `.letter`, `.clipped`,
+  `.masthead`, `.btn`, `.switch`, `.enclosure`, `.status`, `.steps`/`.step`,
+  `.rows`/`.row`, `.plate`, `.term`…). Primitives live in `@layer components` and
+  element defaults in `@layer base`, so Tailwind utilities always win.
 - `src/three/` — the WebGL page-curl demo (`PageCurl.tsx`, its own lazy chunk)
   and `pageArt.ts`, the three-free canvas drawing of the demo sheet that the
-  hero's exhibit frame also prints.
+  flat fallback spread also prints.
 - `index.html` — meta tags, font preloads, and the inline script that resolves
   the theme before first paint.
-- `public/` — CVs, screenshots (plus light JPEG copies in `exhibits/` for the
-  hero), portrait, OG image, and the self-hosted fonts in `fonts/` (OFL).
+- `public/` — CVs, screenshots, portrait, OG image, and the self-hosted font in
+  `fonts/` (Spectral and Hanken Grotesk, OFL). `monogram.png` and `clip-*.png` are
+  computed rasters, not photographs.
 - `DESIGN.md` — the recorded design system; `PRODUCT.md` — product truth.
 
 ## Content rules
@@ -46,33 +48,37 @@ and must pass before a change reaches `main`.
 
 ## Design system
 
-The page is a sixties case file (full record in `DESIGN.md`). Two themes,
-`gunduz` (the manila folder, default) and `gece` (the title sequence projected
-on black), switched via `data-theme` on `<html>` and persisted to
-`localStorage` under `ak_theme`; any other stored value opens on `gunduz`.
+The page is a formal letter of introduction on heavy stock (full record in
+`DESIGN.md`). Two themes, `gunduz` (dove-grey sheets on a vişne çürüğü desk,
+default) and `gece` (aubergine stock), switched via `data-theme` on `<html>` and
+persisted to `localStorage` under `ak_theme`; any other stored value opens on
+`gunduz`.
 
 - Use the semantic Tailwind colors (`bg-canvas`, `text-ink`, `text-muted`,
   `border-rule`, `text-alarm`, `bg-stock`, `text-on-stock`…), never raw hex.
   They are mapped from CSS variables in the `@theme` block so both themes stay
-  in sync. Inside black stock (`.on-stock`: the rail, the demo projection, the
-  contact sheet) use the `*-stock` / `on-stock*` colors.
-- Alarm red means state and nothing else: live, available, active, the
-  reticle. Never decoration.
-- Heavy form rules (2–4px), dashed row rules, black stock and scale carry
-  hierarchy. Square corners; no drop shadows, no rounded cards, no blur, no
-  gradients.
-- Type: Courier Prime is the typewriter (records, display, buttons); Libre
-  Franklin is the preprinted form (`.label` field names, exhibit tags). No
-  eyebrow labels above headings.
-- Product status is a stamp: red `Yayında` / `Live`, ink `Geliştiriliyor` /
-  `In development`.
+  in sync. `canvas` is the sheet, `stock` is the desk; on the desk (`.on-stock`:
+  the masthead, section heads, the demo panel, the contact) use the `*-stock` /
+  `on-stock*` colors.
+- Readable content sits on a `Sheet`. Section titles sit on the desk through
+  `SectionHead`, with their enclosure number at the right edge.
+- The enclosure index in the letter and the section marks share one numbering:
+  Ek 1 is the CV, then the products, then `SECTION_ENCLOSURES`.
+- Alarm means state and nothing else: live, available, active. Never decoration.
+- Status is a square mark: `.status-live` filled, `.status-building` outline.
+- Type: Spectral is the letter's voice (body, headings); Hanken Grotesk, via the
+  `.form` class, is the office form (labels, tables, controls). Spectral ships
+  300, 400, 500 and italic 400 only, so bold text must be `.form`. No eyebrow
+  labels above headings.
+- Square corners; one soft shadow on sheets and the print; no gradients, no icons
+  as decoration. No script font imitating a signature: the name is typed.
 - Keep contrast at WCAG AA or better, and keep the
   `prefers-reduced-motion` block in `src/index.css` working.
 
 ## Motion
 
-`motion/react` with `MotionConfig reducedMotion="user"`. Motion is cuts and
-typed reveals, never soft drifts. Reuse the shared `rise` (cut-in), `stagger`,
-`land` (stamp) variants, the `reveal` spread and the `track` transition rather
-than writing new transition values per component. The hero title sequence is
-the one authored moment; sections do not get their own entrance animations.
+`motion/react` with `MotionConfig reducedMotion="user"`, `layEase` throughout.
+Motion is a sheet settling on a desk, never a fade: `lay` moves a sheet into
+place once and it is readable throughout. The monogram presses in on load, the
+photograph straightens on hover, and the pointer holds a sheet to the light to
+show its watermark. Nothing else moves.

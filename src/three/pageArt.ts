@@ -9,8 +9,8 @@
  * colour, so the shader can reveal the translation the way it is written:
  * heading first, then the measure, then the figure, then the folio.
  *
- * Nothing here touches three.js, so the same sheet can be printed into the
- * hero's exhibit frame without pulling the WebGL chunk into the first paint.
+ * Nothing here touches three.js, so the flat fallback spread can print the
+ * same sheets without pulling the WebGL chunk in.
  */
 export type PageContent = {
   label: string;
@@ -32,15 +32,15 @@ const H = 880;
 const SCALE = 1.2;
 
 export const PALETTE = {
-  source: {paper: '#ece5d3', edge: '#bdb39b', ink: '#1a1916', muted: '#5f584a', rule: '#cbc1aa'},
-  target: {paper: '#f7f3ea', edge: '#cfc5ae', ink: '#141311', muted: '#5a5446', rule: '#d6cdb8'},
+  source: {paper: '#e4e2dd', edge: '#b9b4ab', ink: '#241c1e', muted: '#5c5352', rule: '#c9c5bd'},
+  target: {paper: '#f6f5f1', edge: '#cbc7be', ink: '#241c1e', muted: '#5c5352', rule: '#d8d5cd'},
 } as const;
 
-/** The case file's alarm red: the one mark on the sheet that carries state. */
-export const ACCENT = '#9e1f18';
-const INK = '#1a1916';
-const STEEL = '#8a857a';
-const ASH = '#b0aa9c';
+/** The sample report's one accent, taken from the desk. */
+export const ACCENT = '#7a1f2e';
+const INK = '#241c1e';
+const STEEL = '#8a817f';
+const ASH = '#b3aca8';
 
 /** Past the lede, body copy is typeset as rules: the demo is about layout. */
 const PARAGRAPH_A = [1, 0.94, 0.62];
@@ -166,7 +166,7 @@ export function drawPage(content: PageContent, mode: PageMode = 'art'): HTMLCanv
 
   // ---- running head -------------------------------------------------------
   ctx.textBaseline = 'alphabetic';
-  ctx.font = '700 15px "Libre Franklin", ui-sans-serif, system-ui, sans-serif';
+  ctx.font = '700 15px "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif';
   setTracking(ctx, '2.4px');
   const label = content.label.toUpperCase();
   ctx.fillStyle = paint.across(tone.muted, m, ctx.measureText(label).width, ORDER.label);
@@ -182,14 +182,14 @@ export function drawPage(content: PageContent, mode: PageMode = 'art'): HTMLCanv
   }
 
   // ---- title --------------------------------------------------------------
-  ctx.font = '700 42px "Courier Prime", "Courier New", monospace';
+  ctx.font = '400 44px Spectral, Georgia, serif';
   drawWrapped(ctx, paint, content.title, m, 178, inner, 50, tone.ink, ORDER.title);
 
   ctx.fillStyle = paint.across(ACCENT, m, 58, ORDER.tick);
   ctx.fillRect(m, 214, 58, 3);
 
   // ---- lede: the paragraph that is actually read ---------------------------
-  ctx.font = '400 19px "Courier Prime", "Courier New", monospace';
+  ctx.font = '400 20px Spectral, Georgia, serif';
   drawWrapped(ctx, paint, content.lede, m, 258, inner, 30, tone.ink, ORDER.lede);
 
   // ---- body ---------------------------------------------------------------
@@ -221,7 +221,7 @@ export function drawPage(content: PageContent, mode: PageMode = 'art'): HTMLCanv
   });
 
   // Even the axis reads in the reader's language.
-  ctx.font = '700 14px "Libre Franklin", ui-sans-serif, system-ui, sans-serif';
+  ctx.font = '700 14px "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif';
   content.units.forEach((unit, index) => {
     const width = ctx.measureText(unit).width;
     const x = m + index * (barWidth + gap) + (barWidth - width) / 2;
@@ -229,7 +229,7 @@ export function drawPage(content: PageContent, mode: PageMode = 'art'): HTMLCanv
     ctx.fillText(unit, x, chartTop + chartHeight + 24);
   });
 
-  ctx.font = '600 13px "Libre Franklin", ui-sans-serif, system-ui, sans-serif';
+  ctx.font = '600 13px "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif';
   setTracking(ctx, '1.6px');
   ctx.fillStyle = paint.across(tone.muted, m, ctx.measureText(content.caption).width, ORDER.caption);
   ctx.fillText(content.caption, m, chartTop + chartHeight + 58);
@@ -249,7 +249,7 @@ export function drawPage(content: PageContent, mode: PageMode = 'art'): HTMLCanv
     ctx.fillRect(m, H - 88, inner, 1);
   }
 
-  ctx.font = '400 14px "Courier Prime", "Courier New", monospace';
+  ctx.font = '500 14px "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif';
   setTracking(ctx, '1.4px');
   const footWidth = ctx.measureText(content.footnote).width;
   ctx.fillStyle = paint.across(tone.muted, m, footWidth, span(ORDER.footer, 0, 2));

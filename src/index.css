@@ -1,82 +1,122 @@
 @import "tailwindcss";
 
 /* ============================================================
-   Anıl Karabulut — "Dosya" design system
-   A sixties title-sequence case file: manila-folder ground, black matte
-   stock, coarse halftone exhibits, typed records and one alarm red that
-   only ever means state (live, available, the reticle).
+   Anıl Karabulut — "Antet" design system
+   A formal letter of introduction on heavy stock: vişne çürüğü cotton is the
+   desk, dove-grey sheets lie on it, the monogram is blind-embossed and a
+   watermark lives in the paper. Restraint and finish carry the trust.
    ============================================================ */
 
-/* Self-hosted (OFL): Courier Prime is the typewriter every record is typed
-   on; Libre Franklin is the preprinted form the record is typed onto. */
+/* Self-hosted (OFL): Spectral is the letter's voice; Hanken Grotesk is the
+   office form around it (labels, tables, controls). */
 @font-face {
-  font-family: 'Courier Prime';
+  font-family: 'Spectral';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   font-display: swap;
-  src: url('/fonts/courier-prime-400-latin.woff2') format('woff2');
+  src: url('/fonts/spectral-300-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
     U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
-  font-family: 'Courier Prime';
+  font-family: 'Spectral';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   font-display: swap;
-  src: url('/fonts/courier-prime-400-latin-ext.woff2') format('woff2');
+  src: url('/fonts/spectral-300-latin-ext.woff2') format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
     U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 @font-face {
-  font-family: 'Courier Prime';
+  font-family: 'Spectral';
   font-style: normal;
-  font-weight: 700;
+  font-weight: 400;
   font-display: swap;
-  src: url('/fonts/courier-prime-700-latin.woff2') format('woff2');
+  src: url('/fonts/spectral-400-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
     U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
-  font-family: 'Courier Prime';
+  font-family: 'Spectral';
   font-style: normal;
-  font-weight: 700;
+  font-weight: 400;
   font-display: swap;
-  src: url('/fonts/courier-prime-700-latin-ext.woff2') format('woff2');
+  src: url('/fonts/spectral-400-latin-ext.woff2') format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
     U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 @font-face {
-  font-family: 'Libre Franklin';
-  font-style: normal;
-  font-weight: 400 800;
+  font-family: 'Spectral';
+  font-style: italic;
+  font-weight: 400;
   font-display: swap;
-  src: url('/fonts/libre-franklin-latin.woff2') format('woff2');
+  src: url('/fonts/spectral-400-italic-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
     U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
-  font-family: 'Libre Franklin';
-  font-style: normal;
-  font-weight: 400 800;
+  font-family: 'Spectral';
+  font-style: italic;
+  font-weight: 400;
   font-display: swap;
-  src: url('/fonts/libre-franklin-latin-ext.woff2') format('woff2');
+  src: url('/fonts/spectral-400-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Spectral';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/spectral-500-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Spectral';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/spectral-500-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/hanken-400-700-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/hanken-400-700-latin-ext.woff2') format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
     U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 @theme {
-  --font-typed: "Courier Prime", "Courier New", ui-monospace, monospace;
-  --font-form: "Libre Franklin", ui-sans-serif, system-ui, sans-serif;
+  --font-letter: "Spectral", Georgia, "Times New Roman", serif;
+  --font-form: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
 
-  /* The two steps below body: secondary text, and small controls and stamps. */
-  --text-small: 0.875rem;
-  --text-small--line-height: 1.6;
-  --text-micro: 0.75rem;
+  /* The two steps below body: secondary text, and small controls and labels. */
+  --text-small: 0.94rem;
+  --text-small--line-height: 1.55;
+  --text-micro: 0.8rem;
   --text-micro--line-height: 1.45;
 
   --color-canvas: var(--c-canvas);
@@ -94,74 +134,65 @@
   --color-on-stock-muted: var(--c-on-stock-muted);
   --color-stock-rule: var(--c-stock-rule);
   --color-stock-alarm: var(--c-stock-alarm);
+
+  --ease-lay: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ---------- Gündüz: the folder on the desk (default) ---------- */
+/* ---------- Gündüz: dove-grey sheets on vişne çürüğü (default) ---------- */
 :root,
 [data-theme='gunduz'] {
   color-scheme: light;
 
-  --c-canvas: #e4cd95;
-  --c-raised: #d5bb84;
-  --c-ink: #141311;
-  --c-body: #1f1d19;
-  --c-muted: #4f4739;
-  --c-faint: #5b574d;
-  --c-rule: #141311;
-  --c-rule-soft: rgba(20, 19, 17, 0.3);
-  --c-alarm: #9e1f18;
+  --c-canvas: #e9e8e4;
+  --c-raised: #dfddd7;
+  --c-ink: #241c1e;
+  --c-body: #2f2829;
+  --c-muted: #5c5352;
+  --c-faint: #6a6160;
+  --c-rule: #241c1e;
+  --c-rule-soft: rgba(36, 28, 30, 0.18);
+  /* The stock's own colour, deepened: state on paper. */
+  --c-alarm: #7a1f2e;
 
-  /* Black matte stock: the rail, the exhibit frames, the contact sheet. */
-  --c-stock: #141311;
-  --c-stock-2: #22201b;
-  --c-on-stock: #e4cd95;
-  --c-on-stock-muted: #b3a683;
-  --c-stock-rule: #3a362e;
-  --c-stock-alarm: #ef5f55;
-  /* Pressed states: black stock pressed to pure black, manila stock to its lighter pull. */
-  --c-stock-pressed: #000000;
-  --c-manila-pressed: #f1dcab;
-  /* Archived: a cooler, lighter ink than black that still reads at AA on manila. */
-  --c-archive-gray: #58554c;
+  /* The desk: vişne çürüğü cotton stock. */
+  --c-stock: #4a1f28;
+  --c-stock-2: #5a2732;
+  --c-on-stock: #efe9e3;
+  --c-on-stock-muted: #cdbfb9;
+  --c-stock-rule: rgba(239, 233, 227, 0.22);
+  --c-stock-alarm: #f2c6b6;
 
-  /* Halftone: ink dots printed on the photo paper. */
-  --c-dot: #141311;
-  --c-dot-paper: #e9d6a6;
-
-  --fiber: 0.09;
-  --fiber-blend: multiply;
+  --mark: rgba(36, 28, 30, 0.13);
+  --print: #f6f5f1;
+  --sheet-shadow: 0 1px 1px rgba(30, 8, 14, 0.3), 0 18px 36px -14px rgba(30, 8, 14, 0.55);
+  --paper-grain: 0.05;
 }
 
-/* ---------- Gece: the title sequence projected on black ---------- */
+/* ---------- Gece: pale ink on dark stock ---------- */
 [data-theme='gece'] {
   color-scheme: dark;
 
-  --c-canvas: #121110;
-  --c-raised: #1c1a17;
-  --c-ink: #e4cd95;
-  --c-body: #d9c79e;
-  --c-muted: #aca083;
-  --c-faint: #8f8670;
-  --c-rule: rgba(228, 205, 149, 0.62);
-  --c-rule-soft: rgba(228, 205, 149, 0.22);
-  --c-alarm: #f0564b;
+  --c-canvas: #2c1c35;
+  --c-raised: #362343;
+  --c-ink: #efe8e2;
+  --c-body: #dcd3cd;
+  --c-muted: #b3a6a1;
+  --c-faint: #a09490;
+  --c-rule: rgba(239, 232, 226, 0.6);
+  --c-rule-soft: rgba(239, 232, 226, 0.16);
+  --c-alarm: #eba99b;
 
-  --c-stock: #1c1a17;
-  --c-stock-2: #26231e;
-  --c-on-stock: #e4cd95;
-  --c-on-stock-muted: #aca083;
-  --c-stock-rule: #3a362e;
-  --c-stock-alarm: #f2665b;
-  --c-stock-pressed: #000000;
-  --c-manila-pressed: #f1dcab;
-  --c-archive-gray: #8f8670;
+  --c-stock: #1e1226;
+  --c-stock-2: #2a1a33;
+  --c-on-stock: #efe8e2;
+  --c-on-stock-muted: #cdbfb9;
+  --c-stock-rule: rgba(239, 232, 226, 0.16);
+  --c-stock-alarm: #eba99b;
 
-  /* Projected: light dots on black, so the halftone reads as a positive. */
-  --c-dot: #e4cd95;
-  --c-dot-paper: #121110;
-
-  --fiber: 0.05;
-  --fiber-blend: screen;
+  --mark: rgba(239, 232, 226, 0.09);
+  --print: #efe8e2;
+  --sheet-shadow: 0 1px 1px rgba(0, 0, 0, 0.5), 0 18px 36px -14px rgba(0, 0, 0, 0.8);
+  --paper-grain: 0.07;
 }
 
 /* Element defaults sit in the base layer so utilities can always override them. */
@@ -173,31 +204,22 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
-  }
-
-  @media (min-width: 1024px) {
-    html {
-      scroll-padding-top: 1.5rem;
-    }
-  }
-
-  html {
-    scrollbar-color: var(--c-ink) var(--c-canvas);
+    scrollbar-color: var(--c-on-stock-muted) var(--c-stock);
   }
 
   body {
     margin: 0;
     min-width: 320px;
-    background: var(--c-canvas);
+    background: var(--c-stock);
     color: var(--c-body);
-    font-family: var(--font-typed);
-    font-size: 1rem;
-    line-height: 1.65;
+    font-family: var(--font-letter);
+    font-size: 1.125rem;
+    line-height: 1.62;
+    font-variant-numeric: lining-nums;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-    font-variant-numeric: tabular-nums;
-    caret-color: var(--c-alarm);
-    transition: background-color 220ms ease, color 220ms ease;
+    caret-color: var(--c-ink);
+    transition: background-color 260ms ease, color 260ms ease;
   }
 
   a {
@@ -211,12 +233,17 @@
   }
 
   ::selection {
-    background: var(--c-alarm);
-    color: var(--c-canvas);
+    background: var(--c-stock);
+    color: var(--c-on-stock);
+  }
+
+  [data-theme='gece'] ::selection {
+    background: var(--c-on-stock);
+    color: var(--c-stock);
   }
 
   :focus-visible {
-    outline: 2px solid var(--c-alarm);
+    outline: 2px solid var(--c-ink);
     outline-offset: 3px;
   }
 
@@ -226,183 +253,303 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: var(--c-canvas);
+    background: var(--c-stock);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--c-ink);
-    border: 3px solid var(--c-canvas);
+    background: var(--c-on-stock-muted);
+    border: 4px solid var(--c-stock);
   }
 }
 
 /* The design system's primitives: components, beneath Tailwind utilities. */
 @layer components {
-  /* Paper fibre: long, thin streaks rather than the usual round grain. */
-  .fiber {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    opacity: var(--fiber);
-    mix-blend-mode: var(--fiber-blend);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5 0.62' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.33 0 0 0 0 0.26 0 0 0 0 0.15 0 0 0 1.3 -0.42'/%3E%3C/filter%3E%3Cfilter id='k'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.75' numOctaves='1' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.24 0 0 0 0 0.18 0 0 0 0 0.1 0 0 0 14 -11.6'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23p)'/%3E%3Crect width='300' height='300' filter='url(%23k)'/%3E%3C/svg%3E");
-  }
-
   /* ============================================================
-     Layout — the file rail beside the record
+     The desk and the sheets
      ============================================================ */
 
-  .file {
-    position: relative;
-    z-index: 1;
-  }
-
-  .shell {
+  .desk {
     width: 100%;
     max-width: 76rem;
     margin-inline: auto;
-    padding-inline: 1.25rem;
-  }
-
-  .band {
-    padding-block: 4.5rem;
+    padding-inline: 0.75rem;
   }
 
   @media (min-width: 768px) {
-    .shell {
+    .desk {
       padding-inline: 2rem;
     }
+  }
 
-    .band {
-      padding-block: 6.5rem;
+  /* A sheet of heavy paper: square, faint fibre, one soft shadow on the desk. */
+  .sheet {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: var(--c-canvas);
+    box-shadow: var(--sheet-shadow);
+    padding: 2rem 1.35rem 2.5rem;
+  }
+
+  .sheet::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: var(--paper-grain);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7 0.9' numOctaves='3' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.2 0 0 0 0 0.12 0 0 0 0 0.13 0 0 0 1.4 -0.45'/%3E%3C/filter%3E%3Crect width='280' height='280' filter='url(%23p)'/%3E%3C/svg%3E");
+  }
+
+  @media (min-width: 768px) {
+    .sheet {
+      padding: 3.5rem 3.5rem 4rem;
     }
   }
 
-  @media (min-width: 1024px) {
-    .file {
-      display: grid;
-      grid-template-columns: 17rem minmax(0, 1fr);
-    }
-
-    .shell {
-      padding-inline: 3rem;
+  @media (min-width: 1100px) {
+    .sheet {
+      padding: 4rem 5rem 4.5rem;
     }
   }
 
-  .rail {
+  /* The watermark: in the paper, seen only where the sheet is held to the light. */
+  .watermark {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    color: var(--mark);
+    opacity: 0;
+    transition: opacity 500ms ease;
+    -webkit-mask-image: radial-gradient(circle 17rem at var(--mx, 50%) var(--my, 50%), #000 25%, transparent 100%);
+    mask-image: radial-gradient(circle 17rem at var(--mx, 50%) var(--my, 50%), #000 25%, transparent 100%);
+  }
+
+  .watermark[data-lit='true'] {
+    opacity: 1;
+  }
+
+  .enclosure .status {
+    font-size: var(--text-micro);
+  }
+
+  .watermark svg {
+    width: min(82%, 46rem);
+    height: auto;
+  }
+
+  /* The blind-embossed monogram: a lit relief of light and shade with no ink of
+     its own, so it takes the colour of whichever paper it is pressed into. */
+  .monogram {
+    display: block;
+    width: 4rem;
+    height: 4rem;
+  }
+
+  /* Dark stock takes a pressed mark more quietly than pale paper. */
+  [data-theme='gece'] .monogram {
+    opacity: 0.5;
+  }
+
+  /* The masthead: a strip of the desk that stays in reach. */
+  .masthead {
+    position: sticky;
+    top: 0;
+    z-index: 40;
     background: var(--c-stock);
+    color: var(--c-on-stock);
+    border-bottom: 1px solid var(--c-stock-rule);
+  }
+
+  .navlink {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.5rem;
+    font-family: var(--font-form);
+    font-size: var(--text-small);
+    font-weight: 500;
+    color: var(--c-on-stock-muted);
+    transition: color 160ms ease;
+  }
+
+  .navlink::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.3rem;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 380ms var(--ease-lay);
+  }
+
+  .navlink:hover,
+  .navlink[aria-current='true'] {
     color: var(--c-on-stock);
   }
 
-  /* On a short desk screen the rail gives up its least urgent row rather than
-     scrolling the facts out of sight. */
-  @media (min-width: 1024px) and (max-height: 860px) {
-    .rail-optional {
-      display: none;
-    }
-  }
-
-  /* The hero in three blocks: stacked name / frames / rest on a phone; beside
-     the rail, the frames take the right column and the copy centres against them. */
-  .hero-grid {
-    display: grid;
-    gap: 2.5rem;
-    grid-template-areas: 'name' 'frames' 'rest';
-  }
-
-  @media (min-width: 768px) {
-    .hero-grid {
-      grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
-      grid-template-rows: 1fr auto auto 1fr;
-      grid-template-areas: '. frames' 'name frames' 'rest frames' '. frames';
-      column-gap: 3rem;
-      row-gap: 2rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .rail {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      height: 100dvh;
-      overflow-y: auto;
-      scrollbar-width: thin;
-      scrollbar-color: var(--c-stock-rule) var(--c-stock);
-      border-right: 1px solid var(--c-stock-rule);
-    }
+  .navlink[aria-current='true']::after {
+    transform: scaleX(1);
   }
 
   /* ============================================================
-     Type voices — typed record / preprinted form
+     The letter
+     ============================================================ */
+
+  .letter {
+    display: grid;
+    grid-template-areas: 'head' 'name' 'photo' 'body' 'list';
+    gap: 1.75rem;
+  }
+
+  @media (min-width: 900px) {
+    .letter {
+      grid-template-columns: minmax(0, 1fr) 17.5rem;
+      grid-template-rows: auto auto 1fr auto;
+      grid-template-areas: 'head photo' 'name photo' 'body photo' 'body list';
+      column-gap: 4rem;
+      row-gap: 1.75rem;
+    }
+
+    .letter .clipped {
+      justify-self: end;
+      align-self: start;
+    }
+  }
+
+  /* The photograph, held to the sheet by a paperclip that passes behind it. */
+  .clipped {
+    position: relative;
+    justify-self: center;
+    width: min(62vw, 15.5rem);
+    rotate: 1.6deg;
+    transition: rotate 520ms var(--ease-lay);
+  }
+
+  .clipped:hover {
+    rotate: 0deg;
+  }
+
+  .print {
+    position: relative;
+    z-index: 1;
+    padding: 0.5rem;
+    background: var(--print);
+    box-shadow: 0 1px 2px rgba(30, 8, 14, 0.3), 0 8px 18px -8px rgba(30, 8, 14, 0.45);
+  }
+
+  .print img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 50% 32%;
+  }
+
+  .clip {
+    position: absolute;
+    top: -1.25rem;
+    left: 1.5rem;
+    width: 1.4rem;
+    height: 4.2rem;
+    filter: drop-shadow(0.5px 1.2px 0.7px rgba(30, 8, 14, 0.5));
+  }
+
+  .clip-back {
+    z-index: 0;
+  }
+
+  .clip-front {
+    z-index: 2;
+  }
+
+  .signature {
+    font-style: italic;
+    line-height: 1.35;
+  }
+
+  .signature-name {
+    margin-top: 0.15rem;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  /* ============================================================
+     Type — the letter's voice and the office form
      ============================================================ */
 
   .display {
-    font-family: var(--font-typed);
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: clamp(2.7rem, 15vw, 5rem);
-    line-height: 0.94;
+    font-family: var(--font-letter);
+    font-weight: 300;
+    font-size: clamp(3rem, 7.4vw, 6rem);
+    line-height: 1;
     letter-spacing: -0.02em;
     color: var(--c-ink);
   }
 
-  /* Sized so KARABULUT always fits its column: beside the frames from 768px,
-     beside the rail and the frames from 1024px. */
-  @media (min-width: 768px) {
-    .display {
-      font-size: 7.8vw;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .display {
-      font-size: clamp(2.7rem, 5.7vw, 5rem);
-    }
-  }
-
   .headline {
-    font-family: var(--font-typed);
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: clamp(1.85rem, 3.5vw, 2.75rem);
-    line-height: 1.05;
-    letter-spacing: -0.01em;
+    font-family: var(--font-letter);
+    font-weight: 300;
+    font-size: clamp(2.1rem, 4.2vw, 3.25rem);
+    line-height: 1.08;
+    letter-spacing: -0.012em;
     color: var(--c-ink);
     text-wrap: balance;
   }
 
+  .on-stock .headline {
+    color: var(--c-on-stock);
+  }
+
+  .sheet-title {
+    font-family: var(--font-letter);
+    font-weight: 400;
+    font-size: clamp(1.9rem, 3.3vw, 2.6rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--c-ink);
+  }
+
   .subhead {
-    font-family: var(--font-typed);
-    font-weight: 700;
-    font-size: clamp(1.25rem, 2vw, 1.6rem);
-    line-height: 1.2;
+    font-family: var(--font-letter);
+    font-weight: 500;
+    font-size: clamp(1.3rem, 2vw, 1.55rem);
+    line-height: 1.25;
     color: var(--c-ink);
     text-wrap: balance;
   }
 
   .sentence {
-    font-family: var(--font-typed);
-    font-weight: 700;
-    font-size: clamp(1.45rem, 2.5vw, 2.05rem);
-    line-height: 1.18;
+    font-family: var(--font-letter);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.4rem, 2.3vw, 1.85rem);
+    line-height: 1.3;
     color: var(--c-ink);
     text-wrap: balance;
   }
 
   .lede {
-    font-size: clamp(1.02rem, 1.3vw, 1.12rem);
-    line-height: 1.65;
+    font-size: clamp(1.15rem, 1.4vw, 1.25rem);
+    line-height: 1.6;
     color: var(--c-body);
     text-wrap: pretty;
   }
 
-  /* Preprinted field names: the form the record is typed onto. */
+  /* Field names on the form. */
   .label {
     font-family: var(--font-form);
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     line-height: 1.4;
     text-transform: uppercase;
     color: var(--c-muted);
@@ -412,149 +559,103 @@
     color: var(--c-on-stock-muted);
   }
 
-  /* On black stock the dark alarm red falls under 3:1; the stock red does not. */
   .on-stock :focus-visible {
-    outline-color: var(--c-stock-alarm);
+    outline-color: var(--c-on-stock);
   }
 
-  /* A typewriter's block cursor; it stops blinking when motion is reduced. */
-  .cursor {
-    display: inline-block;
-    width: 0.55em;
-    height: 0.82em;
-    margin-left: 0.06em;
-    /* Takes no room on the line, so it can never wrap the name onto a third line. */
-    margin-right: -0.61em;
-    background: var(--c-ink);
-    vertical-align: -0.02em;
-    animation: blink 1.05s steps(1, end) infinite;
-  }
-
-  @keyframes blink {
-    50% {
-      opacity: 0;
-    }
+  .form {
+    font-family: var(--font-form);
   }
 
   /* ============================================================
-     Controls — typed caps on black stock, corner brackets
+     Controls
      ============================================================ */
 
+  /* Square, solid, quiet: on hover the ink deepens from the left edge. */
   .btn {
-    --bracket: var(--c-on-stock);
+    --fill: var(--c-stock);
+    --text: var(--c-on-stock);
+    --press: var(--c-stock-2);
+    position: relative;
+    isolation: isolate;
     display: inline-flex;
     min-height: 3.25rem;
     align-items: center;
     justify-content: center;
     gap: 0.6rem;
-    padding: 0.75rem 1.5rem;
-    font-family: var(--font-typed);
-    font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    border: 2px solid transparent;
+    padding: 0.8rem 1.6rem;
+    overflow: hidden;
+    border: 1px solid var(--fill);
+    background: var(--fill);
+    color: var(--text);
+    font-family: var(--font-form);
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
   }
 
-  /* Four corner brackets, inset, drawn in the bracket colour. */
-  .btn-primary,
-  .btn-file,
-  .bracketed {
-    background-image:
-      linear-gradient(var(--bracket), var(--bracket)), linear-gradient(var(--bracket), var(--bracket)),
-      linear-gradient(var(--bracket), var(--bracket)), linear-gradient(var(--bracket), var(--bracket)),
-      linear-gradient(var(--bracket), var(--bracket)), linear-gradient(var(--bracket), var(--bracket)),
-      linear-gradient(var(--bracket), var(--bracket)), linear-gradient(var(--bracket), var(--bracket));
-    background-repeat: no-repeat;
-    background-size:
-      0.7rem 2px, 2px 0.7rem, 0.7rem 2px, 2px 0.7rem,
-      0.7rem 2px, 2px 0.7rem, 0.7rem 2px, 2px 0.7rem;
-    background-position:
-      left 5px top 5px, left 5px top 5px, right 5px top 5px, right 5px top 5px,
-      left 5px bottom 5px, left 5px bottom 5px, right 5px bottom 5px, right 5px bottom 5px;
+  [data-theme='gece'] .btn {
+    --fill: var(--c-ink);
+    --text: var(--c-stock);
+    --press: var(--c-on-stock-muted);
   }
 
-  .btn-primary {
-    background-color: var(--c-stock);
-    color: var(--c-on-stock);
-    border-color: var(--c-stock);
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--press);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 460ms var(--ease-lay);
   }
 
-  .btn-primary:hover {
-    --bracket: var(--c-stock-alarm);
-    background-color: var(--c-stock-pressed);
+  .btn:hover::before,
+  .btn:focus-visible::before {
+    transform: scaleX(1);
   }
 
-  [data-theme='gece'] .btn-primary {
-    background-color: var(--c-ink);
-    color: var(--c-canvas);
-    border-color: var(--c-ink);
-    --bracket: var(--c-canvas);
+  .btn.btn-ghost,
+  [data-theme='gece'] .btn.btn-ghost {
+    --fill: transparent;
+    --text: var(--c-ink);
+    --press: var(--c-raised);
+    border-color: var(--c-rule);
   }
 
-  [data-theme='gece'] .btn-primary:hover {
-    --bracket: var(--c-alarm);
-    background-color: var(--c-manila-pressed);
+  .on-stock .btn.btn-ghost,
+  [data-theme='gece'] .on-stock .btn.btn-ghost {
+    --text: var(--c-on-stock);
+    --press: var(--c-stock-2);
+    border-color: var(--c-on-stock-muted);
   }
 
-  .btn-secondary {
-    background: transparent;
-    color: var(--c-ink);
-    border-color: var(--c-ink);
+  /* On the desk the solid button is the paper itself. */
+  .btn.btn-paper,
+  [data-theme='gece'] .btn.btn-paper {
+    --fill: var(--c-on-stock);
+    --text: var(--c-stock);
+    --press: var(--c-on-stock-muted);
   }
 
-  .btn-secondary:hover {
-    background: var(--c-raised);
-  }
-
-  .on-stock .btn-secondary {
-    color: var(--c-on-stock);
-    border-color: var(--c-on-stock);
-  }
-
-  .on-stock .btn-secondary:hover {
-    background: var(--c-stock-2);
-  }
-
-  /* The rail's CV button: manila stock punched out of the black. */
-  .btn-file {
-    --bracket: var(--c-stock);
-    background-color: var(--c-on-stock);
-    color: var(--c-stock);
-    border-color: var(--c-on-stock);
-  }
-
-  .btn-file:hover {
-    --bracket: var(--c-stock-alarm);
-    background-color: var(--c-manila-pressed);
-  }
-
-  /* Small typed toggles: language and theme. */
   .switch {
     display: inline-flex;
-    border: 2px solid var(--c-on-stock);
+    border: 1px solid var(--c-stock-rule);
   }
 
   .switch button {
-    min-height: 2.25rem;
+    min-height: 2.1rem;
     min-width: 2.5rem;
-    padding-inline: 0.5rem;
+    padding-inline: 0.7rem;
     border: 0;
     background: transparent;
     color: var(--c-on-stock-muted);
-    font-family: var(--font-typed);
+    font-family: var(--font-form);
     font-size: var(--text-micro);
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 140ms ease, color 140ms ease;
-  }
-
-  .switch button + button {
-    border-left: 2px solid var(--c-on-stock);
+    transition: background-color 180ms ease, color 180ms ease;
   }
 
   .switch button:hover {
@@ -566,253 +667,8 @@
     color: var(--c-stock);
   }
 
-  /* File tabs in the rail: a numbered box, then the tab name. */
-  .tab {
-    display: grid;
-    grid-template-columns: 2.25rem minmax(0, 1fr);
-    align-items: stretch;
-    min-height: 2.375rem;
-    border: 2px solid var(--c-stock-rule);
-    font-family: var(--font-typed);
-    font-size: var(--text-small);
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--c-on-stock);
-    transition: border-color 140ms ease, background-color 140ms ease, color 140ms ease;
-  }
-
-  .tab > span:first-child {
-    display: grid;
-    place-items: center;
-    border-right: 2px solid var(--c-stock-rule);
-    color: var(--c-on-stock-muted);
-  }
-
-  .tab > span:last-child {
-    display: flex;
-    align-items: center;
-    padding-inline: 0.75rem;
-  }
-
-  .tab:hover {
-    border-color: var(--c-on-stock);
-  }
-
-  .tab[aria-current='true'] {
-    border-color: var(--c-on-stock);
-    background: var(--c-on-stock);
-    color: var(--c-stock);
-  }
-
-  .tab[aria-current='true'] > span:first-child {
-    background: var(--c-stock);
-    color: var(--c-on-stock);
-    border-right-color: var(--c-on-stock);
-  }
-
   /* ============================================================
-     Records — ruled forms, exhibits, stamps
-     ============================================================ */
-
-  /* The heavy rule a form opens with, then its typed title. */
-  .section-head {
-    display: grid;
-    gap: 1rem;
-    padding-top: 1.25rem;
-    border-top: 4px solid var(--c-rule);
-    margin-bottom: 2.75rem;
-  }
-
-  @media (min-width: 768px) {
-    .section-head {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 24rem);
-      align-items: end;
-      gap: 2.5rem;
-    }
-  }
-
-  .row {
-    border-bottom: 1px dashed var(--c-rule-soft);
-  }
-
-  .rows {
-    border-top: 2px solid var(--c-rule);
-  }
-
-  .rows > .row:last-child {
-    border-bottom: 2px solid var(--c-rule);
-  }
-
-  /* Exhibit frame: the black-bordered print a photo is mounted in. */
-  .frame {
-    position: relative;
-    display: block;
-    overflow: hidden;
-    background: var(--c-dot-paper);
-    border: 2px solid var(--c-rule);
-  }
-
-  .frame > img,
-  .frame > canvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-
-  .frame > img {
-    object-fit: cover;
-    filter: grayscale(1) contrast(1.08);
-  }
-
-  .frame > canvas {
-    transition: opacity 420ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .frame[data-revealed='true'] > canvas {
-    opacity: 0;
-  }
-
-  .frame-tag {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 2;
-    padding: 0.2rem 0.45rem;
-    background: var(--c-ink);
-    color: var(--c-canvas);
-    font-family: var(--font-form);
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  /* A photostat clipped into a record: legible, monochrome until handled. */
-  .photostat {
-    display: block;
-    border: 2px solid var(--c-rule);
-    background: var(--c-dot-paper);
-    transition: border-color 160ms ease;
-  }
-
-  .photostat img {
-    display: block;
-    width: 100%;
-    filter: grayscale(1) contrast(1.06);
-    mix-blend-mode: multiply;
-    transition: filter 420ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  [data-theme='gece'] .photostat img {
-    mix-blend-mode: normal;
-    filter: grayscale(1) contrast(1.02) brightness(0.86);
-  }
-
-  .photostat:hover,
-  .photostat:focus-visible {
-    border-color: var(--c-alarm);
-  }
-
-  .photostat:hover img,
-  .photostat:focus-visible img {
-    filter: none;
-    mix-blend-mode: normal;
-  }
-
-  /* Rubber stamp: double rule, typed caps, ink that did not take everywhere. */
-  .stamp {
-    display: inline-grid;
-    justify-items: center;
-    gap: 0.15rem;
-    padding: 0.35rem 0.8rem 0.4rem;
-    border: 3px solid currentColor;
-    outline: 1px solid currentColor;
-    outline-offset: 2px;
-    font-family: var(--font-typed);
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    white-space: nowrap;
-    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -8 5.9'/%3E%3C/filter%3E%3Crect width='240' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
-    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -8 5.9'/%3E%3C/filter%3E%3Crect width='240' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-
-  .stamp-live {
-    color: var(--c-alarm);
-  }
-
-  /* The hero's stamp sits on a halftone, so it gets a scrap of paper to land on. */
-  /* Sized against the frame array, not the window, so it stays a stamp on the
-     portrait's corner at every width the array takes. */
-  .surveillance {
-    container-type: inline-size;
-  }
-
-  .hero-stamp {
-    font-size: clamp(1.1rem, 6.2cqi, 2.05rem);
-    background: color-mix(in srgb, var(--c-dot-paper) 78%, transparent);
-  }
-
-  .fact-alarm {
-    color: var(--c-alarm);
-  }
-
-  .on-stock .fact-alarm {
-    color: var(--c-stock-alarm);
-  }
-
-  .stamp-ink {
-    color: var(--c-ink);
-  }
-
-  .stamp-gray {
-    color: var(--c-archive-gray);
-  }
-
-  /* Typed index terms, separated the way a typist would. */
-  /* A typed list: the comma stays at the end of its line when the list wraps. */
-  .term {
-    white-space: nowrap;
-  }
-
-  .term:not(:last-child) {
-    margin-right: 0.6em;
-  }
-
-  .term:not(:last-child)::after {
-    content: ',';
-    color: var(--c-faint);
-  }
-
-  .typed-link {
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.22em;
-    text-decoration-color: var(--c-rule-soft);
-    transition: color 140ms ease, text-decoration-color 140ms ease;
-  }
-
-  .typed-link:hover {
-    color: var(--c-alarm);
-    text-decoration-color: currentColor;
-  }
-
-  /* A drawn tick box for the procedure checklist. */
-  .tickbox {
-    display: inline-grid;
-    place-items: center;
-    width: 1.35rem;
-    height: 1.35rem;
-    border: 2px solid var(--c-rule);
-    color: var(--c-ink);
-  }
-
-  /* ============================================================
-     Stock sheets — black matte regions
+     Records
      ============================================================ */
 
   .stock {
@@ -823,17 +679,196 @@
   .projection {
     background: var(--c-stock);
     color: var(--c-on-stock);
-    border: 2px solid var(--c-rule);
+  }
+
+  /* A section's title on the desk, its enclosure mark at the right edge, the lead below. */
+  .section-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 0.5rem 2rem;
+    padding: 4.5rem 0.6rem 1.75rem;
+    color: var(--c-on-stock);
+  }
+
+  @media (min-width: 768px) {
+    .section-head {
+      padding: 6.5rem 0 2.25rem;
+    }
+  }
+
+  .section-lead {
+    grid-column: 1 / -1;
+    max-width: 34rem;
+    color: var(--c-on-stock-muted);
+    font-size: 1.125rem;
+    text-wrap: pretty;
+  }
+
+  .enclosure-mark {
+    font-family: var(--font-form);
+    font-size: var(--text-small);
+    font-weight: 600;
+    color: var(--c-on-stock-muted);
+    white-space: nowrap;
+  }
+
+  .rows {
+    border-top: 1px solid var(--c-rule);
+  }
+
+  .row {
+    border-bottom: 1px solid var(--c-rule-soft);
+  }
+
+  /* The enclosure index: each line closes on its action. */
+  .enclosure {
+    display: grid;
+    grid-template-columns: 3.25rem minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 0.6rem;
+    padding-block: 0.5rem;
+    border-bottom: 1px solid var(--c-rule-soft);
+    font-family: var(--font-form);
+    font-size: var(--text-small);
+    color: var(--c-ink);
+    transition: background-color 200ms ease;
+  }
+
+  .enclosure > :first-child {
+    white-space: nowrap;
+  }
+
+  a.enclosure:hover {
+    background: var(--c-raised);
+  }
+
+  /* Status: a small solid mark when it holds now, the outline while it is coming. */
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-form);
+    font-size: var(--text-small);
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .status::before {
+    content: '';
+    width: 0.6em;
+    height: 0.6em;
+    flex: none;
+    border: 1.5px solid currentColor;
+  }
+
+  .status-live {
+    color: var(--c-alarm);
+  }
+
+  .status-live::before {
+    background: currentColor;
+  }
+
+  .on-stock .status-live {
+    color: var(--c-stock-alarm);
+  }
+
+  .status-building {
+    color: var(--c-ink);
+  }
+
+  .term {
+    white-space: nowrap;
+  }
+
+  .term:not(:last-child) {
+    margin-right: 0.55em;
+  }
+
+  .term:not(:last-child)::after {
+    content: ',';
+    color: var(--c-faint);
+  }
+
+  .link {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+    text-decoration-color: var(--c-rule-soft);
+    transition: text-decoration-color 160ms ease;
+  }
+
+  .link:hover {
+    text-decoration-color: currentColor;
+  }
+
+  .on-stock .link {
+    text-decoration-color: var(--c-stock-rule);
+  }
+
+  .on-stock .link:hover {
+    text-decoration-color: currentColor;
+  }
+
+  .plate {
+    display: block;
+    overflow: hidden;
+    border: 1px solid var(--c-rule-soft);
+    background: var(--c-raised);
+    transition: border-color 180ms ease;
+  }
+
+  .plate img {
+    display: block;
+    width: 100%;
+  }
+
+  .plate:hover,
+  .plate:focus-visible {
+    border-color: var(--c-ink);
+  }
+
+  /* ============================================================
+     The procedure: one numbered row
+     ============================================================ */
+
+  .steps {
+    display: grid;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 1.25rem 0 0;
+    list-style: none;
+    border-top: 1px solid var(--c-rule);
+    counter-reset: step;
+  }
+
+  .step {
+    counter-increment: step;
+  }
+
+  .step::before {
+    content: counter(step);
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 300;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--c-ink);
+  }
+
+  @media (min-width: 900px) {
+    .steps {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 2.25rem;
+    }
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  .cursor {
-    animation: none;
   }
 
   *,
